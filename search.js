@@ -30,18 +30,16 @@ function showDataList(object_array,template_string,target_selector){
 This function takes an array of objects,
 a search_string to search for in each object,
 a string of comma separated search_properties in each object to search in,
-an optional template_string and target_selector to activate the showDataList function
+an optional function that will be passed the output array
 
 example:
-showDataList(
+searchDataList(
 	[{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}],
 	'George',
-	'email,name',
-	`<div><%= name %> @ <%= email %></div>`,
-	'.output'
+	'email,name'
 	);
 */
-function searchDataList(object_array,search_string,search_properties,template_string,target_selector){
+function searchDataList(object_array,search_string,search_properties,fn){
 	var prop_search = search_properties.split(",");
 	var arr = _.filter(object_array,function(obj){
 		for(var i in prop_search) {
@@ -49,10 +47,6 @@ function searchDataList(object_array,search_string,search_properties,template_st
 		}
 		return false;
 	});
-	if(template_string === undefined) return arr;
-	else if(target_selector === undefined) {
-		return showDataList(arr, template_string);
-	} else {
-		showDataList(arr, template_string, target_selector);
-	}
+	if(fn === undefined) return arr;
+	else fn(arr);
 }
