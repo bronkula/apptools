@@ -41,9 +41,9 @@ searchDataList(
 */
 function searchDataList(object_array,search_string,search_properties,fn){
 	var prop_search = search_properties.split(",");
-	var arr = _.filter(object_array,function(obj){
-		for(var i in prop_search) {
-			return (""+obj[prop_search[i]]).search(RegExp(search_string,'i')) >= 0;
+	var arr = object_array.filter(obj=>{
+		for(let i in prop_search) {
+			if(RegExp(search_string,'i').test(obj[prop_search[i]])) return true;
 		}
 		return false;
 	});
