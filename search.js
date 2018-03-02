@@ -1,3 +1,5 @@
+/* Ham Apptools created by Hamilton Cline http://hamiltondraws.com */
+
 
 
 /* 
@@ -15,13 +17,21 @@ showDataList(
 */
 function showDataList(object_array,template_string,target_selector){
 	var output = "";
-	var templ = makeDataTemplate(template_string);
+	var template_function = makeDataTemplate(template_string);
 	for(let i in object_array) {
-		output += templ(object_array[i]);
+		output += template_function(object_array[i]);
 	}
 	if(!target_selector) return output;
 	else document.querySelector(target_selector).innerHTML = output;
 }
+/*
+This function takes a template_string using <%= %> style templates
+it outputs a function which can be passed an object to stamp onto the string
+
+example:
+var fn = makeDataTemplate("Name: <%= name %>");
+var output = fn({name:"George"});
+*/
 function makeDataTemplate(template_string){
 	return function(data) {
 		var output = template_string;
@@ -32,6 +42,8 @@ function makeDataTemplate(template_string){
 		return output;
 	}
 }
+
+
 
 
 /*
