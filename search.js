@@ -11,7 +11,7 @@ or returns the output string if no target_selector is given
 example:
 showDataList(
 	[{x:10,y:10},{x:20,y:5}],
-	`<div>{{x}} x {{y}}</div>`,
+	`<div><%= x %> x <%=y%></div>`,
 	'.output'
 	);
 */
@@ -49,7 +49,7 @@ function makeDataTemplate(template_string){
 /*
 This function takes an array of objects,
 a search_string to search for in each object,
-a string of comma separated search_properties in each object to search in,
+an array of search_properties in each object to search through,
 an optional function that will be passed the output array
 
 example:
@@ -60,10 +60,9 @@ searchDataList(
 	);
 */
 function searchDataList(object_array,search_string,search_properties,fn){
-	var prop_search = search_properties.split(",");
 	var arr = object_array.filter(obj=>{
 		for(let i in prop_search) {
-			if(RegExp(search_string,'i').test(obj[prop_search[i]])) return true;
+			if(RegExp(search_string,'i').test(obj[search_properties[i]])) return true;
 		}
 		return false;
 	});
