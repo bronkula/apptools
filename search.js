@@ -1,5 +1,3 @@
-// Requires Lodash full build for .filter and .template
-// https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js
 
 
 /* 
@@ -11,18 +9,28 @@ or returns the output string if no target_selector is given
 example:
 showDataList(
 	[{x:10,y:10},{x:20,y:5}],
-	`<div><%= x %> x <%= y %></div>`,
+	`<div>{{x}} x {{y}}</div>`,
 	'.output'
 	);
 */
 function showDataList(object_array,template_string,target_selector){
 	var output = "";
-	var templ = _.template(template_string);
-	for(var i in object_array) {
+	var templ = makeDataTemplate(template_string);
+	for(let i in object_array) {
 		output += templ(object_array[i]);
 	}
 	if(!target_selector) return output;
 	else document.querySelector(target_selector).innerHTML = output;
+}
+function makeDataTemplate(template_string){
+	return function(data) {
+		var output = template_string;
+		for(let key in data){
+			if(data.hasOwnProperty(key) === false) continue;
+			output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
+		}
+		return output;
+	}
 }
 
 
