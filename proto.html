@@ -35,6 +35,7 @@
 
 	<section data-role="page" id="Section2" class="mobile">
 		<figure class="TopBarTitleBack" data-title="Jumps"></figure>
+		<figure class="BottomBarTitle" data-title="Footer"></figure>
 		<div data-role="body" class="body p-m">
 			<header><h2>Proto Jumps</h2></header>
 			<p>HamProto uses sections to define different app "pages". Each section of a HamProto app has its own unique id, and so linking to any of them is as easy as making a .proto-jump link to it. These can be any type of element, as long as it has a .proto-jump class hook, and an href attribute that links to a #id.</p>
@@ -52,6 +53,7 @@
 
 	<section data-role="page" id="Section3" class="mobile">
 		<figure class="TopBarTitleBack" data-title="Lists"></figure>
+		<figure class="BottomBarTitle" data-title="Footer"></figure>
 		<div data-role="body" class="body">
 			<div class="p-m">
 				<header><h2>Lists</h2></header>
@@ -161,6 +163,7 @@
 
 	<section data-role="page" id="Section5" class="mobile">
 		<figure class="TopBarTitleBack" data-title="Section 5"></figure>
+		<figure class="BottomBarTitle" data-title="Footer"></figure>
 		<div data-role="body" class="body p-m">
 			<header><h2>This is Section 5</h2></header>
 			<p>Nam, iusto, quam, voluptatibus nisi repellat officiis nostrum quaerat eum dicta similique autem officia cum quas animi aut ratione dolor sed laboriosam sunt maiores labore maxime quis debitis reprehenderit nesciunt!</p>
@@ -176,13 +179,13 @@
 
 
 	<aside id="Popup1">
-		<p>{{description:This is a popup}}</p>
+		<p><%= description:This is a popup %></p>
 		<p><a href="#" class="btn proto-popdown">Close</a></p>
 	</aside>
 
 	<figure id="TopBarTitle">
 		<nav class="nav nav-bar nav-bar-head" data-role="header">
-			<div class="nav-title proto-title"><p>{{title:ProtoTyping}}</p></div>
+			<div class="nav-title proto-title"><p><%= title:ProtoTyping %></p></div>
 		</nav>
 	</figure>
 
@@ -200,7 +203,7 @@
 
 	<figure id="TopBarTitleBack">
 		<nav class="nav nav-bar nav-bar-head" data-role="header">
-			<div class="nav-title proto-title"><p>{{title:ProtoTyping}}</p></div>
+			<div class="nav-title proto-title"><p><%= title:ProtoTyping %></p></div>
 			<ul class="nav-btns">
 				<li><a class="btn proto-jump" href="#back">Back</a></li>
 				<li></li>

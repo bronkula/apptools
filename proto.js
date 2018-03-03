@@ -132,9 +132,10 @@ Changelog
     BaseProto.prototype.setFigures = function() {
         var bp = this;
         $("figure[class]").each(function(){
-
+            // console.log($("#"+$(this).attr("class")).html())
+            var htmlstring = bp.decodeHtml($("#"+$(this).attr("class")).html())
             $(this).replaceWith(
-                bp.mt($("#"+$(this).attr("class")).html())($(this).data())
+                bp.mt(htmlstring)($(this).data())
             );
         });
     };
@@ -173,11 +174,17 @@ Changelog
             var output = template_string;
             for(let key in data){
                 if(data.hasOwnProperty(key) === false) continue;
-                output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
+                console.log(output,data,key,'<%=\s*' + key + '(\:.+?)?\s*%>')
+                output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
             }
             output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
             return output;
         }
+    }
+    BaseProto.prototype.decodeHtml = function(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
     }
 
     // $(function(){ BaseProto.init(); });
