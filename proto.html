@@ -1,0 +1,212 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<title>Prototyping</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="search.js"></script>
+	<script src="proto.js"></script>
+	<link rel="stylesheet" href="proto.css">
+
+	<script>var bp;$(function(){bp = new BaseProto();})</script>
+</head>
+<body>
+
+
+
+
+	<section data-role="page" id="Section1" class="mobile">
+		<figure class="TopBarTitle" data-title="ProtoTyping"></figure>
+		<figure class="BottomBarTitle" data-title="Footer"></figure>
+		<div data-role="body" class="body p-m">
+			<header><h2>HamProto</h2></header>
+			<p>This is the first section of a prototyping tool that allows a person to leverage their knowledge of html and css, without needing extensive knowledge of javascript (or any at all) to create a mostly working prototype of a website or app. The goal is not to allow the complete creation of a working application (although it certainly could be done) but to provide a basis for production that can more easily be transitioned into actual development than most current offerings.</p>
+			<p>The problem with most current prototyping implementations is that they often take a good amount of work that must all be completely redone once actual work is put forward. With HamProto a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
+			<p>
+				<a class="btn proto-jump" href="#Section2">Jumps</a>
+			</p>
+		</div>
+	</section>
+
+
+
+
+	<section data-role="page" id="Section2" class="mobile">
+		<figure class="TopBarTitleBack" data-title="Jumps"></figure>
+		<div data-role="body" class="body p-m">
+			<header><h2>Proto Jumps</h2></header>
+			<p>HamProto uses sections to define different app "pages". Each section of a HamProto app has its own unique id, and so linking to any of them is as easy as making a .proto-jump link to it. These can be any type of element, as long as it has a .proto-jump class hook, and an href attribute that links to a #id.</p>
+			<p>Both of the buttons below work using the .proto-jump hook, even though one is an anchor and one is a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span class="proto-jump" href="#Section1">even this phrase (click me).</span></p>
+			<p>
+				<button type="button" class="btn proto-jump" href="#Section1">Home</button>
+				<a class="btn proto-jump" href="#Section3">Lists</a>
+			</p>
+		</div>
+	</section>
+
+
+
+
+
+	<section data-role="page" id="Section3" class="mobile">
+		<figure class="TopBarTitleBack" data-title="Lists"></figure>
+		<div data-role="body" class="body">
+			<div class="p-m">
+				<header><h2>Lists</h2></header>
+				<p>Lists are a common element in webpages and apps alike. A simple implementation allows maximum flexibility for the user to design their own lists, while giving a basic infrastructure and ideas for creation.</p>
+				<p>With expandable list items you can create dynamic lists, and using the .proto-toggle-next and .proto-toggle-parentnext hooks you can open and close items from a couple of common locations.</p>
+			</div>
+			<div>
+				<ul class="proto-list">
+					<li>
+						<div class="proto-list-item proto-flex proto-toggle-next proto-nextopen">
+							<div class="proto-flex-title">List Item</div>
+						</div>
+						<div class="proto-togglable">
+							<p class="p-m">Creating expandable list items is pretty straight forward, using the proto-toggle-next hook. This element begins open, using the .proto-nextopen hook, but can still be toggled. Whereas the next list item's togglable element begins closed.</p>
+						</div>
+					</li>
+					<li>
+						<div class="proto-list-item proto-flex">
+							<div class="proto-flex-btn">&#x25EF;</div>
+							<div class="proto-flex-title proto-toggle-parentnext">Unclickable icons</div>
+							<div class="proto-flex-btn">&#x25BA;</div>
+						</div>
+						<div class="proto-togglable">
+							<p class="p-m">Lists can have any number of clickable buttons or active parts. Use the .proto-toggle-parentnext hook to make a sub portion of a list item into the interactive element.</p>
+						</div>
+					</li>
+					<li>
+						<div class="proto-list-item proto-flex">
+							<div class="proto-flex-btn proto-toggle-parentnext">&#x25EF;</div>
+							<div class="proto-flex-title">Click the icon to toggle</div>
+						</div>
+						<div class="proto-togglable">
+							<p class="p-m">Create only one part that activates a .proto-togglable, and do something else with the other parts of the .proto-list-item.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="p-m">
+				<h2>Accordions</h2>
+				<p>A common type of list is an accordion. This type of list will only allow one element to be open at a time. Use the .proto-list-accordion hook around your accordion items, and then implement the .proto-toggle-nextaccordion or .proto-toggle-parentnextaccordion hooks to show or hide a .proto-togglable element.</p>
+			</div>
+			<div>
+				<ul class="proto-list-accordion">
+					<li>
+						<div class="proto-list-item proto-toggle-nextaccordion p-hm">
+							Accordion List Items
+						</div>
+						<div class="proto-togglable"><p class="p-m">Accordion data</p></div>
+					</li>
+					<li>
+						<div class="proto-list-item proto-toggle-nextaccordion p-hm">
+							Accordion List Items
+						</div>
+						<div class="proto-togglable"><p class="p-m">Accordion data</p></div>
+					</li>
+					<li>
+						<div class="proto-list-item proto-toggle-nextaccordion p-hm">
+							Accordion List Items
+						</div>
+						<div class="proto-togglable"><p class="p-m">Accordion data</p></div>
+					</li>
+					<li>
+						<div class="proto-list-item proto-toggle-nextaccordion p-hm">
+							Accordion List Items
+						</div>
+						<div class="proto-togglable"><p class="p-m">Accordion data</p></div>
+					</li>
+				</ul>
+			</div>
+			<p class="p-m">
+				<a class="btn proto-jump" href="#Section1" data-info="{src:'http://placehold.it/120x30',description:'Create extra information to inform your team about assets that should be included in the future.',href:'somewhere.html',birthday:'thismonth'}">Home</a>
+				<a class="btn proto-jump" href="#Section4" data-info="{src:'http://placehold.it/120x30',href:'somepage.html'}">Headers</a>
+			</p>
+		</div>
+	</section>
+
+
+
+
+
+	<section data-role="page" id="Section4" class="mobile">
+		<nav class="nav nav-bar nav-bar-head" data-role="header">
+			<div class="proto-title">ProtoTyping</div>
+			<ul class="nav-btns">
+				<li><a class="btn proto-flex-btn proto-jump" href="#back">Back</a></li>
+				<li></li>
+				<li><a class="btn proto-flex-btn proto-jump" href="#Section1">
+					<i class="btn-icon">&#x2302;</i>
+					<span class="btn-description">Home</span>
+				</a></li>
+			</ul>
+		</nav>
+		<figure class="BottomBarTitle" data-title="Footer"></figure>
+		<div data-role="body" class="body p-m">
+			<header><h2>A Header for all occasions</h2></header>
+			<p>The headers provided with HamProto are quite versatile although they are mostly aesthetic. The real value added comes in their combination with a body element. A header and/or a footer can be added to a body element so that it can size and position itself accordingly.</p>
+			<p>Put the header and footer in front of the body element to allow the body element to resize itself to fit between any combination of header or footer. Using the .nav .nav-bar and the .nav-bar-head .nav-bar-foot hooks will give you a navbar wherever you need it.</p>
+			<p>
+				<a class="btn proto-jump" href="#Section3" data-info="{description:'Any information can be added to the info attribute<hr>even html code.'}">Lists</a>
+				<a class="btn proto-jump" href="#Section5">Section 5</a>
+			</p>
+		</div>
+	</section>
+
+
+
+
+	<section data-role="page" id="Section5" class="mobile">
+		<figure class="TopBarTitleBack" data-title="Section 5"></figure>
+		<div data-role="body" class="body p-m">
+			<header><h2>This is Section 5</h2></header>
+			<p>Nam, iusto, quam, voluptatibus nisi repellat officiis nostrum quaerat eum dicta similique autem officia cum quas animi aut ratione dolor sed laboriosam sunt maiores labore maxime quis debitis reprehenderit nesciunt!</p>
+			<p>
+				<a class="btn proto-jump" href="#Section4">Section 4</a>
+				<a class="btn proto-popup" href="#Popup1">Popup 1</a>
+			</p>
+		</div>
+	</section>
+
+
+
+
+
+	<aside id="Popup1">
+		<p>{{description:This is a popup}}</p>
+		<p><a href="#" class="btn proto-popdown">Close</a></p>
+	</aside>
+
+	<figure id="TopBarTitle">
+		<nav class="nav nav-bar nav-bar-head" data-role="header">
+			<div class="nav-title proto-title"><p>{{title:ProtoTyping}}</p></div>
+		</nav>
+	</figure>
+
+	<figure id="BottomBarTitle">
+		<nav class="nav nav-bar nav-bar-foot" data-role="footer">
+			<ul class="nav-btns nav-flex">
+				<li><a class="btn proto-jump" href="#Section1">#1</a></li>
+				<li><a class="btn proto-jump" href="#Section2">#2</a></li>
+				<li><a class="btn proto-jump" href="#Section3">#3</a></li>
+				<li><a class="btn proto-jump" href="#Section4">#4</a></li>
+				<li><a class="btn proto-jump" href="#Section5">#5</a></li>
+			</ul>
+		</nav>
+	</figure>
+
+	<figure id="TopBarTitleBack">
+		<nav class="nav nav-bar nav-bar-head" data-role="header">
+			<div class="nav-title proto-title"><p>{{title:ProtoTyping}}</p></div>
+			<ul class="nav-btns">
+				<li><a class="btn proto-jump" href="#back">Back</a></li>
+				<li></li>
+			</ul>
+		</nav>
+	</figure>
+
+</body>
+</html>
