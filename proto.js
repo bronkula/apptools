@@ -132,10 +132,8 @@ Changelog
     BaseProto.prototype.setFigures = function() {
         var bp = this;
         $("figure[class]").each(function(){
-            // console.log($("#"+$(this).attr("class")).html())
-            var htmlstring = bp.decodeHtml($("#"+$(this).attr("class")).html())
             $(this).replaceWith(
-                bp.mt(htmlstring)($(this).data())
+                bp.mt($("#"+$(this).attr("class")).html())($(this).data())
             );
         });
     };
@@ -170,14 +168,15 @@ Changelog
 
     // Mustache Template with default values
     BaseProto.prototype.mt = function(template_string){
+        var bp = this;
         return function(data) {
-            var output = template_string;
+            var output = bp.decodeHtml(template_string);
             for(let key in data){
                 if(data.hasOwnProperty(key) === false) continue;
                 console.log(output,data,key,'<%=\s*' + key + '(\:.+?)?\s*%>')
                 output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
             }
-            output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
+            output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
             return output;
         }
     }
