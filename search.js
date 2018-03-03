@@ -39,6 +39,7 @@ function makeDataTemplate(template_string){
 			if(data.hasOwnProperty(key) === false) continue;
 			output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
 		}
+		output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
 		return output;
 	}
 }
