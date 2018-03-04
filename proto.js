@@ -22,11 +22,12 @@ Changelog
 (function(w){
 
 
+
     function BaseProto(el) {
 
         this.originalHash = location.hash;
         this.updateUrl= false;
-        this.stateObj={title:null,url:location.href};
+        this.stateObj={title:null,url:null};
         this.currentSection = null;
         this.previousSection = null;
         this.navHistory = [];
@@ -45,25 +46,13 @@ Changelog
         var bp = this;
         bp.makeTabList();
 
-        bp.setInitialActive();
 
         bp.setFigures();
         bp.setEvents();
 
+        bp.setInitialActive();
 
 
-        w.onpopstate = function(o){
-            if(o.state!=null) {
-                console.log("pop")
-                bp.updateUrl = false;
-                bp.stateObj.title = o.state.title;
-                bp.stateObj.url = o.state.url;
-                bp.setActiveSection(bp.stateObj.title);
-            } else {
-                console.log("initial")
-                bp.setInitialActive();
-            }
-        }
     };
 
     BaseProto.prototype.makeTabList = function() {
@@ -77,25 +66,37 @@ Changelog
         });
     };
     BaseProto.prototype.setInitialActive = function() {
+        // console.log(location)
         // check if the hash was empty
         var h = this.originalHash!=="" ? this.originalHash.substr(1) : "";
         // if the hash was not one of the sections, the active one is the first
         if($.inArray(h,this.sections)===-1) {
             h = this.sections[0];
         }
-        this.stateObj.title = h;
-        this.setActiveSection(h);
+        // console.log(h)
+        // this.stateObj.title = h;
+        this.setActiveSection({title:h,url:location.href});
     };
-    BaseProto.prototype.setActiveSection = function(str) {
-        $(document).trigger("pageshow",{nextPage:str,prevPage:this.previousSection});
-        this.currentSection = str;
-        $(".active").removeClass("active");
-        $("."+str).addClass("active");
-        
-        if (this.updateUrl) {
-            history.pushState(this.stateObj, this.stateObj.title, this.stateObj.url);
-            this.updateUrl = false;
+    BaseProto.prototype.setActiveSection = function(stateObj,updateUrl) {
+        $(document).trigger("pageshow",{nextPage:stateObj,prevPage:this.stateObj});
+        // this.previousSection = this.currentSection;
+        // this.currentSection = stateObj.title;
+        this.stateObj = {
+            title:stateObj.title,
+            url:stateObj.url
         }
+        $(".active").removeClass("active");
+        $("."+stateObj.title).addClass("active");
+        
+        // if (updateUrl) {
+        history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
+        // } else {
+        //     history.replaceState(stateObj, stateObj.title, stateObj.url);
+        // }
+    };
+    BaseProto.prototype.showActiveSection = function(str) {
+        $("section.active").removeClass("active");
+        $("."+this.stateObj.title).addClass("active");
     };
 
     BaseProto.prototype.changeSection = function(str) {
@@ -103,23 +104,20 @@ Changelog
             if(history.state != null) w.history.back();
         }
         else if (history.pushState) {
-            this.previousSection = str;
-            this.stateObj = {
+            this.setActiveSection({
                 title: str,
                 url: w.location.origin + w.location.pathname + "#" + str
-            };
-            this.updateUrl = true;
-            this.setActiveSection(str);
+            },true);
         } else {
             /* Ajax navigation is not supported */
-            location.assign(this.stateObj.url);
+            location.assign(this.stateObj);
         }
     };
     BaseProto.prototype.setPopup = function(str) {
         var $aside = $(`<aside class='${str}'>`).append(
             `<div class='proto-aside-cover'></div>
             <div class='proto-aside-content'>${this.mt($("#"+str).html())([])}<div>`
-        ).appendTo($("section."+this.currentSection));
+        ).appendTo($("section."+this.stateObj.title));
         setTimeout(function(){$aside.addClass("proto-show")},15);
         return false;
     };
@@ -190,4 +188,19 @@ Changelog
     // $(function(){ BaseProto.init(); });
 
     w.BaseProto = BaseProto;
+
+
+    w.onpopstate = function(o){
+        // console.log(history)
+        if(o.state!=null) {
+            console.log("pop")
+            // bp.updateUrl = false;
+            // bp.stateObj.title = o.state.title;
+            // bp.stateObj.url = o.state.url;
+            bp.setActiveSection(o.state);
+        } else {
+            console.log("initial")
+            bp.setInitialActive();
+        }
+    }
 })(window);

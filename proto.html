@@ -14,9 +14,9 @@
 var bp;
 $(function(){
 
-	
-	$(document).on("pageshow",function(e){
-		console.log(e)
+
+	$(document).on("pageshow",function(e,obj){
+		console.log(e,obj)
 	})
 	bp = new BaseProto();
 
