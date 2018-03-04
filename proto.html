@@ -17,6 +17,10 @@ $(function(){
 
 	$(document).on("pageshow",function(e,obj){
 		console.log(e,obj)
+		if(obj.nextPage.title=="Section1") {
+			console.log("first page")
+			$(".currentdate").html(new Date())
+		}
 	})
 	bp = new BaseProto();
 
@@ -35,6 +39,10 @@ $(function(){
 			<header><h2>HamProto</h2></header>
 			<p>This is the first section of a prototyping tool that allows a person to leverage their knowledge of html and css, without needing extensive knowledge of javascript (or any at all) to create a mostly working prototype of a website or app. The goal is not to allow the complete creation of a working application (although it certainly could be done) but to provide a basis for production that can more easily be transitioned into actual development than most current offerings.</p>
 			<p>The problem with most current prototyping implementations is that they often take a good amount of work that must all be completely redone once actual work is put forward. With HamProto a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
+			<p>
+				The date below is being updated dynamically whenever this page is loaded.<br>
+				<span class="currentdate"></span>
+			</p>
 			<p>
 				<a class="btn proto-jump" href="#Section2">Jumps</a>
 			</p>
