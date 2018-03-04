@@ -10,7 +10,18 @@
 	<script src="proto.js"></script>
 	<link rel="stylesheet" href="proto.css">
 
-	<script>var bp;$(function(){bp = new BaseProto();})</script>
+<script>
+var bp;
+$(function(){
+
+	
+	$(document).on("pageshow",function(e){
+		console.log(e)
+	})
+	bp = new BaseProto();
+
+})
+</script>
 </head>
 <body>
 

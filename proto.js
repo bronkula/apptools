@@ -28,6 +28,7 @@ Changelog
         this.updateUrl= false;
         this.stateObj={title:null,url:location.href};
         this.currentSection = null;
+        this.previousSection = null;
         this.navHistory = [];
         this.sections = [];
         this.mainElement = $(el||"body");
@@ -53,13 +54,13 @@ Changelog
 
         w.onpopstate = function(o){
             if(o.state!=null) {
-                // console.log("pop")
+                console.log("pop")
                 bp.updateUrl = false;
                 bp.stateObj.title = o.state.title;
                 bp.stateObj.url = o.state.url;
-                bp.setActive(bp.stateObj.title);
+                bp.setActiveSection(bp.stateObj.title);
             } else {
-                // console.log("initial")
+                console.log("initial")
                 bp.setInitialActive();
             }
         }
@@ -83,9 +84,10 @@ Changelog
             h = this.sections[0];
         }
         this.stateObj.title = h;
-        this.setActive(h);
+        this.setActiveSection(h);
     };
-    BaseProto.prototype.setActive = function(str) {
+    BaseProto.prototype.setActiveSection = function(str) {
+        $(document).trigger("pageshow",{nextPage:str,prevPage:this.previousSection});
         this.currentSection = str;
         $(".active").removeClass("active");
         $("."+str).addClass("active");
@@ -96,18 +98,18 @@ Changelog
         }
     };
 
-    BaseProto.prototype.setSection = function(str) {
-
+    BaseProto.prototype.changeSection = function(str) {
         if(str=="back") {
             if(history.state != null) w.history.back();
         }
         else if (history.pushState) {
+            this.previousSection = str;
             this.stateObj = {
                 title: str,
                 url: w.location.origin + w.location.pathname + "#" + str
             };
             this.updateUrl = true;
-            this.setActive(str);
+            this.setActiveSection(str);
         } else {
             /* Ajax navigation is not supported */
             location.assign(this.stateObj.url);
@@ -148,7 +150,7 @@ Changelog
         this.mainElement
             .on("click",".proto-jump",function(e){
                 e.preventDefault();
-                return bp.setSection($(this).attr("href").substr(1)); })
+                return bp.changeSection($(this).attr("href").substr(1)); })
             .on("click",".proto-popup",function(e){
                 e.preventDefault();
                 return bp.setPopup($(this).attr("href").substr(1)); })
@@ -173,7 +175,6 @@ Changelog
             var output = bp.decodeHtml(template_string);
             for(let key in data){
                 if(data.hasOwnProperty(key) === false) continue;
-                console.log(output,data,key,'<%=\s*' + key + '(\:.+?)?\s*%>')
                 output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
             }
             output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
