@@ -3,6 +3,32 @@
 Base Proto v 0.5
 
 */
+section, aside[id], figure[id] {
+  display: none; }
+
+section.active {
+  display: block; }
+
+.proto-list-item {
+  line-height: 2em;
+  border: solid #999;
+  border-width: 1px 0;
+  margin-top: 2px;
+  cursor: pointer; }
+  .proto-list-item:hover {
+    background-color: #eee; }
+
+.proto-togglable {
+  display: none; }
+
+.proto-nextopen + .proto-togglable {
+  display: initial; }
+
+/*
+
+Base Proto v 0.5
+
+*/
 * {
   box-sizing: border-box; }
 
@@ -19,12 +45,6 @@ dd {
 
 p {
   line-height: 1.2em; }
-
-section, aside[id], figure[id] {
-  display: none; }
-
-section.active {
-  display: block; }
 
 figure[class] {
   margin: 0; }
@@ -65,44 +85,28 @@ aside[class] {
     transform: translate(-50%, -50%);
     opacity: 1; }
 
-[data-role='body'] {
-  padding-left: 1em;
-  padding-right: 1em; }
-
-.proto-info {
-  z-index: 1002;
-  display: none;
-  position: absolute;
-  background-color: white;
-  padding: 10px;
-  border-radius: .5em;
-  border: 1px solid #666;
-  top: 40px;
-  right: 40px;
-  width: 300px;
-  height: 300px;
-  padding: 10px;
-  overflow: auto;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2); }
-  .proto-info.active {
-    display: block; }
-
 .proto-nav {
-  /*overflow-x: auto;*/
   white-space: nowrap; }
 
 .body {
   overflow: auto;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   left: 0; }
   .body p {
     text-align: justify; }
   .nav-bar:first-child + .body {
-    height: calc(100% - 50px); }
+    height: calc(100vh - 50px); }
   .nav-bar + .nav-bar + .body {
-    height: calc(100% - 100px); }
+    height: calc(100vh - 100px); }
+
+.container {
+  padding-right: 1em;
+  padding-left: 1em;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto; }
 
 .btn {
   display: inline-block;
@@ -118,12 +122,13 @@ aside[class] {
   border-radius: 4px;
   border-width: 0;
   vertical-align: baseline;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
   .btn:hover, .btn:active {
     background-color: #efefef;
     color: black; }
 
-.compact, .nav ul, .proto-list, .proto-list-accordion {
+.compact, .proto-list, .proto-list-accordion, .nav ul {
   list-style-type: none;
   margin-top: 0;
   margin-bottom: 0;
@@ -170,7 +175,7 @@ aside[class] {
     height: 50px;
     background-color: transparent;
     line-height: 50px;
-    padding: 0 16.6666666667px;
+    padding: 0 16.66667px;
     text-align: center;
     margin: 0;
     color: #555;
@@ -182,7 +187,7 @@ aside[class] {
       display: block;
       line-height: 1em; }
     .nav-bar .btn-icon {
-      font-size: 33.3333333333px;
+      font-size: 33.33333px;
       margin-bottom: -0.10em;
       font-style: normal; }
     .nav-bar .btn-description {
@@ -202,44 +207,16 @@ aside[class] {
 
 .proto-flex {
   display: -webkit-flex;
-  display: flex; }
+  display: flex;
+  align-items: center; }
   .proto-flex-title, .proto-flex-btn {
     padding: 0 0.5em; }
-  .proto-flex-btn {
+  .proto-flex-none, .proto-flex-btn {
     -webkit-flex: none;
-    flex: none; }
-  .proto-flex-title {
+    flex: none;
+    border-radius: 0; }
+  .proto-flex-child, .proto-flex-title {
     -webkit-flex: 1 1 auto;
     flex: 1 1 auto; }
-
-.proto-list-item {
-  line-height: 2em;
-  border: solid #999;
-  border-width: 1px 0;
-  margin-top: 2px;
-  cursor: pointer; }
-  .proto-list-item:hover {
-    background-color: #eee; }
-
-.proto-togglable {
-  display: none; }
-
-.proto-nextopen + .proto-togglable {
-  display: initial; }
-
-@media screen and (max-width: 800px) {
-  body {
-    margin: 0; }
-
-  .mobile {
-    width: 100%;
-    height: 100%;
-    min-height: 480px; }
-
-  .proto-nav {
-    display: none; }
-
-  .proto-info.active {
-    display: none; } }
 
 /*# sourceMappingURL=proto.css.map */
