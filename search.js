@@ -32,16 +32,36 @@ example:
 var fn = makeDataTemplate("Name: <%= name %>");
 var output = fn({name:"George"});
 */
+// function makeDataTemplate(template_string){
+// 	return function(data) {
+// 		var output = template_string;
+// 		for(let key in data){
+// 			if(data.hasOwnProperty(key) === false) continue;
+// 			output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
+// 		}
+// 		output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
+// 		return output;
+// 	}
+// }
 function makeDataTemplate(template_string){
 	return function(data) {
-		var output = template_string;
-		for(let key in data){
-			if(data.hasOwnProperty(key) === false) continue;
-			output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
+		var output = template_string,rep = /<%=\s*(.+?)\s*%>/,m,v,s;
+		while(m = rep.exec(output)) {
+			s = m[1].split(":");
+			v = fetchFromObject(data,s[0]);
+			output = m.input.substr(0,m.index)+
+			(v?v:s[1])+
+			m.input.substr(m[0].length+m.index);
 		}
-		output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
 		return output;
 	}
+}
+// https://stackoverflow.com/questions/4255472/javascript-object-access-variable-property-by-name-as-string#answer-26407251
+function fetchFromObject(obj, prop) {
+    if(typeof obj === 'undefined') return false;
+    var _index = prop.indexOf('.')
+    if(_index > -1) return fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index + 1));
+    return obj[prop];
 }
 
 
@@ -61,12 +81,28 @@ searchDataList(
 	);
 */
 function searchDataList(object_array,search_string,search_properties,fn){
-	var arr = object_array.filter(obj=>{
-		for(let i in prop_search) {
+	return object_array.filter(obj=>{
+		for(let i in search_properties) {
 			if(RegExp(search_string,'i').test(obj[search_properties[i]])) return true;
 		}
 		return false;
 	});
-	if(fn === undefined) return arr;
-	else fn(arr);
+}
+
+
+
+
+
+/*
+This function waits for an array to have some elements,
+It recursively calls itself until the array has objects in it
+*/
+function waitForData(object_array,callback_function,passthrough_arguments){
+	if(!object_array || !object_array.length) {
+		setTimeout(function(){
+			callback_function.apply(this,passthrough_arguments);
+		},150);
+		return false;
+	}
+	return true;
 }

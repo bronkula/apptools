@@ -24,7 +24,7 @@ Changelog
 
 
     function BaseProto(el) {
-
+        var bp = this;
         this.originalHash = location.hash;
         this.updateUrl= false;
         this.stateObj={title:null,url:null};
@@ -33,8 +33,12 @@ Changelog
         this.navHistory = [];
         this.sections = [];
         this.mainElement = $(el||"body");
-        this.init(el);
+        this.makeTabList();
 
+        this.setFigures();
+        this.setEvents();
+
+        setTimeout(function(){bp.init(el);},1);
         this.els = {
 
         }
@@ -43,16 +47,8 @@ Changelog
 
 
     BaseProto.prototype.init = function() {
-        var bp = this;
-        bp.makeTabList();
 
-
-        bp.setFigures();
-        bp.setEvents();
-
-        bp.setInitialActive();
-
-
+        this.setInitialActive();
     };
 
     BaseProto.prototype.makeTabList = function() {
@@ -78,28 +74,33 @@ Changelog
         this.setActiveSection({title:h,url:location.href});
     };
     BaseProto.prototype.setActiveSection = function(stateObj,updateUrl) {
-        $(document).trigger("pageshow",{nextPage:stateObj,prevPage:this.stateObj});
-        // this.previousSection = this.currentSection;
-        // this.currentSection = stateObj.title;
+        $(document).trigger("pageshow",{
+            nextPage:{
+                title:stateObj.title,
+                url:stateObj.url,
+                el:$("."+stateObj.title)
+            },
+            prevPage:{
+                title:this.stateObj.title,
+                url:this.stateObj.url,
+                el:$(this.stateObj.title===null?"":"."+this.stateObj.title)
+            }
+        });
+        
         this.stateObj = {
             title:stateObj.title,
             url:stateObj.url
         }
-        $(".active").removeClass("active");
-        $("."+stateObj.title).addClass("active");
+        this.showActiveSection();
         
-        // if (updateUrl) {
         history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
-        // } else {
-        //     history.replaceState(stateObj, stateObj.title, stateObj.url);
-        // }
     };
-    BaseProto.prototype.showActiveSection = function(str) {
-        $("section.active").removeClass("active");
+    BaseProto.prototype.showActiveSection = function() {
+        $("[data-role='page'].active").removeClass("active");
         $("."+this.stateObj.title).addClass("active");
     };
 
-    BaseProto.prototype.changeSection = function(str) {
+    BaseProto.prototype.changeSection = function(str,updateUrl) {
         if(str=="back") {
             if(history.state != null) w.history.back();
         }
@@ -107,7 +108,7 @@ Changelog
             this.setActiveSection({
                 title: str,
                 url: w.location.origin + w.location.pathname + "#" + str
-            },true);
+            },updateUrl);
         } else {
             /* Ajax navigation is not supported */
             location.assign(this.stateObj);
@@ -148,7 +149,7 @@ Changelog
         this.mainElement
             .on("click",".proto-jump",function(e){
                 e.preventDefault();
-                return bp.changeSection($(this).attr("href").substr(1)); })
+                return bp.changeSection($(this).attr("href").substr(1),true); })
             .on("click",".proto-popup",function(e){
                 e.preventDefault();
                 return bp.setPopup($(this).attr("href").substr(1)); })
