@@ -1,0 +1,37 @@
+/*
+
+Base Proto v 0.5
+
+*/
+
+section,aside[id],figure[id] {
+    display:none;
+}
+section.active {
+    display: block;
+}
+
+
+.proto-list {
+    @extend .compact;
+    &-accordion {
+        @extend .compact;
+    }
+    &-item {
+        line-height:2em;
+        border: solid #999;
+        border-width:1px 0;
+        margin-top:2px;
+        cursor:pointer;
+        &:hover {
+            background-color:#eee;
+        }
+    }
+}
+
+.proto-togglable {
+    display:none;
+}
+.proto-nextopen+.proto-togglable {
+    display:initial;
+}
