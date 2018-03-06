@@ -39,7 +39,7 @@ Create proto-jump links to move from page to page.
 
 ## PageShow
 
-Since there's only one document ready call on an app like this, you might need to be able to run code any time a page is loaded. So there's a "pageshow" event available to you every time a page loaded onto the page.
+Since there's only one document ready call on an app like this, you might need to be able to run code any time a page is loaded. So there's a "pageshow" event available to you every time a page is loaded onto the page.
 
 ```
 $(document).on("pageshow",function(e,o){
@@ -51,4 +51,4 @@ The pageshow event is passed to objects. A regular event object, and a Proto obj
 
 ## That's all you NEED to know
 
-There's some other stuff in there, obviously. You can see there a number of little tools built in, like an accordion, and a modal, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto.css file, but the scss files have been split into core and theme. The core files are the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/).
+There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an accordion, and a modal, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto.css file, but the scss files have been split into core and theme. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/).
