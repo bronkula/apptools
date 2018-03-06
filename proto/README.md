@@ -6,6 +6,16 @@ Proto is a tool for swiftly prototyping Single Document, Multi Page applications
 
 We have borrowed heavily from the syntax of jQuery mobile in order to create something familiar. But, whereas jQuery mobile has a habit of grabbing items and replacing and changing them, Proto simply adds functionality, sparingly, to the document.
 
+## Getting Started
+
+Download the proto.css and proto.js files. You'll need to have jQuery as well.
+
+```
+<link href="proto.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="proto.js">
+```
+
 ## Pages
 
 Pages are created using a data-role="page" attribute.
