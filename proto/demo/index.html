@@ -52,8 +52,8 @@
 		<figure class="BottomBarTitle" data-title="Footer"></figure>
 		<div data-role="body" class="body container">
 			<header><h2>Proto Jumps</h2></header>
-			<p>Proto uses sections to define different app "pages". Each section of a Proto app has its own unique id, and so linking to any of them is as easy as making a .proto-jump link to it. These can be any type of element, as long as it has a .proto-jump class hook, and an href attribute that links to a #id.</p>
-			<p>Both of the buttons below work using the .proto-jump hook, even though one is an anchor and one is a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span class="proto-jump" href="#Section1">even this phrase (click me).</span></p>
+			<p>Proto uses sections to define different app "pages". Each section of a Proto app has its own unique id, and so linking to any of them is as easy as making a jump link to it. These can be any type of element, as long as it has a data-role="jump" hook, and an href attribute that links to an #id.</p>
+			<p>Both of the buttons below work using the jump, even though one is an anchor and one is a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span data-role="jump" href="#Section1">even this phrase (click me).</span></p>
 			<p>
 				Dynamic content can be added to and updated on pages using the "pageshow" event attached to the document element.
 			</p>
