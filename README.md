@@ -2,15 +2,10 @@
 A Javascript toolset for app development
 
 
+[Proto Demo](https://bronkula.github.io/apptools/proto/proto.html)
+
+
 ## Proto.js
-
-- proto/proto.js
-- proto/proto.scss
-- proto/proto.css
-- proto/proto.html
-
-[Demo](https://bronkula.github.io/apptools/proto/proto.html)
-
 Proto is a tool for prototyping. Mostly just unopinionated page routing.
 
 ## Search.js
