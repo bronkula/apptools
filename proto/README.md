@@ -1,6 +1,6 @@
 # Proto
 
-[Proto Demo](https://bronkula.github.io/apptools/proto/)
+[Proto Demo](https://bronkula.github.io/apptools/proto/demo)
 
 Proto is a tool for swiftly prototyping Single Document, Multi Page applications. It attempts to be unopinionated, and there is a tool set available for use on any project.
 
@@ -51,4 +51,4 @@ The pageshow event is passed to objects. A regular event object, and a Proto obj
 
 ## That's all you NEED to know
 
-There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an accordion, and a modal, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto.css file, but the scss files have been split into core and theme. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/).
+There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an accordion, and a modal, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto.css file, but the scss files have been split into core and theme. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/demo).

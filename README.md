@@ -2,7 +2,7 @@
 A Javascript toolset for app development
 
 
-[Proto Demo](https://bronkula.github.io/apptools/proto/)
+[Proto Demo](https://bronkula.github.io/apptools/proto/demo)
 
 
 ## Proto.js
