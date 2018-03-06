@@ -26,14 +26,14 @@ Pages are created using a data-role="page" attribute.
 
 ## Jumps
 
-Create proto-jump links to move from page to page.
+Create data-role="jump" links to move from page to page.
 
 ```
 <section data-role="page" id="page1">
-	<a href="#page2" class="proto-jump">Go to Page 2</a>
+	<a href="#page2" data-role="jump">Go to Page 2</a>
 </section>
 <section data-role="page" id="page2">
-	<a href="#page1" class="proto-jump">Go to Page 1</a>
+	<a href="#page1" data-role="jump">Go to Page 1</a>
 </section>
 ```
 

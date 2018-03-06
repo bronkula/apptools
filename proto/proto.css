@@ -46,6 +46,12 @@ dd {
 p {
   line-height: 1.2em; }
 
+a {
+  color: blue;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
 figure[class] {
   margin: 0; }
 
@@ -175,7 +181,7 @@ aside[class] {
     height: 50px;
     background-color: transparent;
     line-height: 50px;
-    padding: 0 16.66667px;
+    padding: 0 16.6666666667px;
     text-align: center;
     margin: 0;
     color: #555;
@@ -187,7 +193,7 @@ aside[class] {
       display: block;
       line-height: 1em; }
     .nav-bar .btn-icon {
-      font-size: 33.33333px;
+      font-size: 33.3333333333px;
       margin-bottom: -0.10em;
       font-style: normal; }
     .nav-bar .btn-description {

@@ -39,7 +39,7 @@
 			<p>This is the first section of a prototyping tool that allows a person to leverage their knowledge of html and css, without needing extensive knowledge of javascript (or any at all) to create a mostly working prototype of a website or app. The goal is not to allow the complete creation of a working application (although it certainly could be done) but to provide a basis for production that can more easily be transitioned into actual development than most current offerings.</p>
 			<p>The problem with most current prototyping implementations is that they often take a good amount of work that must all be completely redone once actual work is put forward. With HamProto a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
 			<p>
-				<a class="btn proto-jump" href="#Section2">Jumps</a>
+				<a class="btn" data-role="jump" href="#Section2">Jumps</a>
 			</p>
 		</div>
 	</section>
@@ -62,8 +62,8 @@
 				<span class="currentdate"></span>
 			</p>
 			<p>
-				<button type="button" class="btn proto-jump" href="#Section1">Home</button>
-				<a class="btn proto-jump" href="#Section3">Lists</a>
+				<button type="button" class="btn" data-role="jump" href="#Section1">Home</button>
+				<a class="btn" data-role="jump" href="#Section3">Lists</a>
 			</p>
 		</div>
 	</section>
@@ -145,8 +145,8 @@
 				</ul>
 			</div>
 			<p class="container">
-				<a class="btn proto-jump" href="#Section1">Home</a>
-				<a class="btn proto-jump" href="#Section4">Headers</a>
+				<a class="btn" data-role="jump" href="#Section1">Home</a>
+				<a class="btn" data-role="jump" href="#Section4">Headers</a>
 			</p>
 		</div>
 	</section>
@@ -159,9 +159,9 @@
 		<nav class="nav nav-bar nav-bar-head" data-role="header">
 			<div class="proto-title">ProtoTyping</div>
 			<ul class="nav-btns">
-				<li><a class="btn proto-flex-btn proto-jump" href="#back">Back</a></li>
+				<li><a class="btn proto-flex-btn" data-role="jump" href="#back">Back</a></li>
 				<li></li>
-				<li><a class="btn proto-flex-btn proto-jump" href="#Section1">
+				<li><a class="btn proto-flex-btn" data-role="jump" href="#Section1">
 					<i class="btn-icon">&#x2302;</i>
 					<span class="btn-description">Home</span>
 				</a></li>
@@ -173,8 +173,8 @@
 			<p>The headers provided with Proto are quite versatile although they are mostly aesthetic. The real value added comes in their combination with a body element. A header and/or a footer can be added to a body element so that it can size and position itself accordingly.</p>
 			<p>Put the header and footer in front of the body element to allow the body element to resize itself to fit between any combination of header or footer. Using the .nav .nav-bar and the .nav-bar-head .nav-bar-foot hooks will give you a navbar wherever you need it.</p>
 			<p>
-				<a class="btn proto-jump" href="#Section3">Lists</a>
-				<a class="btn proto-jump" href="#Section5">Section 5</a>
+				<a class="btn" href="#Section3" data-role="jump">Lists</a>
+				<a class="btn" href="#Section5" data-role="jump">Section 5</a>
 			</p>
 		</div>
 	</section>
@@ -225,11 +225,11 @@
 	<figure id="BottomBarTitle">
 		<nav class="nav nav-bar nav-bar-foot" data-role="footer">
 			<ul class="nav-btns nav-flex">
-				<li><a class="btn proto-jump" href="#Section1">1</a></li>
-				<li><a class="btn proto-jump" href="#Section2">2</a></li>
-				<li><a class="btn proto-jump" href="#Section3">3</a></li>
-				<li><a class="btn proto-jump" href="#Section4">4</a></li>
-				<li><a class="btn proto-jump" href="#Section5">5</a></li>
+				<li><a class="btn" data-role="jump" href="#Section1">1</a></li>
+				<li><a class="btn" data-role="jump" href="#Section2">2</a></li>
+				<li><a class="btn" data-role="jump" href="#Section3">3</a></li>
+				<li><a class="btn" data-role="jump" href="#Section4">4</a></li>
+				<li><a class="btn" data-role="jump" href="#Section5">5</a></li>
 			</ul>
 		</nav>
 	</figure>
@@ -238,7 +238,7 @@
 		<nav class="nav nav-bar nav-bar-head" data-role="header">
 			<div class="nav-title proto-title"><p><%= title:ProtoTyping %></p></div>
 			<ul class="nav-btns">
-				<li><a class="btn proto-jump" href="#back">Back</a></li>
+				<li><a class="btn" href="#back" data-role="jump">Back</a></li>
 				<li></li>
 			</ul>
 		</nav>
@@ -249,7 +249,7 @@
 	<script type="text/template" id="userlist-template">
 	<div class="user proto-flex">
 		<div class="proto-flex-title user-name"><%= name.first %> <%= name.last %></div>
-		<div class="btn proto-flex-btn user-visit proto-jump" href="#Section6" data-id="<%= id %>">&gt;</div>
+		<div class="btn proto-flex-btn user-visit" data-role="jump" href="#Section6" data-id="<%= id %>">&gt;</div>
 	</div>
 	</script>
 

@@ -1,10 +1,15 @@
 ;/*
-BaseProtoType v0.6
+BaseProtoType v0.7
 Developed by Hamilton Cline
 hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.7 - Added: "pageshow" event to document
+    - Changed: jumps from class to data-role
+    - Moved files and demo content
+    - Split sass implementation
+    - Improved documentation
 0.6 - Removing most example and demo things
 0.5 - Changed to prototypical model
 0.4 - Added implementation of browser history
@@ -147,7 +152,7 @@ Changelog
     BaseProto.prototype.setEvents = function(el) {
         var bp = this;
         this.mainElement
-            .on("click",".proto-jump",function(e){
+            .on("click","[data-role='jump']",function(e){
                 e.preventDefault();
                 return bp.changeSection($(this).attr("href").substr(1),true); })
             .on("click",".proto-popup",function(e){
