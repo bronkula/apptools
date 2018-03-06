@@ -13,7 +13,7 @@ Download the proto.css and proto.js files. You'll need to have jQuery as well.
 ```
 <link href="proto.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="proto.js">
+<script src="proto.js"></script>
 ```
 
 ## Pages
