@@ -120,22 +120,6 @@ Changelog
             location.assign(this.stateObj);
         }
     };
-    // BaseProto.prototype.setPopup = function(str) {
-    //     var $aside = $(`<aside class='${str}'>`).append(
-    //         `<div class='proto-aside-cover'></div>
-    //         <div class='proto-aside-content'>${this.mt($("#"+str).html())([])}<div>`
-    //     ).appendTo($("section."+this.stateObj.title));
-    //     setTimeout(function(){$aside.addClass("proto-show")},15);
-    //     return false;
-    // };
-    // BaseProto.prototype.setPopdown = function() {
-    //     var $aside = $(this).parents("aside").removeClass("proto-show");
-    //     setTimeout(function(){$aside.remove()},300);
-    //     return false;
-    // };
-    // BaseProto.prototype.removePops = function() {
-    //     $("aside[class],.aside-cover").remove();
-    // };
     BaseProto.prototype.setFigures = function() {
         var bp = this;
         $("figure[class]").each(function(){
@@ -144,14 +128,6 @@ Changelog
             );
         });
     };
-    // BaseProto.prototype.toggleAccordion = function(o){
-    //     o.parents(".proto-list-accordion")
-    //         .find(".proto-list-item").not(o).removeClass("proto-nextopen");
-    //     o.toggleClass("proto-nextopen");
-    // }
-    // BaseProto.prototype.toggleActive = function(obj){
-    //     obj.toggleClass("active");
-    // }
     BaseProto.prototype.activate = function(obj,sel,fn){
         var el;
         switch(sel){
@@ -169,18 +145,6 @@ Changelog
             .on("click","[data-role='jump']",function(e){
                 e.preventDefault();
                 return bp.changeSection($(this).attr("href").substr(1),true); })
-            .on("click","[data-role='pop']",function(e){
-                e.preventDefault();
-                bp.activate(this,$(this).attr("href"),"addClass")
-                // return bp.setPopup($(this).attr("href").substr(1));
-            })
-            // .on("click",".proto-popdown,.proto-aside-cover",this.setPopdown)
-            // .on("click",".proto-info-close",function(){
-            //     $(".proto-info.active").removeClass("active"); })
-            // .on("click","[data-toggle='next']",function(){
-            //     bp.toggleActive($(this).next());
-            //     // $(this).next().toggleClass("active"); 
-            // })
             .on("click","[data-toggle]",function(e){
                 e.preventDefault();
                 bp.activate(this,$(this).data("toggle"),"toggleClass");
@@ -193,12 +157,6 @@ Changelog
                 e.preventDefault();
                 bp.activate(this,$(this).data("deactivate"),"removeClass");
             })
-            // .on("click",".proto-accordion [data-toggle]",function(){
-            //     bp.toggleActive(t=="next"?$(this).next():$(t),); 
-            // })
-            // .on("click",".proto-toggle-parentnextaccordion",function(){
-            //     bp.toggleAccordion($(this).parent()); })
-        // return this.mainElement;
     };
 
     // Mustache Template with default values
@@ -219,18 +177,13 @@ Changelog
         }
     }
 
-    // $(function(){ BaseProto.init(); });
-
     w.BaseProto = BaseProto;
 
 
     w.onpopstate = function(o){
         // console.log(history)
         if(o.state!=null) {
-            console.log("pop")
-            // bp.updateUrl = false;
-            // bp.stateObj.title = o.state.title;
-            // bp.stateObj.url = o.state.url;
+            console.log("pop");
             bp.setActiveSection(o.state);
         } else {
             console.log("initial")
