@@ -6,7 +6,8 @@ http://www.hamiltondraws.com
 
 Changelog
 0.7 - Added: "pageshow" event to document
-    - Changed: jumps from class to data-role
+    - Changed: Totally changed helper functions
+    - Changed: Jumps from class to data-role
     - Moved files and demo content
     - Split sass implementation
     - Improved documentation
@@ -119,22 +120,22 @@ Changelog
             location.assign(this.stateObj);
         }
     };
-    BaseProto.prototype.setPopup = function(str) {
-        var $aside = $(`<aside class='${str}'>`).append(
-            `<div class='proto-aside-cover'></div>
-            <div class='proto-aside-content'>${this.mt($("#"+str).html())([])}<div>`
-        ).appendTo($("section."+this.stateObj.title));
-        setTimeout(function(){$aside.addClass("proto-show")},15);
-        return false;
-    };
-    BaseProto.prototype.setPopdown = function() {
-        var $aside = $(this).parents("aside").removeClass("proto-show");
-        setTimeout(function(){$aside.remove()},300);
-        return false;
-    };
-    BaseProto.prototype.removePops = function() {
-        $("aside[class],.aside-cover").remove();
-    };
+    // BaseProto.prototype.setPopup = function(str) {
+    //     var $aside = $(`<aside class='${str}'>`).append(
+    //         `<div class='proto-aside-cover'></div>
+    //         <div class='proto-aside-content'>${this.mt($("#"+str).html())([])}<div>`
+    //     ).appendTo($("section."+this.stateObj.title));
+    //     setTimeout(function(){$aside.addClass("proto-show")},15);
+    //     return false;
+    // };
+    // BaseProto.prototype.setPopdown = function() {
+    //     var $aside = $(this).parents("aside").removeClass("proto-show");
+    //     setTimeout(function(){$aside.remove()},300);
+    //     return false;
+    // };
+    // BaseProto.prototype.removePops = function() {
+    //     $("aside[class],.aside-cover").remove();
+    // };
     BaseProto.prototype.setFigures = function() {
         var bp = this;
         $("figure[class]").each(function(){
@@ -143,10 +144,23 @@ Changelog
             );
         });
     };
-    BaseProto.prototype.toggleAccordion = function(o){
-        o.parents(".proto-list-accordion")
-            .find(".proto-list-item").not(o).removeClass("proto-nextopen");
-        o.toggleClass("proto-nextopen");
+    // BaseProto.prototype.toggleAccordion = function(o){
+    //     o.parents(".proto-list-accordion")
+    //         .find(".proto-list-item").not(o).removeClass("proto-nextopen");
+    //     o.toggleClass("proto-nextopen");
+    // }
+    // BaseProto.prototype.toggleActive = function(obj){
+    //     obj.toggleClass("active");
+    // }
+    BaseProto.prototype.activate = function(obj,sel,fn){
+        var el;
+        switch(sel){
+            case "next": el=$(obj).next(); break;
+            case "prev": el=$(obj).prev(); break;
+            case "parent": el=$(obj).parent(); break;
+            default: el = $(sel);
+        }
+        el[fn]("active");
     }
 
     BaseProto.prototype.setEvents = function(el) {
@@ -155,20 +169,35 @@ Changelog
             .on("click","[data-role='jump']",function(e){
                 e.preventDefault();
                 return bp.changeSection($(this).attr("href").substr(1),true); })
-            .on("click",".proto-popup",function(e){
+            .on("click","[data-role='pop']",function(e){
                 e.preventDefault();
-                return bp.setPopup($(this).attr("href").substr(1)); })
-            .on("click",".proto-popdown,.proto-aside-cover",this.setPopdown)
-            .on("click",".proto-info-close",function(){
-                $(".proto-info.active").removeClass("active"); })
-            .on("click",".proto-toggle-next",function(){
-                $(this).toggleClass("proto-nextopen"); })
-            .on("click",".proto-toggle-parentnext",function(){
-                $(this).parent().toggleClass("proto-nextopen"); })
-            .on("click",".proto-toggle-nextaccordion",function(){
-                bp.toggleAccordion($(this)); })
-            .on("click",".proto-toggle-parentnextaccordion",function(){
-                bp.toggleAccordion($(this).parent()); })
+                bp.activate(this,$(this).attr("href"),"addClass")
+                // return bp.setPopup($(this).attr("href").substr(1));
+            })
+            // .on("click",".proto-popdown,.proto-aside-cover",this.setPopdown)
+            // .on("click",".proto-info-close",function(){
+            //     $(".proto-info.active").removeClass("active"); })
+            // .on("click","[data-toggle='next']",function(){
+            //     bp.toggleActive($(this).next());
+            //     // $(this).next().toggleClass("active"); 
+            // })
+            .on("click","[data-toggle]",function(e){
+                e.preventDefault();
+                bp.activate(this,$(this).data("toggle"),"toggleClass");
+            })
+            .on("click","[data-activate]",function(e){
+                e.preventDefault();
+                bp.activate(this,$(this).data("activate"),"addClass");
+            })
+            .on("click","[data-deactivate]",function(e){
+                e.preventDefault();
+                bp.activate(this,$(this).data("deactivate"),"removeClass");
+            })
+            // .on("click",".proto-accordion [data-toggle]",function(){
+            //     bp.toggleActive(t=="next"?$(this).next():$(t),); 
+            // })
+            // .on("click",".proto-toggle-parentnextaccordion",function(){
+            //     bp.toggleAccordion($(this).parent()); })
         // return this.mainElement;
     };
 
@@ -176,7 +205,11 @@ Changelog
     BaseProto.prototype.mt = function(template_string){
         var bp = this;
         return function(data) {
-            var output = bp.decodeHtml(template_string);
+            var output = (function(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            })(template_string);
             for(let key in data){
                 if(data.hasOwnProperty(key) === false) continue;
                 output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
@@ -184,11 +217,6 @@ Changelog
             output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
             return output;
         }
-    }
-    BaseProto.prototype.decodeHtml = function(html) {
-        var txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
     }
 
     // $(function(){ BaseProto.init(); });

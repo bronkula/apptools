@@ -12,22 +12,6 @@ section.active {
 }
 
 
-.proto-list {
-    @extend .compact;
-    &-accordion {
-        @extend .compact;
-    }
-    &-item {
-        line-height:2em;
-        border: solid #999;
-        border-width:1px 0;
-        margin-top:2px;
-        cursor:pointer;
-        &:hover {
-            background-color:#eee;
-        }
-    }
-}
 
 .proto-togglable {
     display:none;
