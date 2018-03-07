@@ -50,7 +50,7 @@ function makeDataTemplate(template_string){
 			s = m[1].split(":");
 			v = fetchFromObject(data,s[0]);
 			output = m.input.substr(0,m.index)+
-			(v?v:(s[1]===undefined?"[undefined]":s[1]))+
+			(v!==undefined?v:(s[1]===undefined?"[undefined]":s[1]))+
 			m.input.substr(m[0].length+m.index);
 		}
 		return output;

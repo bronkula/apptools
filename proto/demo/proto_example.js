@@ -22,7 +22,7 @@ function makeSection6(){
 	var user = db.filter(obj=>obj.id==localStorage.chosenId);
 	if(user.length) showDataList(user,$("#user-template").html(),"#Section6 [data-role='main']");
 	else {
-		$("#Section6 [data-role='main']").html("No one selected.<br><a href='#Section5' class='proto-jump'>Back to List</a>")
+		$("#Section6 [data-role='main']").html("No one selected.<br><a href='#Section5' data-role='jump'>Back to List</a>")
 	}
 }
 
