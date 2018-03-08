@@ -78,9 +78,23 @@ code {
     text-align: center;
     padding: 0 1em;
     font-size: 0.8em;
+    color: inherit;
     text-decoration: none;
     font-weight: bold;
     display: block; }
+    [data-role='header'] a .btn-icon,
+    [data-role='footer'] a .btn-icon {
+      width: 1em;
+      height: 1em;
+      display: block;
+      font-size: 2em;
+      line-height: 2rem;
+      vertical-align: middle; }
+    [data-role='header'] a .btn-description,
+    [data-role='footer'] a .btn-description {
+      display: block;
+      line-height: 1rem;
+      font-size: 0.75em; }
     [data-role='header'] a.active, [data-role='header'] a:hover,
     [data-role='footer'] a.active,
     [data-role='footer'] a:hover {
