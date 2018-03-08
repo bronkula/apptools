@@ -158,19 +158,44 @@ Changelog
     };
 
     // Mustache Template with default values
+    // BaseProto.prototype.mt = function(template_string){
+    //     var bp = this;
+    //     return function(data) {
+    //         var output = (function(html) {
+    //             var txt = document.createElement("textarea");
+    //             txt.innerHTML = html;
+    //             return txt.value;
+    //         })(template_string);
+    //         for(let key in data){
+    //             if(data.hasOwnProperty(key) === false) continue;
+    //             output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
+    //         }
+    //         output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
+    //         return output;
+    //     }
+    // }
     BaseProto.prototype.mt = function(template_string){
         var bp = this;
+        var ds = ds = function(obj, prop) {
+            if(typeof obj === 'undefined') return false;
+            var _index = prop.indexOf('.')
+            if(_index > -1) return ds(obj[prop.substr(0, _index)], prop.substr(_index + 1));
+            return obj[prop];
+        }
         return function(data) {
             var output = (function(html) {
                 var txt = document.createElement("textarea");
                 txt.innerHTML = html;
                 return txt.value;
             })(template_string);
-            for(let key in data){
-                if(data.hasOwnProperty(key) === false) continue;
-                output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
+            var rep = /<%=\s*(.+?)\s*%>/,m,v,s;
+            while(m = rep.exec(output)) {
+                s = m[1].split(":");
+                v = ds(data,s[0]);
+                output = m.input.substr(0,m.index)+
+                (v!==undefined?v:(s[1]===undefined?"[undefined]":s[1]))+
+                m.input.substr(m[0].length+m.index);
             }
-            output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
             return output;
         }
     }

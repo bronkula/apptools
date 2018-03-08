@@ -83,14 +83,14 @@
 				</p>
 				<p>
 					<button class="btn" data-activate="next">Click this</button>
-					<span class="glows">This activates</span>
+					<span class="glows">This activates once</span>
 				</p>
 				<p>
 					That's the core of the idea. This can be used all over your app, and simply have css do something to an element when the "active" class is present. You design the css, Proto provides the classes.  There are a number of options. [data-activate], [data-deactivate], and [data-toggle]. Each of these can be passed any selector to activate that element. There are also a couple of helper values available. "next", "prev", and "parent" will all activate relative elements.
 				</p>
 				<p>
-					<span class="glows">This toggles</span>
-					<button class="btn" data-toggle="prev">Click this</button>
+					<span class="glows">This toggles on and off</span>
+					<button class="btn" data-toggle="prev">Click this twice</button>
 				</p>
 				<p>
 					<button class="btn" data-activate="#page-activate .modal">Open Modal</button>
@@ -141,7 +141,7 @@
 		</header>
 		<footer data-role="footer" data-template="#footer-nav-template"></footer>
 		<div data-role="main">
-			<h2>The Original Mold</h2>
+			<h2>Templating</h2>
 			<p>
 				If you're a designer, you know that having to change 15 of the same thing is truly annoying. Proto comes with a simple tool to duplicate html content on the page, in the form of text templates.
 			</p>
@@ -149,7 +149,19 @@
 				Create an element with an ID and some inner content that you want to only structure once. Then make an element somewhere on your document that references the same element with a data-template attribute. something like: 
 			</p>
 			<code>&lt;div data-template="design">&lt;/div>
-&lt;div id="design">This will be placed there&lt;/div></code>
+
+&lt;script type="text/template" id="design">
+   &lt;span>This will be placed there&lt;/span>
+&lt;/script>
+</code>
+			<p>
+				The jQuery data object gets passed into the template string when it's used, so you can make dynamic text/templates. Use custom data-attributes in the data-template element and it will be replaced into the text/template html.
+			</p>
+			<div data-role="header" data-template="#header-title-template" data-title="Unique Title"></div>
+			<p>
+				Here, we have a template for what a user page looks like, and we can just add in data, to see what it looks like. On section 5, you'll see how custom code can be used to run a database through your templates, a designer can just as easily make hard coded data-template elements that utilize dynamic text/templates. Now you design this component once, and try different values in it on different pages.
+			</p>
+			<div data-template="#user-template" data-name='{"first":"John"}' data-img="https://via.placeholder.com/400" data-email="john@john.com" data-phone="555-2424" data-address="57 Someplace Dr., Tucson AZ, 85705"></div>
 		</div>
 	</section>
 

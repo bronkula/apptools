@@ -39,7 +39,7 @@ a {
 
 code {
     display:block;
-    white-space:pre;
+    white-space:pre-wrap;
     padding:10px;
     background-color:#efe;
     border-radius:4px;
@@ -141,6 +141,10 @@ code {
 [data-role='main'] {
     height:100%;
     overflow:auto;
+
+    h2 {
+        font-size:1.1em;
+    }
 }
 [data-role='header']:first-child+[data-role='main'],
 [data-role='footer']:first-child+[data-role='main'] {
