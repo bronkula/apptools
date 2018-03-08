@@ -5,6 +5,8 @@
 - [Getting Started](#user-content-getting-started)
 - [Documentation](#user-content-documentation)
 
+---
+
 Proto is a tool for swiftly prototyping Single Document, Multi Page applications. It attempts to be unopinionated, and there is a tool set available for use on any project.
 
 We have borrowed heavily from the syntax of jQuery mobile in order to create something familiar. But, whereas jQuery mobile has a habit of grabbing items and replacing and changing them, Proto simply adds functionality, sparingly, to the document.
@@ -65,6 +67,8 @@ There's some other stuff in there, obviously. You can see there are a number of 
 - [Data Roles](#user-content-data-roles)
 - [Data Activators](#user-content-data-activators)
 - [Data Templates](#user-content-data-templates)
+
+---
 
 ### Data Roles
 
