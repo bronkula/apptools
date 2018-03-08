@@ -1,9 +1,4 @@
-section, aside[id], figure[id] {
-  display: none; }
-
-section.active {
-  display: block; }
-
+@import url(proto_core.css);
 * {
   box-sizing: border-box; }
 
