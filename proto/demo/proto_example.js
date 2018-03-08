@@ -14,15 +14,15 @@ $.ajax({
 function makeSection5(){
 	if(!waitForData(db,makeSection5)) return;
 
-	showDataList(db,$("#userlist-template").html(),"#Section5 .userlist");
+	showDataList(db,$("#userlist-template").html(),"#page-show .userlist");
 }
 function makeSection6(){
 	if(!waitForData(db,makeSection5)) return;
 
 	var user = db.filter(obj=>obj.id==localStorage.chosenId);
-	if(user.length) showDataList(user,$("#user-template").html(),"#Section6 [data-role='main']");
+	if(user.length) showDataList(user,$("#user-template").html(),"#page-user [data-role='main']");
 	else {
-		$("#Section6 [data-role='main']").html("No one selected.<br><a href='#Section5' data-role='jump'>Back to List</a>")
+		$("#page-user [data-role='main']").html("No one selected.<br><a href='#page-show' data-role='jump'>Back to List</a>")
 	}
 }
 
@@ -35,15 +35,11 @@ $(function(){
 
 		// Each pageshow event is passed an object with a nextPage and prevPage
 		// These have title, url, and el properties
-		if(obj.nextPage.title=="Section2") {
-			$(".currentdate").html(new Date())
-		}
 
-
-		if(obj.nextPage.title=="Section5") {
+		if(obj.nextPage.title=="page-show") {
 			makeSection5();
 		}
-		if(obj.nextPage.title=="Section6") {
+		if(obj.nextPage.title=="page-user") {
 			makeSection6();
 		}
 
