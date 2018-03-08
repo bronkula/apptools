@@ -78,7 +78,9 @@ There's some other stuff in there, obviously. You can see there are a number of 
 		<a href="#page2" data-role="jump">Link</a>
 	</div>
 </section>
+```
 
+```
 <section data-role="page" id="page2">
 	<footer data-role="footer">Navigation</footer>
 	<div data-role="main">
@@ -103,8 +105,9 @@ There's some other stuff in there, obviously. You can see there are a number of 
 ```
 <div data-toggle="next">Click Me</div>
 <div>I will activate and deactivate when the previous div is clicked</div>
+```
 
-
+```
 <div data-toggle="#item1">Click Me</div>
 <div id="item1">I will activate and deactivate when the previous div is clicked</div>
 ```
@@ -125,8 +128,9 @@ There's some other stuff in there, obviously. You can see there are a number of 
 ```
 <div data-activate="next">Click Me</div>
 <div>I will activate when the previous div is clicked</div>
+```
 
-
+```
 <div data-activate="#item1">Click Me</div>
 <div id="item1">I will activate when the previous div is clicked</div>
 ```
@@ -147,8 +151,9 @@ There's some other stuff in there, obviously. You can see there are a number of 
 ```
 <div data-deactivate="next">Click Me</div>
 <div>I will deactivate when the previous div is clicked</div>
+```
 
-
+```
 <div data-deactivate="#item1">Click Me</div>
 <div id="item1">I will deactivate when the previous div is clicked</div>
 ```
@@ -170,8 +175,9 @@ The data template will also take in the data attributes of the replacing element
 <script type="text/template" id="footer-template">
 This text would show up in and replace any text in the [data-template] div.
 </script>
+```
 
-
+```
 <div data-template="#header-template" data-title="New Title"></div>
 <script type="text/template" id="header-template">
 <div>
