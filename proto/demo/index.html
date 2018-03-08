@@ -27,6 +27,62 @@
 .userlist .user:not(:first-child) {
 	border-top: 1px solid black;
 }
+.user-img {
+    background-color: #eef;
+    text-align: Center;
+    padding: 2em 0;
+}
+.user-img img {
+    height: 20vh;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+}
+.user-info {
+	padding:10px;
+}
+.user-info .user-name {
+	font-size:2em;
+}
+
+
+
+.table {
+	width:100%;
+	border-collapse:collapse;
+}
+.table th,
+.table td {
+	text-align: left;
+	padding:0.2em 0.5em;
+	vertical-align: top;
+}
+
+
+.table.striped tbody tr:nth-child(odd) {
+	background-color:rgba(0,0,0,0.1);
+}
+
+.table.lined tbody tr,
+.table.lined-horizontal tbody tr {
+	border-top:1px dotted #ccc;
+}
+.table.lined td:not(:first-child),
+.table.lined th:not(:first-child),
+.table.lined-vertical td:not(:first-child),
+.table.lined-vertical th:not(:first-child) {
+	border-left:1px dotted #ccc;
+}
+.table.lined,
+.table.lined-outline {
+	border:1px solid black;
+}
+
+
+.table tr:hover th,
+.table tr:hover td {
+	background-color:rgba(0,0,255,0.1);
+}
 </style>
 
 </head>
@@ -216,11 +272,22 @@
 	<script type="text/template" id="user-template">
 	<div class="user">
 		<div class="user-img"><img src="<%= img %>"></div>
-		<div class="container">
+		<div class="container user-info">
 			<div class="user-name"><%= name.first %></div>
-			<div class="user-email"><%= email %></div>
-			<div class="user-phone"><%= phone %></div>
-			<div class="user-address"><%= address %></div>
+			<table class="table lined-horizontal">
+				<tr>
+					<td><strong class="flex-none">Email: </strong></td>
+					<td><%= email %></td>
+				</tr>
+				<tr>
+					<td><strong class="flex-none">Phone: </strong></td>
+					<td><%= phone %></td>
+				</tr>
+				<tr>
+					<td><strong class="flex-none">Address: </strong></td>
+					<td><%= address %></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	</script>
