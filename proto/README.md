@@ -72,10 +72,17 @@ There's some other stuff in there, obviously. You can see there are a number of 
 *Example*
 
 ```
-<section data-role="page">
+<section data-role="page" id="page1">
 	<header data-role="header">Title</header>
 	<div data-role="main">
-		<a href="#page" data-role="jump">Link</a>
+		<a href="#page2" data-role="jump">Link</a>
+	</div>
+</section>
+
+<section data-role="page" id="page2">
+	<footer data-role="footer">Navigation</footer>
+	<div data-role="main">
+		<a href="#page1" data-role="jump">Link</a>
 	</div>
 </section>
 ```
@@ -144,4 +151,33 @@ There's some other stuff in there, obviously. You can see there are a number of 
 
 <div data-deactivate="#item1">Click Me</div>
 <div id="item1">I will deactivate when the previous div is clicked</div>
+```
+
+---
+
+**[data-template]** Use another element's innerHTML to replace the innerHTML of this element
+
+The data template will also take in the data attributes of the replacing element and stamp those onto the template element's html.
+
+*Values*
+
+- *selector*
+
+*Example*
+
+```
+<footer data-template="#footer-template"></footer>
+<script type="text/template" id="footer-template">
+This text would show up in and replace any text in the [data-template] div.
+</script>
+
+
+<div data-template="#header-template" data-title="New Title"></div>
+<script type="text/template" id="header-template">
+<div>
+	Use data attributes to replace content in templates
+	<%= title %>
+	The words "New Title" should replace the previous line.
+</div>
+</script>
 ```

@@ -1,10 +1,14 @@
 ;/*
-BaseProtoType v0.7
+BaseProtoType v0.8
 Developed by Hamilton Cline
 hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.8 - Added: Responsive CSS Grid to theme
+    - Changed: CSS file names
+    - Updated documentation
+    - Modified demos
 0.7 - Added: "pageshow" event to document
     - Changed: Totally changed helper functions
     - Changed: Jumps from class to data-role
@@ -71,8 +75,6 @@ Changelog
         if($.inArray(h,this.sections)===-1) {
             h = this.sections[0];
         }
-        // console.log(h)
-        // this.stateObj.title = h;
         this.setActiveSection({title:h,url:location.href});
     };
     BaseProto.prototype.setActiveSection = function(stateObj,updateUrl) {
@@ -179,10 +181,10 @@ Changelog
     w.onpopstate = function(o){
         // console.log(history)
         if(o.state!=null) {
-            console.log("pop");
+            // console.log("pop");
             bp.setActiveSection(o.state);
         } else {
-            console.log("initial")
+            // console.log("initial")
             bp.setInitialActive();
         }
     }
