@@ -8,10 +8,10 @@ We have borrowed heavily from the syntax of jQuery mobile in order to create som
 
 ## Getting Started
 
-Download the proto.css and proto.js files. You'll need to have jQuery as well.
+Download the proto_core.css and proto.js files. You'll need to have jQuery as well.
 
 ```
-<link href="proto.css" rel="stylesheet">
+<link href="proto_core.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="proto.js"></script>
 ```
@@ -37,6 +37,8 @@ Create data-role="jump" links to move from page to page.
 </section>
 ```
 
+Proto will handle all the history states of routing around your application.
+
 ## PageShow
 
 Since there's only one document ready call on an app like this, you might need to be able to run code any time a page is loaded. So there's a "pageshow" event available to you every time a page is loaded onto the page.
@@ -47,8 +49,99 @@ $(document).on("pageshow",function(e,o){
 })
 ```
 
-The pageshow event is passed to objects. A regular event object, and a Proto object containing two properties .nextPage and .prevPage. These will help you do something based on which page you were coming from and which page is about to be shown.
+The pageshow event is passed two objects. A regular event object, and a Proto object containing two properties .nextPage and .prevPage. These will help you do something based on which page you were coming from and which page is about to be shown.
 
 ## That's all you NEED to know
 
-There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an accordion, and a modal, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto.css file, but the scss files have been split into core and theme. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/demo).
+There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an activator and a templating system, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto_theme.min.css file, but the scss files have been split into sub files so that you can customize to your heart's content. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/demo).
+
+## Documentation
+
+### Data Roles
+
+**[data-role]** Set a role to an element
+
+*Values*
+
+- page
+- header
+- main
+- footer
+- jump
+
+*Example*
+
+```
+<section data-role="page">
+	<header data-role="header">Title</header>
+	<div data-role="main">
+		<a href="#page" data-role="jump">Link</a>
+	</div>
+</section>
+```
+
+---
+
+**[data-toggle]** Toggle the active class of another element
+
+*Values*
+
+- next
+- prev
+- parent
+- *selector*
+
+*Example*
+
+```
+<div data-toggle="next">Click Me</div>
+<div>I will activate and deactivate when the previous div is clicked</div>
+
+
+<div data-toggle="#item1">Click Me</div>
+<div id="item1">I will activate and deactivate when the previous div is clicked</div>
+```
+
+---
+
+**[data-activate]** Add the active class to another element
+
+*Values*
+
+- next
+- prev
+- parent
+- *selector*
+
+*Example*
+
+```
+<div data-activate="next">Click Me</div>
+<div>I will activate when the previous div is clicked</div>
+
+
+<div data-activate="#item1">Click Me</div>
+<div id="item1">I will activate when the previous div is clicked</div>
+```
+
+---
+
+**[data-deactivate]** Remove the active class from another element
+
+*Values*
+
+- next
+- prev
+- parent
+- *selector*
+
+*Example*
+
+```
+<div data-deactivate="next">Click Me</div>
+<div>I will deactivate when the previous div is clicked</div>
+
+
+<div data-deactivate="#item1">Click Me</div>
+<div id="item1">I will deactivate when the previous div is clicked</div>
+```
