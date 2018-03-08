@@ -46,6 +46,10 @@ $(function(){
 		if(obj.nextPage.title=="Section6") {
 			makeSection6();
 		}
+
+
+		$("footer[data-role='footer'] .active").removeClass("active");
+		$("footer[data-role='footer'] a[href='#"+obj.nextPage.title+"']").addClass("active");
 	})
 
 

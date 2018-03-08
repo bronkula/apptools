@@ -129,7 +129,7 @@
 
 	<section data-role="page" id="Section4">
 		<header data-role="header" data-role="header">
-			<h1>Figures</h1>
+			<h1>Templates</h1>
 			<ul>
 				<li></li>
 				<li><a data-role="jump" href="#Section1">
@@ -140,9 +140,15 @@
 		</header>
 		<footer data-role="footer" data-template="#footer-nav-template"></footer>
 		<div data-role="main">
-			<h2>A Header for all occasions</h2>
-			<p>The headers provided with Proto are quite versatile although they are mostly aesthetic. The real value added comes in their combination with a body element. A header and/or a footer can be added to a body element so that it can size and position itself accordingly.</p>
-			<p>Put the header and footer in front of the body element to allow the body element to resize itself to fit between any combination of header or footer. Using the .nav .nav-bar and the .nav-bar-head .nav-bar-foot hooks will give you a navbar wherever you need it.</p>
+			<h2>The Original Mold</h2>
+			<p>
+				If you're a designer, you know that having to change 15 of the same thing is a truly annoying thing. Proto comes with a simple tool to duplicate html content on the page, in the form of text templates.
+			</p>
+			<p>
+				Create an element with an ID and some inner content that you want to only structure once. Then make an element somewhere on your document that references the same element with a data-template attribute. something like: 
+			</p>
+			<code>&lt;div data-template="design">&lt;/div>
+&lt;div id="design">This will be placed there&lt;/div></code>
 		</div>
 	</section>
 

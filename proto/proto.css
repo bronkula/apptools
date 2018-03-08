@@ -42,6 +42,13 @@ a {
   a:hover {
     text-decoration: underline; }
 
+code {
+  display: block;
+  white-space: pre;
+  padding: 10px;
+  background-color: #efe;
+  border-radius: 4px; }
+
 [data-role='header'],
 [data-role='footer'] {
   height: 3rem;
@@ -61,6 +68,10 @@ a {
     text-decoration: none;
     font-weight: bold;
     display: block; }
+    [data-role='header'] a.active, [data-role='header'] a:hover,
+    [data-role='footer'] a.active,
+    [data-role='footer'] a:hover {
+      background-color: rgba(255, 255, 255, 0.6); }
 
 [data-role='header'] {
   position: relative; }
@@ -132,6 +143,11 @@ a {
   .btn:hover, .btn:active {
     background-color: #efefef;
     color: inherit; }
+
+a.btn {
+  text-decoration: none; }
+  a.btn:hover {
+    dext-decoration: none; }
 
 .compact {
   list-style-type: none;

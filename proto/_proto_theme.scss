@@ -36,6 +36,18 @@ a {
 
 
 
+code {
+    display:block;
+    white-space:pre;
+    padding:10px;
+    background-color:#efe;
+    border-radius:4px;
+}
+
+
+
+
+
 [data-role='header'],
 [data-role='footer'] {
     height:$headheight;
@@ -55,6 +67,10 @@ a {
         text-decoration:none;
         font-weight:bold;
         display:block;
+        &.active,
+        &:hover {
+            background-color:rgba(255,255,255,0.6);
+        }
     }
 }
 
@@ -136,12 +152,20 @@ a {
     text-decoration:none;
     cursor:pointer;
     outline:0;
+
     &:hover,
     &:active {
         background-color:#efefef;
         color:inherit;
     }
 
+}
+
+a.btn {
+    text-decoration:none;
+    &:hover {
+        dext-decoration:none;
+    }
 }
 
 .compact {
