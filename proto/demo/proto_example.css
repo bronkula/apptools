@@ -1,0 +1,28 @@
+
+.userlist {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+.userlist .user {
+	padding:0.1em 0.5em;
+}
+.userlist .user:not(:first-child) {
+	border-top: 1px solid black;
+}
+.user-img {
+    background-color: #eef;
+    text-align: Center;
+    padding: 2em 0;
+}
+.user-img img {
+    height: 20vh;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 2px 2px 8px 2px rgba(0,0,255,0.2);
+}
+.user-info {
+	padding:10px;
+}
+.user-info .user-name {
+	font-size:2em;
+}
