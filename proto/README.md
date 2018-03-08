@@ -91,6 +91,8 @@ There's some other stuff in there, obviously. You can see there are a number of 
 
 ---
 
+### Data activators
+
 **[data-toggle]** Toggle the active class of another element
 
 *Values*
@@ -159,6 +161,8 @@ There's some other stuff in there, obviously. You can see there are a number of 
 ```
 
 ---
+
+### Data Templates
 
 **[data-template]** Use another element's innerHTML to replace the innerHTML of this element
 
