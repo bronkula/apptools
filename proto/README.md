@@ -1,7 +1,6 @@
 # Proto
 
-Contents
-
+## Contents
 - [Proto Demo](https://bronkula.github.io/apptools/proto/demo)
 - [Getting Started](#user-content-getting-started)
 - [Documentation](#user-content-documentation)
@@ -60,6 +59,12 @@ The pageshow event is passed two objects. A regular event object, and a Proto ob
 There's some other stuff in there, obviously. You can see there are a number of little tools built in, like an activator and a templating system, and all that kind of stuff. But those aren't necessary. You can see that there is a single proto_theme.min.css file, but the scss files have been split into sub files so that you can customize to your heart's content. The core code is the only thing that's actually necessary to make proto run correctly. The theme content is there to use if wanted, and you can see most of that in action in the [Proto Demo](https://bronkula.github.io/apptools/proto/demo).
 
 ## Documentation
+
+## Contents
+- [Proto Demo](https://bronkula.github.io/apptools/proto/demo)
+- [Data Roles](#user-content-data-roles)
+- [Data Activators](#user-content-data-activators)
+- [Data Templates](#user-content-data-templates)
 
 ### Data Roles
 
