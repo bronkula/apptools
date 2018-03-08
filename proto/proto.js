@@ -158,22 +158,6 @@ Changelog
     };
 
     // Mustache Template with default values
-    // BaseProto.prototype.mt = function(template_string){
-    //     var bp = this;
-    //     return function(data) {
-    //         var output = (function(html) {
-    //             var txt = document.createElement("textarea");
-    //             txt.innerHTML = html;
-    //             return txt.value;
-    //         })(template_string);
-    //         for(let key in data){
-    //             if(data.hasOwnProperty(key) === false) continue;
-    //             output = output.replace(RegExp('<%=\\s*' + key + '(:.+?)?\\s*%>', 'g'), data[key]);
-    //         }
-    //         output = output.replace(RegExp('<%=\\s*\\S+?:(.+?)\\s*%>', 'g'), '$1');
-    //         return output;
-    //     }
-    // }
     BaseProto.prototype.mt = function(template_string){
         var bp = this;
         var ds = ds = function(obj, prop) {
