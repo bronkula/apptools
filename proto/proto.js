@@ -40,14 +40,10 @@ Changelog
         this.sections = [];
         this.mainElement = $(el||"body");
         this.makeTabList();
-
-        this.setFigures();
+        this.setTemplates();
         this.setEvents();
 
         setTimeout(function(){bp.init(el);},1);
-        this.els = {
-
-        }
     }
 
 
@@ -120,11 +116,11 @@ Changelog
             location.assign(this.stateObj);
         }
     };
-    BaseProto.prototype.setFigures = function() {
+    BaseProto.prototype.setTemplates = function() {
         var bp = this;
-        $("figure[class]").each(function(){
-            $(this).replaceWith(
-                bp.mt($("#"+$(this).attr("class")).html())($(this).data())
+        $("[data-template]").each(function(){
+            $(this).html(
+                bp.mt($($(this).data("template")).html())($(this).data())
             );
         });
     };

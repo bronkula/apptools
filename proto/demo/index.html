@@ -18,6 +18,9 @@
 .userlist .user {
 	/*padding: 0.5em;*/
 }
+.userlist .user-name {
+	padding:0.2em 0.5em;
+}
 .userlist .user:not(:first-child) {
 	border-top: 1px solid black;
 }
@@ -31,10 +34,10 @@
 
 
 	<section data-role="page" id="Section1">
-		<figure class="TopBarTitle" data-title="ProtoTyping"></figure>
-		<figure class="BottomBarTitle" data-title="Footer"></figure>
-		<div data-role="main" class="body container">
-			<header><h2>Proto</h2></header>
+		<header data-role="header" data-template="#header-title-template" data-title="ProtoTyping"></header>
+		<footer data-role="footer" data-template="#footer-nav-template"></footer>
+		<div data-role="main">
+			<h2>Proto</h2>
 			<p><a href="http://github.com/bronkula/apptools">AppTools on Github.</a></p>
 			<p>This is the first section of a prototyping tool that allows a person to leverage their knowledge of html and css, without needing extensive knowledge of javascript (or any at all) to create a mostly working prototype of a website or app. The goal is not to allow the complete creation of a working application (although it certainly could be done) but to provide a basis for production that can more easily be transitioned into actual development than most current offerings.</p>
 			<p>The problem with most current prototyping implementations is that they often take a good amount of work that must all be completely redone once actual work is put forward. With HamProto a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
@@ -48,21 +51,14 @@
 
 
 	<section data-role="page" id="Section2">
-		<figure class="TopBarTitleBack" data-title="Jumps"></figure>
-		<figure class="BottomBarTitle" data-title="Footer"></figure>
-		<div data-role="main" class="body container">
+		<header data-role="header" data-template="#header-titleback-template" data-title="Jumps"></header>
+		<footer data-role="footer" data-template="#footer-nav-template"></footer>
+		<div data-role="main">
 			<header><h2>Proto Jumps</h2></header>
 			<p>Proto uses sections to define different app "pages". Each section of a Proto app has its own unique id, and so linking to any of them is as easy as making a jump link to it. These can be any type of element, as long as it has a data-role="jump" hook, and an href attribute that links to an #id.</p>
-			<p>Both of the buttons below work using the jump, even though one is an anchor and one is a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span data-role="jump" href="#Section1">even this phrase (click me).</span></p>
+			<p>The anchor below works using the jump, even though it looks like a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span data-role="jump" href="#Section1">even this phrase (click me).</span></p>
 			<p>
-				Dynamic content can be added to and updated on pages using the "pageshow" event attached to the document element.
-			</p>
-			<p>
-				The date below is being updated dynamically whenever this page is loaded.<br>
-				<span class="currentdate"></span>
-			</p>
-			<p>
-				<a class="btn" data-role="jump" href="#Section3">Lists</a>
+				<a class="btn" data-role="jump" href="#Section3">Activations</a>
 			</p>
 		</div>
 	</section>
@@ -72,9 +68,9 @@
 
 
 	<section data-role="page" id="Section3">
-		<figure class="TopBarTitleBack" data-title="Activation"></figure>
-		<figure class="BottomBarTitle"></figure>
-		<div data-role="main" class="body">
+		<header data-role="header" data-template="#header-titleback-template" data-title="Activation"></header>
+		<footer data-role="footer" data-template="#footer-nav-template"></footer>
+		<div data-role="main">
 			<div class="container">
 				<style>.glows.active { box-shadow:0 0 5px 5px rgba(0,255,255,0.5) }</style>
 				<h2>Activate</h2>
@@ -119,7 +115,7 @@
 				<div class="drawer-head">A Side Menu</div>
 				<div class="drawer-body">
 					<p>This is nearly the same thing as a modal. This side drawer can be activated and deactivated in the exact same innumerable ways.</p>
-					<div style="text-align:center">
+					<div>
 						<button class="btn" data-deactivate="#Section3 .drawer">Close</button>
 					</div>
 				</div>
@@ -132,19 +128,19 @@
 
 
 	<section data-role="page" id="Section4">
-		<nav class="nav nav-bar nav-bar-head" data-role="header">
-			<div class="proto-title">Figures</div>
-			<ul class="nav-btns">
-				<li><a class="btn proto-flex-btn" data-role="jump" href="#back">Back</a></li>
+		<header data-role="header" data-role="header">
+			<h1>Figures</h1>
+			<ul>
+				<li><a data-role="jump" href="#back">Back</a></li>
 				<li></li>
-				<li><a class="btn proto-flex-btn" data-role="jump" href="#Section1">
+				<li><a data-role="jump" href="#Section1">
 					<i class="btn-icon">&#x2302;</i>
 					<span class="btn-description">Home</span>
 				</a></li>
 			</ul>
-		</nav>
-		<figure class="BottomBarTitle" data-title="Footer"></figure>
-		<div data-role="main" class="body container">
+		</header>
+		<footer data-role="footer" data-template="#footer-nav-template"></footer>
+		<div data-role="main">
 			<h2>A Header for all occasions</h2>
 			<p>The headers provided with Proto are quite versatile although they are mostly aesthetic. The real value added comes in their combination with a body element. A header and/or a footer can be added to a body element so that it can size and position itself accordingly.</p>
 			<p>Put the header and footer in front of the body element to allow the body element to resize itself to fit between any combination of header or footer. Using the .nav .nav-bar and the .nav-bar-head .nav-bar-foot hooks will give you a navbar wherever you need it.</p>
@@ -155,9 +151,9 @@
 
 
 	<section data-role="page" id="Section5">
-		<figure class="TopBarTitleBack" data-title="Dynamic Content"></figure>
-		<figure class="BottomBarTitle" data-title="Footer"></figure>
-		<div data-role="main" class="body">
+		<header data-role="header" data-template="#header-titleback-template" data-title="Dynamic Content"></header>
+		<footer data-role="footer" data-template="#footer-nav-template"></footer>
+		<div data-role="main">
 			<header class="container"><h2>This is a dynamic list</h2></header>
 			<p class="container">
 				This list is being created from a json file being loaded into the document. Proto is capable enough to work with custom code. Because it is unopinionated, it won't get in the way of your code, but it also only has limited tools to help you along.
@@ -170,7 +166,7 @@
 
 
 	<section data-role="page" id="Section6">
-		<figure class="TopBarTitleBack" data-title="User Page"></figure>
+		<header data-role="header" data-template="#header-titleback-template" data-title="User Page"></header>
 		<div data-role="main" class="body"></div>
 	</section>
 
@@ -178,40 +174,35 @@
 
 
 
-	<figure id="TopBarTitle">
-		<nav class="nav nav-bar nav-bar-head" data-role="header">
-			<div class="nav-title proto-title"><p><%= title %></p></div>
-		</nav>
-	</figure>
+	<script type="text/template" id="header-title-template">
+		<h1><%= title %></h1>
+	</script>
 
-	<figure id="BottomBarTitle">
-		<nav class="nav nav-bar nav-bar-foot" data-role="footer">
-			<ul class="nav-btns nav-flex">
-				<li><a class="btn" data-role="jump" href="#Section1">1</a></li>
-				<li><a class="btn" data-role="jump" href="#Section2">2</a></li>
-				<li><a class="btn" data-role="jump" href="#Section3">3</a></li>
-				<li><a class="btn" data-role="jump" href="#Section4">4</a></li>
-				<li><a class="btn" data-role="jump" href="#Section5">5</a></li>
-			</ul>
-		</nav>
-	</figure>
+	<script type="text/template" id="header-titleback-template">
+		<h1><%= title %></h1>
+		<ul>
+			<li><a href="#back" data-role="jump">Back</a></li>
+		</ul>
+	</script>
 
-	<figure id="TopBarTitleBack">
-		<nav class="nav nav-bar nav-bar-head" data-role="header">
-			<div class="nav-title proto-title"><p><%= title %></p></div>
-			<ul class="nav-btns">
-				<li><a class="btn" href="#back" data-role="jump">Back</a></li>
-				<li></li>
-			</ul>
-		</nav>
-	</figure>
+
+
+	<script type="text/template" id="footer-nav-template">
+		<ul>
+			<li><a data-role="jump" href="#Section1">1</a></li>
+			<li><a data-role="jump" href="#Section2">2</a></li>
+			<li><a data-role="jump" href="#Section3">3</a></li>
+			<li><a data-role="jump" href="#Section4">4</a></li>
+			<li><a data-role="jump" href="#Section5">5</a></li>
+		</ul>
+	</script>
 
 
 
 	<script type="text/template" id="userlist-template">
-	<div class="user proto-flex">
-		<div class="proto-flex-title user-name"><%= name.first %> <%= name.last %></div>
-		<div class="btn proto-flex-btn user-visit" data-role="jump" href="#Section6" data-id="<%= id %>">&gt;</div>
+	<div class="user flex-parent">
+		<div class="flex-child user-name"><%= name.first %> <%= name.last %></div>
+		<div class="flex-none btn user-visit" data-role="jump" href="#Section6" data-id="<%= id %>">&gt;</div>
 	</div>
 	</script>
 
