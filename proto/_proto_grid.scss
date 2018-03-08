@@ -1,0 +1,349 @@
+
+$column-length: 12;
+$column-gutter: 10px;
+$side-column-width:180px;
+
+$container-map: (
+   xs:0,
+   sm:320px,
+   md:600px,
+   lg:960px,
+   xl:1200px
+   );
+$sizes-map: (
+   l:20px,
+   m:10px,
+   s:5px,
+   n:0
+   );
+$positions-map:(
+   t:top,
+   r:right,
+   b:bottom,
+   l:left
+   );
+
+$boxes-map: (
+   p:padding,
+   m:margin
+   );
+
+$alignment-ver-map: (
+   t:top,
+   m:middle,
+   b:bottom,
+   bl:baseline
+   );
+$alignment-hor-map: (
+   l:left,
+   c:center,
+   r:right,
+   j:justify
+   );
+$display-map: (
+   b:block,
+   ib:inline-block,
+   f:flex,
+   n:none
+   );
+$positioning-map: (
+   s:static,
+   r:relative,
+   a:absolute,
+   f:fixed
+   );
+
+
+
+@mixin clearfix {
+   content:"";
+   display:table;
+   clear:both;
+}
+
+
+
+* {
+  box-sizing:border-box;
+}
+
+
+
+/* Just design stuff, not grid */
+// These couple things aren't super important to your grid system, but they help me with the examples, and make my page look pretty.
+// Oh god, I keep adding more!
+// body {
+//   margin:0;
+//   font-family:calibri,sans-serif;
+// }
+// $main-color:#76B3A2;
+// .header {
+//   background-color:$main-color;
+//   h1,
+//   h2{
+//     margin:0;
+//     color:white;
+//   }
+//   &:not(.active)+.container {
+//     display:none;
+//   }
+// }
+// div.header {
+//   cursor:pointer;
+//   &:hover {
+//     background-color:lighten($main-color,10%);
+//   }
+// }
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-family:cambria,serif;
+// }
+// a {
+//   color:$main-color;
+//   font-weight:bold;
+//   text-decoration:none;
+//   &:hover {
+//     text-decoration:underline;
+//   }
+// }
+.collapsed {
+   list-style-type:none;
+   margin-top:0;
+   margin-bottom:0;
+   padding-left:0;
+}
+.well {
+   background-color:rgba(0,0,0,0.12);
+   padding: $column-gutter;
+   border-radius: 0;
+   border:1px solid rgba(0,0,0,0.12);
+}
+.swell {
+   @extend .well;
+   padding:initial;
+}
+.lined {
+   border:1px solid rgba(0,0,0,0.5);
+}
+.centered-child {
+   position:absolute;
+   top:50%;
+   left:50%;
+   transform:translate(-50%,-50%);
+}
+.fill-child {
+   height:100%;
+   width:100%;
+}
+.square-parent {
+   position:relative;
+   height:0;
+   padding-bottom:100%;
+}
+.square-child {
+   @extend .fill-child;
+   position:absolute;
+}
+
+// table {
+//   width:100%;
+//   border-collapse:collapse;
+// }
+// td,
+// th{
+//   padding:$column-gutter/2;
+//   text-align:left;
+// }
+// tr {
+//   border-bottom:1px solid rgba(0,0,0,0.12);
+// }
+
+/* end design stuff */
+
+
+ 
+@mixin make-box-utilities($pre:''){
+   @each $pre-short,$pre-long in $boxes-map {
+      @each $suf-short,$suf-long in $sizes-map {
+         @each $pos-short,$pos-long in $positions-map {
+            .#{$pre-short}#{$pre}-#{$pos-short}#{$suf-short} {
+               #{$pre-long}-#{$pos-long}: $suf-long;
+            }
+         }
+         .#{$pre-short}#{$pre}-h#{$suf-short} {
+            #{$pre-long}-left: $suf-long;
+            #{$pre-long}-right: $suf-long;
+         }
+         .#{$pre-short}#{$pre}-v#{$suf-short} {
+            #{$pre-long}-top: $suf-long;
+            #{$pre-long}-bottom: $suf-long;
+         }
+         .#{$pre-short}#{$pre}-#{$suf-short} {
+            #{$pre-long}: $suf-long;
+         }
+      }
+   }
+}
+@mixin make-main-utilities($pre:'') {
+   .pull#{$pre}-left {
+      float:left;
+   }
+   .pull#{$pre}-right {
+      float:right;
+   }
+   .pull#{$pre}-none {
+      float:none;
+   }
+   .pull#{$pre}-clear {
+      clear:both;
+   }
+   .pull#{$pre}-center {
+      margin-left:auto;
+      margin-right:auto;
+   }
+
+   // Make horizontal alignments
+   @each $short,$long in $alignment-hor-map {
+      .align#{$pre}-#{$short} {
+         text-align:$long;
+      }
+   }
+   // Make vertical alignments
+   @each $short,$long in $alignment-ver-map {
+      .align#{$pre}-#{$short} {
+         vertical-align:$long;
+      }
+   }
+   // Make display varieties
+   @each $short,$long in $display-map {
+      .display#{$pre}-#{$short} {
+         display:$long;
+      }
+   }
+   // Make positioning varieties
+   @each $short,$long in $positioning-map {
+      .position#{$pre}-#{$short} {
+         position:$long;
+      }
+   }
+
+   .flex#{$pre}-parent {
+      display:flex;
+      align-items:center;
+   }
+   .flex#{$pre}-wrap {
+      flex-wrap:wrap;
+   }
+   .flex#{$pre}-nowrap {
+      flex-wrap:nowrap;
+   }
+   .flex#{$pre}-child {
+      flex:1 1 auto;
+   }
+   .flex#{$pre}-none {
+      flex:none;
+   }
+}
+
+
+@mixin make-container($pre:''){
+   .container {
+      margin-right:auto;
+      margin-left:auto;
+      // padding:0;
+      @if($pre=='xl' or $pre=='lg') {
+         max-width:map-get($container-map,$pre);
+      } @else  {
+         max-width:auto;
+         // padding:$column-gutter;
+      }
+   }
+}
+
+@mixin make-columns{
+   .grid {
+      overflow:hidden;
+   }
+   [class*='col-'] {
+      float: left;
+   }
+   .row {
+      &:after {
+         @include clearfix;
+      }
+      &.gutters {
+         margin-top: -$column-gutter;
+         margin-left: -($column-gutter / 2);
+         margin-right: -($column-gutter / 2);
+
+         &>[class*='col-'] {
+            padding-top: $column-gutter;
+            padding-left: ($column-gutter / 2);
+            padding-right: ($column-gutter / 2);
+         }
+      }
+      &.flex {
+         display:flex;
+         flex-wrap:wrap;
+         align-items:center;
+
+         &>[class*='col-'] {
+            flex:1 1 auto;
+            float:none;
+         }
+      }
+   }
+}
+
+@mixin make-runny-columns($pre:'') {
+   @if($pre!='') {
+      $pre: "-#{$pre}";
+   }
+   .col#{$pre}-side {
+      width:$side-column-width;
+   }
+   .col#{$pre}-main {
+      width:calc(100% - #{$side-column-width});
+   }
+   .col#{$pre}-main2 {
+      width:calc(100% - #{$side-column-width * 2});
+   }
+
+   @for $i from 0 through $column-length {
+      .col#{$pre}-#{$i} {
+         width: percentage($i/$column-length);
+      }
+      .offset#{$pre}-#{$i} {
+         margin-left: percentage($i/$column-length);
+      }
+   }
+}
+
+
+
+
+
+
+
+
+
+// @include make-container;
+// @include make-runny-columns;
+// @include make-box-utilities;
+// @include make-main-utilities;
+@include make-columns;
+@each $pre-short,$pre-long in $container-map {
+   /*---------------------------------------------------------------
+   #{$pre-short} media minimum
+   -----------------------------------------------------------------*/
+   @media (min-width:$pre-long) {
+      @include make-container(#{$pre-short});
+      @include make-runny-columns(#{$pre-short});
+      @include make-box-utilities(-#{$pre-short});
+      @include make-main-utilities(-#{$pre-short});
+   }
+}

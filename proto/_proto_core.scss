@@ -1,21 +1,6 @@
-/*
-
-Base Proto v 0.5
-
-*/
-
 section,aside[id],figure[id] {
     display:none;
 }
 section.active {
     display: block;
-}
-
-
-
-.proto-togglable {
-    display:none;
-}
-.proto-nextopen+.proto-togglable {
-    display:initial;
 }
