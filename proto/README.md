@@ -1,6 +1,10 @@
 # Proto
 
-[Proto Demo](https://bronkula.github.io/apptools/proto/demo)
+Contents
+
+- [Proto Demo](https://bronkula.github.io/apptools/proto/demo)
+- [Getting Started](#user-content-getting-started)
+- [Documentation](#user-content-documentation)
 
 Proto is a tool for swiftly prototyping Single Document, Multi Page applications. It attempts to be unopinionated, and there is a tool set available for use on any project.
 
