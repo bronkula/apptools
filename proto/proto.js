@@ -1,10 +1,11 @@
 ;/*
-BaseProtoType v0.8
+ProtoTight Type v0.81
 Developed by Hamilton Cline
 hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.81- Rebranding: ProtoTight
 0.8 - Added: Responsive CSS Grid to theme
     - Changed: CSS file names
     - Updated documentation
@@ -33,8 +34,8 @@ Changelog
 
 
 
-    function BaseProto(el) {
-        var bp = this;
+    function ProtoTight (el) {
+        var pt = this;
         this.originalHash = location.hash;
         this.updateUrl= false;
         this.stateObj={title:null,url:null};
@@ -47,37 +48,33 @@ Changelog
         this.setTemplates();
         this.setEvents();
 
-        setTimeout(function(){bp.init(el);},1);
+        setTimeout(function(){pt.init(el);},1);
     }
 
 
 
-    BaseProto.prototype.init = function() {
-
+    ProtoTight.prototype.init = function() {
         this.setInitialActive();
     };
 
-    BaseProto.prototype.makeTabList = function() {
-        var bp = this;
+    ProtoTight.prototype.makeTabList = function() {
+        var pt = this;
         // Search through the sections and pull out all the ids for links and tabs
         this.sections = [];
         $("[data-role='page']").each(function(index){
             var sid = $(this).attr("id");
             $(this).addClass(sid);
-            bp.sections.push(sid);
+            pt.sections.push(sid);
         });
     };
-    BaseProto.prototype.setInitialActive = function() {
-        // console.log(location)
-        // check if the hash was empty
+    ProtoTight.prototype.setInitialActive = function() {
         var h = this.originalHash!=="" ? this.originalHash.substr(1) : "";
-        // if the hash was not one of the sections, the active one is the first
         if($.inArray(h,this.sections)===-1) {
             h = this.sections[0];
         }
         this.setActiveSection({title:h,url:location.href});
     };
-    BaseProto.prototype.setActiveSection = function(stateObj,updateUrl) {
+    ProtoTight.prototype.setActiveSection = function(stateObj,updateUrl) {
         $(document).trigger("pageshow",{
             nextPage:{
                 title:stateObj.title,
@@ -99,12 +96,12 @@ Changelog
         
         history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
     };
-    BaseProto.prototype.showActiveSection = function() {
+    ProtoTight.prototype.showActiveSection = function() {
         $("[data-role='page'].active").removeClass("active");
         $("."+this.stateObj.title).addClass("active");
     };
 
-    BaseProto.prototype.changeSection = function(str,updateUrl) {
+    ProtoTight.prototype.changeSection = function(str,updateUrl) {
         if(str=="back") {
             if(history.state != null) w.history.back();
         }
@@ -118,15 +115,15 @@ Changelog
             location.assign(this.stateObj);
         }
     };
-    BaseProto.prototype.setTemplates = function() {
-        var bp = this;
+    ProtoTight.prototype.setTemplates = function() {
+        var pt = this;
         $("[data-template]").each(function(){
             $(this).html(
-                bp.mt($($(this).data("template")).html())($(this).data())
+                pt.mt($($(this).data("template")).html())($(this).data())
             );
         });
     };
-    BaseProto.prototype.activate = function(obj,sel,fn){
+    ProtoTight.prototype.activate = function(obj,sel,fn){
         var el;
         switch(sel){
             case "next": el=$(obj).next(); break;
@@ -137,30 +134,30 @@ Changelog
         el[fn]("active");
     }
 
-    BaseProto.prototype.setEvents = function(el) {
-        var bp = this;
+    ProtoTight.prototype.setEvents = function(el) {
+        var pt = this;
         this.mainElement
             .on("click","[data-role='jump']",function(e){
                 e.preventDefault();
-                return bp.changeSection($(this).attr("href").substr(1),true); })
+                return pt.changeSection($(this).attr("href").substr(1),true); })
             .on("click","[data-toggle]",function(e){
                 e.preventDefault();
-                bp.activate(this,$(this).data("toggle"),"toggleClass");
+                pt.activate(this,$(this).data("toggle"),"toggleClass");
             })
             .on("click","[data-activate]",function(e){
                 e.preventDefault();
-                bp.activate(this,$(this).data("activate"),"addClass");
+                pt.activate(this,$(this).data("activate"),"addClass");
             })
             .on("click","[data-deactivate]",function(e){
                 e.preventDefault();
-                bp.activate(this,$(this).data("deactivate"),"removeClass");
+                pt.activate(this,$(this).data("deactivate"),"removeClass");
             })
     };
 
     // Mustache Template with default values
-    BaseProto.prototype.mt = function(template_string){
-        var bp = this;
-        var ds = ds = function(obj, prop) {
+    ProtoTight.prototype.mt = function(template_string){
+        var pt = this;
+        var ds = function(obj, prop) {
             if(typeof obj === 'undefined') return false;
             var _index = prop.indexOf('.')
             if(_index > -1) return ds(obj[prop.substr(0, _index)], prop.substr(_index + 1));
@@ -184,17 +181,17 @@ Changelog
         }
     }
 
-    w.BaseProto = BaseProto;
+    w.ProtoTight  = ProtoTight;
 
 
     w.onpopstate = function(o){
         // console.log(history)
         if(o.state!=null) {
             // console.log("pop");
-            bp.setActiveSection(o.state);
+            pt.setActiveSection(o.state);
         } else {
             // console.log("initial")
-            bp.setInitialActive();
+            pt.setInitialActive();
         }
     }
 })(window);

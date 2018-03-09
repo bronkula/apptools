@@ -2,11 +2,11 @@
 A Javascript toolset for app development
 
 
-[Proto Demo](https://bronkula.github.io/apptools/proto/demo)
+[ProtoTight Demo](https://bronkula.github.io/apptools/proto/demo)
 
 
-## Proto.js
-Proto is a tool for prototyping. Mostly just unopinionated page routing.
+## ProtoTight
+ProtoTight is a tool for prototyping. Mostly just unopinionated page routing. But also some other fun ideas and things.
 
 ## Search.js
 Tools for searching through and showing data lists on a page.
