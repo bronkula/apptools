@@ -29,10 +29,10 @@
 		<header data-role="header" data-template="#header-title-template" data-title="ProtoTyping"></header>
 		<footer data-role="footer" data-template="#footer-nav-template"></footer>
 		<div data-role="main">
-			<h2>Proto</h2>
+			<h2>ProtoTight</h2>
 			<p><a href="http://github.com/bronkula/apptools">AppTools on Github.</a></p>
 			<p>This is the first section of a prototyping tool that allows a person to leverage their knowledge of html and css, without needing extensive knowledge of javascript (or any at all) to create a mostly working prototype of a website or app. The goal is not to allow the complete creation of a working application (although it certainly could be done) but to provide a basis for production that can more easily be transitioned into actual development than most current offerings.</p>
-			<p>The problem with most current prototyping implementations is that they often take a good amount of design work that must all be completely redone once actual programming work is put forward. With HamProto a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
+			<p>The problem with most current prototyping implementations is that they often take a good amount of design work that must all be completely redone once actual programming work is put forward. With HamProtoTight a working viable prototype can be provided to a development team and a lot of css and html will have already been created, greatly reducing the transition period between prototype and bootstrapping.</p>
 			<div class="m-xs-l">
 				<p>If you want the full experience, Add this page to your homescreen.</p>
 				<p>In iOS Safari, click the share button, scroll to the right add choose "Add to Homescreen".</p>
@@ -55,8 +55,8 @@
 		<header data-role="header" data-template="#header-title-template" data-title="Jumps"></header>
 		<footer data-role="footer" data-template="#footer-nav-template"></footer>
 		<div data-role="main">
-			<header><h2>Proto Jumps</h2></header>
-			<p>Proto uses sections to define different app "pages". Each section of a Proto app has its own unique id, and so linking to any of them is as easy as making a jump link to it. These can be any type of element, as long as it has a data-role="jump" hook, and an href attribute that links to an #id.</p>
+			<header><h2>ProtoTight Jumps</h2></header>
+			<p>ProtoTight uses sections to define different app "pages". Each section of a ProtoTight app has its own unique id, and so linking to any of them is as easy as making a jump link to it. These can be any type of element, as long as it has a data-role="jump" hook, and an href attribute that links to an #id.</p>
 			<p>The anchor below works using the jump, even though it looks like a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span data-role="jump" href="#page-home">even this phrase (click me).</span></p>
 			<p>
 				<a class="btn" data-role="jump" href="#page-activate">Activations</a>
@@ -95,7 +95,7 @@
 					<span class="glows">This activates once</span>
 				</p>
 				<p>
-					That's the core of the idea. This can be used all over your app, and simply have css do something to an element when the "active" class is present. You design the css, Proto provides the classes.  There are a number of options. [data-activate], [data-deactivate], and [data-toggle]. Each of these can be passed any selector to activate that element. There are also a couple of helper values available. "next", "prev", and "parent" will all activate relative elements.
+					That's the core of the idea. This can be used all over your app, and simply have css do something to an element when the "active" class is present. You design the css, ProtoTight provides the classes.  There are a number of options. [data-activate], [data-deactivate], and [data-toggle]. Each of these can be passed any selector to activate that element. There are also a couple of helper values available. "next", "prev", and "parent" will all activate relative elements.
 				</p>
 				<p>
 					<span class="glows">This toggles on and off</span>
@@ -152,7 +152,7 @@
 		<div data-role="main">
 			<h2>Templating</h2>
 			<p>
-				If you're a designer, you know that having to change 15 of the same thing is truly annoying. Proto comes with a simple tool to duplicate html content on the page, in the form of text templates.
+				If you're a designer, you know that having to change 15 of the same thing is truly annoying. ProtoTight comes with a simple tool to duplicate html content on the page, in the form of text templates.
 			</p>
 			<p>
 				Create an element with an ID and some inner content that you want to only structure once. Then make an element somewhere on your document that references the same element with a data-template attribute. something like: 
@@ -186,7 +186,7 @@
 				Custom and dynamic code will need to make use of the "pageshow" event attached to the document. This event will allow any arbitrary code to be run whenever any page is loaded into view.
 			</p>
 			<p class="container">
-				This list is being created from a json file being loaded into the document. Proto is capable enough to work with custom code. Because it is unopinionated, it won't get in the way of your code, but it also only has limited tools to help you along.
+				This list is being created from a json file being loaded into the document. ProtoTight is capable enough to work with custom code. Because it is unopinionated, it won't get in the way of your code, but it also only has limited tools to help you along.
 			</p>
 			<div class="userlist"></div>
 		</div>
