@@ -125,16 +125,13 @@ $("input[type='file']").on("change",function() {
   readFiles(this.files, function(e){ $(".output").attr({src:e.target.result}); });
 });
 */
-function readFiles(files,callback,index) {
-  index=index||0;
+function readFiles(files,callback,index=0) {
   if (files && files[0]) {
-    let file = files[index++];
-    let reader = new FileReader();
+    let file = files[index++],
+        reader = new FileReader();
     reader.onload = function(e){
       callback(e);
-      if(index<files.length) {
-        readFiles(files,callback,index);
-      }
+      if(index<files.length) readFiles(files,callback,index);
     }
     reader.readAsDataURL(file);
   }
