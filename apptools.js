@@ -4,16 +4,19 @@
 
 /* 
 This function takes an array of objects, 
-stamps each object onto a lodash template string, 
+stamps each object onto a template string function, 
 then places that output into a target_selector jQuery element
 or returns the output string if no target_selector is given
 
-example:
+Example:
 showDataList(
 	[{x:10,y:10},{x:20,y:5}],
 	`<div><%= x %> x <%=y%></div>`,
 	'.output'
 	);
+
+Return:
+`<div>10 x 10</div><div>20 x 5</div>`
 */
 function showDataList(object_array,template_string,target_selector){
 	var output = "";
@@ -28,21 +31,13 @@ function showDataList(object_array,template_string,target_selector){
 This function takes a template_string using <%= %> style templates
 it outputs a function which can be passed an object to stamp onto the string
 
-example:
+Example:
 var fn = makeDataTemplate("Name: <%= name %>");
 var output = fn({name:"George"});
+
+Return:
+`Name: George`
 */
-// function makeDataTemplate(template_string){
-// 	return function(data) {
-// 		var output = template_string;
-// 		for(let key in data){
-// 			if(data.hasOwnProperty(key) === false) continue;
-// 			output = output.replace(RegExp('<%=\s*' + key + '\s*%>', 'g'), data[key]);
-// 		}
-// 		output = output.replace(RegExp('<%=\s*\S+?\:(\S+?)\s*%>', 'g'), '$1');
-// 		return output;
-// 	}
-// }
 function makeDataTemplate(template_string){
 	return function(data) {
 		var output = template_string,rep = /<%=\s*(.+?)\s*%>/,m,v,s;
@@ -73,12 +68,15 @@ a search_string to search for in each object,
 an array of search_properties in each object to search through,
 an optional function that will be passed the output array
 
-example:
+Example:
 searchDataList(
 	[{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}],
 	'George',
 	'email,name'
 	);
+	
+Return:
+[{name:'George',email:'george@gmail.com'}]
 */
 function searchDataList(object_array,search_string,search_properties,fn){
 	return object_array.filter(obj=>{
@@ -96,6 +94,12 @@ function searchDataList(object_array,search_string,search_properties,fn){
 /*
 This function waits for an array to have some elements,
 It recursively calls itself until the array has objects in it
+
+Example:
+function fooFunction(){
+	if(!waitForData(barArray,fooFunction)) return;
+	// some code
+}
 */
 function waitForData(object_array,callback_function,passthrough_arguments){
 	if(!object_array || !object_array.length) {
