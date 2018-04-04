@@ -120,6 +120,8 @@ function waitForData(object_array,callback_function,passthrough_arguments){
 This function will recursively call itself until a list of files has been loaded into a page with javascript,
 and will fire a callback function for each file as they are loaded.
 
+demo: https://codepen.io/bronkula/pen/bvrgxQ
+
 example:
 $("input[type='file']").on("change",function() {
   readFiles(this.files, function(e){ $(".output").attr({src:e.target.result}); });
