@@ -40,7 +40,7 @@ Return:
 */
 function makeDataTemplate(template_string){
 	return function(data) {
-		var output = toString(template_string),rep = /<%=\s*(.+?)\s*%>/,m,v,s;
+		var output = template_string.toString(),rep = /<%=\s*(.+?)\s*%>/,m,v,s;
 		while(m = rep.exec(output)) {
 			s = m[1].split(":");
 			v = fetchFromObject(data,s[0]);
