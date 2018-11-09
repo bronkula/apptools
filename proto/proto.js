@@ -53,7 +53,10 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         this.setEvents();
 
         setTimeout(function(){pt.init(el);},1);
+
+        ProtoTight.tites.push(this);
     }
+    ProtoTight.tites = [];
 
     ProtoTight.prototype.init = function() {
         this.setInitialActive();
@@ -217,16 +220,21 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
 
 
-
-
-
+        
     w.onpopstate = function(o){
-        if(o.state!=null) {
-            pt.setActiveSection(o.state);
-        } else {
-            pt.setInitialActive();
-        }
+        ProtoTight.tites.forEach(t => o.state!= null ? t.setActiveSection(o.state) : t.setInitialActive() );
+        // if(o.state!=null) {
+        //     pt.setActiveSection(o.state);
+        // } else {
+        //     pt.setInitialActive();
+        // }
     }
+
+
+
+
+
+
 
     w.document.addEventListener("DOMContentLoaded", () => new ProtoTight() );
 
