@@ -138,3 +138,13 @@ function readFiles(files,callback,index=0) {
     reader.readAsDataURL(file);
   }
 }
+
+
+
+
+function rebounce(check,fn,arg) {
+	return !check ? !setTimeout(() => fn.apply(arg) , 100) : true;
+}
+
+
+
