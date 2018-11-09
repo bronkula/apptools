@@ -54,6 +54,6 @@ $(function(){
 		localStorage.chosenId = $(this).data("id");
 	})
 
-	pt = new ProtoTight();
+	// pt = new ProtoTight();
 
 })

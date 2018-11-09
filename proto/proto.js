@@ -181,9 +181,6 @@ Changelog
         }
     }
 
-    w.ProtoTight  = ProtoTight;
-
-
     w.onpopstate = function(o){
         // console.log(history)
         if(o.state!=null) {
@@ -194,4 +191,7 @@ Changelog
             pt.setInitialActive();
         }
     }
+
+    document.addEventListener("DOMContentLoaded",o => new ProtoTight());
+    
 })(window);
