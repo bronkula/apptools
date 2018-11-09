@@ -85,12 +85,12 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
             nextPage:{
                 title:stateObj.title,
                 url:stateObj.url,
-                el:q("."+stateObj.title)
+                el:q("."+stateObj.title)[0]
             },
             prevPage:{
                 title:this.stateObj.title,
                 url:this.stateObj.url,
-                el:q(this.stateObj.title===null?"":"."+this.stateObj.title)
+                el:q(this.stateObj.title===null?"":"."+this.stateObj.title)[0]
             }
         }}));
         
@@ -133,17 +133,14 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
             case "parent": el=qparent(obj); break;
             default: el = q(sel);
         }
-        el.forEach( o => o.classList[fn] );
+        el.forEach( o => o.classList[fn]("active") );
     }
 
     ProtoTight.prototype.setEvents = function(el) {
         var pt = this;
-        console.log(this)
         
         delegate(this.mainElement[0],"click","[data-role='jump']",function(e){
-            console.dir(this)
                 e.preventDefault();
-                console.log([].find.call(this.attributes,o => o.nodeName=='href'))
                 pt.changeSection([].find.call(this.attributes,o => o.nodeName=='href').value.substr(1),true);
                 return false;
             })
@@ -174,7 +171,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         [s.nextSibling] : qnext(s.nextSibling);
     const qprev = s => 
         s.previousSibling instanceof HTMLElement ? 
-        [s.previousSibling] : qnext(s.previousSibling);
+        [s.previousSibling] : qprev(s.previousSibling);
     const qparent = s => [s.parentElement];
 
 
