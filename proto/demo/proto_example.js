@@ -33,22 +33,17 @@ $(function(){
 	// Adding a pageshow event listener is very easy to do
 	$(document).on("pageshow",function(e){
 
-		let nextPage = e.detail.nextPage;
-		console.log(e.detail)
-
 		// Each pageshow event is passed an object with a nextPage and prevPage
 		// These have title, url, and el properties
 
-		if(nextPage.title=="page-show") {
-			makeSection5();
-		}
-		if(nextPage.title=="page-user") {
-			makeSection6();
+		switch(e.detail.nextPage.title) {
+			case "page-show": makeSection5(); break;
+			case "page-user": makeSection6(); break;
 		}
 
 
 		$("footer[data-role='footer'] .active").removeClass("active");
-		$("footer[data-role='footer'] a[href='#"+nextPage.title+"']").addClass("active");
+		$("footer[data-role='footer'] a[href='#"+e.detail.nextPage.title+"']").addClass("active");
 	})
 
 
