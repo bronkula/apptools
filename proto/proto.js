@@ -135,20 +135,24 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
     ProtoTight.prototype.setEvents = function(el) {
         var pt = this;
-        this.mainElement
-            .on("click","[data-role='jump']",function(e){
+        this.mainElement[0]
+            .addEventListener("click","[data-role='jump']",function(e){
                 e.preventDefault();
-                return pt.changeSection(this.attributes.href.substr(1),true); })
-            .on("click","[data-toggle]",function(e){
+                pt.changeSection(this.attributes.href.substr(1),true);
+                return false;
+            })
+            .addEventListener("click","[data-toggle]",function(e){
                 pt.activate(this,this.dataset.toggle,"toggle");
             })
-            .on("click","[data-activate]",function(e){
+            .addEventListener("click","[data-activate]",function(e){
                 pt.activate(this,this.dataset.activate,"add");
             })
-            .on("click","[data-deactivate]",function(e){
+            .addEventListener("click","[data-deactivate]",function(e){
                 pt.activate(this,this.dataset.deactivate,"remove");
             })
     };
+
+
 
 
 
@@ -158,6 +162,8 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         s instanceof HTMLElement ? [s] :
         s.isArray ? s :
         [].slice.call(document.querySelectorAll(s));
+
+
 
     // Mustache Template with default values
     const mt = function(template_string){
