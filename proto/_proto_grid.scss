@@ -71,47 +71,6 @@ $positioning-map: (
 
 
 
-/* Just design stuff, not grid */
-// These couple things aren't super important to your grid system, but they help me with the examples, and make my page look pretty.
-// Oh god, I keep adding more!
-// body {
-//   margin:0;
-//   font-family:calibri,sans-serif;
-// }
-// $main-color:#76B3A2;
-// .header {
-//   background-color:$main-color;
-//   h1,
-//   h2{
-//     margin:0;
-//     color:white;
-//   }
-//   &:not(.active)+.container {
-//     display:none;
-//   }
-// }
-// div.header {
-//   cursor:pointer;
-//   &:hover {
-//     background-color:lighten($main-color,10%);
-//   }
-// }
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//   font-family:cambria,serif;
-// }
-// a {
-//   color:$main-color;
-//   font-weight:bold;
-//   text-decoration:none;
-//   &:hover {
-//     text-decoration:underline;
-//   }
-// }
 .collapsed {
    list-style-type:none;
    margin-top:0;
@@ -150,22 +109,6 @@ $positioning-map: (
    @extend .fill-child;
    position:absolute;
 }
-
-// table {
-//   width:100%;
-//   border-collapse:collapse;
-// }
-// td,
-// th{
-//   padding:$column-gutter/2;
-//   text-align:left;
-// }
-// tr {
-//   border-bottom:1px solid rgba(0,0,0,0.12);
-// }
-
-/* end design stuff */
-
 
  
 @mixin make-box-utilities($pre:''){
@@ -237,17 +180,20 @@ $positioning-map: (
       display:flex;
       align-items:center;
    }
-   .flex#{$pre}-wrap {
-      flex-wrap:wrap;
-   }
-   .flex#{$pre}-nowrap {
-      flex-wrap:nowrap;
-   }
    .flex#{$pre}-child {
       flex:1 1 auto;
    }
    .flex#{$pre}-none {
       flex:none;
+   }
+   .flex#{$pre}-center {
+      align-items:center;
+   }
+   .flex#{$pre}-wrap {
+      flex-wrap:wrap;
+   }
+   .flex#{$pre}-nowrap {
+      flex-wrap:nowrap;
    }
 }
 
@@ -270,12 +216,15 @@ $positioning-map: (
    .grid {
       overflow:hidden;
    }
-   [class*='col-'] {
-      float: left;
-   }
    .row {
+      display:flex;
+      flex-wrap:wrap;
+
       &:after {
          @include clearfix;
+      }
+      &>[class*='col-'] {
+         flex: 0 0 auto;
       }
       &.gutters {
          margin-top: -$column-gutter;
@@ -286,16 +235,6 @@ $positioning-map: (
             padding-top: $column-gutter;
             padding-left: ($column-gutter / 2);
             padding-right: ($column-gutter / 2);
-         }
-      }
-      &.flex {
-         display:flex;
-         flex-wrap:wrap;
-         align-items:center;
-
-         &>[class*='col-'] {
-            flex:1 1 auto;
-            float:none;
          }
       }
    }
@@ -331,13 +270,6 @@ $positioning-map: (
 
 
 
-
-
-// @include make-container;
-// @include make-runny-columns;
-// @include make-box-utilities;
-// @include make-main-utilities;
-@include make-columns;
 @each $pre-short,$pre-long in $container-map {
    /*---------------------------------------------------------------
    #{$pre-short} media minimum

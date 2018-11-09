@@ -1,6 +1,3 @@
-section {
+[data-role=page]:not(.active) {
     display:none;
-}
-section.active {
-    display: block;
 }
