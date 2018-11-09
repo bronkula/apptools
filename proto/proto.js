@@ -123,7 +123,11 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
     };
     ProtoTight.prototype.setTemplates = function() {
         var pt = this;
-        q("[data-template]").forEach(o => o.innerHTML = mt(q(o.dataset.template)[0].innerHTML)(o.dataset) );
+        q("[data-template]").forEach(o => {
+            let d = Object.assign({},o.dataset);
+            for(let i in d) d[i] = isJSON(d[i]) ? JSON.parse(d[i]) : d[i];
+            o.innerHTML = mt(q(d.template)[0].innerHTML)(d)
+        });
     };
     ProtoTight.prototype.activate = function(obj,sel,fn){
         var el;
@@ -173,6 +177,18 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         s.previousSibling instanceof HTMLElement ? 
         [s.previousSibling] : qprev(s.previousSibling);
     const qparent = s => [s.parentElement];
+
+
+    const isJSON = function(str) {
+        try {
+            return (JSON.parse(str) && !!str);
+        } catch (e) {
+            return false;
+        }
+    }
+
+
+    const isAO = (val) => val instanceof Array || val instanceof Object ? true : false;
 
 
     const delegate = function(o,e,t,c){
