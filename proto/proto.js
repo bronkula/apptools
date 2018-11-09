@@ -5,6 +5,7 @@ hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.9 - ECMA Rewrite
 0.81- Rebranding: ProtoTight
 0.8 - Added: Responsive CSS Grid to theme
     - Changed: CSS file names
@@ -28,11 +29,14 @@ Changelog
     - Added accordion lists
 0.2 - Added asides and figures
 0.1 - Initial Release
+
+
+
+uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
+
 */
 
 (function(w){
-
-
 
     function ProtoTight (el) {
         var pt = this;
@@ -43,15 +47,13 @@ Changelog
         this.previousSection = null;
         this.navHistory = [];
         this.sections = [];
-        this.mainElement = $(el||"body");
+        this.mainElement = q(el||"body");
         this.makeTabList();
         this.setTemplates();
         this.setEvents();
 
         setTimeout(function(){pt.init(el);},1);
     }
-
-
 
     ProtoTight.prototype.init = function() {
         this.setInitialActive();
@@ -61,12 +63,12 @@ Changelog
         var pt = this;
         // Search through the sections and pull out all the ids for links and tabs
         this.sections = [];
-        $("[data-role='page']").each(function(index){
-            var sid = $(this).attr("id");
-            $(this).addClass(sid);
-            pt.sections.push(sid);
+        q("[data-role='page']").forEach(function(o){
+            o.classList.add(o.id);
+            pt.sections.push(o.id);
         });
     };
+
     ProtoTight.prototype.setInitialActive = function() {
         var h = this.originalHash!=="" ? this.originalHash.substr(1) : "";
         if($.inArray(h,this.sections)===-1) {
@@ -74,8 +76,9 @@ Changelog
         }
         this.setActiveSection({title:h,url:location.href});
     };
+
     ProtoTight.prototype.setActiveSection = function(stateObj,updateUrl) {
-        $(document).trigger("pageshow",{
+        document.dispatchEvent(new CustomEvent("pageshow",{
             nextPage:{
                 title:stateObj.title,
                 url:stateObj.url,
@@ -86,7 +89,7 @@ Changelog
                 url:this.stateObj.url,
                 el:$(this.stateObj.title===null?"":"."+this.stateObj.title)
             }
-        });
+        }));
         
         this.stateObj = {
             title:stateObj.title,
@@ -97,8 +100,8 @@ Changelog
         history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
     };
     ProtoTight.prototype.showActiveSection = function() {
-        $("[data-role='page'].active").removeClass("active");
-        $("."+this.stateObj.title).addClass("active");
+        q("[data-role='page'].active").forEach(o => o.classList.remove("active") );
+        q("."+this.stateObj.title).forEach(o => o.addClass("active"));
     };
 
     ProtoTight.prototype.changeSection = function(str,updateUrl) {
@@ -117,21 +120,17 @@ Changelog
     };
     ProtoTight.prototype.setTemplates = function() {
         var pt = this;
-        $("[data-template]").each(function(){
-            $(this).html(
-                pt.mt($($(this).data("template")).html())($(this).data())
-            );
-        });
+        q("[data-template]").forEach(o => o.innerHTML = mt(q(o.dataset.template)[0].innerHTML)(o.dataset) );
     };
     ProtoTight.prototype.activate = function(obj,sel,fn){
         var el;
         switch(sel){
-            case "next": el=$(obj).next(); break;
-            case "prev": el=$(obj).prev(); break;
-            case "parent": el=$(obj).parent(); break;
-            default: el = $(sel);
+            case "next": el=[obj.nextSibling]; break;
+            case "prev": el=[obj.previousSibling]; break;
+            case "parent": el=[obj.parentElement]; break;
+            default: el = q(sel);
         }
-        el[fn]("active");
+        el.forEach(o => o.classList[fn] );
     }
 
     ProtoTight.prototype.setEvents = function(el) {
@@ -139,23 +138,29 @@ Changelog
         this.mainElement
             .on("click","[data-role='jump']",function(e){
                 e.preventDefault();
-                return pt.changeSection($(this).attr("href").substr(1),true); })
+                return pt.changeSection(this.attributes.href.substr(1),true); })
             .on("click","[data-toggle]",function(e){
-                e.preventDefault();
-                pt.activate(this,$(this).data("toggle"),"toggleClass");
+                pt.activate(this,this.dataset.toggle,"toggle");
             })
             .on("click","[data-activate]",function(e){
-                e.preventDefault();
-                pt.activate(this,$(this).data("activate"),"addClass");
+                pt.activate(this,this.dataset.activate,"add");
             })
             .on("click","[data-deactivate]",function(e){
-                e.preventDefault();
-                pt.activate(this,$(this).data("deactivate"),"removeClass");
+                pt.activate(this,this.dataset.deactivate,"remove");
             })
     };
 
+
+
+
+    // Query Selector
+    const q = s => 
+        s instanceof HTMLElement ? [s] :
+        s.isArray ? s :
+        [].slice.call(document.querySelectorAll(s));
+
     // Mustache Template with default values
-    ProtoTight.prototype.mt = function(template_string){
+    const mt = function(template_string){
         var pt = this;
         var ds = function(obj, prop) {
             if(typeof obj === 'undefined') return false;
@@ -181,17 +186,22 @@ Changelog
         }
     }
 
-    w.ProtoTight  = ProtoTight;
+
+
+
+
 
 
     w.onpopstate = function(o){
-        // console.log(history)
         if(o.state!=null) {
-            // console.log("pop");
             pt.setActiveSection(o.state);
         } else {
-            // console.log("initial")
             pt.setInitialActive();
         }
     }
+
+
+
+    window.document.addEventListener("DOMContentLoaded", () => new ProtoTight );
+
 })(window);
