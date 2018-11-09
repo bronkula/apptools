@@ -143,6 +143,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         delegate(this.mainElement[0],"click","[data-role='jump']",function(e){
             console.dir(this)
                 e.preventDefault();
+                console.log([].find.call(this.attributes,o => o.nodeName=='href'))
                 pt.changeSection([].find.call(this.attributes,o => o.nodeName=='href').value.substr(1),true);
                 return false;
             })
@@ -223,11 +224,6 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         
     w.onpopstate = function(o){
         ProtoTight.tites.forEach(t => o.state!= null ? t.setActiveSection(o.state) : t.setInitialActive() );
-        // if(o.state!=null) {
-        //     pt.setActiveSection(o.state);
-        // } else {
-        //     pt.setInitialActive();
-        // }
     }
 
 
