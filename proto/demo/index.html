@@ -66,13 +66,18 @@
 		<header data-role="header" data-template="#header-title-template" data-title="Jumps"></header>
 		<footer data-role="footer" data-template="#footer-nav-template"></footer>
 		<div data-role="main">
-			<header><h2>ProtoTight Jumps</h2></header>
+			<header>
+				<h2>ProtoTight Jumps</h2>
+			</header>
 			<p>ProtoTight uses sections to define different app "pages". Each section of a ProtoTight app has its own unique id, and so linking to any of them is as easy as making a jump link to it. These can be any type of element, as long as it has a data-role="jump" hook, and an href attribute that links to an #id.</p>
 			<p>The anchor below works using the jump, even though it looks like a button. Using your own styles will help you design things however you want them to look, but anything can have a .proto-jump added to it, <span data-role="jump" href="#page-home">even this phrase (click me).</span></p>
-			<code>&lt;a class="btn" data-role="jump" href="#page-activate"&gt;Activations&lt;/a&gt;</code>
+			<code>&lt;a class="btn" data-role="jump" href="#page-activate"&gt;On to Activations&lt;/a&gt;</code>
 			<p>
-				<a class="btn" data-role="jump" href="#page-activate">Activations</a>
+				<a class="btn" data-role="jump" href="#page-activate">On to Activations</a>
 			</p>
+			<header>
+				<h2>View Heights</h2>
+			</header>
 			<p>
 				This demo deals with view heights in a couple ways. All of the data-role="page" elements have been given a position:fixed, and a height:100%. Normally height 100% doesn't work on elements that don't have a parent with height. But it turns out fixed position elements are pulled out of flow and now take on the percentage height of the literal view. This allows all the child elements to use percentages and they are the visible view.
 			</p>

@@ -1,5 +1,9 @@
-@import "proto_core.css";
+/* https://github.com/bronkula/apptools/blob/master/proto/proto_theme.min.css */
 
 @import "proto_variables";
 @import "proto_grid";
 @import "proto_theme";
+
+[data-role=page]:not(.active) {
+    display:none;
+}
