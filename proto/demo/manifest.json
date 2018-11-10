@@ -1,3 +1,14 @@
 {
-   "display": "standalone"
+  "short_name": "ProtoTight",
+  "name": "ProtoTight Demo",
+  "icons": [
+    {
+      "src": "launcher-icon-4x.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
 }
