@@ -58,13 +58,13 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
             if(history.state != null) w.history.back();
         }
         else if (history.pushState) {
-            PT.setActiveSection({
+            setActiveSection({
                 title: str,
                 url: w.location.origin + w.location.pathname + "#" + str
             },updateUrl);
         } else {
             /* Ajax navigation is not supported */
-            location.assign(PT.stateObj.url);
+            location.assign(this.stateObj.url);
         }
     };
 
@@ -224,7 +224,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
     const PT = new ProtoTight();
         
-    w.addEventListener("popstate",o => o.state!= null ? PT.setActiveSection(o.state) : PT.setInitialActive());
+    w.addEventListener("popstate",o => o.state!= null ? setActiveSection(o.state) : setInitialActive());
 
     w.document.addEventListener("DOMContentLoaded", init );
 
