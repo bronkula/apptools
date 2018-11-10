@@ -77,9 +77,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
     ProtoTight.prototype.setInitialActive = function() {
         var h = this.originalHash!=="" ? this.originalHash.substr(1) : "";
-        if($.inArray(h,this.sections)===-1) {
-            h = this.sections[0];
-        }
+        if(this.sections.includes[h]) h = this.sections[0];
         this.setActiveSection({title:h,url:location.href});
     };
 

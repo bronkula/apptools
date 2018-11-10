@@ -111,6 +111,9 @@ function waitForData(object_array,callback_function,passthrough_arguments){
 	return true;
 }
 
+function rebounce(check,fn,arg) {
+	return !check ? !setTimeout(() => fn.apply(arg) , 100) : true;
+}
 
 
 
@@ -142,9 +145,6 @@ function readFiles(files,callback,index=0) {
 
 
 
-function rebounce(check,fn,arg) {
-	return !check ? !setTimeout(() => fn.apply(arg) , 100) : true;
-}
 
 
 
