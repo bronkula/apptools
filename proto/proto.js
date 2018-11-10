@@ -5,6 +5,8 @@ hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.92- Moved most functions to local scope
+    - Pass PT variable to global and include navigate function
 0.91- Completed ECMA 2015 ReWrite
     - Fixed some Sass naming and conventions
     - Added Queries and Delegations
