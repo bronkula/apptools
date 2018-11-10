@@ -8,7 +8,7 @@ A Javascript toolset for app development
 ## ProtoTight
 ProtoTight is a tool for prototyping. Mostly just unopinionated page routing. But also some other fun ideas and things.
 
-## Search.js
+## Apptools.js
 Tools for searching through and showing data lists on a page.
 
 ## Smallcode.js

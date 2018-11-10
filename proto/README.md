@@ -13,14 +13,11 @@ We have borrowed heavily from the syntax of jQuery mobile in order to create som
 
 ## Getting Started
 
-Download the proto_core.css and proto.js files. You'll need to have jQuery as well. Then start up a new ProtoTight object.
+Download the proto_core.css and proto.js files. Then start up a new ProtoTight object. We have made sure that ProtoTight doesn't have any dependencies of its own, so it can be dropped into any project.
 
 ```
 <link href="proto_core.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="proto.js"></script>
-
-<script>new ProtoTight();</script>
 ```
 
 ## Pages
@@ -51,12 +48,15 @@ ProtoTight will handle all the history states of routing around your application
 Since there's only one document ready call on an app like this, you might need to be able to run code any time a page is loaded. So there's a "pageshow" event available to you every time a page is loaded onto the page.
 
 ```
-$(document).on("pageshow",function(e,o){
-	console.log(e,o);
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).on("pageshow",function(e){
+	console.log(e.details);
 })
+</script>
 ```
 
-The pageshow event is passed two objects. A regular event object, and a ProtoTight object containing two properties .nextPage and .prevPage. These will help you do something based on which page you were coming from and which page is about to be shown.
+The pageshow event is passed a regular event object. The details property of that event object contains a ProtoTight object containing two properties nextPage and prevPage. These will help you do something based on which page you were coming from and which page is about to be shown.
 
 ## That's all you NEED to know
 
