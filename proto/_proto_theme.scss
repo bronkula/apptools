@@ -47,6 +47,42 @@ code {
 
 
 
+.header-btn {
+    line-height:$headheight;
+    text-align:center;
+    padding:0 1em;
+    font-size:0.8em;
+    color:inherit;
+    text-decoration:none;
+    font-weight:bold;
+    border-width:0;
+    border-radius:0;
+    background-color:transparent;
+    display:block;
+
+
+    .btn-icon {
+        width: 1em;
+        height: 1em;
+        display: block;
+        font-size: 2em;
+        line-height: 2rem;
+        vertical-align: middle;
+        font-style: normal;
+    }
+    .btn-description {
+        display: block;
+        line-height: 1rem;
+        font-size: 0.75em;
+    }
+    &.active,
+    &:hover {
+        background-color:white;
+    }
+}
+
+
+
 
 [data-role='page'] {
     position:fixed;
@@ -66,40 +102,11 @@ code {
     flex:none;
 
     ul {
-        list-style-type:none;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-left: 0;
+        @extend .collapsed;
     }
+
     a {
-        line-height:$headheight;
-        text-align:center;
-        padding:0 1em;
-        font-size:0.8em;
-        color:inherit;
-        text-decoration:none;
-        font-weight:bold;
-        display:block;
-
-
-        .btn-icon {
-            width: 1em;
-            height: 1em;
-            display: block;
-            font-size: 2em;
-            line-height: 2rem;
-            vertical-align: middle;
-            font-style: normal;
-        }
-        .btn-description {
-            display: block;
-            line-height: 1rem;
-            font-size: 0.75em;
-        }
-        &.active,
-        &:hover {
-            background-color:white;
-        }
+        @extend .header-btn;
     }
 }
 
@@ -201,12 +208,15 @@ a.btn {
     }
 }
 
-.compact {
-  list-style-type:none;
-  margin-top:0;
-  margin-bottom:0;
-  padding-left:0;
+
+.btn-group {
+    .btn,
+    a,
+    input {
+        @extend .header-btn;
+    }
 }
+
 
 
 
@@ -214,13 +224,15 @@ a.btn {
 
 .flex-parent {
     display:flex;
-    align-items:center;
 }
 .flex-child {
     flex:1 1 auto;
 }
 .flex-none {
     flex:none;
+}
+.flex-center {
+    align-items:center;
 }
 
 
