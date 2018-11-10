@@ -5,6 +5,9 @@ hamdiggy@gmail.com
 http://www.hamiltondraws.com
 
 Changelog
+0.91- Completed ECMA 2015 ReWrite
+    - Fixed some Sass naming and conventions
+    - Added Queries and Delegations
 0.9 - ECMA Rewrite
 0.81- Rebranding: ProtoTight
 0.8 - Added: Responsive CSS Grid to theme
@@ -180,16 +183,8 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
 
     const isJSON = function(str) {
-        try {
-            return (JSON.parse(str) && !!str);
-        } catch (e) {
-            return false;
-        }
+        try { return (JSON.parse(str) && !!str); } catch (e) { return false; }
     }
-
-
-    const isAO = (val) => val instanceof Array || val instanceof Object ? true : false;
-
 
     const delegate = function(o,e,t,c){
         var o = this;
@@ -201,8 +196,6 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
             },false);
         });
     }
-
-    const attr = (o,a) => o.find()
 
 
     // Mustache Template with default values
