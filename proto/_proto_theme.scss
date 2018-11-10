@@ -54,12 +54,16 @@ code {
     left:0;
     width:100%;
     height:100%;
-    // font-size:1rem;
+
+    display:flex;
+    flex-direction:column;
 }
 [data-role='header'],
 [data-role='footer'] {
     height:$headheight;
     background-color: #eee;
+
+    flex:none;
 
     ul {
         list-style-type:none;
@@ -100,7 +104,8 @@ code {
 }
 
 [data-role='header'] {
-    position:relative;
+    position: relative;
+    order:1;
     h1 {
         line-height:$headheight;
         position:absolute;
@@ -125,10 +130,7 @@ code {
     }
 }
 [data-role='footer'] {
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
+    order:3;
     ul {
         display:flex;
         align-items:center;
@@ -139,7 +141,9 @@ code {
 }
 
 [data-role='main'] {
+    order:2;
     height:100%;
+    flex:1 1 auto;
     overflow:auto;
 
     h2 {
@@ -156,11 +160,11 @@ code {
     height:calc(100% - #{$headheight * 2});
 }
 
-.container {
-    max-width:1000px;
-    margin-right:auto;
-    margin-left:auto;
-}
+// .container {
+//     max-width:1000px;
+//     margin-right:auto;
+//     margin-left:auto;
+// }
 
 
 
@@ -193,7 +197,7 @@ code {
 a.btn {
     text-decoration:none;
     &:hover {
-        dext-decoration:none;
+        text-decoration:none;
     }
 }
 
@@ -259,25 +263,40 @@ a.btn {
         max-width:calc(100% - 20px);
         max-height:calc(100% - 20px);
         transition: all 0.3s;
+        display:flex;
+        flex-direction:column;
 
         .modal.active & {
             transform:translate(-50%,-50%);
         }
+        &>:first-child {
+            border-radius: 0.5em 0.5em 0 0;
+        }
+        &>:last-child {
+            border-radius: 0 0 0.5em 0.5em;
+        }
     }
-    &-head {
-        border-radius:0.5em 0.5em 0 0;
+    &-head,
+    &-foot {
         background-color:#eee;
         line-height: $headheight;
         text-align: center;
         font-weight:bold;
         margin:0;
-        font-size:1.2em;
+        font-size:1em;
+    }
+    &-head {
+        order:1;
+    }
+    &-foot {
+        order:3;
     }
     &-body {
-        border-radius: 0 0 0.5em 0.5em;
+        order:2;
         background-color:#fff;
         overflow:auto;
         padding:10px;
+        flex:1 1 auto;
     }
 }
 
