@@ -62,6 +62,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
     ProtoTight.tites = [];
 
     ProtoTight.prototype.init = function() {
+        console.log("prototight")
         this.setInitialActive();
     };
 

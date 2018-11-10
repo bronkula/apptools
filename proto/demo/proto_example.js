@@ -17,7 +17,7 @@ function makeSection5(){
 	showDataList(db,$("#userlist-template").html(),"#page-show .userlist");
 }
 function makeSection6(){
-	if(!waitForData(db,makeSection5)) return;
+	if(!waitForData(db,makeSection6)) return;
 
 	var user = db.filter(obj=>obj.id==localStorage.chosenId);
 	if(user.length) showDataList(user,$("#user-template").html(),"#page-user [data-role='main']");
@@ -28,7 +28,7 @@ function makeSection6(){
 
 
 $(function(){
-
+	console.log("local")
 
 	// Adding a pageshow event listener is very easy to do
 	$(document).on("pageshow",function(e){
