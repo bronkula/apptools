@@ -41,8 +41,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
 (function(w){
 
-    function ProtoTight (el) {
-        var pt = this;
+    function ProtoTight () {
         this.originalHash = location.hash;
         this.updateUrl= false;
         this.stateObj={title:null,url:null};
@@ -50,39 +49,41 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
         this.previousSection = null;
         this.navHistory = [];
         this.sections = [];
-        this.mainElement = q(el||"body");
-        this.makeTabList();
-        this.setTemplates();
-        this.setEvents();
-
-        setTimeout(function(){pt.init(el);},1);
-
-        ProtoTight.tites.push(this);
+        this.mainElement;
     }
-    ProtoTight.tites = [];
-
-    ProtoTight.prototype.init = function() {
-        console.log("prototight")
-        this.setInitialActive();
+    ProtoTight.prototype.navigate = function(str,updateUrl=true) {
+        if(str=="back") {
+            if(history.state != null) w.history.back();
+        }
+        else if (history.pushState) {
+            PT.setActiveSection({
+                title: str,
+                url: w.location.origin + w.location.pathname + "#" + str
+            },updateUrl);
+        } else {
+            /* Ajax navigation is not supported */
+            location.assign(PT.stateObj.url);
+        }
     };
 
-    ProtoTight.prototype.makeTabList = function() {
-        var pt = this;
-        // Search through the sections and pull out all the ids for links and tabs
-        this.sections = [];
-        q("[data-role='page']").forEach(function(o){
-            o.classList.add(o.id);
-            pt.sections.push(o.id);
-        });
+
+
+    const init = function() {
+        // console.log("prototight")
+        PT.mainElement = w.document.body;
+        makeTabList();
+        setEvents();
+        setTemplates();
+        setInitialActive();
     };
 
-    ProtoTight.prototype.setInitialActive = function() {
-        var h = this.originalHash!=="" ? this.originalHash.substr(1) : "";
-        if(!this.sections.includes(h)) h = this.sections[0];
-        this.setActiveSection({title:h,url:location.href});
+    const setInitialActive = function() {
+        let h = PT.originalHash!=="" ? PT.originalHash.substr(1) : "";
+        if(!PT.sections.includes(h)) h = PT.sections[0];
+        setActiveSection({title:h,url:location.href});
     };
 
-    ProtoTight.prototype.setActiveSection = function(stateObj,updateUrl) {
+    const setActiveSection = function(stateObj,updateUrl) {
         document.dispatchEvent(new CustomEvent("pageshow",{detail:{
             nextPage:{
                 title:stateObj.title,
@@ -90,81 +91,54 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
                 el:q("."+stateObj.title)[0]
             },
             prevPage:{
-                title:this.stateObj.title,
-                url:this.stateObj.url,
-                el:q(this.stateObj.title===null?"":"."+this.stateObj.title)[0]
+                title:PT.stateObj.title,
+                url:PT.stateObj.url,
+                el:q(PT.stateObj.title===null?"":"."+PT.stateObj.title)[0]
             }
         }}));
         
-        this.stateObj = {
+        PT.stateObj = {
             title:stateObj.title,
             url:stateObj.url
         }
-        this.showActiveSection();
+        showActiveSection();
         
         history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
     };
-    ProtoTight.prototype.showActiveSection = function() {
+    const showActiveSection = function() {
         q("[data-role='page'].active").forEach(o => o.classList.remove("active") );
-        q("."+this.stateObj.title).forEach(o => o.classList.add("active"));
+        q("."+PT.stateObj.title).forEach(o => o.classList.add("active"));
     };
-
-    ProtoTight.prototype.changeSection = function(str,updateUrl) {
-        if(str=="back") {
-            if(history.state != null) w.history.back();
-        }
-        else if (history.pushState) {
-            this.setActiveSection({
-                title: str,
-                url: w.location.origin + w.location.pathname + "#" + str
-            },updateUrl);
-        } else {
-            /* Ajax navigation is not supported */
-            location.assign(this.stateObj);
-        }
-    };
-    ProtoTight.prototype.setTemplates = function() {
-        var pt = this;
-        q("[data-template]").forEach(o => {
-            let d = Object.assign({},o.dataset);
-            for(let i in d) d[i] = isJSON(d[i]) ? JSON.parse(d[i]) : d[i];
-            o.innerHTML = mt(q(d.template)[0].innerHTML)(d)
+    const makeTabList = function() {
+        let pt = this;
+        // Search through the sections and pull out all the ids for links and tabs
+        PT.sections = [];
+        q("[data-role='page']").forEach(function(o){
+            o.classList.add(o.id);
+            PT.sections.push(o.id);
         });
-    };
-    ProtoTight.prototype.activate = function(obj,sel,fn){
-        var el;
-        switch(sel){
-            case "next": el=qnext(obj); break;
-            case "prev": el=qprev(obj); break;
-            case "parent": el=qparent(obj); break;
-            default: el = q(sel);
-        }
-        el.forEach( o => o.classList[fn]("active") );
     }
-
-    ProtoTight.prototype.setEvents = function(el) {
-        var pt = this;
-        
-        delegate(this.mainElement[0],"click","[data-role='jump']",function(e){
+    const setEvents = function() {
+        delegate(PT.mainElement[0],"click","[data-role='jump']",function(e){
                 e.preventDefault();
-                pt.changeSection([].find.call(this.attributes,o => o.nodeName=='href').value.substr(1),true);
+                PT.navigate([].find.call(this.attributes,o => o.nodeName=='href').value.substr(1));
                 return false;
             })
-        delegate(this.mainElement[0],"click","[data-toggle]",function(e){
-                pt.activate(this,this.dataset.toggle,"toggle");
+        delegate(PT.mainElement[0],"click","[data-toggle]",function(e){
+                activate(this,this.dataset.toggle,"toggle");
             })
-        delegate(this.mainElement[0],"click","[data-activate]",function(e){
-                pt.activate(this,this.dataset.activate,"add");
+        delegate(PT.mainElement[0],"click","[data-activate]",function(e){
+                activate(this,this.dataset.activate,"add");
             })
-        delegate(this.mainElement[0],"click","[data-deactivate]",function(e){
-                pt.activate(this,this.dataset.deactivate,"remove");
+        delegate(PT.mainElement[0],"click","[data-deactivate]",function(e){
+                activate(this,this.dataset.deactivate,"remove");
             })
     };
 
 
 
 
-
+// HELPER FUNCTIONS
 
     // Query Selector
     const q = s => 
@@ -186,15 +160,33 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
     }
 
     const delegate = function(o,e,t,c){
-        var o = this;
-        e.split(" ").forEach(function(e){
-            o.addEventListener(e,function(e){
+        e.split(" ").forEach(e => {
+            this.addEventListener(e,function(e){
                 [].forEach.call(document.querySelectorAll(t),function(to){
                     if(e.target==to)c.apply(e.target,[e])
                 })
             },false);
         });
     }
+
+    const activate = function(obj,sel,fn){
+        let el;
+        switch(sel){
+            case "next": el=qnext(obj); break;
+            case "prev": el=qprev(obj); break;
+            case "parent": el=qparent(obj); break;
+            default: el = q(sel);
+        }
+        el.forEach( o => o.classList[fn]("active") );
+    }
+
+    const setTemplates = function() {
+        q("[data-template]").forEach(o => {
+            let d = Object.assign({},o.dataset);
+            for(let i in d) d[i] = isJSON(d[i]) ? JSON.parse(d[i]) : d[i];
+            o.innerHTML = mt(q(d.template)[0].innerHTML)(d)
+        });
+    };
 
 
     // Mustache Template with default values
@@ -226,17 +218,14 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
 
 
+
+
+    const PT = new ProtoTight();
         
-    w.onpopstate = function(o){
-        ProtoTight.tites.forEach(t => o.state!= null ? t.setActiveSection(o.state) : t.setInitialActive() );
-    }
+    w.addEventListener("popstate",o => o.state!= null ? PT.setActiveSection(o.state) : PT.setInitialActive());
 
+    w.document.addEventListener("DOMContentLoaded", init );
 
-
-
-
-
-
-    w.document.addEventListener("DOMContentLoaded", () => new ProtoTight() );
+    w.PT = PT;
 
 })(window);
