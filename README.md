@@ -49,7 +49,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 *Example*
 
 ```
-let output = **showDataList**(
+let output = showDataList(
 	{name:"George"},
 	"<div><%= name %></div>"
 );
@@ -58,7 +58,7 @@ output: "<div>George</div>"
 ```
 
 ```
-**showDataList**(
+showDataList(
 	[{name:"George"},{name:"Frank"}],
 	"<div><%= name %></div>",
 	".output"
@@ -80,7 +80,7 @@ output: "<div>George</div>"
 *Example*
 
 ```
-let templater = **makeDataTemplate**("<div><%= name %></div>");
+let templater = makeDataTemplate("<div><%= name %></div>");
 templater({name:"George"});
 templater({name:"Frank"});
 
@@ -88,7 +88,7 @@ output: "<div>George</div>\n<div>Frank</div>"
 ```
 
 ```
-let output = **makeDataTemplate**("<div><%= name %></div>")({name:"George"});
+let output = makeDataTemplate("<div><%= name %></div>")({name:"George"});
 
 output: "<div>George</div>"
 ```
@@ -107,7 +107,7 @@ output: "<div>George</div>"
 
 ```
 const checker = function(v) {
-    if(!**rebounce**(tocheck,checker,arguments)) return;
+    if(!rebounce(tocheck,checker,arguments)) return;
     // run code if tocheck is true
 }
 ```
@@ -126,7 +126,7 @@ const checker = function(v) {
 
 ```
 document.querySelector("input[type='file']").on("change",function() {
-  **readFiles**(this.files, e => console.log(e.target.result); );
+  readFiles(this.files, e => console.log(e.target.result); );
 });
 ```
 
