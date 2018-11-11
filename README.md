@@ -1,4 +1,4 @@
-# apptools
+# Apptools
 A Javascript toolset for app development
 
 ## Contents
@@ -16,6 +16,39 @@ ProtoTight is a tool for prototyping. I wanted a simple unopinionated page routi
 
 Tools that can be useful when creating a dynamic frontend application. Many functions dealing with templating data onto a page are present here.
 
-## Smallcode min
+
+### Show Data List
+
+**showDataList()** Stamp data onto a template
+
+*Usage*
+
+*[String]* showDataList(*(Object|Array)* Data, *(String)* Template [, *(String)* OutputSelector])
+
+*Example*
+
+```
+let output = showDataList(
+	{name:"George"},
+	"<div><%= name %></div>"
+);
+
+output: "<div>George</div>"
+```
+
+```
+showDataList(
+	[{name:"George"},{name:"Frank"}],
+	"<div><%= name %></div>",
+	".output"
+);
+
+.output: "<div>George</div><div>Frank</div>"
+```
+
+---
+
+
+## Smallcode
 
 An art project for tiny versions of smallcode.
