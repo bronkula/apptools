@@ -125,7 +125,7 @@ const checker = function(v) {
 *Example*
 
 ```
-document.querySelector("input[type='file']").on("change",function() {
+document.querySelector("input[type='file']").addEventListener("change",function() {
   readFiles(this.files, e => console.log(e.target.result); );
 });
 ```
