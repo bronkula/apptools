@@ -25,7 +25,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 
 *Usage*
 
-*String* **showDataList**( *Object|Array* **Data**, *String* **Template** [, *String* **OutputSelector**] )
+*string* **showDataList**( *object|array* **Data**, *string* **Template** [, *string* **OutputSelector**] )
 
 *Example*
 
@@ -56,7 +56,7 @@ showDataList(
 
 *Usage*
 
-*String* **makeDataTemplate**( *String* **Template** )( *Object* **Data** )
+*string* **makeDataTemplate**( *string* **Template** )( *object* **Data** )
 
 *Example*
 
@@ -72,6 +72,43 @@ output: "<div>George</div>\n<div>Frank</div>"
 let output = makeDataTemplate("<div><%= name %></div>")({name:"George"});
 
 output: "<div>George</div>"
+```
+
+---
+
+### Re Bounce
+
+**rebounce()** If check is false, execute callback function with arguments
+
+*Usage*
+
+*Boolean* **rebounce**( *value* **Data** , *function* **Callback** , *array* **Arguments** [, *number* **Timer** ] )
+
+*Example*
+
+```
+const checker = function(v) {
+    if(!rebounce(tocheck,checker,arguments)) return;
+    // run code if tocheck is true
+}
+```
+
+---
+
+### Read Files
+
+**readFiles()** Read through file input files after loading
+
+*Usage*
+
+**rebounce**( *FileSet* **Files** , *function* **Callback** )
+
+*Example*
+
+```
+$("input[type='file']").on("change",function() {
+  readFiles(this.files, e => console.log(e.target.result); );
+});
 ```
 
 ---
