@@ -126,4 +126,9 @@ $("input[type='file']").on("change",function() {
 
 ## Smallcode
 
+- **[Smallcode.js](https://github.com/bronkula/apptools/blob/master/smallcode.js)**
+- **[Smallcode.min.js](https://github.com/bronkula/apptools/blob/master/smallcode.min.js)**
+
 An art project for tiny versions of smallcode.
+
+The min code is hand written small code examples and sort of an art project.
