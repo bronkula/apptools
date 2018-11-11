@@ -25,7 +25,7 @@ ProtoTight is a tool for prototyping. I wanted a simple unopinionated page routi
 Tools that can be useful when creating a dynamic frontend application. Many functions dealing with templating data onto a page are present here.
 
 - **[Apptools.js](https://github.com/bronkula/apptools/blob/master/apptools.js)**
-- **[Apptools tests](https://bronkula.github.io/apptools/proto/tests/apptools_tests.html)**
+- **[Apptools tests](https://bronkula.github.io/apptools/tests/apptools_tests.html)**
 
 
 ### AppTools Documentation
@@ -44,7 +44,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 
 *Usage*
 
-*string* **showDataList**( *object|array* **Data**, *string* **Template** [, *string* **OutputSelector**] )
+*string* **showDataList**( *object,array* **Data**, *string* **Template** [, *string* **OutputSelector**] )
 
 *Example*
 
