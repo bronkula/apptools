@@ -4,7 +4,7 @@ A Javascript toolset for app development
 ## Contents
 - [ProtoTight](#user-content-prototight)
 - [Apptools](#user-content-apptools)
-- [Smallcode](#user-content-smallcode-min)
+- [Smallcode](#user-content-smallcode)
 
 
 ---
