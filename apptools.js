@@ -147,4 +147,5 @@ function readFiles(files,callback,index=0) {
 
 
 
+const last = a => a.length==0 ? undefined : a[a.length-1];
 
