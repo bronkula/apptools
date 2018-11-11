@@ -193,23 +193,30 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
     // Mustache Template with default values
     const mt = function(template_string){
-        var pt = this;
-        var ds = function(obj, prop) {
-            if(typeof obj === 'undefined') return false;
-            var _index = prop.indexOf('.')
-            if(_index > -1) return ds(obj[prop.substr(0, _index)], prop.substr(_index + 1));
+        let getprop = function(obj, prop) {
+            let _i;
+            if(!obj || !prop) return obj;
+            _i = /(.*?)\[(\d+)\]\.?(.*)/.exec(prop);
+            if(_i !== null) {
+                if(_i[1] && _i[3]) return getprop(obj[_i[1]][_i[2]],_i[3]);
+                if(_i[3]) return getprop(obj[_i[2]],_i[3]);
+                if(_i[1]) return obj[_i[1]][_i[2]];
+                return obj[_i[2]];
+            }
+            _i = prop.indexOf('.');
+            if(_i > -1) return getprop(obj[prop.substr(0, _i)], prop.substr(_i + 1));
             return obj[prop];
         }
         return function(data) {
-            var output = (function(html) {
-                var txt = document.createElement("textarea");
+            let output = (function(html) {
+                let txt = document.createElement("textarea");
                 txt.innerHTML = html;
                 return txt.value;
             })(template_string);
-            var rep = /<%=\s*(.+?)\s*%>/,m,v,s;
+            let rep = /<%=\s*(.+?)\s*%>/,m,v,s;
             while(m = rep.exec(output)) {
                 s = m[1].split(":");
-                v = ds(data,s[0]);
+                v = getprop(data,s[0]);
                 output = m.input.substr(0,m.index)+
                 (v!==undefined?v:(s[1]===undefined?"[undefined]":s[1]))+
                 m.input.substr(m[0].length+m.index);
