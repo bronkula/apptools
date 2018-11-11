@@ -25,7 +25,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 
 *Usage*
 
-*[String]* **showDataList**( *[Object|Array]* **Data**, *[String]* **Template** [, *[String]* **OutputSelector**] )
+*String* **showDataList**( *Object|Array* **Data**, *String* **Template** [, *String* **OutputSelector**] )
 
 *Example*
 
@@ -56,7 +56,7 @@ showDataList(
 
 *Usage*
 
-*[String]* **makeDataTemplate**( *[String]* **Template** )( *[Object]* **Data** )
+*String* **makeDataTemplate**( *String* **Template** )( *Object* **Data** )
 
 *Example*
 
