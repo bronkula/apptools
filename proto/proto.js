@@ -193,7 +193,7 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
     // Mustache Template with default values
     const mt = function(template_string){
-        let getprop = function(obj, prop) {
+        const getprop = function(obj, prop) {
             let _i;
             if(!obj || !prop) return obj;
             _i = /(.*?)\[(\d+)\]\.?(.*)/.exec(prop);
