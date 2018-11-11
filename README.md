@@ -44,7 +44,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 
 *Usage*
 
-*string* **showDataList**( *object,array* **Data**, *string* **Template** [, *string* **OutputSelector**] )
+*string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
 
 *Example*
 
