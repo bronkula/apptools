@@ -26,7 +26,7 @@ p {
 }
 
 a {
-    color:blue;
+    color:inherit;
     text-decoration:none;
     &:hover {
         text-decoration:underline;
@@ -203,7 +203,10 @@ code {
         width:100%;
         text-align:center;
     }
-
+    &-text {
+        background-color:transparent;
+        padding:0;
+    }
 }
 
 a.btn {
