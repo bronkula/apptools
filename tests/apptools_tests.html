@@ -53,6 +53,15 @@
         'frAnk',
         ['email','name']
     ));
+
+    let tocheck = 0;
+    const checker = function(v) {
+        console.log("tocheck being checked");
+        if(!rebounce(tocheck,checker,arguments)) return;
+        else console.log(v);
+    }
+    setTimeout(() => tocheck++,10);
+    checker("tocheck valid");
 </script>
 </head>
 <body>

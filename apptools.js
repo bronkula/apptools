@@ -135,6 +135,10 @@ const waitForData = function(object_array,callback_function,passthrough_argument
 
 /*
 Rebounce is a perhaps a better, more useful version of waitForData
+It takes in a variable value to check for truey
+It takes a return function to call if the check is falsey
+It gets passed an arguments array of values to call with the fn callback
+It can be passed a timer value for when to check next
 
 Example:
 let somearray = [1]
@@ -143,8 +147,8 @@ function fooFunction(){
 	// some code
 }
 */
-const rebounce = function(check,fn,arg) {
-	return !check ? !setTimeout(() => fn.apply(arg) , 100) : true;
+const rebounce = function(check,fn,arg,timer=100) {
+	return !check ? !setTimeout(() => fn.apply(null,arg) , timer) : true;
 }
 
 
