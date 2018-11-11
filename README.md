@@ -17,13 +17,15 @@ ProtoTight is a tool for prototyping. I wanted a simple unopinionated page routi
 Tools that can be useful when creating a dynamic frontend application. Many functions dealing with templating data onto a page are present here.
 
 
+---
+
 ### Show Data List
 
 **showDataList()** Stamp data onto a template
 
 *Usage*
 
-*[String]* **showDataList**(*(Object|Array)* **Data**, *(String)* **Template** [, *(String)* **OutputSelector**])
+*[String]* **showDataList**( *[Object|Array]* **Data**, *[String]* **Template** [, *[String]* **OutputSelector**] )
 
 *Example*
 
@@ -54,7 +56,7 @@ showDataList(
 
 *Usage*
 
-*[String]* **makeDataTemplate**(*(String)* **Template**)(*(Object)* **Data**)
+*[String]* **makeDataTemplate**( *[String]* **Template** )( *[Object]* **Data** )
 
 *Example*
 
