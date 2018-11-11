@@ -24,7 +24,7 @@ ProtoTight is a tool for prototyping. I wanted a simple unopinionated page routi
 
 Tools that can be useful when creating a dynamic frontend application. Many functions dealing with templating data onto a page are present here.
 
-- **[Apptools.js](https://github.com/bronkula/apptools/blob/master/apptools.js)**
+- **[Apptools.js](https://github.com/bronkula/apptools/tools/blob/master/apptools.js)**
 - **[Apptools tests](https://bronkula.github.io/apptools/tests/apptools_tests.html)**
 
 
@@ -135,8 +135,8 @@ document.querySelector("input[type='file']").addEventListener("change",function(
 
 ## Smallcode
 
-- **[Smallcode.js](https://github.com/bronkula/apptools/blob/master/smallcode.js)**
-- **[Smallcode.min.js](https://github.com/bronkula/apptools/blob/master/smallcode.min.js)**
+- **[Smallcode.js](https://github.com/bronkula/apptools/small/blob/master/smallcode.js)**
+- **[Smallcode.min.js](https://github.com/bronkula/apptools/small/blob/master/smallcode.min.js)**
 
 An art project for tiny versions of smallcode.
 
