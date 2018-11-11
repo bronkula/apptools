@@ -136,7 +136,7 @@ document.querySelector("input[type='file']").addEventListener("change",function(
 ## Smallcode
 
 - **[Smallcode.js](https://github.com/bronkula/apptools/blob/master/small/smallcode.js)**
-- **[Smallcode.min.js](https://github.com/bronkula/apptools/blob/master/small/smallcode.js)**
+- **[Smallcode.min.js](https://github.com/bronkula/apptools/blob/master/small/smallcode.min.js)**
 
 An art project for tiny versions of smallcode.
 
