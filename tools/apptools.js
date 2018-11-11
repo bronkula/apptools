@@ -26,8 +26,8 @@ const showDataList = function(object_array,template_string,target_selector){
 			output += template_function(object_array[i]);
 		}
 	} else output = template_function(object_array);
-	if(!target_selector) return output;
-	else document.querySelector(target_selector).innerHTML = output;
+	if(target_selector) document.querySelector(target_selector).innerHTML = output;
+	return output;
 }
 /*
 This function takes a template_string using <%= %> style templates
@@ -46,10 +46,11 @@ var output = makeDataTemplate("Name: <%= name.first %>")({name:{first:"George"}}
 Return:
 `Name: George`
 */
-const makeDataTemplate = function(template_string){
+const makeDataTemplate = function(template_string,markup=['<%=','%>']){
 	const getProp = function(obj, prop) {
 	    let _i;
 	    if(!obj || !prop) return obj;
+	    // Check for array notation
 	    _i = /(.*?)\[(\d+)\]\.?(.*)/.exec(prop);
 	    if(_i !== null) {
 	        if(_i[1] && _i[3]) return getProp(obj[_i[1]][_i[2]],_i[3]);
@@ -57,23 +58,29 @@ const makeDataTemplate = function(template_string){
 	        if(_i[1]) return obj[_i[1]][_i[2]];
 	        return obj[_i[2]];
 	    }
+	    // Check for object notation
 	    _i = prop.indexOf('.');
 	    if(_i > -1) return getProp(obj[prop.substr(0, _i)], prop.substr(_i + 1));
 	    return obj[prop];
 	}
+	let rep = RegExp(`${markup[0]}\s*(.+?)\s*${markup[1]}`);
 	return function(data) {
+		// Get text of the element making sure it's proper text
         let output = (function(html) {
             let txt = document.createElement("textarea");
             txt.innerHTML = html;
             return txt.value;
         })(template_string);
-        let rep = /<%=\s*(.+?)\s*%>/,m,v,s;
+        let m;
+        // Loop through the string replacing syntax with data
 		while(m = rep.exec(output)) {
-			s = m[1].split(":");
-			v = getProp(data,s[0]);
-			output = m.input.substr(0,m.index)+
-			(v!==undefined?v:(s[1]===undefined?"[undefined]":s[1]))+
-			m.input.substr(m[0].length+m.index);
+			let s = m[1].split(":");
+			// Use getprop to get sub property values
+			let v = getProp(data,s[0]);
+			output = 
+				m.input.substr(0,m.index) +
+				(v!==undefined?v:(s[1]===undefined?"[undefined]":s[1])) +
+				m.input.substr(m[0].length+m.index);
 		}
 		return output;
 	}
