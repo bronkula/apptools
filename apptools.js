@@ -21,9 +21,11 @@ Return:
 function showDataList(object_array,template_string,target_selector){
 	var output = "";
 	var template_function = makeDataTemplate(template_string);
-	for(let i in object_array) {
-		output += template_function(object_array[i]);
-	}
+	if(object_array.isArray()){
+		for(let i in object_array) {
+			output += template_function(object_array[i]);
+		}
+	} else output = template_function(object_array);
 	if(!target_selector) return output;
 	else document.querySelector(target_selector).innerHTML = output;
 }
