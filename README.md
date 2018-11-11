@@ -23,7 +23,7 @@ Tools that can be useful when creating a dynamic frontend application. Many func
 
 *Usage*
 
-*[String]* showDataList(*(Object|Array)* Data, *(String)* Template [, *(String)* OutputSelector])
+*[String]* **showDataList**(*(Object|Array)* **Data**, *(String)* **Template** [, *(String)* **OutputSelector**])
 
 *Example*
 
@@ -44,6 +44,32 @@ showDataList(
 );
 
 .output: "<div>George</div><div>Frank</div>"
+```
+
+---
+
+### Make Data Template
+
+**makeDataTemplate()** Create a curried templating function
+
+*Usage*
+
+*[String]* **makeDataTemplate**(*(String)* **Template**)(*(Object|Array)* **Data**)
+
+*Example*
+
+```
+let templater = makeDataTemplate("<div><%= name %></div>");
+templater({name:"George"});
+templater({name:"Frank"});
+
+output: "<div>George</div>\n<div>Frank</div>"
+```
+
+```
+let output = makeDataTemplate("<div><%= name %></div>")({name:"George"});
+
+output: "<div>George</div>"
 ```
 
 ---
