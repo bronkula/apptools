@@ -54,7 +54,7 @@ showDataList(
 
 *Usage*
 
-*[String]* **makeDataTemplate**(*(String)* **Template**)(*(Object|Array)* **Data**)
+*[String]* **makeDataTemplate**(*(String)* **Template**)(*(Object)* **Data**)
 
 *Example*
 
