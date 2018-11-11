@@ -1,6 +1,6 @@
 
 
-### AppTools Documentation
+## AppTools Documentation
 
 - [showDataList](#user-content-show-data-list)
 - [makeDataTemplate](#user-content-make-data-template)
