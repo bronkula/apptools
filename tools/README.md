@@ -1,6 +1,6 @@
 
 
-## AppTools Documentation
+# AppTools Documentation
 
 - [showDataList](#user-content-show-data-list)
 - [makeDataTemplate](#user-content-make-data-template)
@@ -10,15 +10,15 @@
 
 ---
 
-### Show Data List
+## Show Data List
 
 **showDataList()** Stamp data onto a template
 
-#### *Usage*
+### *Usage*
 
-*string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
+> *string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
 
-#### *Parameters*
+### *Parameters*
 
 <dl>
 	<dt>Data</dt>
@@ -29,11 +29,11 @@
 	<dd>An optional selector *string* of an element to place the output.</dd>
 </dl>
 
-#### *Return*
+### *Return*
 
 > Return value is a *string* with **Data** onto the **Template**. 
 
-#### *Example*
+### *Example*
 
 ```
 let output = showDataList(
@@ -56,7 +56,7 @@ showDataList(
 
 ---
 
-### Make Data Template
+## Make Data Template
 
 **makeDataTemplate()** Create a curried templating function
 
@@ -91,7 +91,7 @@ output: "<div>George</div>"
 
 ---
 
-### Re Bounce
+## Re Bounce
 
 **rebounce()** If check is false, execute callback function with arguments
 
@@ -110,7 +110,7 @@ const checker = function(v) {
 
 ---
 
-### Read Files
+## Read Files
 
 **readFiles()** Read through file input files after loading
 
