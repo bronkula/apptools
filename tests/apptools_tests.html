@@ -21,6 +21,9 @@
         ]
     }));
 
+    // Create custom markup for templating
+    console.log(makeDataTemplate("{{name}}",["{{","}}"])({name:"Hamilton"}));
+
     // Using a single object for showDataList
     console.log(showDataList(
         {name:"Hamilton"},
