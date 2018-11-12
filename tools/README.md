@@ -14,11 +14,11 @@
 
 **showDataList()** Stamp data onto a template
 
-### *Usage*
+### Usage
 
 > *string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
 
-### *Parameters*
+### Parameters
 
 <dl>
 	<dt>Data</dt>
@@ -29,13 +29,13 @@
 	<dd>An optional selector *string* of an element to place the output.</dd>
 </dl>
 
-### *Return*
+### Return
 
-> Return value is a *string* with **Data** onto the **Template**. 
+> Return value is a *string* with **Data** stamped onto the **Template**. 
 
-### *Example*
+### Examples
 
-```
+```javascript
 let output = showDataList(
 	{name:"George"},
 	"<div><%= name %></div>"
@@ -44,7 +44,7 @@ let output = showDataList(
 output: "<div>George</div>"
 ```
 
-```
+```javascript
 showDataList(
 	[{name:"George"},{name:"Frank"}],
 	"<div><%= name %></div>",
@@ -60,13 +60,30 @@ showDataList(
 
 **makeDataTemplate()** Create a curried templating function
 
-*Usage*
+### Usage
 
 *string* **makeDataTemplate**( *string* **Template** [, *array* **Markup** ] )( *object* **Data** )
 
-*Example*
+### Parameters
 
-```
+<dl>
+	<dt>Template</dt>
+	<dd>A template *string* to have data stamped onto it.</dd>
+	<dt>Markup</dt>
+	<dd>An optional *array* containing two strings which represent markup for data in the Template</dd>
+	<dt>Data</dt>
+	<dd>Either an *object* with properties matching strings in the **Template**</dd>
+</dl>
+
+### Return
+
+> Initial return is a *function* which can be called with a **Template** *string*.
+
+> The return of the second *function* is a *string* with **Data** stamped onto the **Template**. 
+
+### Examples
+
+```javascript
 let templater = makeDataTemplate("<div><%= name %></div>");
 templater({name:"George"});
 templater({name:"Frank"});
@@ -74,7 +91,7 @@ templater({name:"Frank"});
 output: "<div>George</div>\n<div>Frank</div>"
 ```
 
-```
+```javascript
 let output = makeDataTemplate("<div><%= name %></div>")({name:"George"});
 
 output: "<div>George</div>"
@@ -83,7 +100,7 @@ output: "<div>George</div>"
 Custom markup can be created
 
 
-```
+```javascript
 let output = makeDataTemplate("<div>{{name}}</div>",["{{","}}"])({name:"George"});
 
 output: "<div>George</div>"
@@ -95,13 +112,30 @@ output: "<div>George</div>"
 
 **rebounce()** If check is false, execute callback function with arguments
 
-*Usage*
+### Usage
 
 *Boolean* **rebounce**( *value* **Data** , *function* **Callback** , *array* **Arguments** [, *number* **Timer** ] )
 
-*Example*
+### Parameters
 
-```
+<dl>
+	<dt>Data</dt>
+	<dd>A *value* to be chacked for truth.</dd>
+	<dt>Callback</dt>
+	<dd>A *function* to be called if **Data** equals false.</dd>
+	<dt>Arguments</dt>
+	<dd>An *array* of arguments to be passed into the **Callback**.</dd>
+	<dt>Timer</dt>
+	<dd>An optional *integer* representing milliseconds to wait before running the **Callback**.</dd>
+</dl>
+
+### Return
+
+> Returns true or false depending on **Data** truey status.
+
+### Example
+
+```javascript
 const checker = function(v) {
     if(!rebounce(tocheck,checker,arguments)) return;
     // run code if tocheck is true
@@ -114,13 +148,22 @@ const checker = function(v) {
 
 **readFiles()** Read through file input files after loading
 
-*Usage*
+### Usage
 
 **rebounce**( *FileSet* **Files** , *function* **Callback** )
 
-*Example*
+### Parameters
 
-```
+<dl>
+	<dt>Files</dt>
+	<dd>A *fileset* from an input with type="file".</dd>
+	<dt>Callback</dt>
+	<dd>A *function* to be called when **Files** have finished loading.</dd>
+</dl>
+
+### Examples
+
+```javascript
 document.querySelector("input[type='file']").addEventListener("change",function() {
   readFiles(this.files, e => console.log(e.target.result); );
 });
