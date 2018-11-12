@@ -62,7 +62,7 @@ showDataList(
 
 ### Usage
 
-*string* **makeDataTemplate**( *string* **Template** [, *array* **Markup** ] )( *object* **Data** )
+> *string* **makeDataTemplate**( *string* **Template** [, *array* **Markup** ] )( *object* **Data** )
 
 ### Parameters
 
@@ -114,7 +114,7 @@ output: "<div>George</div>"
 
 ### Usage
 
-*Boolean* **rebounce**( *value* **Data** , *function* **Callback** , *array* **Arguments** [, *number* **Timer** ] )
+> *Boolean* **rebounce**( *value* **Data** , *function* **Callback** , *array* **Arguments** [, *number* **Timer** ] )
 
 ### Parameters
 
@@ -150,7 +150,7 @@ const checker = function(v) {
 
 ### Usage
 
-**rebounce**( *FileSet* **Files** , *function* **Callback** )
+> **rebounce**( *FileSet* **Files** , *function* **Callback** )
 
 ### Parameters
 
