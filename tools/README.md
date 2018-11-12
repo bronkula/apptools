@@ -47,7 +47,7 @@ showDataList(
 
 *Usage*
 
-*string* **makeDataTemplate**( *string* **Template** )( *object* **Data** )
+*string* **makeDataTemplate**( *string* **Template** [, *array* **Markup** ] )( *object* **Data** )
 
 *Example*
 
@@ -61,6 +61,15 @@ output: "<div>George</div>\n<div>Frank</div>"
 
 ```
 let output = makeDataTemplate("<div><%= name %></div>")({name:"George"});
+
+output: "<div>George</div>"
+```
+
+Custom markup can be created
+
+
+```
+let output = makeDataTemplate("<div>{{name}}</div>",["{{","}}"])({name:"George"});
 
 output: "<div>George</div>"
 ```
