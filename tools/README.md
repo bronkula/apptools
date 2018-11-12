@@ -29,18 +29,6 @@
 	<dd>An optional selector *string* of an element to place the output.</dd>
 </dl>
 
-##### Data
-
-> Either an *object* or *array of objects*.
-
-##### Template
-
-> A template *string* to have data stamped onto it.
-
-##### OutputSelector
-
-> An optional selector *string* of an element to place the output.
-
 #### *Return*
 
 > Return value is a *string* with **Data** onto the **Template**. 
