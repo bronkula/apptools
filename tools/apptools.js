@@ -49,6 +49,7 @@ Return:
 const makeDataTemplate = function(template_string,markup=['<%=','%>']){
 	const getProp = function(obj, prop) {
 	    let _i;
+	    prop = prop.replace(/^\s+|\s+$/g,'');
 	    if(!obj || !prop) return obj;
 	    // Check for array notation
 	    _i = /(.*?)\[(\d+)\]\.?(.*)/.exec(prop);
