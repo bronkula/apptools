@@ -14,29 +14,29 @@
 
 **showDataList()** Stamp data onto a template
 
-*Usage*
+#### *Usage*
 
 *string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
 
-*Parameters*
+#### *Parameters*
 
 **Data**
 
-   Either an *object* or *array or objects*.
+> Either an *object* or *array of objects*.
 
 **Template**
 
-   A template *string* to have data stamped onto it.
+> A template *string* to have data stamped onto it.
 
 **OutputSelector**
 
-   An optional selector *string* of an element to place the output.
+> An optional selector *string* of an element to place the output.
 
 *Return*
 
-Return value is a *string* with **Data** onto the **Template**. 
+> Return value is a *string* with **Data** onto the **Template**. 
 
-*Example*
+#### *Example*
 
 ```
 let output = showDataList(
