@@ -63,7 +63,7 @@ const makeDataTemplate = function(template_string,markup=['<%=','%>']){
 	    if(_i > -1) return getProp(obj[prop.substr(0, _i)], prop.substr(_i + 1));
 	    return obj[prop];
 	}
-	let rep = RegExp(`${markup[0]}\s*(.+?)\s*${markup[1]}`);
+	let rep = RegExp(`${markup[0]}\\s*(.+?)\\s*${markup[1]}`);
 	return function(data) {
 		// Get text of the element making sure it's proper text
         let output = (function(html) {
