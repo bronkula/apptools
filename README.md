@@ -48,6 +48,6 @@ The min code is hand written small code examples and sort of an art project.
 
 ## Responsive Grid
 
-- **[Grid.css](https://github.com/bronkula/apptools/blob/master/grid/grid.css)**
+- **[Grid Repo](https://github.com/bronkula/apptools/blob/master/grid)**
 
 A responsive css grid. Simple and easy to implement into any project.
