@@ -3,7 +3,7 @@ var bp;
 var db = [];
 
 $.ajax({
-	url:"data.json",
+	url:"data/data.json",
 	dataType:'json'
 }).done(function(d){
 	db = d;
@@ -12,12 +12,12 @@ $.ajax({
 
 
 function makeSection5(){
-	if(!waitForData(db,makeSection5)) return;
+	if(!rebounce(db.length,makeSection5,[])) return;
 
 	showDataList(db,$("#userlist-template").html(),"#page-show .userlist");
 }
 function makeSection6(){
-	if(!waitForData(db,makeSection6)) return;
+	if(!rebounce(db.length,makeSection6,[])) return;
 
 	console.log("honk")
 
