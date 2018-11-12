@@ -54,7 +54,7 @@ showDataList(
 
 ---
 
-## Make Data Template
+## Search Data Template
 
 ### Usage
 
@@ -100,6 +100,40 @@ Custom markup can be created
 
 ```javascript
 let output = makeDataTemplate("<div>{{name}}</div>",["{{","}}"])({name:"George"});
+
+output: "<div>George</div>"
+```
+
+---
+
+## Search Data List
+
+### Usage
+
+> *string* **searchDataList**( *object,array* **Data** , *string* **SearchTerm** , *string,array* **PropertiesToSearch** )
+
+Search through multiple properties of an object array to find matches
+
+### Parameters
+
+<dl>
+	<dt>Data</dt>
+	<dd>Either an *object* or *array of objects*.</dd>
+	<dt>SearchTerm</dt>
+	<dd>A *string* to search for.</dd>
+	<dt>PropertiesToSearch</dt>
+	<dd>Either an *array* or comma separated *string* of properties to search through in each object of the array.</dd>
+</dl>
+
+### Return
+
+> Returns a new *array* containing only elements from the **Data** with **PropertiesToSearch** values matching the **SearchTerm**.
+
+### Examples
+
+```javascript
+let users = [{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}]
+let output = searchDataList( users, 'George', 'email,name' );
 
 output: "<div>George</div>"
 ```
