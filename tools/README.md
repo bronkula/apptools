@@ -133,9 +133,9 @@ Search through multiple properties of an object array to find matches
 
 ```javascript
 let users = [{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}]
-let output = searchDataList( users, 'George', 'email,name' );
+let result = searchDataList( users, 'George', 'email,name' );
 
-output: "<div>George</div>"
+result: [{name:'George',email:'george@gmail.com'}];
 ```
 
 ---
