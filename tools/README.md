@@ -18,6 +18,17 @@
 
 *string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
 
+*Parameters*
+
+**Data**
+   Either an object or array or objects.
+
+**Template**
+   A template string to have data stamped onto it.
+
+**OutputSelector**
+   An optional selector string of an element to place the output.
+
 *Example*
 
 ```
