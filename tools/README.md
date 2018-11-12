@@ -20,19 +20,19 @@
 
 #### *Parameters*
 
-**Data**
+##### Data
 
 > Either an *object* or *array of objects*.
 
-**Template**
+##### Template
 
 > A template *string* to have data stamped onto it.
 
-**OutputSelector**
+##### OutputSelector
 
 > An optional selector *string* of an element to place the output.
 
-*Return*
+#### *Return*
 
 > Return value is a *string* with **Data** onto the **Template**. 
 
