@@ -2,6 +2,7 @@
 
 - [showDataList](#user-content-show-data-list)
 - [makeDataTemplate](#user-content-make-data-template)
+- [searchDataList](#user-content-search-data-list)
 - [rebounce](#user-content-re-bounce)
 - [readFiles](#user-content-read-files)
 
@@ -54,7 +55,7 @@ showDataList(
 
 ---
 
-## Search Data Template
+## Make Data Template
 
 ### Usage
 
