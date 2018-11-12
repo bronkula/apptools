@@ -110,7 +110,3 @@ var replaceFromArray = function(searchList,replaceList,context){
     }
     return context;
 }
-
-var trimString = function(str) {
-    return str.replace(/^\s+|\s+$/g,'');
-}
