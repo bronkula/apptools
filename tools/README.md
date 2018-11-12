@@ -1,5 +1,3 @@
-
-
 # AppTools Documentation
 
 - [showDataList](#user-content-show-data-list)
@@ -12,11 +10,11 @@
 
 ## Show Data List
 
-**showDataList()** Stamp data onto a template
-
 ### Usage
 
 > *string* **showDataList**( *object,array* **Data** , *string* **Template** [, *string* **OutputSelector** ] )
+
+Stamp data onto a template
 
 ### Parameters
 
@@ -58,11 +56,11 @@ showDataList(
 
 ## Make Data Template
 
-**makeDataTemplate()** Create a curried templating function
-
 ### Usage
 
 > *string* **makeDataTemplate**( *string* **Template** [, *array* **Markup** ] )( *object* **Data** )
+
+Create a curried templating function
 
 ### Parameters
 
@@ -110,11 +108,11 @@ output: "<div>George</div>"
 
 ## Re Bounce
 
-**rebounce()** If check is false, execute callback function with arguments
-
 ### Usage
 
 > *Boolean* **rebounce**( *value* **Data** , *function* **Callback** , *array* **Arguments** [, *number* **Timer** ] )
+
+If Data check is false, execute callback function with arguments
 
 ### Parameters
 
@@ -146,11 +144,11 @@ const checker = function(v) {
 
 ## Read Files
 
-**readFiles()** Read through file input files after loading
-
 ### Usage
 
 > **rebounce**( *FileSet* **Files** , *function* **Callback** )
+
+Read through file input files after loading
 
 ### Parameters
 
