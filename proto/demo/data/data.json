@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "img": "https://via.placeholder.com/400/956/000",
+    "img": "img/temp_300.png",
     "age": 40,
     "name": {
       "first": "Lenora",
@@ -18,7 +18,7 @@
   },
   {
     "id": 1,
-    "img": "https://via.placeholder.com/400/700/000",
+    "img": "img/temp_300.png",
     "age": 31,
     "name": {
       "first": "Espinoza",
@@ -35,7 +35,7 @@
   },
   {
     "id": 2,
-    "img": "https://via.placeholder.com/400/986/000",
+    "img": "img/temp_300.png",
     "age": 25,
     "name": {
       "first": "Roberta",
@@ -52,7 +52,7 @@
   },
   {
     "id": 3,
-    "img": "https://via.placeholder.com/400/740/000",
+    "img": "img/temp_300.png",
     "age": 29,
     "name": {
       "first": "Mcclure",
@@ -69,7 +69,7 @@
   },
   {
     "id": 4,
-    "img": "https://via.placeholder.com/400/908/000",
+    "img": "img/temp_300.png",
     "age": 33,
     "name": {
       "first": "Cervantes",
@@ -86,7 +86,7 @@
   },
   {
     "id": 5,
-    "img": "https://via.placeholder.com/400/901/000",
+    "img": "img/temp_300.png",
     "age": 36,
     "name": {
       "first": "Bowman",
@@ -103,7 +103,7 @@
   },
   {
     "id": 6,
-    "img": "https://via.placeholder.com/400/779/000",
+    "img": "img/temp_300.png",
     "age": 36,
     "name": {
       "first": "Sanders",
@@ -120,7 +120,7 @@
   },
   {
     "id": 7,
-    "img": "https://via.placeholder.com/400/918/000",
+    "img": "img/temp_300.png",
     "age": 40,
     "name": {
       "first": "Kerri",
@@ -137,7 +137,7 @@
   },
   {
     "id": 8,
-    "img": "https://via.placeholder.com/400/986/000",
+    "img": "img/temp_300.png",
     "age": 39,
     "name": {
       "first": "Alyson",
@@ -154,7 +154,7 @@
   },
   {
     "id": 9,
-    "img": "https://via.placeholder.com/400/970/000",
+    "img": "img/temp_300.png",
     "age": 26,
     "name": {
       "first": "Mcfadden",
@@ -171,7 +171,7 @@
   },
   {
     "id": 10,
-    "img": "https://via.placeholder.com/400/869/000",
+    "img": "img/temp_300.png",
     "age": 27,
     "name": {
       "first": "Mills",
@@ -188,7 +188,7 @@
   },
   {
     "id": 11,
-    "img": "https://via.placeholder.com/400/835/000",
+    "img": "img/temp_300.png",
     "age": 23,
     "name": {
       "first": "Cathy",
@@ -205,7 +205,7 @@
   },
   {
     "id": 12,
-    "img": "https://via.placeholder.com/400/890/000",
+    "img": "img/temp_300.png",
     "age": 32,
     "name": {
       "first": "Zamora",
@@ -222,7 +222,7 @@
   },
   {
     "id": 13,
-    "img": "https://via.placeholder.com/400/817/000",
+    "img": "img/temp_300.png",
     "age": 28,
     "name": {
       "first": "Compton",
@@ -239,7 +239,7 @@
   },
   {
     "id": 14,
-    "img": "https://via.placeholder.com/400/944/000",
+    "img": "img/temp_300.png",
     "age": 35,
     "name": {
       "first": "Hart",
@@ -256,7 +256,7 @@
   },
   {
     "id": 15,
-    "img": "https://via.placeholder.com/400/755/000",
+    "img": "img/temp_300.png",
     "age": 30,
     "name": {
       "first": "Bruce",
@@ -273,7 +273,7 @@
   },
   {
     "id": 16,
-    "img": "https://via.placeholder.com/400/936/000",
+    "img": "img/temp_300.png",
     "age": 22,
     "name": {
       "first": "Deanna",
@@ -290,7 +290,7 @@
   },
   {
     "id": 17,
-    "img": "https://via.placeholder.com/400/700/000",
+    "img": "img/temp_300.png",
     "age": 36,
     "name": {
       "first": "Workman",
@@ -307,7 +307,7 @@
   },
   {
     "id": 18,
-    "img": "https://via.placeholder.com/400/937/000",
+    "img": "img/temp_300.png",
     "age": 28,
     "name": {
       "first": "Santana",
@@ -324,7 +324,7 @@
   },
   {
     "id": 19,
-    "img": "https://via.placeholder.com/400/877/000",
+    "img": "img/temp_300.png",
     "age": 37,
     "name": {
       "first": "Rosario",
