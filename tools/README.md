@@ -19,14 +19,14 @@ Stamp data onto a template
 
 ### Parameters
 
-<dl>
-	<dt>Data</dt>
-	<dd>Either an *object* or *array of objects*.</dd>
-	<dt>Template</dt>
-	<dd>A template *string* to have data stamped onto it.</dd>
-	<dt>OutputSelector</dt>
-	<dd>An optional selector *string* of an element to place the output.</dd>
-</dl>
+	<dl>
+		<dt>Data</dt>
+		<dd>Either an *object* or *array of objects*.</dd>
+		<dt>Template</dt>
+		<dd>A template *string* to have data stamped onto it.</dd>
+		<dt>OutputSelector</dt>
+		<dd>An optional selector *string* of an element to place the output.</dd>
+	</dl>
 
 ### Return
 
@@ -119,7 +119,7 @@ Search through multiple properties of an object array to find matches
 
 <dl>
 	<dt>Data</dt>
-	<dd>Either an *object* or *array of objects*.</dd>
+	<dd>An *array of objects*.</dd>
 	<dt>SearchTerm</dt>
 	<dd>A *string* to search for.</dd>
 	<dt>PropertiesToSearch</dt>
