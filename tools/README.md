@@ -19,7 +19,7 @@ Stamp data onto a template
 
 ### Parameters
 
-<dl style="margin-left:1em">
+<dl>
 	<dt>Data</dt>
 	<dd>Either an *object* or *array of objects*.</dd>
 	<dt>Template</dt>
