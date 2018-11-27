@@ -19,14 +19,14 @@ Stamp data onto a template
 
 ### Parameters
 
-	<dl>
-		<dt>Data</dt>
-		<dd>Either an *object* or *array of objects*.</dd>
-		<dt>Template</dt>
-		<dd>A template *string* to have data stamped onto it.</dd>
-		<dt>OutputSelector</dt>
-		<dd>An optional selector *string* of an element to place the output.</dd>
-	</dl>
+<dl style="margin-left:1em">
+	<dt>Data</dt>
+	<dd>Either an *object* or *array of objects*.</dd>
+	<dt>Template</dt>
+	<dd>A template *string* to have data stamped onto it.</dd>
+	<dt>OutputSelector</dt>
+	<dd>An optional selector *string* of an element to place the output.</dd>
+</dl>
 
 ### Return
 
