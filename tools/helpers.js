@@ -1,8 +1,3 @@
-/*
-* https://github.com/bronkula/apptools/blob/master/tools/helpers.js
-* Maintained by hamdiggy@gmail.com
-*/
-
 const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
 const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 
@@ -32,26 +27,26 @@ const readFiles = (f,c,i=0) => {
 	}
 }
 
+const sift = f => s => s.map(f).filter(o=>o);
 
-
-
+// Selector Functions
 const q = (s,sc=document) => 
     !s ? [] : s instanceof HTMLElement ? [s] : Array.isArray(s) ? s :
     [].slice.call(sc.querySelectorAll(s));
+const qnext = s => sift(o=>q(o).nextElementSibling)(s);
+const qprev = s => sift(o=>q(o).previousElementSibling)(s);
+const qparent = s => sift(o=>q(o).parentElement)(s);
+// Event Delegation Functions
 const qdelegate = el => (es,t,c) =>{
 	es.trim().split(" ").forEach(e =>{
-	    el.forEach(o=>o.addEventListener(e,ev=>{
+	    q(el).forEach(o=>o.addEventListener(e,ev=>{
 	        d(t).forEach(to=>{
 	        	if(ev.target==to)c.call(ev.target,ev)
 	    	})
 	    },!1))
 	});
 }
-const qsift = f => s => s.map(f).filter(o=>o);
-const qon = o => (et,f) => et.trim().split(" ").forEach(e => o.forEach(o=>o.addEventListener(e,f)));
-const qnext = s => qsift(o=>o.nextElementSibling)(s);
-const qprev = s => qsift(o=>o.previousElementSibling)(s);
-const qparent = s => qsift(o=>o.parentElement)(s);
+const qon = o => (et,f) => et.trim().split(" ").forEach(e => q(o).forEach(o=>o.addEventListener(e,f)));
 
 
 
@@ -62,6 +57,7 @@ export {
 	rand,zeros,
 	numberCommas,moneyCommas,
 	arrayReplace,
+	sift,
 	q,qdelegate,qon,qprev,qnext,qparent,
 	readFiles
 };
