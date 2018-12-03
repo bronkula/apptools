@@ -61,6 +61,6 @@ export {
 	rand,zeros,
 	numberCommas,moneyCommas,
 	arrayReplace,
-	q,delegate,on,qprev,qnext,qparent,
+	q,qdelegate,qon,qprev,qnext,qparent,
 	readFiles
 };
