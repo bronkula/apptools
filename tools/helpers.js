@@ -47,10 +47,11 @@ const qdelegate = el => (es,t,c) =>{
 	    },!1))
 	});
 }
+const qsift = f => s => s.map(f).filter(o=>o);
 const qon = o => (et,f) => et.trim().split(" ").forEach(e => o.forEach(o=>o.addEventListener(e,f)));
-const qnext = s => s.map(o=>o.nextElementSibling).filter(o=>o);
-const qprev = s => s.map(o=>o.previousElementSibling).filter(o=>o);
-const qparent = s => s.map(o=>o.parentElement).filter(o=>o);
+const qnext = s => qsift(o=>o.nextElementSibling)(s);
+const qprev = s => qsift(o=>o.previousElementSibling)(s);
+const qparent = s => qsift(o=>o.parentElement)(s);
 
 
 
