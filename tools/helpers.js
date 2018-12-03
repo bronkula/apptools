@@ -1,5 +1,5 @@
 /*
-* https://github.com/bronkula/apptools/master/tools/helpers.js
+* https://github.com/bronkula/apptools/blob/master/tools/helpers.js
 * Maintained by hamdiggy@gmail.com
 */
 
