@@ -1,3 +1,8 @@
+/*
+* https://github.com/bronkula/apptools/master/tools/helpers.js
+* Maintained by hamdiggy@gmail.com
+*/
+
 const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
 const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 
