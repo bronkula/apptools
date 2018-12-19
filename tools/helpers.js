@@ -1,7 +1,18 @@
 
 
 
-const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
+const templater = (tf,istr='') => {
+	let t = (r,o,i,a)=>r+tf(o,i,a);
+	return (ts=false) => oa => {
+		let o = (Array.isArray(oa)?oa:[oa]).reduce(t,istr);
+		if(ts) {
+			if(!document.querySelector(ts)) throw `No element with selector '${ts}'`;
+			[...document.querySelectorAll(ts)].forEach(e=>e.innerHTML=o);
+		}
+		return o;
+	}
+}
+// const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
 
 const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 
@@ -26,7 +37,7 @@ const zeros=(n,e)=>(+n+Math.pow(10,e)+'').substr(1);
 const numberCommas=n=>(n+'').replace(/\B(?=(?=\d*\.)(\d{3})+(?!\d))/g,',');
 const moneyCommas=(n,d=2)=>'$'+numberCommas(n.toFixed(d));
 
-const arrayReplace=(ax,ar)=>c=>ax.reduce((r,o,i)=>r+r.replace(o,ar[i]),c);
+const arrayReplace=(ax,ar)=>c=>ax.reduce((r,o,i)=>r.replace(o,ar[i]),c);
 
 
 
@@ -40,21 +51,25 @@ const readFiles = (f,c,i=0) => {
 
 
 
-const sift = f => s => s.map(f).filter(o=>o);
+const sift = f => s => s.map(f).filter((o,i,a)=>o&&a.indexOf(o)===i);
 
-// Selector Functions
+// Selector Function
 const q = (s,sc=document) => 
     !s ? [] : s instanceof HTMLElement ? [s] : Array.isArray(s) ? s :
-    [].slice.call(sc.querySelectorAll(s));
-const qnext = s => sift(o=>q(o).nextElementSibling)(s);
-const qprev = s => sift(o=>q(o).previousElementSibling)(s);
-const qparent = s => sift(o=>q(o).parentElement)(s);
+    [...sc.querySelectorAll(s)];
 
 // Event Delegation Functions
-const qon = sc => (es,fn) =>
-	es.trim().split(/\s+/).forEach(e=>q(sc).forEach(o=>o.addEventListener(e,fn,!1)));
-const qdelegate = sc => (es,sl,fn) =>
-	qon(sc)(es,ev=>d(sl).forEach(to=>if(ev.target==to)fn.call(ev.target,ev)));
+const qon = sc => (es,fn,pr=!1) =>
+	es.trim().split(/\s+/).forEach(e=>q(sc).forEach(o=>o.addEventListener(e,fn,pr)));
+const qdelegate = sc => (es,sl,fn,pr=!1) =>
+	qon(sc)(es,ev=>d(sl).forEach(to=>if(ev.target==to)fn.call(ev.target,ev)),pr);
+
+// Traversal Functions
+const qnext = s => sift(o=>o.nextElementSibling)(q(s));
+const qprev = s => sift(o=>o.previousElementSibling)(q(s));
+const qparent = s => sift(o=>o.parentElement)(q(s));
+
+
 
 
 
@@ -65,7 +80,7 @@ export {
 	sameProps,samePropsAll,samePropsFirst,samePropsIndex,
 	rand,zeros,
 	numberCommas,moneyCommas,
-	arrayReplace,
-	q,delegate,on,qprev,qnext,qparent,
+	arrayReplace, sift,
+	q,qdelegate,qon,qprev,qnext,qparent,
 	readFiles
 };
