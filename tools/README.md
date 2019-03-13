@@ -2,7 +2,7 @@
 
 - [showDataList](#user-content-show-data-list)
 - [makeDataTemplate](#user-content-make-data-template)
-- [searchDataList](#user-content-search-data-list)
+- [searchProps](#user-content-search-props)
 - [rebounce](#user-content-re-bounce)
 - [readFiles](#user-content-read-files)
 
@@ -107,19 +107,19 @@ output: "<div>George</div>"
 
 ---
 
-## Search Data List
+## Search Props
 
 ### Usage
 
-> *string* **searchDataList**( *object,array* **Data** , *string* **SearchTerm** , *string,array* **PropertiesToSearch** )
+> *string* **searchProps**( *array* **ObjectArray** , *string* **SearchTerm** , *string,array* **PropertiesToSearch** )
 
 Search through multiple properties of an object array to find matches
 
 ### Parameters
 
 <dl>
-	<dt>Data</dt>
-	<dd>Either an *object* or *array of objects*.</dd>
+	<dt>ObjectArray</dt>
+	<dd>An *array of objects*.</dd>
 	<dt>SearchTerm</dt>
 	<dd>A *string* to search for.</dd>
 	<dt>PropertiesToSearch</dt>
@@ -128,13 +128,13 @@ Search through multiple properties of an object array to find matches
 
 ### Return
 
-> Returns a new *array* containing only elements from the **Data** with **PropertiesToSearch** values matching the **SearchTerm**.
+> Returns a new *array* containing only elements from the **ObjectArray** with **PropertiesToSearch** values matching the **SearchTerm**.
 
 ### Examples
 
 ```javascript
 let users = [{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}]
-let result = searchDataList( users, 'George', 'email,name' );
+let result = searchProps( users, 'George', 'email,name' );
 
 result: [{name:'George',email:'george@gmail.com'}];
 ```
@@ -153,7 +153,7 @@ If Data check is false, execute callback function with arguments
 
 <dl>
 	<dt>Data</dt>
-	<dd>A *value* to be chacked for truth.</dd>
+	<dd>A *value* to be checked for truth.</dd>
 	<dt>Callback</dt>
 	<dd>A *function* to be called if **Data** equals false.</dd>
 	<dt>Arguments</dt>

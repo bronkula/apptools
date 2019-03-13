@@ -122,7 +122,7 @@ an array of search_properties in each object to search through
 The result is a filtered array of matching objects
 
 Example:
-searchDataList(
+searchProps(
 	[{name:'George',email:'george@gmail.com'},{name:'Frank',email:'frank@gmail.com'}],
 	'George',
 	'email,name'
@@ -131,42 +131,17 @@ searchDataList(
 Return:
 [{name:'George',email:'george@gmail.com'}]
 */
-const searchDataList = function(object_array,search_string,search_properties){
-	let props = Array.isArray(search_properties) ? search_properties : search_properties.split(",");
-	return object_array.filter(obj=>{
-		for(let i in props) {
-			if(RegExp(search_string,'i').test(obj[props[i]])) return true;
-		}
-		return false;
-	});
-}
-
+const searchProps = (arr,str,props) => arr.filter( li =>
+	(Array.isArray(props)?props:props.split(",")).filter( o =>
+		RegExp(str,'i').test(li[o])
+	).length
+);
 
 
 
 
 /*
-This function waits for an array to have some elements,
-It recursively calls itself until the array has objects in it
-
-Example:
-function fooFunction(){
-	if(!waitForData(barArray,fooFunction)) return;
-	// some code
-}
-*/
-const waitForData = function(object_array,callback_function,passthrough_arguments){
-	if(!object_array || !object_array.length) {
-		setTimeout(function(){
-			callback_function.apply(this,passthrough_arguments);
-		},150);
-		return false;
-	}
-	return true;
-}
-
-/*
-Rebounce is a perhaps a better, more useful version of waitForData
+Rebounce
 It takes in a variable value to check for truey
 It takes a return function to call if the check is falsey
 It gets passed an arguments array of values to call with the fn callback
@@ -179,9 +154,9 @@ function fooFunction(){
 	// some code
 }
 */
-const rebounce = function(check,fn,arg,timer=100) {
-	return !check ? !setTimeout(() => fn.apply(null,arg) , timer) : true;
-}
+const rebounce = (check,fn,args,timer=100) =>
+	!!check || !setTimeout(() => fn.apply(null,args) , timer);
+
 
 
 
@@ -210,13 +185,4 @@ const readFiles = function(files,callback,index=0) {
   }
 }
 
-
-
-
-
-/*
-Last can be used to get the last element of an array
-But you can also simply use arr.slice(-1)[0]
-*/
-const last = a => a.length==0 ? undefined : a[a.length-1];
 
