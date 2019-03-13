@@ -1,4 +1,7 @@
-
+/*
+This document is a series of small helper functions.
+Created by Hamilton Cline hamdiggy@gmail.com
+*/
 
 
 const templater = (tf,istr='') => {
