@@ -19,8 +19,8 @@ Return:
 `<div>10 x 10</div><div>20 x 5</div>`
 */
 const showDataList = function(object_array,template_string,target_selector){
-	var output = "";
-	var template_function = makeDataTemplate(template_string);
+	let output = "";
+	const template_function = makeDataTemplate(template_string);
 	if(Array.isArray(object_array)){
 		for(let i in object_array) {
 			output += template_function(object_array[i]);

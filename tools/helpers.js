@@ -60,7 +60,7 @@ const q = (s,sc=document) =>
     !s ? [] : 
 	s instanceof HTMLElement || s==sc ? [s] : 
 	Array.isArray(s) ? s :
-	[...sc.querySelectorAll(s)];
+	sc.querySelectorAll(s);
 
 // Event Delegation Functions
 /*
