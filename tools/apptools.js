@@ -29,6 +29,30 @@ const showDataList = function(object_array,template_string,target_selector){
 	if(target_selector) document.querySelector(target_selector).innerHTML = output;
 	return output;
 }
+
+
+const reduceData = (a,s) => {
+	let s = makeDataTemplate(s);
+	return (Array.isArray(a)?a:[a]).reduce((r,o)=>r+s(o));
+}
+
+// a = array or object, f = template function, t = target output
+const makeTemplate = (a,f,t) => {
+	let o = (Array.isArray(a)?a:[a]).reduce(f,'');
+	if(t) $(t).html(o);
+	return o;
+}
+/*
+
+Example 1:
+makeTemplater((r,o)=>r+`<div>${o.name}</div>`)({name:"Bryan"});
+Example 2:
+const makePage = makeTemplater((r,o)=>r+`<div>${o.name}</div>`);
+makePage({name:Bryan});
+*/
+const makeTemplater = tf => oa => (Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
+
+
 /*
 This function takes a template_string using <%= %> style templates
 it outputs a function which can be passed an object to stamp onto the string
@@ -49,7 +73,7 @@ Return:
 const makeDataTemplate = function(template_string,markup=['<%=','%>']){
 	const getProp = function(obj, prop) {
 	    let _i;
-	    prop = prop.replace(/^\s+|\s+$/g,'');
+	    prop = prop.trim();
 	    if(!obj || !prop) return obj;
 	    // Check for array notation
 	    _i = /(.*?)\[(\d+)\]\.?(.*)/.exec(prop);
