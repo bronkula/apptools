@@ -2,13 +2,10 @@
 
 
 const templater = (tf,istr='') => {
-	let t = (r,o,i,a)=>r+tf(o,i,a);
+	const t = (r,o,i,a)=>r+tf(o,i,a);
 	return (ts=false) => oa => {
-		let o = (Array.isArray(oa)?oa:[oa]).reduce(t,istr);
-		if(ts) {
-			if(!document.querySelector(ts)) throw `No element with selector '${ts}'`;
-			[...document.querySelectorAll(ts)].forEach(e=>e.innerHTML=o);
-		}
+		const o = (Array.isArray(oa)?oa:[oa]).reduce(t,istr);
+		if(ts) document.querySelectorAll(ts).forEach(e=>e.innerHTML=o);
 		return o;
 	}
 }
@@ -30,7 +27,7 @@ const samePropsIndex=(a,p)=>a.findIndex(sameProps(p));
 
 
 
-const rand=(n,x)=>{let r=Math.random();return !x?(!n?r<0.5:~~(r*n)):Math.round((r*(x-n))+n)}
+const rand=(n,x)=>Math.round((Math.random()*(x-n))+n);
 
 const zeros=(n,e)=>(+n+Math.pow(10,e)+'').substr(1);
 
@@ -51,23 +48,43 @@ const readFiles = (f,c,i=0) => {
 
 
 
+const getPath = e => e.path || (e.composedPath && e.composedPath());
+const inPath = (ev,to) => getPath(ev).some(o=>o==to);
 const sift = f => s => s.map(f).filter((o,i,a)=>o&&a.indexOf(o)===i);
 
 // Selector Function
 const q = (s,sc=document) => 
-    !s ? [] : s instanceof HTMLElement ? [s] : Array.isArray(s) ? s :
-    [...sc.querySelectorAll(s)];
+    !s ? [] : 
+	s instanceof HTMLElement || s==sc ? [s] : 
+	Array.isArray(s) ? s :
+	[...sc.querySelectorAll(s)];
 
 // Event Delegation Functions
-const qon = sc => (es,fn,pr=!1) =>
-	es.trim().split(/\s+/).forEach(e=>q(sc).forEach(o=>o.addEventListener(e,fn,pr)));
-const qdelegate = sc => (es,sl,fn,pr=!1) =>
-	qon(sc)(es,ev=>d(sl).forEach(to=>if(ev.target==to)fn.call(ev.target,ev)),pr);
+/*
+example:
+qon('a')('click',e=>console.log(e))
+*/
+const qon = sc => {
+	const d = q(sc);
+	return (es,fn,pr=!1)=>es.trim().split(/\s+/).forEach(e=>
+		d.forEach(o=> o.addEventListener(e,fn,pr)));
+}
+/*
+example:
+qdelegate('body')('click','a',e=>console.log(e))
+*/
+const qdelegate = sc => {
+	const d = qon(sc);
+	return (es,sl,fn,pr=!1)=>d(es,ev=>
+		q(sl).forEach(to=>inPath(ev,to)?fn.call(to,ev,to):0),pr);
+}
 
 // Traversal Functions
-const qnext = s => sift(o=>o.nextElementSibling)(q(s));
-const qprev = s => sift(o=>o.previousElementSibling)(q(s));
-const qparent = s => sift(o=>o.parentElement)(q(s));
+const qnext = sift(o=>o.nextElementSibling);
+const qprev = sift(o=>o.previousElementSibling);
+const qparent = sift(o=>o.parentElement);
+
+const qis = (s1,s2) => q(s1).some(o=>o.matches(s2));
 
 
 
@@ -80,7 +97,7 @@ export {
 	sameProps,samePropsAll,samePropsFirst,samePropsIndex,
 	rand,zeros,
 	numberCommas,moneyCommas,
-	arrayReplace, sift,
-	q,qdelegate,qon,qprev,qnext,qparent,
+	arrayReplace, sift, getPath, inPath,
+	q,qdelegate,qon,qprev,qnext,qparent, qis,
 	readFiles
 };
