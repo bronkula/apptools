@@ -44,11 +44,6 @@ output: "<div>George</div><div>Fred</div>"
 ```
 
 ```javascript
-showDataList(
-	[{name:"George"},{name:"Fred"}],
-	"<div><%= name %></div>",
-	".output"
-);
 templater(o=>`<div>${o.name}</div>`)(".output")(
 	[{name:"George"},{name:"Fred"}]
 );
