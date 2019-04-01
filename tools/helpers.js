@@ -13,6 +13,7 @@ const templater = (tf,istr='') => {
 	}
 }
 // const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
+// const templater=tf=>oa=>oa.reduce((r,o,i,a)=>r+tf(o,i,a),'');
 
 const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 
