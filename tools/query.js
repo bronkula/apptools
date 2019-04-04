@@ -49,9 +49,9 @@ const qis = (s1,s2) => q(s1).some(o=>o.matches(s2));
 const qclosest = s => sift(o=>o.closest(s));
 
 export { 
-	getPath, isDoc, inPath, sift,
+   getPath, isDoc, inPath, sift,
   
-  q, qon, qdelegate,
-  qnext, qprev, qparent,
-  qis, qclosest
+   q, qon, qdelegate,
+   qnext, qprev, qparent,
+   qis, qclosest
 };
