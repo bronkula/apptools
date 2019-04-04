@@ -8,17 +8,11 @@ const isDoc = d => d instanceof HTMLElement || d instanceof HTMLDocument;
 const inPath = (ev,to) => getPath(ev).some(o=>o==to);
 const sift = f => s => [...new Set(s.map(f))];
 
-// Selector Function
 const q = (s,sc=document) => 
     !s || !isDoc(sc) ? [] :
     s instanceof HTMLElement || s==sc ? [s] : 
     Array.isArray(s) ? s : sc.querySelectorAll(s);
 
-// Event Delegation Functions
-/*
-example:
-qon('a')('click',e=>console.log(e))
-*/
 const qon = sc => {
     const d = q(sc);
     const f = (es,fn) => {
@@ -27,10 +21,7 @@ const qon = sc => {
     }; 
     return f;
 }
-/*
-example:
-qdelegate('body')('click','a',e=>console.log(e))
-*/
+
 const qdelegate = sc => {
     const d = qon(sc);
     const f = (es,sl,fn) => {
@@ -40,7 +31,6 @@ const qdelegate = sc => {
     return f;
 }
 
-// Traversal Functions
 const qnext = sift(o=>o.nextElementSibling);
 const qprev = sift(o=>o.previousElementSibling);
 const qparent = sift(o=>o.parentElement);
