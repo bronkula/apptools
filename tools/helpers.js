@@ -70,8 +70,7 @@ qon('a')('click',e=>console.log(e))
 const qon = sc => {
     const d = q(sc);
     const f = (es,fn) => {
-        es.trim().split(/\s+/)
-            .forEach(e=>d.forEach(o=> o.addEventListener(e,fn)));
+        es.trim().split(/\s+/).forEach(e=>d.forEach(o=> o.addEventListener(e,fn)));
         return f;
     }; 
     return f;
@@ -83,8 +82,7 @@ qdelegate('body')('click','a',e=>console.log(e))
 const qdelegate = sc => {
     const d = qon(sc);
     const f = (es,sl,fn) => {
-        d(es,ev=>q(sl)
-            .forEach(to=>inPath(ev,to)?fn.call(to,ev,to):0));
+        d(es,ev=>q(sl).forEach(to=>inPath(ev,to)?fn.call(to,ev,to):0));
         return f;
     };
     return f;
