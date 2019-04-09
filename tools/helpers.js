@@ -15,7 +15,6 @@ const templater = (tf,istr='') => {
 // const templater=tf=>oa=>(Array.isArray(oa)?oa:[oa]).reduce((r,o,i,a)=>r+tf(o,i,a),'');
 // const templater=tf=>oa=>oa.reduce((r,o,i,a)=>r+tf(o,i,a),'');
 
-const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 
 
 
@@ -31,7 +30,7 @@ const samePropsIndex=(a,p)=>a.findIndex(sameProps(p));
 
 
 
-const rand=(n,x)=>Math.round((Math.random()*(x-n))+n);
+const rand=(n=0,x=1)=>Math.round((Math.random()*(x-n))+n);
 
 const zeros=(n,e)=>(+n+Math.pow(10,e)+'').substr(1);
 
@@ -52,6 +51,24 @@ const readFiles = (f,c,i=0) => {
 
 
 
+const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
+const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+const trace = l => v => { console.log(`${l}: ${v}`); return v; }
+
+
+
+const aGetFile = async (f) => {
+    const response = await fetch(f);
+    return await response.json();
+}
+
+const checkData = (v,t=10) => new Promise(r => {
+	const c = () => !v() ? setTimeout(c,t) : r(v());
+	c();
+});
+const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
+
+const delay = t => new Promise(r=>setTimeout(r,t));
 
 
 export { 
@@ -61,5 +78,6 @@ export {
 	rand,zeros,
 	numberCommas,moneyCommas,
 	arrayReplace,
-	readFiles
+	readFiles,
+	aGetFile, checkData, delay
 };
