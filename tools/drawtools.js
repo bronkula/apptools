@@ -92,7 +92,7 @@ const pathmaker = {
       ctx.quadraticCurveTo(x, y, x + r.tl, y);
    }
 }
-const makePath(ctx,paths) {
+const makePath = (ctx,paths) => {
    pathmaker.start(ctx);
    for(let i in paths) pathmaker[paths[i].splice(0,1,ctx)[0]].apply(null,paths[i]);
    pathmaker.end(ctx);
