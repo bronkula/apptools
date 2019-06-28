@@ -1,7 +1,6 @@
 
 
 
-
 // CANVAS.JS
 
 /*
@@ -37,7 +36,7 @@ const pathmaker = {
    end(ctx){
       ctx.closePath();
    },
-   point(ctx,pts){
+   points(ctx,pts){
       if(pts.length<2) return false;
       ctx.moveTo(pts[0].x,pts[0].y);
       for(let i in pts) {
@@ -747,3 +746,8 @@ const rectInRect = (x0,y0,x1,y1,x2,y2,x3,y3) => pointInRect(x0,y0,x2,y2,x3,y3) &
 
 /* detect if a circle is touching another circle. Use 0 for r1 if a point */
 const circleCollission = (x1,y1,r1,x2,y2,r2) => pointDistance(x1,y1,x2,y2) < (r1 + r2);
+
+
+
+
+
