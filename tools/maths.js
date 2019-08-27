@@ -64,6 +64,14 @@ const signNumber = max => n => n>max*0.5?n%max-max:n;
 /* This function returns an arbitrary positive number looped inside an arbitrary positive number range */
 const within = (min,max) => n => trueNumber(max-min)((n-min)%(max-min))+min;
    const withinCircle = within(0,360);
+
+const wrap = (max) => {
+   const tn = trueNumber(max);
+   const sn = signNumber(max);
+   return (n) => tn(sn(n));
+}
+   const wrapRadian = wrap(Math.PI*2);
+   const wrapDegree = wrap(360);
    
 /* This function returns the percentage of an arbitrary number mapped to an arbitrary number range */
 const partof = (min,max) => n => (n-min)/(max-min);
@@ -79,6 +87,12 @@ const toward = (min,max,o=false) => n => n*(max-min)+(o||min);
 example:
 mapRange(5,0,10,0,360) > 180*/
 const mapRange = (n,min1,max1,min2,max2) => toward(min2,max2)(partof(min1,max1)(n));
+
+const range = (min1,max1,min2,max2) => {
+   const p = partof(min1,max1);
+   const t = toward(min2,max2);
+   return (n) => t(p(n));
+}
 
 /* Round number n to nearest number x */
 const roundTo = (n,x) => {
