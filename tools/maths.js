@@ -16,7 +16,6 @@ const angleFromPoints = (x1,y1,x2,y2) => Math.atan2(y2 - y1, x2 - x1);
 const angleFromSides = (a,b,c) => Math.acos((c*c+a*a-b*b)/(2*c*a));
 
 const sidebFromABa = (A,B,a) => a / Math.sin(A) * Math.sin(B);
-const sideaFromABb = (A,B,b) => b / Math.sin(B) * Math.sin(A);
    
 /* A random number between n and x */
 const rand = (n,x) => Math.round(Math.random()*(x-n))+n;
