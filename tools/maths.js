@@ -46,8 +46,10 @@ const ratio = (min,max) => n => n*min/max;
 /* Nudge a number a certain percentage of a distance using a starting offset */
 const nudge = (s,p,d) => p*d+s;
 
-/* Make sure a number does not passbelow a min or above a max */
+/* Make sure a number does not pass below a min or above a max */
 const clamp = (min,max) => n => n>max?max:n<min?min:n;
+   const clampRadian = clamp(0,Math.PI*2);
+   const clampDegree = clamp(0,360);
 
 /* Given a curried max value, attempts to bring negative numbers to positive range of loop */
 const trueNumber = max => n => n<0?n+max:n;
