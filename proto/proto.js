@@ -3,8 +3,9 @@ ProtoTight Type v0.93
 Developed by Hamilton Cline
 hamdiggy@gmail.com
 http://www.hamiltondraws.com
+
 Changelog
-0.93- Added timeout for setActiveSection
+0.93- Improved setActiveSection
 0.92- Moved most functions to local scope
     - Pass PT variable to global and include navigate function
 0.91- Completed ECMA 2015 ReWrite
