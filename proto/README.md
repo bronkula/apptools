@@ -50,8 +50,13 @@ Since there's only one document ready call on an app like this, you might need t
 ```
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-$(document).on("pageshow",function(e){
-	console.log(e.details);
+window.document.querySelector(document)
+.addEventListener("pageshow",function(e){
+	let h = window.location.hash.substr(1).split(d);
+	
+	if(h[0]=='main' || h[0]=='') {
+		// Run some code
+	}
 })
 </script>
 ```
