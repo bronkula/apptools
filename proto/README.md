@@ -34,10 +34,10 @@ Create data-role="jump" links to move from page to page.
 
 ```
 <section data-role="page" id="page1">
-	<a href="#page2" data-role="jump">Go to Page 2</a>
+    <a href="#page2" data-role="jump">Go to Page 2</a>
 </section>
 <section data-role="page" id="page2">
-	<a href="#page1" data-role="jump">Go to Page 1</a>
+    <a href="#page1" data-role="jump">Go to Page 1</a>
 </section>
 ```
 
@@ -48,16 +48,11 @@ ProtoTight will handle all the history states of routing around your application
 Since there's only one document ready call on an app like this, you might need to be able to run code any time a page is loaded. So there's a "pageshow" event available to you every time a page is loaded onto the page.
 
 ```
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 window.document.querySelector(document)
-.addEventListener("pageshow",function(e){
-	let h = window.location.hash.substr(1).split(d);
-	
-	if(h[0]=='main' || h[0]=='') {
-		// Run some code
-	}
-})
+    .addEventListener("pageshow",function(e){
+        // Run some code
+    })
 </script>
 ```
 
@@ -96,19 +91,19 @@ There's some other stuff in there, obviously. You can see there are a number of 
 
 ```
 <section data-role="page" id="page1">
-	<header data-role="header">Title</header>
-	<div data-role="main">
-		<a href="#page2" data-role="jump">Link</a>
-	</div>
+    <header data-role="header">Title</header>
+    <div data-role="main">
+        <a href="#page2" data-role="jump">Link</a>
+    </div>
 </section>
 ```
 
 ```
 <section data-role="page" id="page2">
-	<footer data-role="footer">Navigation</footer>
-	<div data-role="main">
-		<a href="#page1" data-role="jump">Link</a>
-	</div>
+    <footer data-role="footer">Navigation</footer>
+    <div data-role="main">
+        <a href="#page1" data-role="jump">Link</a>
+    </div>
 </section>
 ```
 
@@ -208,9 +203,9 @@ This text would show up in and replace any text in the [data-template] div.
 <div data-template="#header-template" data-title="New Title"></div>
 <script type="text/template" id="header-template">
 <div>
-	Use data attributes to replace content in templates
-	<%= title %>
-	The words "New Title" should replace the previous line.
+    Use data attributes to replace content in templates
+    <%= title %>
+    The words "New Title" should replace the previous line.
 </div>
 </script>
 ```
