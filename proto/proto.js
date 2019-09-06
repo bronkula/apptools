@@ -1,10 +1,10 @@
 ;/*
-ProtoTight Type v0.81
+ProtoTight Type v0.93
 Developed by Hamilton Cline
 hamdiggy@gmail.com
 http://www.hamiltondraws.com
-
 Changelog
+0.93- Added timeout for setActiveSection
 0.92- Moved most functions to local scope
     - Pass PT variable to global and include navigate function
 0.91- Completed ECMA 2015 ReWrite
@@ -34,11 +34,7 @@ Changelog
     - Added accordion lists
 0.2 - Added asides and figures
 0.1 - Initial Release
-
-
-
 uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
-
 */
 
 (function(w){
@@ -55,65 +51,71 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
     }
     ProtoTight.prototype.navigate = function(str,updateUrl=true) {
         if(str=="back") {
-            if(history.state != null) w.history.back();
+            if(w.history.state != null) w.history.back();
         }
-        else if (history.pushState) {
+        else if (w.history.pushState) {
             setActiveSection({
                 title: str,
                 url: w.location.origin + w.location.pathname + "#" + str
             },updateUrl);
         } else {
             /* Ajax navigation is not supported */
-            location.assign(this.stateObj.url);
+            w.location.assign(this.stateObj.url);
         }
     };
 
 
 
     const init = function() {
-        // console.log("prototight")
         PT.mainElement = w.document.body;
         makeTabList();
         setEvents();
         setTemplates();
-        setInitialActive();
+        setTimeout(setInitialActive,10);
     };
 
     const setInitialActive = function() {
         let h = PT.originalHash!=="" ? PT.originalHash.substr(1) : "";
-        if(!PT.sections.includes(h)) h = PT.sections[0];
+        if(!PT.sections.includes(h.split('/')[0])) h = PT.sections[0];
         setActiveSection({title:h,url:location.href});
     };
 
     const setActiveSection = function(stateObj,updateUrl) {
-        document.dispatchEvent(new CustomEvent("pageshow",{detail:{
+    	let o = {detail:{
             nextPage:{
                 title:stateObj.title,
                 url:stateObj.url,
-                el:q("."+stateObj.title)[0]
+                el:q(!stateObj.title?"":"."+stateObj.title.split('/')[0])[0]
             },
             prevPage:{
                 title:PT.stateObj.title,
                 url:PT.stateObj.url,
-                el:q(PT.stateObj.title===null?"":"."+PT.stateObj.title)[0]
+                el:q(!PT.stateObj.title?"":"."+PT.stateObj.title.split('/')[0])[0]
             }
-        }}));
+        }};
         
         PT.stateObj = {
             title:stateObj.title,
             url:stateObj.url
         }
-        showActiveSection();
+        w.history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
+
+        setTimeout(()=>{
+	        w.document.dispatchEvent(new CustomEvent("pageshow",o));
+	        showActiveSection();
+        },10);
         
-        history[updateUrl?'pushState':'replaceState'](stateObj, stateObj.title, stateObj.url);
     };
     const showActiveSection = function() {
+    	if(!PT.stateObj.title) return;
+    	let t = PT.stateObj.title.split('/')
+    	let a = q("."+t[0]);
+    	if(!a.length) return;
         q("[data-role='page'].active").forEach(o => o.classList.remove("active") );
-        q("."+PT.stateObj.title).forEach(o => o.classList.add("active"));
+        a[0].classList.add("active");
     };
     const makeTabList = function() {
         let pt = this;
-        // Search through the sections and pull out all the ids for links and tabs
         PT.sections = [];
         q("[data-role='page']").forEach(function(o){
             o.classList.add(o.id);
@@ -125,6 +127,9 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
                 e.preventDefault();
                 PT.navigate([].find.call(this.attributes,o => o.nodeName=='href').value.substr(1));
                 return false;
+            })
+        delegate(PT.mainElement[0],"click","[href='#']",function(e){
+                e.preventDefault();
             })
         delegate(PT.mainElement[0],"click","[data-toggle]",function(e){
                 activate(this,this.dataset.toggle,"toggle");
@@ -142,7 +147,6 @@ uglifyjs proto.js -o proto.min.js -c -m --source-map "url='proto.min.js.map'"
 
 // HELPER FUNCTIONS
 
-    // Query Selector
     const q = s => 
         s instanceof HTMLElement ? [s] :
         s.isArray ? s :
