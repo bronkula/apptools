@@ -71,6 +71,11 @@ const rebounce=(c,f,a,t=100)=>!c?!setTimeout(()=>f.apply(c,a),t):true;
 const delay = t => new Promise(r=>setTimeout(r,t));
 
 
+const mapJoin = (c,f,dj) => c.map(f).join(dj);
+const splitMapJoin = (c,f,dj,ds=/\s?,\s?/) =>
+	(Array.isArray(c)?c:c.split(ds)).map(f).join(dj);
+
+
 export { 
 	templater,rebounce,
 	someProps,somePropsAll,somePropsFirst,somePropsIndex,
