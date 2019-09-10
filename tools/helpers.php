@@ -51,17 +51,10 @@ function makeFileFolderList($dir="."){
 function getQueryResults($c,$s) {
 	$r = $c->query($s);
 
-	if($c->errno)
-		die(json_encode([
-			"sql"=>$s,
-			"error"=>$c->error
-		]));
+	if($c->errno) die(json_encode([ "sql"=>$s, "error"=>$c->error]));
 
 	$a = [];
-
-	while($row = $r->fetch_object())
-		$a[] = $row;
-
+	while($row = $r->fetch_object()) $a[] = $row;
 	return $a;
 }
 
@@ -93,22 +86,8 @@ function print_p($v) {
 }
 
 
-function dbConnect(
-	$host = "localhost",
-	$user = "",
-	$pass = "",
-	$dbname = ""
-	) {
-
-	$c = new mysqli(
-		$host,
-		$user,
-		$pass,
-		$dbname
-	);
-
-	if($c->connect_errno)
-		die($c->connect_error);
-
+function makeConn($host = "localhost", $user = "", $pass = "", $dbname = "") {
+	$c = new mysqli($host, $user, $pass, $dbname);
+	if($c->connect_errno) die($c->connect_error);
 	return $c;
 }
