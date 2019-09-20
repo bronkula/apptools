@@ -58,7 +58,7 @@ const trueNumber = max => n => n<0?n%max+max:n;
    const trueDegree = trueNumber(360);
 
 /* Given a curried max value, attempts to wrap a number over half into a negative number of loop */
-const signNumber = max => n => n>max*0.5?n%max-max:n;
+const signNumber = max => n => n>max*0.5?n-max:n<max*-0.5?n+max:n;
    const signRadian = signNumber(Math.PI*2);
    const signHalfRadian = signNumber(Math.PI);
    const signDegree = signNumber(360);
@@ -70,7 +70,7 @@ const within = (min,max) => n => trueNumber(max-min)((n-min)%(max-min))+min;
 const wrap = (max) => {
    const tn = trueNumber(max);
    const sn = signNumber(max);
-   return (n) => tn(sn(n));
+   return (n) => tn(sn(n%max));
 }
    const wrapRadian = wrap(Math.PI*2);
    const wrapDegree = wrap(360);
