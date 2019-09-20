@@ -52,7 +52,7 @@ const clamp = (min,max) => n => n>max?max:n<min?min:n;
    const clampDegree = clamp(0,360);
 
 /* Given a curried max value, attempts to bring negative numbers to positive range of loop */
-const trueNumber = max => n => n<0?n+max:n;
+const trueNumber = max => n => n<0?n%max+max:n;
    const trueRadian = trueNumber(Math.PI*2);
    const trueHalfRadian = trueNumber(Math.PI);
    const trueDegree = trueNumber(360);
