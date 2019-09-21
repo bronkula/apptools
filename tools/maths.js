@@ -34,7 +34,7 @@ const vxs = (x0,y0,x1,y1) => (x0*y1) - (x1*y0);
 const bounce = (p,s,n,x) => p>=x||p<=n?-s:s;
 
 /* Bounce angle a off of a vertical or horizontal wall */
-const bounceX = a => Math.sign(a)*trueHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
+const bounceX = a => Math.sign(a)*unsignHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
 const bounceY = a => -signRadian(a);
 
 /* This function takes two objects, and replaces or adds any values in object 1 with the values of object 2 */
@@ -52,12 +52,14 @@ const clamp = (min,max) => n => n>max?max:n<min?min:n;
    const clampDegree = clamp(0,360);
 
 /* Given a curried max value, attempts to bring negative numbers to positive range of loop */
-const trueNumber = max => n => n<0?n%max+max:n;
-   const trueRadian = trueNumber(Math.PI*2);
-   const trueHalfRadian = trueNumber(Math.PI);
-   const trueDegree = trueNumber(360);
+/* expects a number between -max/2 and max/2 */
+const unsignNumber = max => n => n<0?n+max:n;
+   const unsignRadian = unsignNumber(Math.PI*2);
+   const unsignHalfRadian = unsignNumber(Math.PI);
+   const unsignDegree = unsignNumber(360);
 
 /* Given a curried max value, attempts to wrap a number over half into a negative number of loop */
+/* expects a number between -max and max */
 const signNumber = max => n => n>max*0.5?n-max:n<max*-0.5?n+max:n;
    const signRadian = signNumber(Math.PI*2);
    const signHalfRadian = signNumber(Math.PI);
@@ -65,13 +67,9 @@ const signNumber = max => n => n>max*0.5?n-max:n<max*-0.5?n+max:n;
 
 /* This function returns an arbitrary positive number looped inside an arbitrary positive number range */
 const within = (min,max) => n => trueNumber(max-min)((n-min)%(max-min))+min;
-   const withinCircle = within(0,360);
 
-const wrap = (max) => {
-   const tn = trueNumber(max);
-   const sn = signNumber(max);
-   return (n) => tn(sn(n%max));
-}
+/* Wrap number n within number max, with expectation that max is equal to zero */
+const wrap = (max) => (n) => unsignNumber(signNumber(n%max));
    const wrapRadian = wrap(Math.PI*2);
    const wrapDegree = wrap(360);
    
