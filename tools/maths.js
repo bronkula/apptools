@@ -10,12 +10,14 @@ const degreesToRadians = a => a*Math.PI/180;
 const radiansToDegrees = a => a*180/Math.PI;
    
 /* Returns the angle from two points */
-const angleFromPoints = (x1,y1,x2,y2) => Math.atan2(y2 - y1, x2 - x1);
+const angleFromPoints = (x1,y1,x2,y2) => Math.atan2(y2-y1,x2-x1);
+/* The distance between two points */
+const pointDistance = (x1,y1,x2,y2) => Math.hypot(x1-x2,y1-y2);
 
 // Will return the angle opposite of the B side
 const angleFromSides = (a,b,c) => Math.acos((c*c+a*a-b*b)/(2*c*a));
    
-/* A random number between n and x */
+/* A random integer between n and x */
 const rand = (n,x) => Math.round(Math.random()*(x-n))+n;
 
 const circumference = r => Math.PI*2*r;
@@ -29,7 +31,7 @@ const xy = (x,y) => ({x,y});
 const vxs = (x0,y0,x1,y1) => (x0*y1) - (x1*y0);
    
 /* If p(osition) is outside of n or x, return a reversed s(peed) */
-const bounce = (p,s,n,x) => p>=x||p<=n?-s:s;
+const bounce = (n,x) => (p,s) => p>=x||p<=n?-s:s;
 
 /* Bounce angle a off of a vertical or horizontal wall */
 const bounceX = a => Math.sign(a)*trueHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
@@ -42,7 +44,12 @@ const overRide = (o1,o2) => !o2?o1:Object.assign(o1,o2);
 const ratio = (min,max) => n => n*min/max;
 
 /* Nudge a number a certain percentage of a distance using a starting offset */
-const nudge = (s,p,d) => p*d+s;
+const nudge = (o,p,n) => p*n+o;
+
+
+
+
+/* ---------------------  CLAMPS AND WRAPS ----------------------------*/
 
 /* Make sure a number does not passbelow a min or above a max */
 const clamp = (min,max) => n => n>max?max:n<min?min:n;
@@ -59,9 +66,24 @@ const signNumber = max => n => n>max*0.5?n%max-max:n;
    const signHalfRadian = signNumber(Math.PI);
    const signDegree = signNumber(360);
 
-/* This function returns an arbitrary positive number looped inside an arbitrary positive number range */
-const within = (min,max) => n => trueNumber(max-min)((n-min)%(max-min))+min;
-   const withinCircle = within(0,360);
+/* Given a curried max value, attempts to wrap a number within that max */
+const wrapNumber = max => {
+   const t = trueNumber(max);
+   const s = signNumber(max);
+   return n => t(s(n));
+}
+
+/* This function returns an arbitrary positive number looped inside an arbitrary positive number range. Results not guaranteed. */
+const within = (min,max) => {
+   const r = max-min+1;
+   const t = trueNumber(r);
+   const s = signNumber(r);
+   return n => t(s(n-min))+min;
+}
+
+
+/* ----------------------------  MAPPING ----------------------------*/
+
    
 /* This function returns the percentage of an arbitrary number mapped to an arbitrary number range */
 const partof = (min,max) => n => (n-min)/(max-min);
@@ -71,11 +93,20 @@ const partof = (min,max) => n => (n-min)/(max-min);
 example:
 toward(10,20)(0.5) > 15
 */
-const toward = (min,max,o=false) => n => n*(max-min)+(o||min);
+const toward = (min,max) => n => n*(max-min)+min;
 
 /* This function maps a number from one arbitrary range onto another arbitrary range.
 example:
-mapRange(5,0,10,0,360) > 180*/
+mapRange(5,0,10,0,360) > 180
+mapN(0,360)(0,10)(2) > 72
+*/
+const mapN = (min,max) => {
+   const t = toward(min,max);
+   return (min,max) => {
+      const p = partof(min,max);
+      return n => t(p(n));
+   }
+}
 const mapRange = (n,min1,max1,min2,max2) => toward(min2,max2)(partof(min1,max1)(n));
 
 /* Round number n to nearest number x */
@@ -91,23 +122,26 @@ const roundTo = (n,x) => {
 
 
 /*------------------------ Positional Functions ------------------------------------*/
-/* The distance between two points */
-const pointDistance = (x1,y1,x2,y2) => Math.hypot(x1-x2,y1-y2);
 
 /* Return a point between one point and another: Position1, Position2, Percentage */
-const positionToward = (x1,y1,x2,y2,p) => xy(toward(x1,x2)(p),toward(y1,y2)(p));
+const positionToward = (x1,y1,x2,y2,p) =>
+   xy(toward(x1,x2)(p),toward(y1,y2)(p));
 
 /* Expects an X and a Y, an angle, and a distance. Returns an XY object */
-const getSatelliteXY = (x,y,a,d) => xy(x+Math.cos(a)*d,y+Math.sin(a)*d);
+const getSatelliteXY = (x,y,a,d) =>
+   xy(x+Math.cos(a)*d,y+Math.sin(a)*d);
 
 /* check if two number ranges overlap */
-const overlap = (a1,a2,b1,b2) => Math.min(a1,a2) <= Math.max(b1,b2) && Math.min(b1,b2) <= Math.max(a1,a2);
+const overlap = (a1,a2,b1,b2) =>
+   Math.min(a1,a2) <= Math.max(b1,b2) && Math.min(b1,b2) <= Math.max(a1,a2);
 
 /* check if two boxes overlap */
-const intersectBox = (x0,y0,x1,y1,x2,y2,x3,y3) => overlap(x0,x1,x2,x3) && overlap(y0,y1,y2,y3);
+const intersectBox = (x0,y0,x1,y1,x2,y2,x3,y3) =>
+   overlap(x0,x1,x2,x3) && overlap(y0,y1,y2,y3);
 
 /* determine which side of a line a point is on */
-const pointSide = (px,py,x0,y0,x1,y1) => vxs(x1-x0,y1-y0,px-x0,py-y0);
+const pointSide = (px,py,x0,y0,x1,y1) =>
+   vxs(x1-x0,y1-y0,px-x0,py-y0);
 
 /* Intersect: Calculate the point of intersection between two lines. */
 const intersect = (x0,y0,x1,y1,x2,y2,x3,y3) => xy(
@@ -116,24 +150,29 @@ const intersect = (x0,y0,x1,y1,x2,y2,x3,y3) => xy(
 );
 
 /* Calculate if two lines intersect */
-const isIntersect = (x0,y0,x1,y1,x2,y2,x3,y3) => IntersectBox(x0,y0,x1,y1, x2,y2,x3,y3)
-   && Math.abs(PointSide(x2,y2,x0,y0,x1,y1) + PointSide(x3,y3,x0,y0,x1,y1)) != 2
-   && Math.abs(PointSide(x0,y0,x2,y2,x3,y3) + PointSide(x1,y1,x2,y2,x3,y3)) != 2;
+const isIntersect = (x0,y0,x1,y1,x2,y2,x3,y3) =>
+   IntersectBox(x0,y0,x1,y1, x2,y2,x3,y3) &&
+   Math.abs(PointSide(x2,y2,x0,y0,x1,y1) + PointSide(x3,y3,x0,y0,x1,y1)) != 2 &&
+   Math.abs(PointSide(x0,y0,x2,y2,x3,y3) + PointSide(x1,y1,x2,y2,x3,y3)) != 2;
 
 /* Detect if a point is in a rectangle */
-const pointInRect = (x1,y1,x2,y2) => (px,py) => px>=x1&&px<=x2&&py>=y1&&py<=y2;
+const pointInRect = (x1,y1,x2,y2) => (px,py) =>
+   px>=x1&&px<=x2&&py>=y1&&py<=y2;
 
-const inRange = (a,b) => n => a<=n&&b>=n;
+const inRange = (a,b) => n =>
+   a<=n&&b>=n;
 
-const pointInArc = (px,py,ax,ay,ir,or,as,ae) => {
-   // let a = angleFromPoints(px,py,ax,ay);
-   // let d = pointDistance(px,py,ax,ay);
-   // return a>=as && a<=ae && d>=ir && d<=or;
-   inRange(as,ae)(angleFromPoints(px,py,ax,ay)) &&
-   inRange(ir,or)(pointDistance(px,py,ax,ay))
+const pointInArc = (px,py,ax,ay,ir,or,as,ae) =>
+   inRange(as,ae)(Math.atan2(ay-py,ax-px)) &&
+   inRange(ir,or)(Math.hypot(px-ax,py-ay));
+
+
+/* Curried function. Detect if a rectangle is fully within another rectangle */
+const rectInRect = (x1,y1,x2,y2) => {
+   const r = pointInRect(x1,y1,x2,y2);
+   return (x1,y1,x2,y2) => r(x1,y1) && r(x2,y2);
 }
-/* Detect if a rectangle is fully within another rectangle */
-const rectInRect = (x0,y0,x1,y1,x2,y2,x3,y3) => pointInRect(x0,y0,x2,y2,x3,y3) && pointInRect(x1,y1,x2,y2,x3,y3);
 
 /* detect if a circle is touching another circle. Use 0 for r1 if a point */
-const circleCollission = (x1,y1,r1,x2,y2,r2) => pointDistance(x1,y1,x2,y2) < (r1 + r2);
+const circleCollission = (x1,y1,r1,x2,y2,r2) =>
+   pointDistance(x1,y1,x2,y2) < (r1 + r2);
