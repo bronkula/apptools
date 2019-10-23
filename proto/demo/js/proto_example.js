@@ -19,8 +19,6 @@ function makeSection5(){
 function makeSection6(){
 	if(!rebounce(db.length,makeSection6,[])) return;
 
-	console.log("honk")
-
 	var user = db.filter(obj=>obj.id==localStorage.chosenId);
 	if(user.length) showDataList(user,$("#user-template").html(),"#page-user [data-role='main']");
 	else {

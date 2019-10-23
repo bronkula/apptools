@@ -32,7 +32,7 @@ const showDataList = function(object_array,template_string,target_selector){
 
 
 const reduceData = (a,s) => {
-	let s = makeDataTemplate(s);
+	s = makeDataTemplate(s);
 	return (Array.isArray(a)?a:[a]).reduce((r,o)=>r+s(o));
 }
 
