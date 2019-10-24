@@ -8,13 +8,21 @@ All these systems are built to use a breakpoint system involving simple keys. Wi
 
 The breakpoints in these systems will be represented as such:
 
-| Key | Value |
-| --- | --- |
-| xs | 0 |
-| sm | 320px |
-| md | 600px |
-| lg | 960px |
-| xs | 1200px |
+| Breakpoint | Key | Value |
+| --- | --- | --- |
+| Extra Small | xs | 0 |
+| Small | sm | 320px |
+| Medium | md | 600px |
+| Large | lg | 960px |
+| Extra Large | xs | 1200px |
+
+This means our breakpoints will represent a mobile first approach to their use. When dealing with any breakpoint classes, you will always think in terms of mobile first, and then move forward adding breakpoint changes as necessary. Although you might have an urge to think of these sizes in terms of devices, technically these systems are device agnostic, and simply try to fit into whatever screen size is given to them.
+
+```
+<div class="col-xs-12 col-md-6"></div>
+```
+
+In this example we have set an extra small breakpoint to a 100% column, and a medium breakpoint to a 50% column. Skip breakpoints where no changes are made, and only add breakpoints when your layout changes.
 
 ## Flex System
 
