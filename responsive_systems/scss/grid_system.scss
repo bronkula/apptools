@@ -1,17 +1,13 @@
 
 @import 'variables';
-@import 'system_container';
-@import 'system_flex';
 @import 'system_grid_grid';
 
 
 
 
-@include makeFlexUtility();
 @include makeGridGrid();
 @each $i,$v in $breakpoints {
 	@media (min-width:$v) {
-    @include makeFlexUtility(-#{$i});
     @include makeGridGrid(-#{$i});
   }
 }

@@ -1,0 +1,39 @@
+
+@mixin makeUtilities($breakpoint:'') {
+  @each $box-i,$box-v in $boxes {
+    @each $size-i,$size-v in $sizes {
+      @each $pos-i,$pos-v in $positions {
+        .#{$box-i}#{$breakpoint}-#{$pos-i}#{$size-i} {
+          #{$box-v}-#{$pos-v}:$size-v;
+        }
+      }
+
+      .#{$box-i}#{$breakpoint} {
+        &-h#{$size-i} {
+          #{$box-v}-left:$size-v;
+          #{$box-v}-right:$size-v;
+        }
+        &-v#{$size-i} {
+          #{$box-v}-top:$size-v;
+          #{$box-v}-bottom:$size-v;
+        }
+        &-#{$size-i} {
+          #{$box-v}:$size-v;
+        }
+      }
+    }
+  }
+
+  @each $i,$v in $alignment-horz {
+    .align#{$breakpoint}-#{$i} { text-align:$v; }
+  }
+  @each $i,$v in $alignment-vert {
+    .align#{$breakpoint}-#{$i} { vertical-align:$v; }
+  }
+  @each $i,$v in $display {
+    .display#{$breakpoint}-#{$i} { display:$v; }
+  }
+  @each $i,$v in $positioning {
+    .position#{$breakpoint}-#{$i} { position:$v; }
+  }
+}

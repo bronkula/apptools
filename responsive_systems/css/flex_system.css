@@ -1,20 +1,3 @@
-.site-container, .container {
-  margin-right: auto;
-  margin-left: auto; }
-  @media (min-width: 1200px) {
-    .site-container, .container {
-      max-width: 1200px; } }
-  @media (max-width: 1200px) {
-    .site-container, .container {
-      max-width: 960px; } }
-
-.container {
-  overflow: hidden; }
-  @media (max-width: 960px) {
-    .container {
-      padding-left: 1rem;
-      padding-right: 1rem; } }
-
 .flex-parent {
   display: flex; }
 

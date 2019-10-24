@@ -14,3 +14,47 @@ $sizes: (
   s:0.5rem,
   n:0
 );
+
+
+$positions: (
+  t:top,
+  r:right,
+  b:bottom,
+  l:left
+);
+
+$boxes: (
+  p:padding,
+  m:margin
+);
+
+
+$display:(
+  b:block,
+  i:inline,
+  ib:inline-block,
+  f:flex,
+  fi:inline-flex,
+  n:none
+);
+
+$alignment-vert: (
+  t:top,
+  m:middle,
+  b:bottom,
+  bl:baseline,
+  tb:text-bottom
+);
+$alignment-horz: (
+  l:left,
+  c:center,
+  r:right,
+  j:justify
+);
+
+$positioning: (
+  s:static,
+  r:relative,
+  a:absolute,
+  f:fixed
+);

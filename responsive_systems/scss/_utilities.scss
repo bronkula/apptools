@@ -25,18 +25,3 @@ code {
     margin-bottom:0.25em;
   }
 }
-// Even media queries can be nested
-.container {
-  margin-right:auto;
-  margin-left:auto;
-  @media (min-width:map-get($breakpoints,'xl')) {
-    max-width:map-get($breakpoints,'xl');
-  }
-  @media (max-width:map-get($breakpoints,'xl')) {
-    max-width:map-get($breakpoints,'lg');
-  }
-  @media (max-width:map-get($breakpoints,'lg')) {
-    padding-left:#{map-get($sizes,'m')};
-    padding-right:#{map-get($sizes,'m')};
-  }
-}
