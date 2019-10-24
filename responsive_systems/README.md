@@ -18,7 +18,7 @@ The breakpoints in these systems will be represented as such:
 
 This means our breakpoints will represent a mobile first approach to their use. When dealing with any breakpoint classes, you will always think in terms of mobile first, and then move forward adding breakpoint changes as necessary. Although you might have an urge to think of these sizes in terms of devices, technically these systems are device agnostic, and simply try to fit into whatever screen size is given to them.
 
-```
+```html
 <div class="col-xs-12 col-md-6"></div>
 ```
 
