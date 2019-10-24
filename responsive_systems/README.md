@@ -1,54 +1,23 @@
-# Responsive Grid
+# Responsive Systems
 
-### .row
+Creating responsive systems is useful for prototypers or people who make new websites often. They allow a designer or developer to add quick responsive layouts at the beginning of a project.
 
-Use as direct parent of .col elements
+## Breakpoint Systems
 
-### .row.gap
+All these systems are built to use a breakpoint system involving simple keys of: xs, sm, md, lg, and xl. With these breakpoints a design can have simple layout responsiveness baked into it from the beginning.
 
-Use to add space between columns
+## Flex System
 
-### .col
+The flex system gives a simple way of providing rudimentary flex box layout to designs. Things like widths and heights will still need to be given directly, but many common layout problems can be solved with just this system.
 
-Use a column element for each space in the grid
+## Flex Grid System
 
-### -xs, -sm, -md, -lg, -xl
+A flex grid can still be useful to carry around as a backup for a proper CSS grid system. Some older browsers and devices still don't recognize grid, subgrid, or grid gap.
 
-This is a mobile first grid, so think in -xs first, then respond up
+## Grid Grid System
 
-### -1 through -12
+This is a proper CSS grid design system. It uses a 12 column grid by default.
 
-Set how many column sizes this element will cross
+## Utilities System
 
-
-
-### [.grid]
-
-Use to fix row gap in flex grid only
-
-
----
-
-```
-<div class="row gap">
-	<div class="col-xs-12 col-md-6"></div>
-	<div class="col-xs-12 col-md-6"></div>
-</div>
-```
-
-```
-<div class="row">
-	<div class="col-xs-12 col-md-4"></div>
-	<div class="col-xs-12 col-md-4"></div>
-	<div class="col-xs-12 col-md-4"></div>
-</div>
-```
-
-```
-<div class="row gap">
-	<div class="col-xs-6 col-md-3"></div>
-	<div class="col-xs-6 col-md-3"></div>
-	<div class="col-xs-6 col-md-3"></div>
-	<div class="col-xs-6 col-md-3"></div>
-</div>
-```
+The utilities expand on the initial systems concept and vastly increase the amount of classes available to a designer, using a simple naming convention to allow lots of design variances.
