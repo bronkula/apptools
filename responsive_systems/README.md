@@ -9,6 +9,7 @@ All these systems are built to use a breakpoint system involving simple keys. Wi
 The breakpoints in these systems will be represented as such:
 
 | Key | Value |
+| --- | --- |
 | xs | 0 |
 | sm | 320px |
 | md | 600px |
