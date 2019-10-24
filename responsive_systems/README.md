@@ -4,7 +4,16 @@ Creating responsive systems is useful for prototypers or people who make new web
 
 ## Breakpoint Systems
 
-All these systems are built to use a breakpoint system involving simple keys of: xs, sm, md, lg, and xl. With these breakpoints a design can have simple layout responsiveness baked into it from the beginning.
+All these systems are built to use a breakpoint system involving simple keys. With these breakpoints a design can have simple layout responsiveness baked into it from the beginning.
+
+The breakpoints in these systems will be represented as such:
+
+| Key | Value |
+| xs | 0 |
+| sm | 320px |
+| md | 600px |
+| lg | 960px |
+| xs | 1200px |
 
 ## Flex System
 
