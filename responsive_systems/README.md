@@ -22,7 +22,7 @@ This means our breakpoints will represent a mobile first approach to their use. 
 <div class="col-xs-12 col-md-6"></div>
 ```
 
-In this example we have set an extra small breakpoint to a 100% column, and a medium breakpoint to a 50% column. Skip breakpoints where no changes are made, and only add breakpoints when your layout changes.
+In this example we have set an extra small breakpoint to a 100% column, and a medium breakpoint to a 50% column. Skip breakpoints where no changes are made, and only add breakpoints when your layout changes. Again, only add classes for breakpoints where your layout should change.
 
 ## Flex System
 
