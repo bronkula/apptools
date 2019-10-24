@@ -1,0 +1,41 @@
+
+.grid {
+  overflow:hidden;
+}
+.row {
+
+  display:flex;
+  flex-wrap:wrap;
+
+  &.gap {
+
+    --gap-size:#{map-get($sizes,'s')};
+    margin-top:calc(-2 * var(--gap-size));
+    margin-left:calc(-1 * var(--gap-size));
+    margin-right:calc(-1 * var(--gap-size));
+
+    &>[class*='col-'] {
+
+      margin-top:calc(2 * var(--gap-size));
+      padding-left:var(--gap-size);
+      padding-right:var(--gap-size);
+
+    }
+  }
+}
+
+
+@mixin makeFlexGrid($breakpoint:'',$columns:12) {
+  @for $i from 1 through $columns {
+    .col#{$breakpoint}-#{$i} {
+      flex: 0 0 calc(#{$i} / #{$columns} * 100%);
+    }
+    .offset#{$breakpoint}-#{$i} {
+      margin-left: calc(#{$i} / #{$columns} * 100%);
+    }
+  }
+  
+  @each $i, $v in $sizes {
+    .gap.gap#{$breakpoint}-#{$i} { --gap-size:#{$v}; }
+  }
+}

@@ -1,0 +1,23 @@
+
+@mixin makeFlexUtility($breakpoint:'') {
+	.flex#{$breakpoint} {
+    &-parent { display: flex; }
+    &-off { display: initial; }
+    &-wrap { flex-wrap: wrap; }
+    &-nowrap { flex-wrap: nowrap; }
+    &-column { flex-direction: column; }
+    &-row { flex-direction: row; }
+    &-align-center { align-items: center; }
+    &-align-start { align-items: flex-start; }
+    &-align-end { align-items: flex-end; }
+    &-justify-center { justify-content: center; }
+    &-justify-start { justify-content: flex-start; }
+    &-justify-end { justify-content: flex-end; }
+
+    &-stretch { flex: 1; }
+    &-nostretch { flex: none; }
+	}
+	@for $i from 1 through 10 {
+    .order-#{$breakpoint}-#{$i} { order:$i; }
+  }
+}

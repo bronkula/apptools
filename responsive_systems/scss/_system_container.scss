@@ -1,0 +1,31 @@
+// Site Container sets a maximum width and auto margins
+// This centers the element on large screens
+.site-container {
+
+  margin-right:auto;
+  margin-left:auto;
+
+  @media (min-width:map-get($breakpoints,'xl')) {
+    max-width:map-get($breakpoints,'xl');
+  }
+  @media (max-width:map-get($breakpoints,'xl')) {
+    max-width:map-get($breakpoints,'lg');
+  }
+
+}
+
+// Container is a more standard use
+// Sets padding on the element if on smaller screens
+// Sets overflow hidden to prevent goofs
+.container {
+
+  @extend .site-container;
+
+  overflow:hidden;
+
+  @media (max-width:map-get($breakpoints,'lg')) {
+    padding-left:#{map-get($sizes,'m')};
+    padding-right:#{map-get($sizes,'m')};
+  }
+
+}
