@@ -18,7 +18,7 @@ $sizes: (
 );
 
 
-$positions: (
+$placements: (
   t:top,
   r:right,
   b:bottom,
@@ -36,7 +36,7 @@ $display:(
   i:inline,
   ib:inline-block,
   f:flex,
-  fi:inline-flex,
+  if:inline-flex,
   n:none
 );
 

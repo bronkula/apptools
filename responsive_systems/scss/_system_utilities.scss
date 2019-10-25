@@ -2,7 +2,7 @@
 @mixin makeUtilities($breakpoint:'') {
   @each $box-i,$box-v in $boxes {
     @each $size-i,$size-v in $sizes {
-      @each $pos-i,$pos-v in $positions {
+      @each $pos-i,$pos-v in $placements {
         .#{$box-i}#{$breakpoint}-#{$pos-i}#{$size-i} {
           #{$box-v}-#{$pos-v}:$size-v;
         }

@@ -136,7 +136,7 @@
 
 .display-f { display: flex; }
 
-.display-fi { display: inline-flex; }
+.display-if { display: inline-flex; }
 
 .display-n { display: none; }
 
@@ -217,7 +217,7 @@
   .display-xs-i { display: inline; }
   .display-xs-ib { display: inline-block; }
   .display-xs-f { display: flex; }
-  .display-xs-fi { display: inline-flex; }
+  .display-xs-if { display: inline-flex; }
   .display-xs-n { display: none; }
   .position-xs-s { position: static; }
   .position-xs-r { position: relative; }
@@ -293,7 +293,7 @@
   .display-sm-i { display: inline; }
   .display-sm-ib { display: inline-block; }
   .display-sm-f { display: flex; }
-  .display-sm-fi { display: inline-flex; }
+  .display-sm-if { display: inline-flex; }
   .display-sm-n { display: none; }
   .position-sm-s { position: static; }
   .position-sm-r { position: relative; }
@@ -369,7 +369,7 @@
   .display-md-i { display: inline; }
   .display-md-ib { display: inline-block; }
   .display-md-f { display: flex; }
-  .display-md-fi { display: inline-flex; }
+  .display-md-if { display: inline-flex; }
   .display-md-n { display: none; }
   .position-md-s { position: static; }
   .position-md-r { position: relative; }
@@ -445,7 +445,7 @@
   .display-lg-i { display: inline; }
   .display-lg-ib { display: inline-block; }
   .display-lg-f { display: flex; }
-  .display-lg-fi { display: inline-flex; }
+  .display-lg-if { display: inline-flex; }
   .display-lg-n { display: none; }
   .position-lg-s { position: static; }
   .position-lg-r { position: relative; }
@@ -521,7 +521,7 @@
   .display-xl-i { display: inline; }
   .display-xl-ib { display: inline-block; }
   .display-xl-f { display: flex; }
-  .display-xl-fi { display: inline-flex; }
+  .display-xl-if { display: inline-flex; }
   .display-xl-n { display: none; }
   .position-xl-s { position: static; }
   .position-xl-r { position: relative; }
