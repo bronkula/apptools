@@ -5,20 +5,9 @@ Created by Hamilton Cline hamdiggy@gmail.com
 
 
 // 
-const templater=f=>a=>(Array.isArray(a)?a:[a]).reduce((r,o,i,a)=>r+f(o,i,a),'');
-
-// This version lets you specify a selector for output
-// const templater = (tf,istr='') => {
-// 	const t = (r,o,i,a)=>r+tf(o,i,a);
-// 	return (ts=false) => oa => {
-// 		const o = (Array.isArray(oa)?oa:[oa]).reduce(t,istr);
-// 		if(ts) document.querySelectorAll(ts).forEach(e=>e.innerHTML=o);
-// 		return o;
-// 	}
-// }
-// This version does not check for an array
-// const templater=tf=>oa=>oa.reduce((r,o,i,a)=>r+tf(o,i,a),'');
-
+const templater = f => a =>
+	(Array.isArray(a)?a:[a])
+	.reduce((r,o,i,a)=>r+f(o,i,a),'');
 
 
 // These are really just examples of how to do some basic querying
