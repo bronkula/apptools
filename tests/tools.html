@@ -25,13 +25,18 @@
 			<li>A light green rounded rectangle</li>
 
 			<li>A rotated purple square with a scaled and further rotated magenta square</li>
-
+		</ul>
+		<ul>
 			<li>A line segment</li>
 			<li>A multi segment line</li>
 			<li>Half an orange donut</li>
 			<li>A sky blue donut</li>
+		</ul>
+		<ul>
 			<li>A single line of text</li>
 			<li>A multi line of text</li>
+		</ul>
+		<ul>
 			<li>A lined grid</li>
 			<li>A graph with dotted lines</li>
 		</ul>
@@ -67,13 +72,9 @@
 
 			drawGrid(ctx,10,150,40,20,3,4,{strokeStyle:"black",lineWidth:1});
 
-			// let tx = toward(70,130);
-			// let ty = toward(180,150);
 			drawLineGraph(ctx,70,150,60,30,
 				lineFromValues(70,150,60,30,0,20,[0,15,4,6,17,12,19])
-				,5,4,2);
-			// ctx,x,y,w,h,line,row,col,r
-
+				,4,3,2);
 
 			(new pathtransform(ctx))
 				.translate(200,10)
