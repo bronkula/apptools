@@ -97,14 +97,13 @@ example:
 mapRange(5,0,10,0,360) > 180
 mapN(0,360)(0,10)(2) > 72
 */
-const mapN = (min,max) => {
+const mapRange = (min,max) => {
    const t = toward(min,max);
    return (min,max) => {
       const p = partof(min,max);
       return n => t(p(n));
    }
 }
-const mapRange = (n,min1,max1,min2,max2) => toward(min2,max2)(partof(min1,max1)(n));
 
 /* Round number n to nearest number x */
 const roundTo = (n,x) => {

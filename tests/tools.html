@@ -23,6 +23,9 @@
 			<li>A red polygon</li>
 			<li>A pink triangle</li>
 			<li>A light green rounded rectangle</li>
+
+			<li>A rotated purple square with a scaled and further rotated magenta square</li>
+
 			<li>A line segment</li>
 			<li>A multi segment line</li>
 			<li>Half an orange donut</li>
@@ -64,15 +67,11 @@
 
 			drawGrid(ctx,10,150,40,20,3,4,{strokeStyle:"black",lineWidth:1});
 
-			let tx = toward(70,130);
-			let ty = toward(180,150);
-			drawLineGraph(ctx,70,150,60,30,[
-				{x:tx(0),y:ty(0)},
-				{x:tx(0.25),y:ty(0.7)},
-				{x:tx(0.5),y:ty(0.3)},
-				{x:tx(0.75),y:ty(0.4)},
-				{x:tx(1),y:ty(0.9)}
-			],5,4,4);
+			// let tx = toward(70,130);
+			// let ty = toward(180,150);
+			drawLineGraph(ctx,70,150,60,30,
+				lineFromValues(70,150,60,30,0,20,[0,15,4,6,17,12,19])
+				,5,4,2);
 			// ctx,x,y,w,h,line,row,col,r
 
 

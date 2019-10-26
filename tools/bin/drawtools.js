@@ -7,9 +7,8 @@ const pathmaker = {
     },
     points(ctx, pts) {
         if (pts.length < 2) return false;
-        console.log(pts);
         ctx.moveTo(pts[0].x, pts[0].y);
-        for (let o of pts) ctx.lineTo(o.x, o.y);
+        for (let {x: x, y: y} of pts) ctx.lineTo(x, y);
     },
     polygon(ctx, x, y, r, a, s) {
         let eachangle = 360 / s;
@@ -75,11 +74,10 @@ const pathmaker = {
     }
 };
 
-const makePath = (ctx, paths) => {
+const makePath = (ctx, paths, close = true) => {
     pathmaker.start(ctx);
-    console.log(paths);
     for (let o of paths) pathmaker[o.splice(0, 1, ctx)[0]].apply(null, o);
-    pathmaker.end(ctx);
+    if (close) pathmaker.end(ctx);
 };
 
 const strokeIt = (ctx, options) => {
@@ -98,8 +96,8 @@ const drawCircle = (ctx, x, y, r, options) => {
     strokeIt(ctx, options);
 };
 
-const drawRect = (ctx, x, y, w, h, options) => {
-    makePath(ctx, [ [ "rect", x, y, w, h ] ]);
+const drawRect = (ctx, x, y, w, h, options, c = false) => {
+    makePath(ctx, [ [ "rect", c ? x - w * .5 : x, c ? y - h * .5 : y, w, h ] ]);
     fillIt(ctx, options);
     strokeIt(ctx, options);
 };
@@ -128,34 +126,22 @@ const drawSegment = (ctx, x1, y1, x2, y2, options) => {
     strokeIt(ctx, options);
 };
 
-const drawLine = (ctx, line, options) => {
-    makePath(ctx, [ [ "points", line ] ]);
+const drawLine = (ctx, line, options, close = false) => {
+    makePath(ctx, [ [ "points", line ] ], close);
     strokeIt(ctx, options);
     fillIt(ctx, options);
 };
 
-const drawableImage = url => {
-    let loaded = false;
-    let i = new Image();
-    i.onload = (() => loaded = true);
-    i.src = url;
-    const drawI = function(ctx, x, y, w, h) {
-        if (!loaded) setTimeout(drawI, 10); else {
-            ctx.drawImage(i, x, y, w, h);
-        }
-    };
-    return drawI;
+const drawText = (ctx, x, y, text, options) => {
+    ctx = Object.assign(ctx, options);
+    if (options.lineWidth) ctx.strokeText(text, x, y);
+    if (options.fillStyle) ctx.fillText(text, x, y);
 };
 
-const drawText = (ctx, text, x, y, options) => {
-    if (options.lineWidth) Object.assign(ctx, options).strokeText(text, x, y);
-    if (options.fillStyle) Object.assign(ctx, options).fillText(text, x, y);
-};
-
-const drawParagraph = (ctx, text, x, y, lineHeight, options) => {
+const drawParagraph = (ctx, x, y, text, lineHeight, options) => {
     var ps = text.split(/\n/);
-    for (var i in ps) {
-        drawText(ctx, ps[i], x, y + lineHeight * i, options);
+    for (let i in ps) {
+        drawText(ctx, x, y + lineHeight * i, ps[i], options);
     }
 };
 
@@ -165,13 +151,6 @@ const drawLabel = (ctx, text, x, y, options) => {
     ctx.strokeText(text, x, y);
     ctx.globalCompositeOperation = "source-over";
     ctx.fillText(text, x, y);
-};
-
-const drawPulse = (ctx, x, y, outerRadius, innerRadius, options) => {
-    drawCircle(ctx, x, y, outerRadius, options);
-    ctx.globalCompositeOperation = "destination-out";
-    drawCircle(ctx, x, y, innerRadius, options);
-    ctx.globalCompositeOperation = "source-over";
 };
 
 const drawPie = (ctx, x, y, outerRadius, innerRadius, startangle, endangle, additive, options) => {
@@ -188,24 +167,22 @@ const drawRoundRect = (ctx, x, y, w, h, r, options) => {
 
 const drawGradient = (ctx, direction, stops, position) => {
     let grd = ctx.createLinearGradient.apply(ctx, direction);
-    for (let i in stops) {
-        grd.addColorStop.apply(grd, stops[i]);
-    }
+    for (let o of stops) grd.addColorStop.apply(grd, o);
     ctx.fillStyle = grd;
     ctx.fillRect.apply(ctx, position);
 };
 
 const drawPoints = (ctx, line, radius, options) => {
     pathmaker.start(ctx);
-    for (let i in line) {
-        pathmaker.circle(ctx, line[i].x, line[i].y, radius);
+    for (let {x: x, y: y} of line) {
+        ctx.moveTo(x, y);
+        pathmaker.circle(ctx, x, y, radius);
     }
-    pathmaker.end(ctx);
     strokeIt(ctx, options);
     fillIt(ctx, options);
 };
 
-const drawGrid = (ctx, rows, cols, x, y, w, h, options) => {
+const drawGrid = (ctx, x, y, w, h, rows, cols, options) => {
     pathmaker.start(ctx);
     for (let i = 0; i <= rows; i++) {
         pathmaker.points(ctx, [ {
@@ -227,28 +204,32 @@ const drawGrid = (ctx, rows, cols, x, y, w, h, options) => {
     }
     pathmaker.end(ctx);
     strokeIt(ctx, options);
-    fillIt(ctx, options);
 };
 
-const drawLineGraph = (ctx, line, x, y, w, h) => {
-    drawGrid(ctx, 3, 5, x, y, w, h, {
-        strokeStyle: "#ddd",
-        lineWidth: 2,
-        lineJoin: "round",
-        lineCap: "round"
-    });
-    drawLine(ctx, line, {
-        strokeStyle: "black",
-        lineWidth: 6,
-        lineJoin: "round",
-        lineCap: "round"
-    });
-    drawPoints(ctx, line, 6, {
-        fillStyle: "white",
-        strokeStyle: "black",
-        lineWidth: 4
-    });
+const drawLineGraph = (ctx, x, y, w, h, line, row, col, r, options = [ {
+    strokeStyle: "#ddd",
+    lineWidth: 2,
+    lineJoin: "round",
+    lineCap: "round"
+}, {
+    strokeStyle: "black",
+    lineWidth: 2,
+    lineJoin: "round",
+    lineCap: "round"
+}, {
+    fillStyle: "white",
+    strokeStyle: "black",
+    lineWidth: 2
+} ]) => {
+    drawGrid(ctx, x, y, w, h, row, col, options[0]);
+    drawLine(ctx, line, options[1]);
+    drawPoints(ctx, line, r, options[2]);
 };
+
+const lineFromValues = (x, y, w, h, min, max, v) => v.map((o, i) => ({
+    x: toward(x, x + w)(i / (v.length - 1)),
+    y: mapRange(y + h, y)(min, max)(o)
+}));
 
 const rotateAndDo = (ctx, angleInRad, positionX, positionY, callback) => {
     ctx.translate(positionX, positionY);
@@ -275,16 +256,86 @@ const translateScale = (ctx, x, y, sx, sy, fn) => {
     ctx.restore();
 };
 
-const drawImageTSR = (ctx, img, x, y, w, h, sx, sy, r) => {
-    translateScaleRotate(ctx, x, y, sx, sy, r, function() {
-        ctx.drawImage(img, -w * .5, -h * .5, w, h);
-    });
+const drawableImage = url => {
+    let loaded = false;
+    let i = new Image();
+    i.onload = (() => loaded = true);
+    i.src = url;
+    const drawI = function(ctx, x, y, w, h) {
+        if (!loaded) setTimeout(drawI, 10); else ctx.drawImage(i, x, y, w, h);
+    };
+    return drawI;
 };
 
 const storeImage = (cvs, w, h) => {
     let i = new Image();
     i.src = cvs.toDataURL();
     return i;
+};
+
+const drawImageTSR = (ctx, img, x, y, w, h, sx, sy, r) => {
+    translateScaleRotate(ctx, x, y, sx, sy, r, function() {
+        ctx.drawImage(img, -w * .5, -h * .5, w, h);
+    });
+};
+
+const pathtransform = function(ctx) {
+    this.ctx = ctx;
+    ctx.save();
+};
+
+pathtransform.prototype.scale = function(x, y) {
+    this.s = {
+        x: x,
+        y: y === undefined ? x : y
+    };
+    this.ctx.scale(this.s.x, this.s.y);
+    return this;
+};
+
+pathtransform.prototype.unscale = function() {
+    this.ctx.scale(-this.s.x, -this.s.y);
+    return this;
+};
+
+pathtransform.prototype.translate = function(x, y) {
+    this.t = {
+        x: x,
+        y: y
+    };
+    this.ctx.translate(this.t.x, this.t.y);
+    return this;
+};
+
+pathtransform.prototype.untranslate = function() {
+    this.ctx.translate(-this.t.x, -this.t.y);
+    return this;
+};
+
+pathtransform.prototype.rotate = function(r) {
+    this.r = r;
+    this.ctx.rotate(this.r);
+    return this;
+};
+
+pathtransform.prototype.unrotate = function() {
+    this.ctx.rotate(-this.r);
+    return this;
+};
+
+pathtransform.prototype.do = function(fn, ...args) {
+    fn(this.ctx, ...args);
+    return this;
+};
+
+pathtransform.prototype.restore = function() {
+    this.ctx.restore();
+    return this;
+};
+
+pathtransform.prototype.save = function() {
+    this.ctx.save();
+    return this;
 };
 
 const RGB = function(r, g, b) {
@@ -610,15 +661,13 @@ const partofCircle = partof(0, 360);
 
 const toward = (min, max) => n => n * (max - min) + min;
 
-const mapN = (min, max) => {
+const mapRange = (min, max) => {
     const t = toward(min, max);
     return (min, max) => {
         const p = partof(min, max);
         return n => t(p(n));
     };
 };
-
-const mapRange = (n, min1, max1, min2, max2) => toward(min2, max2)(partof(min1, max1)(n));
 
 const roundTo = (n, x) => {
     if (x < 1) {

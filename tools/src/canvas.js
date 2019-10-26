@@ -115,8 +115,8 @@ const drawCircle = (ctx,x,y,r,options) => {
    strokeIt(ctx,options);
 }
 /* Draw a rectangle: x,y, width, height */
-const drawRect = (ctx,x,y,w,h,options) => {
-   makePath(ctx,[["rect",x,y,w,h]]);
+const drawRect = (ctx,x,y,w,h,options,c=false) => {
+   makePath(ctx,[["rect",c?x-w*0.5:x,c?y-h*0.5:y,w,h]]);
    fillIt(ctx,options);
    strokeIt(ctx,options);
 }
@@ -253,6 +253,14 @@ const drawLineGraph = (ctx,x,y,w,h,line,row,col,r,options=[
    drawLine(ctx,line,options[1]);
    drawPoints(ctx,line,r,options[2]);
 }
+
+
+/* Create a line from a square position, and an array of values mapped to a min and max */
+const lineFromValues = (x,y,w,h,min,max,v) =>
+   v.map((o,i)=>({
+      x:toward(x,x+w)(i/(v.length-1)),
+      y:mapRange(y+h,y)(min,max)(o)}));
+
 
 
 const rotateAndDo = ( ctx, angleInRad , positionX, positionY, callback) => {
