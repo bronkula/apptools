@@ -23,8 +23,30 @@
 			let ctx = cvs[0].getContext("2d");
 
 			console.log(cvs,ctx)
-			drawCircle(ctx,10,10,5,{fillStyle:'blue'})
-		})()
+			drawCircle(ctx,20,20,10,{fillStyle:'blue'});
+			drawRect(ctx,40,10,20,20,{fillStyle:'green'});
+			drawPolygon(ctx,80,20,11,0,5,{fillStyle:'red'});
+			drawPolygon(ctx,110,20,11,0,3,{fillStyle:'pink'});
+			drawRoundRect(ctx,130,10,20,20,5,{fillStyle:'lightgreen'});
+			drawSegment(ctx,10,50,30,70,{lineWidth:2,strokeStyle:"black"});
+
+			drawLine(ctx,[
+				{x:40,y:70},
+				{x:40,y:50},
+				{x:60,y:70},
+				{x:60,y:50}
+			],{lineWidth:2,strokeStyle:"black"});
+
+			drawPie(ctx,80,60,10,5,0,Math.PI,0,{fillStyle:"orange"});
+			drawPie(ctx,110,60,10,5,0,2*Math.PI,0,{fillStyle:"skyblue"});
+
+			drawText(ctx,10,100,"Test Line",{fillStyle:"black"});
+			drawParagraph(ctx,10,130,
+				`Test\nParagraph`
+				,12,{fillStyle:"black"});
+
+			drawGrid(ctx,10,150,40,20,3,4,{strokeStyle:"black",lineWidth:1});
+		})();
 
 		</script>
 	</section>

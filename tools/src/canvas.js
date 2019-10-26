@@ -37,30 +37,24 @@ globalCompositeOperation:"source-over|destination-out"
 const pathmaker = {
    start(ctx){ ctx.beginPath(); },
    end(ctx){ ctx.closePath(); },
-   point(ctx,pts){
+   points(ctx,pts){
       if(pts.length<2) return false;
       ctx.moveTo(pts[0].x,pts[0].y);
-      for(let i in pts) {
-         ctx.lineTo(pts[i].x,pts[i].y);
-      }
+      for(let {x,y} of pts) ctx.lineTo(x,y);
    },
    polygon(ctx,x,y,r,a,s){
-     let eachangle = 360/s;
-     let line = [];
-     for(let i=0;i<=s;i++) {
-       line.push(getSatelliteXY({x,y},a+(eachangle*i),r));
-     }
-     pathmaker.points(ctx,line);
+      let eachangle = 360/s;
+      let line = [];
+      for(let i=0;i<=s;i++) {
+         line.push(getSatelliteXY(x,y,degreesToRadians(a+(eachangle*i)),r));
+      }
+      pathmaker.points(ctx,line);
    },
-   circle(ctx,x,y,r,a1,a2,a3){
-      pathmaker.arc(ctx,x,y,r,
-        a1!==undefined?a1:0,
-        a2!==undefined?a2:2*Math.PI,
-        a3!==undefined?a3:undefined);
+   circle(ctx,x,y,r,a1=0,a2=2*Math.PI,a3){
+      pathmaker.arc(ctx,x,y,r,a1,a2,a3);
    },
    arc(ctx,x,y,r,a1,a2,a3){
-      ctx.arc(x,y,r,a1,a2,a3);
-   },
+      ctx.arc(x,y,r,a1,a2,a3); },
    rect(ctx,x,y,w,h){
       pathmaker.points(ctx,[
          {x:x,y:y},
@@ -92,10 +86,10 @@ const pathmaker = {
       ctx.quadraticCurveTo(x, y, x + r.tl, y);
    }
 }
-const makePath = (ctx,paths) => {
+const makePath = (ctx,paths,close=true) => {
    pathmaker.start(ctx);
    for(let o of paths) pathmaker[o.splice(0,1,ctx)[0]].apply(null,o);
-   pathmaker.end(ctx);
+   if(close) pathmaker.end(ctx);
 }
 
 
@@ -127,19 +121,19 @@ const drawRect = (ctx,x,y,w,h,options) => {
    strokeIt(ctx,options);
 }
 /* Draw a Polygon: x,y, radius, start angle, sides */
-const drawPolygon = drawShape = (ctx,x,y,r,a,s,options) => {
+const drawPolygon = (ctx,x,y,r,a,s,options) => {
    makePath(ctx,[["polygon",x,y,r,a,s]]);
    fillIt(ctx,options);
    strokeIt(ctx,options);
 }
 /* Draw a rectangle with a random color, using the rand helper function */
 const drawRandomRect = (ctx,x,y,w,h,options) => {
-   options.fillStyle = "rgba("+
-      rand(120,250)+","+
-      rand(120,250)+","+
-      rand(120,250)+","+
-      (options&&options.opacity!==undefined?options.opacity:0.7)+
-      ")";
+   options.fillStyle = `rgba(
+      ${rand(120,250)},
+      ${rand(120,250)},
+      ${rand(120,250)},
+      ${Object.assign({opacity:0.7},options).opacity}
+      )`;
    drawRect(ctx,x,y,w,h,options);
 }
 /* Draw one line segment */
@@ -151,8 +145,8 @@ const drawSegment = (ctx,x1,y1,x2,y2,options) => {
    strokeIt(ctx,options);
 }
 /* Draw an array of line segments, allowing smooth connections */
-const drawLine = (ctx,line,options) => {
-   makePath(ctx,[["points",line]]);
+const drawLine = (ctx,line,options,close=false) => {
+   makePath(ctx,[["points",line]],close);
    strokeIt(ctx,options);
    fillIt(ctx,options);
 }
@@ -164,33 +158,31 @@ var drawMyImage = drawableImage("imageurl.jpg");
 drawMyImage(ctx,10,10,50,50);
 */
 const drawableImage = url => {
-  let loaded = false;
-  let i = new Image();
-  i.onload = ()=> loaded=true;
-  i.src = url;
+   let loaded = false;
+   let i = new Image();
+   i.onload = ()=> loaded=true;
+   i.src = url;
 
-  const drawI = function(ctx,x,y,w,h){
-//     console.log(i)
-    if(!loaded) setTimeout(drawI,10);
-    else {
-//       console.log(arguments)
-      ctx.drawImage(i,x,y,w,h);
-    }
-  }
-  return drawI;
+   const drawI = function(ctx,x,y,w,h){
+      //     console.log(i)
+      if(!loaded) setTimeout(drawI,10);
+      else ctx.drawImage(i,x,y,w,h);
+   }
+   return drawI;
 }
 
 /* Draw text */
-const drawText = (ctx,text,x,y,options) => {
-   if(options.lineWidth) Object.assign(ctx,options).strokeText(text,x,y);
-   if(options.fillStyle) Object.assign(ctx,options).fillText(text,x,y);
+const drawText = (ctx,x,y,text,options) => {
+   ctx = Object.assign(ctx,options);
+   if(options.lineWidth) ctx.strokeText(text,x,y);
+   if(options.fillStyle) ctx.fillText(text,x,y);
 }
 /* Draw text, replacing new lines characters with visible line breaks */
-const drawParagraph = (ctx,text,x,y,lineHeight,options) => {
-  var ps = text.split(/\n/);
-  for(var i in ps) {
-    drawText(ctx,ps[i],x,y+(lineHeight*i),options);
-  }
+const drawParagraph = (ctx,x,y,text,lineHeight,options) => {
+   var ps = text.split(/\n/);
+   for(let i in ps) {
+      drawText(ctx,x,y+(lineHeight*i),ps[i],options);
+   }
 }
 /* Draw text with a cut out stroke */
 const drawLabel = (ctx,text,x,y,options) => {
@@ -201,14 +193,6 @@ const drawLabel = (ctx,text,x,y,options) => {
    ctx.fillText(text,x,y);
 }
 
-/* Draw a circle with a cutout circle */
-const drawPulse = (ctx,x,y,outerRadius,innerRadius,options) => {
-   drawCircle(ctx,x,y,outerRadius,options);
-   ctx.globalCompositeOperation = "destination-out";
-   drawCircle(ctx,x,y,innerRadius,options);
-   ctx.globalCompositeOperation = "source-over";
-}
-
 /* Draw a pie shape or donut pie shape */
 const drawPie = (ctx,x,y,outerRadius,innerRadius,startangle,endangle,additive,options) => {
    makePath(ctx,[["pie",x,y,outerRadius,innerRadius,startangle,endangle,additive]]);
@@ -216,9 +200,8 @@ const drawPie = (ctx,x,y,outerRadius,innerRadius,startangle,endangle,additive,op
    strokeIt(ctx,options);
 }
 
-// http://stackoverflow.com/questions/1255512/how-to-draw-a-rounded-rectangle-on-html-canvas
-const drawRoundRect = (ctx, x, y, w, h, r, options) => {
-   makePath(ctx,[["roundRect",x, y, w, h, r]])
+const drawRoundRect = (ctx,x,y,w,h,r,options) => {
+   makePath(ctx,[["roundRect",x,y,w,h,r]]);
    strokeIt(ctx,options);
    fillIt(ctx,options);
 }
@@ -229,12 +212,10 @@ stops: [[percent,color],[percent,color]]
 position: [x,y,w,h]
 */
 const drawGradient = (ctx,direction,stops,position) => {
-  let grd=ctx.createLinearGradient.apply(ctx,direction);
-  for(let i in stops) {
-    grd.addColorStop.apply(grd,stops[i]);
-  }
-  ctx.fillStyle=grd;
-  ctx.fillRect.apply(ctx,position);
+   let grd=ctx.createLinearGradient.apply(ctx,direction);
+   for(let o of stops) grd.addColorStop.apply(grd,o);
+   ctx.fillStyle=grd;
+   ctx.fillRect.apply(ctx,position);
 }
 
 
@@ -242,15 +223,13 @@ const drawGradient = (ctx,direction,stops,position) => {
 /* draw a series of circle at x y coordinates */
 const drawPoints = (ctx,line,radius,options) => {
    pathmaker.start(ctx);
-   for(let i in line) {
-      pathmaker.circle(ctx,line[i].x,line[i].y,radius);
-   }
+   for(let {x,y} of line) pathmaker.circle(ctx,x,y,radius);
    pathmaker.end(ctx);
    strokeIt(ctx,options);
    fillIt(ctx,options);
 }
 /* draw a series of lines vertically and horizontally */
-const drawGrid = (ctx,rows,cols,x,y,w,h,options) => {
+const drawGrid = (ctx,x,y,w,h,rows,cols,options) => {
    pathmaker.start(ctx);
    // Draw the rows
    for(let i=0;i<=rows;i++) {
@@ -268,31 +247,31 @@ const drawGrid = (ctx,rows,cols,x,y,w,h,options) => {
    }
    pathmaker.end(ctx);
    strokeIt(ctx,options);
-   fillIt(ctx,options);
 }
 /* Draw a grid, a line, and a series of points */
-const drawLineGraph = (ctx,line,x,y,w,h) => {
-   drawGrid(ctx,3,5,x,y,w,h,{
-      strokeStyle:"#ddd",
-      lineWidth:2,
-      lineJoin:"round",
-      lineCap:"round"
-   })
-   drawLine(ctx,line,{
-      strokeStyle:"black",
-      lineWidth:6,
-      lineJoin:"round",
-      lineCap:"round"
-   });
-   drawPoints(ctx,line,6,{
-      fillStyle:"white",
-      strokeStyle:"black",
-      lineWidth:4
-   })
+const drawLineGraph = (ctx,x,y,w,h,line,r,c,options=[
+      {
+         strokeStyle:"#ddd",
+         lineWidth:2,
+         lineJoin:"round",
+         lineCap:"round"
+      },{
+         strokeStyle:"black",
+         lineWidth:6,
+         lineJoin:"round",
+         lineCap:"round"
+      },{
+         fillStyle:"white",
+         strokeStyle:"black",
+         lineWidth:4
+      }
+   ]) => {
+   drawGrid(ctx,x,y,w,h,r,c,options[0]);
+   drawLine(ctx,line,options[1]);
+   drawPoints(ctx,line,6,options[2]);
 }
 
 
-// http://stackoverflow.com/questions/3793397/html5-canvas-drawimage-with-at-an-angle
 const rotateAndDo = ( ctx, angleInRad , positionX, positionY, callback) => {
    ctx.translate( positionX, positionY );
    ctx.rotate( angleInRad );
@@ -322,6 +301,10 @@ const drawImageTSR = (ctx,img,x,y,w,h,sx,sy,r) => {
   translateScaleRotate(ctx,x,y,sx,sy,r,function(){
     ctx.drawImage(img,-w*0.5,-h*0.5,w,h);
   });
+}
+
+const transform = (ctx) => {
+
 }
 
 

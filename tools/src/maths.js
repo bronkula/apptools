@@ -126,7 +126,7 @@ const positionToward = (x1,y1,x2,y2,p) =>
 
 /* Expects an X and a Y, an angle, and a distance. Returns an XY object */
 const getSatelliteXY = (x,y,a,d) =>
-   xy(x+Math.cos(a)*d,y+Math.sin(a)*d);
+   ({x:x+Math.cos(a)*d,y:y+Math.sin(a)*d});
 
 /* check if two number ranges overlap */
 const overlap = (a1,a2,b1,b2) =>

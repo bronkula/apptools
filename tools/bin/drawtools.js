@@ -5,26 +5,22 @@ const pathmaker = {
     end(ctx) {
         ctx.closePath();
     },
-    point(ctx, pts) {
+    points(ctx, pts) {
         if (pts.length < 2) return false;
+        console.log(pts);
         ctx.moveTo(pts[0].x, pts[0].y);
-        for (let i in pts) {
-            ctx.lineTo(pts[i].x, pts[i].y);
-        }
+        for (let o of pts) ctx.lineTo(o.x, o.y);
     },
     polygon(ctx, x, y, r, a, s) {
         let eachangle = 360 / s;
         let line = [];
         for (let i = 0; i <= s; i++) {
-            line.push(getSatelliteXY({
-                x: x,
-                y: y
-            }, a + eachangle * i, r));
+            line.push(getSatelliteXY(x, y, degreesToRadians(a + eachangle * i), r));
         }
         pathmaker.points(ctx, line);
     },
-    circle(ctx, x, y, r, a1, a2, a3) {
-        pathmaker.arc(ctx, x, y, r, a1 !== undefined ? a1 : 0, a2 !== undefined ? a2 : 2 * Math.PI, a3 !== undefined ? a3 : undefined);
+    circle(ctx, x, y, r, a1 = 0, a2 = 2 * Math.PI, a3) {
+        pathmaker.arc(ctx, x, y, r, a1, a2, a3);
     },
     arc(ctx, x, y, r, a1, a2, a3) {
         ctx.arc(x, y, r, a1, a2, a3);
@@ -81,6 +77,7 @@ const pathmaker = {
 
 const makePath = (ctx, paths) => {
     pathmaker.start(ctx);
+    console.log(paths);
     for (let o of paths) pathmaker[o.splice(0, 1, ctx)[0]].apply(null, o);
     pathmaker.end(ctx);
 };
@@ -107,14 +104,16 @@ const drawRect = (ctx, x, y, w, h, options) => {
     strokeIt(ctx, options);
 };
 
-const drawPolygon = drawShape = ((ctx, x, y, r, a, s, options) => {
+const drawPolygon = (ctx, x, y, r, a, s, options) => {
     makePath(ctx, [ [ "polygon", x, y, r, a, s ] ]);
     fillIt(ctx, options);
     strokeIt(ctx, options);
-});
+};
 
 const drawRandomRect = (ctx, x, y, w, h, options) => {
-    options.fillStyle = "rgba(" + rand(120, 250) + "," + rand(120, 250) + "," + rand(120, 250) + "," + (options && options.opacity !== undefined ? options.opacity : .7) + ")";
+    options.fillStyle = `rgba(\n      ${rand(120, 250)},\n      ${rand(120, 250)},\n      ${rand(120, 250)},\n      ${Object.assign({
+        opacity: .7
+    }, options).opacity}\n      )`;
     drawRect(ctx, x, y, w, h, options);
 };
 
@@ -634,7 +633,10 @@ const roundTo = (n, x) => {
 
 const positionToward = (x1, y1, x2, y2, p) => xy(toward(x1, x2)(p), toward(y1, y2)(p));
 
-const getSatelliteXY = (x, y, a, d) => xy(x + Math.cos(a) * d, y + Math.sin(a) * d);
+const getSatelliteXY = (x, y, a, d) => ({
+    x: x + Math.cos(a) * d,
+    y: y + Math.sin(a) * d
+});
 
 const overlap = (a1, a2, b1, b2) => Math.min(a1, a2) <= Math.max(b1, b2) && Math.min(b1, b2) <= Math.max(a1, a2);
 
