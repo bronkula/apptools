@@ -151,26 +151,6 @@ const drawLine = (ctx,line,options,close=false) => {
    fillIt(ctx,options);
 }
 
-/* Create a curryed function which preloads an image to be placed onto canvas */
-/*
-example:
-var drawMyImage = drawableImage("imageurl.jpg");
-drawMyImage(ctx,10,10,50,50);
-*/
-const drawableImage = url => {
-   let loaded = false;
-   let i = new Image();
-   i.onload = ()=> loaded=true;
-   i.src = url;
-
-   const drawI = function(ctx,x,y,w,h){
-      //     console.log(i)
-      if(!loaded) setTimeout(drawI,10);
-      else ctx.drawImage(i,x,y,w,h);
-   }
-   return drawI;
-}
-
 /* Draw text */
 const drawText = (ctx,x,y,text,options) => {
    ctx = Object.assign(ctx,options);
@@ -223,8 +203,11 @@ const drawGradient = (ctx,direction,stops,position) => {
 /* draw a series of circle at x y coordinates */
 const drawPoints = (ctx,line,radius,options) => {
    pathmaker.start(ctx);
-   for(let {x,y} of line) pathmaker.circle(ctx,x,y,radius);
-   pathmaker.end(ctx);
+   for(let {x,y} of line) {
+      ctx.moveTo(x,y);
+      pathmaker.circle(ctx,x,y,radius);
+   }
+   // pathmaker.end(ctx);
    strokeIt(ctx,options);
    fillIt(ctx,options);
 }
@@ -249,7 +232,7 @@ const drawGrid = (ctx,x,y,w,h,rows,cols,options) => {
    strokeIt(ctx,options);
 }
 /* Draw a grid, a line, and a series of points */
-const drawLineGraph = (ctx,x,y,w,h,line,r,c,options=[
+const drawLineGraph = (ctx,x,y,w,h,line,row,col,r,options=[
       {
          strokeStyle:"#ddd",
          lineWidth:2,
@@ -257,18 +240,18 @@ const drawLineGraph = (ctx,x,y,w,h,line,r,c,options=[
          lineCap:"round"
       },{
          strokeStyle:"black",
-         lineWidth:6,
+         lineWidth:2,
          lineJoin:"round",
          lineCap:"round"
       },{
          fillStyle:"white",
          strokeStyle:"black",
-         lineWidth:4
+         lineWidth:2
       }
    ]) => {
-   drawGrid(ctx,x,y,w,h,r,c,options[0]);
+   drawGrid(ctx,x,y,w,h,row,col,options[0]);
    drawLine(ctx,line,options[1]);
-   drawPoints(ctx,line,6,options[2]);
+   drawPoints(ctx,line,r,options[2]);
 }
 
 
@@ -296,6 +279,35 @@ const translateScale = (ctx,x,y,sx,sy,fn) => {
    fn();
   ctx.restore();
 }
+
+
+
+
+/* Create a curryed function which preloads an image to be placed onto canvas */
+/*
+example:
+var drawMyImage = drawableImage("imageurl.jpg");
+drawMyImage(ctx,10,10,50,50);
+*/
+const drawableImage = url => {
+   let loaded = false;
+   let i = new Image();
+   i.onload = ()=> loaded=true;
+   i.src = url;
+
+   const drawI = function(ctx,x,y,w,h){
+      //     console.log(i)
+      if(!loaded) setTimeout(drawI,10);
+      else ctx.drawImage(i,x,y,w,h);
+   }
+   return drawI;
+}
+/* This function will store a canvas into an image */
+const storeImage = (cvs,w,h) => { 
+  let i = new Image();
+  i.src = cvs.toDataURL();
+  return i;
+}
 /* Translate, Scale, Rotate, then draw an image */
 const drawImageTSR = (ctx,img,x,y,w,h,sx,sy,r) => {
   translateScaleRotate(ctx,x,y,sx,sy,r,function(){
@@ -303,16 +315,51 @@ const drawImageTSR = (ctx,img,x,y,w,h,sx,sy,r) => {
   });
 }
 
-const transform = (ctx) => {
 
+
+
+
+
+const pathtransform = function(ctx){
+   this.ctx = ctx;
+   ctx.save();
 }
-
-
-
-
-/* This function will store a canvas into an image */
-const storeImage = (cvs,w,h) => { 
-  let i = new Image();
-  i.src = cvs.toDataURL();
-  return i;
+pathtransform.prototype.scale = function(x,y) {
+   this.s = {x:x,y:y===undefined?x:y};
+   this.ctx.scale(this.s.x,this.s.y);
+   return this;
+}
+pathtransform.prototype.unscale = function() {
+   this.ctx.scale(-this.s.x,-this.s.y);
+   return this;
+}
+pathtransform.prototype.translate = function(x,y) {
+   this.t = {x,y};
+   this.ctx.translate(this.t.x,this.t.y);
+   return this;
+}
+pathtransform.prototype.untranslate = function() {
+   this.ctx.translate(-this.t.x,-this.t.y);
+   return this;
+}
+pathtransform.prototype.rotate = function(r) {
+   this.r = r;
+   this.ctx.rotate(this.r);
+   return this;
+}
+pathtransform.prototype.unrotate = function() {
+   this.ctx.rotate(-this.r);
+   return this;
+}
+pathtransform.prototype.do = function(fn,...args) {
+   fn(this.ctx,...args);
+   return this;
+}
+pathtransform.prototype.restore = function() {
+   this.ctx.restore();
+   return this;
+}
+pathtransform.prototype.save = function() {
+   this.ctx.save();
+   return this;
 }

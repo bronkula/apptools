@@ -16,6 +16,23 @@
 	<section>
 		<h2>Canvas.js</h2>
 
+		<p>What should be seen here?</p>
+		<ul>
+			<li>A blue circle</li>
+			<li>A green square</li>
+			<li>A red polygon</li>
+			<li>A pink triangle</li>
+			<li>A light green rounded rectangle</li>
+			<li>A line segment</li>
+			<li>A multi segment line</li>
+			<li>Half an orange donut</li>
+			<li>A sky blue donut</li>
+			<li>A single line of text</li>
+			<li>A multi line of text</li>
+			<li>A lined grid</li>
+			<li>A graph with dotted lines</li>
+		</ul>
+
 		<canvas id="test1" width="400" height="300"></canvas>
 		<script>
 		(()=>{
@@ -46,6 +63,26 @@
 				,12,{fillStyle:"black"});
 
 			drawGrid(ctx,10,150,40,20,3,4,{strokeStyle:"black",lineWidth:1});
+
+			let tx = toward(70,130);
+			let ty = toward(180,150);
+			drawLineGraph(ctx,70,150,60,30,[
+				{x:tx(0),y:ty(0)},
+				{x:tx(0.25),y:ty(0.7)},
+				{x:tx(0.5),y:ty(0.3)},
+				{x:tx(0.75),y:ty(0.4)},
+				{x:tx(1),y:ty(0.9)}
+			],5,4,4);
+			// ctx,x,y,w,h,line,row,col,r
+
+
+			(new pathtransform(ctx))
+				.translate(200,10)
+				.rotate(1)
+				.do(drawRect,0,0,20,20,{fillStyle:"purple"})
+				.rotate(1)
+				.scale(0.5)
+				.do(drawRect,0,0,20,20,{fillStyle:"magenta"})
 		})();
 
 		</script>
