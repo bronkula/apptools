@@ -37,9 +37,6 @@ const bounce = (n,x) => (p,s) => p>=x||p<=n?-s:s;
 const bounceX = a => Math.sign(a)*unsignHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
 const bounceY = a => -signRadian(a);
 
-/* This function takes two objects, and replaces or adds any values in object 1 with the values of object 2 */
-const overRide = (o1,o2) => !o2?o1:Object.assign(o1,o2);
-
 /* This function is basic ratio math. curries a ratio and then multiplies that by another number */
 const ratio = (min,max) => n => n*min/max;
 

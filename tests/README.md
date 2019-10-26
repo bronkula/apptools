@@ -1,3 +1,3 @@
 # AppTools Tests
 
-**[Apptools tests](https://bronkula.github.io/apptools/tests/apptools_tests.html)**
+**[Apptools tests](https://bronkula.github.io/apptools/tests/tools.html)**

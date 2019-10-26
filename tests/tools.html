@@ -1,1 +1,32 @@
-html:5
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tools tests</title>
+
+	<meta name="viewport" content="width=device-width">
+
+	<script src="../tools/bin/drawtools.min.js"></script>
+	<script src="../tools/bin/apptools.min.js"></script>
+</head>
+<body>
+	<h1>App Tools</h1>
+	<p>This page should house a series of tests for the App Tools Javascript Library. Let's begin. You'll probably have to check the console for some of it...</p>
+
+	<section>
+		<h2>Canvas.js</h2>
+
+		<canvas id="test1" width="400" height="300"></canvas>
+		<script>
+		(()=>{
+			let cvs = q("#test1");
+			let ctx = cvs[0].getContext("2d");
+
+			console.log(cvs,ctx)
+			drawCircle(ctx,10,10,5,{fillStyle:'blue'})
+		})()
+
+		</script>
+	</section>
+</body>
+</html>

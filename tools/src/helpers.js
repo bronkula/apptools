@@ -22,9 +22,6 @@ const samePropsFirst=(a,p)=>a.find(sameProps(p));
 const samePropsIndex=(a,p)=>a.findIndex(sameProps(p));
 
 
-// Return a random number, n=min x=max, pass neither to receive a random boolean
-const rand=(n=0,x=1)=>Math.round((Math.random()*(x-n))+n);
-
 const zeros=(n,e)=>(+n+Math.pow(10,e)+'').substr(1);
 
 const numberCommas=n=>(n+'').replace(/\B(?=(?=\d*\.)(\d{3})+(?!\d))/g,',');

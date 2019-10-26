@@ -79,7 +79,7 @@ const pathmaker = {
       else if (typeof r === 'number') {
          r = {tl: r, tr: r, br: r, bl: r};
       } else {
-         r = overRide({tl: 0, tr: 0, br: 0, bl: 0},r);
+         r = Object.assign({tl: 0, tr: 0, br: 0, bl: 0},r);
       }
       ctx.moveTo(x + r.tl, y);
       ctx.lineTo(x + w - r.tr, y);
@@ -105,12 +105,12 @@ const makePath = (ctx,paths) => {
 /* Stroke path */
 const strokeIt = (ctx,options) => {
    if(!options) return;
-   if(options.lineWidth) overRide(ctx,options).stroke();
+   if(options.lineWidth) Object.assign(ctx,options).stroke();
 }
 /* Fill a path */
 const fillIt = (ctx,options) =>{
    if(!options) return;
-   if(options.fillStyle) overRide(ctx,options).fill();
+   if(options.fillStyle) Object.assign(ctx,options).fill();
 }
 
 
@@ -182,8 +182,8 @@ const drawableImage = url => {
 
 /* Draw text */
 const drawText = (ctx,text,x,y,options) => {
-   if(options.lineWidth) overRide(ctx,options).strokeText(text,x,y);
-   if(options.fillStyle) overRide(ctx,options).fillText(text,x,y);
+   if(options.lineWidth) Object.assign(ctx,options).strokeText(text,x,y);
+   if(options.fillStyle) Object.assign(ctx,options).fillText(text,x,y);
 }
 /* Draw text, replacing new lines characters with visible line breaks */
 const drawParagraph = (ctx,text,x,y,lineHeight,options) => {
@@ -194,7 +194,7 @@ const drawParagraph = (ctx,text,x,y,lineHeight,options) => {
 }
 /* Draw text with a cut out stroke */
 const drawLabel = (ctx,text,x,y,options) => {
-   ctx = overRide(ctx,options);
+   ctx = Object.assign(ctx,options);
    ctx.globalCompositeOperation = "destination-out";
    ctx.strokeText(text,x,y);
    ctx.globalCompositeOperation = "source-over";

@@ -60,7 +60,7 @@ const pathmaker = {
                 bl: r
             };
         } else {
-            r = overRide({
+            r = Object.assign({
                 tl: 0,
                 tr: 0,
                 br: 0,
@@ -87,12 +87,12 @@ const makePath = (ctx, paths) => {
 
 const strokeIt = (ctx, options) => {
     if (!options) return;
-    if (options.lineWidth) overRide(ctx, options).stroke();
+    if (options.lineWidth) Object.assign(ctx, options).stroke();
 };
 
 const fillIt = (ctx, options) => {
     if (!options) return;
-    if (options.fillStyle) overRide(ctx, options).fill();
+    if (options.fillStyle) Object.assign(ctx, options).fill();
 };
 
 const drawCircle = (ctx, x, y, r, options) => {
@@ -149,8 +149,8 @@ const drawableImage = url => {
 };
 
 const drawText = (ctx, text, x, y, options) => {
-    if (options.lineWidth) overRide(ctx, options).strokeText(text, x, y);
-    if (options.fillStyle) overRide(ctx, options).fillText(text, x, y);
+    if (options.lineWidth) Object.assign(ctx, options).strokeText(text, x, y);
+    if (options.fillStyle) Object.assign(ctx, options).fillText(text, x, y);
 };
 
 const drawParagraph = (ctx, text, x, y, lineHeight, options) => {
@@ -161,7 +161,7 @@ const drawParagraph = (ctx, text, x, y, lineHeight, options) => {
 };
 
 const drawLabel = (ctx, text, x, y, options) => {
-    ctx = overRide(ctx, options);
+    ctx = Object.assign(ctx, options);
     ctx.globalCompositeOperation = "destination-out";
     ctx.strokeText(text, x, y);
     ctx.globalCompositeOperation = "source-over";
@@ -569,8 +569,6 @@ const bounce = (n, x) => (p, s) => p >= x || p <= n ? -s : s;
 const bounceX = a => Math.sign(a) * unsignHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
 
 const bounceY = a => -signRadian(a);
-
-const overRide = (o1, o2) => !o2 ? o1 : Object.assign(o1, o2);
 
 const ratio = (min, max) => n => n * min / max;
 
