@@ -15,6 +15,6 @@
     .offset#{$breakpoint}-#{$i} { grid-column-start:span #{$i}; }
   }
   @each $i, $v in $sizes {
-    .grid.gap#{$breakpoint}-#{$i} { --gap-size:#{$v}; }
+    .gap.gap#{$breakpoint}-#{$i} { --gap-size:#{$v}; }
   }
 }
