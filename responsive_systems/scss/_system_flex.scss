@@ -18,6 +18,6 @@
     &-nostretch { flex: none; }
 	}
 	@for $i from 1 through 10 {
-    .order-#{$breakpoint}-#{$i} { order:$i; }
+    .order#{$breakpoint}-#{$i} { order:$i; }
   }
 }

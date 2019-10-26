@@ -26,25 +26,25 @@
 
 .flex-nostretch { flex: none; }
 
-.order--1 { order: 1; }
+.order-1 { order: 1; }
 
-.order--2 { order: 2; }
+.order-2 { order: 2; }
 
-.order--3 { order: 3; }
+.order-3 { order: 3; }
 
-.order--4 { order: 4; }
+.order-4 { order: 4; }
 
-.order--5 { order: 5; }
+.order-5 { order: 5; }
 
-.order--6 { order: 6; }
+.order-6 { order: 6; }
 
-.order--7 { order: 7; }
+.order-7 { order: 7; }
 
-.order--8 { order: 8; }
+.order-8 { order: 8; }
 
-.order--9 { order: 9; }
+.order-9 { order: 9; }
 
-.order--10 { order: 10; }
+.order-10 { order: 10; }
 
 @media (min-width: 0) { .flex-xs-parent { display: flex; }
   .flex-xs-off { display: initial; }
@@ -60,16 +60,16 @@
   .flex-xs-justify-end { justify-content: flex-end; }
   .flex-xs-stretch { flex: 1; }
   .flex-xs-nostretch { flex: none; }
-  .order--xs-1 { order: 1; }
-  .order--xs-2 { order: 2; }
-  .order--xs-3 { order: 3; }
-  .order--xs-4 { order: 4; }
-  .order--xs-5 { order: 5; }
-  .order--xs-6 { order: 6; }
-  .order--xs-7 { order: 7; }
-  .order--xs-8 { order: 8; }
-  .order--xs-9 { order: 9; }
-  .order--xs-10 { order: 10; } }
+  .order-xs-1 { order: 1; }
+  .order-xs-2 { order: 2; }
+  .order-xs-3 { order: 3; }
+  .order-xs-4 { order: 4; }
+  .order-xs-5 { order: 5; }
+  .order-xs-6 { order: 6; }
+  .order-xs-7 { order: 7; }
+  .order-xs-8 { order: 8; }
+  .order-xs-9 { order: 9; }
+  .order-xs-10 { order: 10; } }
 
 @media (min-width: 320px) { .flex-sm-parent { display: flex; }
   .flex-sm-off { display: initial; }
@@ -85,16 +85,16 @@
   .flex-sm-justify-end { justify-content: flex-end; }
   .flex-sm-stretch { flex: 1; }
   .flex-sm-nostretch { flex: none; }
-  .order--sm-1 { order: 1; }
-  .order--sm-2 { order: 2; }
-  .order--sm-3 { order: 3; }
-  .order--sm-4 { order: 4; }
-  .order--sm-5 { order: 5; }
-  .order--sm-6 { order: 6; }
-  .order--sm-7 { order: 7; }
-  .order--sm-8 { order: 8; }
-  .order--sm-9 { order: 9; }
-  .order--sm-10 { order: 10; } }
+  .order-sm-1 { order: 1; }
+  .order-sm-2 { order: 2; }
+  .order-sm-3 { order: 3; }
+  .order-sm-4 { order: 4; }
+  .order-sm-5 { order: 5; }
+  .order-sm-6 { order: 6; }
+  .order-sm-7 { order: 7; }
+  .order-sm-8 { order: 8; }
+  .order-sm-9 { order: 9; }
+  .order-sm-10 { order: 10; } }
 
 @media (min-width: 600px) { .flex-md-parent { display: flex; }
   .flex-md-off { display: initial; }
@@ -110,16 +110,16 @@
   .flex-md-justify-end { justify-content: flex-end; }
   .flex-md-stretch { flex: 1; }
   .flex-md-nostretch { flex: none; }
-  .order--md-1 { order: 1; }
-  .order--md-2 { order: 2; }
-  .order--md-3 { order: 3; }
-  .order--md-4 { order: 4; }
-  .order--md-5 { order: 5; }
-  .order--md-6 { order: 6; }
-  .order--md-7 { order: 7; }
-  .order--md-8 { order: 8; }
-  .order--md-9 { order: 9; }
-  .order--md-10 { order: 10; } }
+  .order-md-1 { order: 1; }
+  .order-md-2 { order: 2; }
+  .order-md-3 { order: 3; }
+  .order-md-4 { order: 4; }
+  .order-md-5 { order: 5; }
+  .order-md-6 { order: 6; }
+  .order-md-7 { order: 7; }
+  .order-md-8 { order: 8; }
+  .order-md-9 { order: 9; }
+  .order-md-10 { order: 10; } }
 
 @media (min-width: 960px) { .flex-lg-parent { display: flex; }
   .flex-lg-off { display: initial; }
@@ -135,16 +135,16 @@
   .flex-lg-justify-end { justify-content: flex-end; }
   .flex-lg-stretch { flex: 1; }
   .flex-lg-nostretch { flex: none; }
-  .order--lg-1 { order: 1; }
-  .order--lg-2 { order: 2; }
-  .order--lg-3 { order: 3; }
-  .order--lg-4 { order: 4; }
-  .order--lg-5 { order: 5; }
-  .order--lg-6 { order: 6; }
-  .order--lg-7 { order: 7; }
-  .order--lg-8 { order: 8; }
-  .order--lg-9 { order: 9; }
-  .order--lg-10 { order: 10; } }
+  .order-lg-1 { order: 1; }
+  .order-lg-2 { order: 2; }
+  .order-lg-3 { order: 3; }
+  .order-lg-4 { order: 4; }
+  .order-lg-5 { order: 5; }
+  .order-lg-6 { order: 6; }
+  .order-lg-7 { order: 7; }
+  .order-lg-8 { order: 8; }
+  .order-lg-9 { order: 9; }
+  .order-lg-10 { order: 10; } }
 
 @media (min-width: 1200px) { .flex-xl-parent { display: flex; }
   .flex-xl-off { display: initial; }
@@ -160,13 +160,13 @@
   .flex-xl-justify-end { justify-content: flex-end; }
   .flex-xl-stretch { flex: 1; }
   .flex-xl-nostretch { flex: none; }
-  .order--xl-1 { order: 1; }
-  .order--xl-2 { order: 2; }
-  .order--xl-3 { order: 3; }
-  .order--xl-4 { order: 4; }
-  .order--xl-5 { order: 5; }
-  .order--xl-6 { order: 6; }
-  .order--xl-7 { order: 7; }
-  .order--xl-8 { order: 8; }
-  .order--xl-9 { order: 9; }
-  .order--xl-10 { order: 10; } }
+  .order-xl-1 { order: 1; }
+  .order-xl-2 { order: 2; }
+  .order-xl-3 { order: 3; }
+  .order-xl-4 { order: 4; }
+  .order-xl-5 { order: 5; }
+  .order-xl-6 { order: 6; }
+  .order-xl-7 { order: 7; }
+  .order-xl-8 { order: 8; }
+  .order-xl-9 { order: 9; }
+  .order-xl-10 { order: 10; } }
