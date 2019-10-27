@@ -1,7 +1,6 @@
 # Helpers Documentation
 - [App Tools](#user-content-app-tools)
 	- [Query.js](#user-content-queryjs)
-	- [q](#user-content-q)
 - [Draw Tools](#user-content-draw-tools)
 
 ---
@@ -14,6 +13,11 @@
 - **[apptools.min.js](https://bronkula.github.io/apptools/tools/bin/query.min.js)**
 
 This set of tools is a small simplified alternative to some basic jQuery functionality for selecting elements and delegating events.
+
+- [q](#user-content-q)
+- [on](#user-content-on)
+
+---
 
 ### q
 
@@ -44,7 +48,7 @@ let el3 = q(document.querySelector("#section1"));
 
 ---
 
-### qon
+### .on()
 
 #### Usage
 
