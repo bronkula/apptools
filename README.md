@@ -11,8 +11,8 @@ A toolset for app development
 
 
 ## ProtoTight
-- **[ProtoTight Demo](https://bronkula.github.io/apptools/proto/demo)**
-- **[ProtoTight Repo](https://github.com/bronkula/apptools/blob/master/proto)**
+- **[Demo](https://bronkula.github.io/apptools/proto/demo)**
+- **[Repo](https://github.com/bronkula/apptools/blob/master/proto)**
 
 ProtoTight is a tool for prototyping. I wanted a simple unopinionated page routing system with enough tools that a person with a moderate knowledge of html and css could use it. There is an entire frontend css framework under the hood of this project that is quite robust, but no node or anything like that is required.
 
@@ -26,7 +26,7 @@ Tools that can be useful when creating a dynamic frontend application. This sect
 
 - **[Apptools.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/apptools.min.js)**
 - **[Drawtools.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/drawtools.min.js)**
-- **[Tools tests](https://bronkula.github.io/apptools/tests/tests.html)**
+- **[Tests](https://bronkula.github.io/apptools/tests/tools.html)**
 
 
 ---

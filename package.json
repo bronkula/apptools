@@ -8,7 +8,7 @@
 
     "systems": "node-sass --watch responsive_systems/scss -o responsive_systems/css --output-style compact",
 
-    "drawtoolsc": "uglifyjs tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/bin/drawtools.min.js -c --source-map \"url='tools/src/drawtools.min.js.map'\"",
+    "drawtoolsc": "uglifyjs tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/bin/drawtools.min.js -c --source-map \"url='../src/drawtools.min.js.map'\"",
     "drawtoolsb":"uglifyjs tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/bin/drawtools.js -b",
     "drawtoolsevents":"uglifyjs tools/src/events.js -o tools/bin/events.min.js -c",
     "drawtoolscanvas":"uglifyjs tools/src/canvas.js -o tools/bin/canvas.min.js -c",
@@ -18,7 +18,7 @@
 
     "query":"uglifyjs tools/src/query.js -o tools/bin/query.min.js -c",
     "helpers":"uglifyjs tools/src/helpers.js -o tools/bin/helpers.min.js -c",
-    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js -o tools/bin/apptools.min.js -c --source-map \"url='tools/src/apptools.min.js.map'\"",
+    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js -o tools/bin/apptools.min.js -c --source-map \"url='../src/apptools.min.js.map'\"",
     "apptools":"npm run apptoolsc & npm run query & npm run helpers"
   },
   "author": "",

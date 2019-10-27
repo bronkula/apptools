@@ -87,5 +87,46 @@
 
 		</script>
 	</section>
+
+	<section>
+		<h2>Query.js</h2>
+
+		<p></p>
+
+		<style>
+		.weller {background-color:#0001;padding:1em;}
+		</style>
+		<ul class="test2 weller">
+			<li class="weller"><a href="#" class="weller">Link 1</a></li>
+			<li class="weller"><a href="#" class="weller">Link 2</a></li>
+			<li class="weller"><a href="#" class="weller">Link 3</a></li>
+			<li class="weller"><a href="#" class="weller">Link 4</a></li>
+		</ul>
+		<script>
+		(()=>{
+			let el = q(".test2");
+			console.log(el)
+
+			el.on("mouseenter",e=>{console.log("hover the ul")})
+
+			q(document).delegate("click","a",e=>{
+				e.preventDefault();
+				console.log("delegate the a")
+			})
+			q("a").on("click",e=>{
+				e.preventDefault();
+				console.log("click the a")
+			})
+
+			console.log(el.next())
+			console.log(el.prev())
+			console.log(el.parent())
+			console.log(el.siblings())
+			console.log(el.is("div"))
+			console.log(el.closest("section"))
+			console.log(el.find("a"))
+		})()
+		</script>
+	</section>
 </body>
 </html>

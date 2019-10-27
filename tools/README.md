@@ -1,17 +1,96 @@
 # Helpers Documentation
-- [templater](#user-content-templater)
+- [App Tools](#user-content-app-tools)
+	- [Query.js](#user-content-queryjs)
+	- [q](#user-content-q)
+- [Draw Tools](#user-content-draw-tools)
 
 ---
 
-## templater
+## App Tools
 
-### Usage
+### Query.js
+
+- **[query.min.js](https://bronkula.github.io/apptools/tools/bin/query.min.js)**
+- **[apptools.min.js](https://bronkula.github.io/apptools/tools/bin/query.min.js)**
+
+This set of tools is a small simplified alternative to some basic jQuery functionality for selecting elements and delegating events.
+
+### q
+
+#### Usage
+
+> *NodeList* **q**( *string* **Selector** )
+
+Return a DOM NodeList
+
+#### Parameters
+
+<dl>
+	<dt>Selector</dt>
+	<dd>A selector of an element to place the output. It can optionally be a DOM object, or a NodeList.</dd>
+</dl>
+
+#### Return
+
+> *NodeList* 
+
+#### Examples
+
+```javascript
+let el1 = q(".container");
+let el2 = q("dl dt");
+let el3 = q(document.querySelector("#section1"));
+```
+
+---
+
+### qon
+
+#### Usage
+
+> *NodeList* **qon**( *string* **Selector** ) ( *string* **EventString**, *function* **Callback** )
+
+Curried 
+
+#### Parameters
+
+<dl>
+	<dt>Selector</dt>
+	<dd>A selector of an element to place the output. It can optionally be a DOM object, or a NodeList.</dd>
+</dl>
+
+#### Return
+
+> *NodeList* 
+
+#### Examples
+
+```javascript
+let el1 = q(".container");
+let el2 = q("dl dt");
+let el3 = q(document.querySelector("#section1"));
+```
+
+---
+---
+
+## Draw Tools
+
+---
+
+This document is a work in progress.
+
+
+
+### templater
+
+#### Usage
 
 > *string* **templater**( *function* **TemplateFunction** [, *string* **InitialString** ] )( *string* **OutputSelector** )( *array* **ObjectArray** )
 
 Stamp data onto a template
 
-### Parameters
+#### Parameters
 
 <dl>
 	<dt>TemplateFunction</dt>
@@ -26,14 +105,14 @@ Stamp data onto a template
 	<dd>An *array* of objects, or an *object*, to be iterated over.</dd>
 </dl>
 
-### Return
+#### Return
 
 > There are three return values, one from each step.
 > 1. A function which has a stored template function
 > 2. A function which has a stored output selector
 > 3. A string representing a converted output
 
-### Examples
+#### Examples
 
 ```javascript
 let makeName = templater(o=>`<div>${o.name}</div>`)();
@@ -51,9 +130,3 @@ templater(o=>`<div>${o.name}</div>`)(".output")(
 .output: "<div>George</div><div>Fred</div>"
 ```
 
-
----
-
----
-
-... This document might need an update soon. 
