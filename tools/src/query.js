@@ -12,7 +12,6 @@ const qlist = function(s,sc=document) {
     let nl = !s || !this.isDoc(sc) ? [] :
         s instanceof HTMLElement || s==sc ? [s] : 
         Array.isArray(s) ? s : sc.querySelectorAll(s);
-    // this = Object.create([]);
     Object.assign(this,nl);
     this.length = nl.length;
 }
@@ -42,7 +41,7 @@ qlist.prototype.on = function(evs,fn,b=false) {
 
 qlist.prototype.delegate = function(evs,sl,fn) {
     this.on(evs,ev=>{
-        return q(sl,ev.target).forEach(to=>{
+        return this.find(sl).forEach(to=>{
             return this.inPath(ev,to)?fn.call(to,ev,to):0
         })
     },{capture:true});
@@ -63,6 +62,8 @@ qlist.prototype.prev = function() {
     return this.sift(o=>o.previousElementSibling); }
 qlist.prototype.parent = function() {
     return this.sift(o=>o.parentElement); }
+qlist.prototype.children = function() {
+    return this.sift(o=>[...o.children]); }
 qlist.prototype.siblings = function(s) {
     return this.sift(o=>{
         return [...o.parentElement.children].filter(a=>{
