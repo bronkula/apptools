@@ -16,9 +16,9 @@
     "drawtoolsmaths":"uglifyjs tools/src/maths.js -o tools/bin/maths.min.js -c",
     "drawtools":"npm run drawtoolsc & npm run drawtoolsb & npm run drawtoolsevents & npm run drawtoolscanvas & npm run drawtoolscolors & npm run drawtoolsmaths",
 
-    "query":"uglifyjs tools/src/query.js -o tools/bin/query.min.js -c",
-    "helpers":"uglifyjs tools/src/helpers.js -o tools/bin/helpers.min.js -c",
-    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js -o tools/bin/apptools.min.js -c --source-map \"url='../src/apptools.min.js.map'\"",
+    "query":"uglifyjs tools/src/query.js -o tools/bin/query.min.js -c -m",
+    "helpers":"uglifyjs tools/src/helpers.js -o tools/bin/helpers.min.js -c -m",
+    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js -o tools/bin/apptools.min.js -c -m --source-map",
     "apptools":"npm run apptoolsc & npm run query & npm run helpers"
   },
   "author": "",

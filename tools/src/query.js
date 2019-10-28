@@ -3,6 +3,24 @@ A small set of query selector tools, including event delegation
 Created by Hamilton Cline hamdiggy@gmail.com
 */
 
+const q = (...a) => new qlist(...a);
+
+
+
+q.fetch = d => fetch(d).then(r => r.json());
+q.fetchAll = d => Promise.all(d.map(o => q.fetch(o)));
+q.fetchEach = (d,f=d=>d) => 
+    d.map(u => pd => q.fetch(u).then(d => pd.concat([f(d)])))
+    .reduce((r,f) => r.then(f),Promise.resolve([]));
+q.post = (u,d) =>
+    fetch(u,{
+        headers:{ 'Content-Type': 'application/json' },
+        method: 'POST', body: JSON.stringify(d)
+    }).then(r => r.json());
+
+
+
+
 const qlist = function(s,sc=document) {
     let nl = !s || !this.isDoc(sc) ? [] :
         s instanceof HTMLElement || s==sc ? [s] : 
@@ -10,8 +28,6 @@ const qlist = function(s,sc=document) {
     Object.assign(this,nl);
     this.length = nl.length;
 }
-
-const q = (...a) => new qlist(...a);
 
 qlist.prototype.forEach = Array.prototype.forEach;
 qlist.prototype.map = Array.prototype.map;
@@ -25,24 +41,23 @@ qlist.prototype.isDoc = d => d instanceof HTMLElement || d instanceof HTMLDocume
 qlist.prototype.inPath = function(e,t) { return this.getPath(e).some(o=>o==t); }
 qlist.prototype.sift = function(f) { return q([...new Set(this.flatMap(f))]); }
 
-qlist.prototype.on = function(evs,fn,b=false) {
-    evs.trim().split(/\s+/).forEach(ev=>{
+qlist.prototype.on = function(eventString,fn,capture=false) {
+    eventString.trim().split(/\s+/).forEach(event=>{
         this.forEach(el=>{
-            return el.addEventListener(ev,fn,b)
+            return el.addEventListener(event,fn,capture)
         })
     });
     return this;
 }
 
-qlist.prototype.delegate = function(evs,sl,fn) {
-    this.on(evs,ev=>{
-        return this.find(sl).forEach(to=>{
-            return this.inPath(ev,to)?fn.call(to,ev,to):0
+qlist.prototype.delegate = function(eventString,selector,fn) {
+    this.on(eventString,event=>{
+        return this.find(selector).forEach(o=>{
+            return this.inPath(event,o)?fn.call(o,event,o):0
         })
     },{capture:true});
     return this;
 }
-
 
 qlist.prototype.toArray = function() {
     return this.reduce((r,o)=>r.concat([o]),[]) }

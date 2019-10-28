@@ -85,7 +85,7 @@
 				.scale(0.5)
 				.do(drawRect,0,0,20,20,{fillStyle:"magenta"})
 
-				
+
 			console.groupEnd();
 		})();
 
@@ -129,6 +129,42 @@
 			console.log("closest",el.closest("section"))
 			console.log("find",el.find("a"))
 			console.groupEnd();
+		})()
+		</script>
+
+		<h2>Fetch</h2>
+
+		<p>Check the console for fetch test outputs.</p>
+
+		<script>
+		(()=>{
+			q.fetch("data.json")
+			.then(d=>{
+				console.log("fetch",d)
+			})
+			.then(d=>{
+				console.log("fetch then",d)
+			})
+
+			q.fetchAll([
+				"data.json",
+				"data.json",
+				"data.json"
+			]).then(d=>{
+				console.log("fetch all",d)
+			})
+
+			q.fetchEach([
+				"data.json",
+				"data.json",
+				"data.json"
+			],d=>{
+				console.log("fetched this",d);
+				return d;
+			}).then((...d)=>{
+				console.log("fetch each",d)
+			})
+
 		})()
 		</script>
 	</section>

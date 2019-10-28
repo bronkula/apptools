@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="../tools/bin/apptools.min.js"></script>
+	<script src="../tools/bin/drawtools.min.js"></script>
+</head>
+<body>
+	<script>
+	q.fetch("data.json")
+	.then(d=>{
+		console.log(d)
+	})
+	.then(d=>{
+		console.log(d)
+	})
+
+	q.fetchAll([
+		"data.json",
+		"data.json",
+		"data.json"
+	]).then((...d)=>{
+		console.log("fetch all",d)
+	})
+
+	q.fetchEach([
+		"data.json",
+		"data.json",
+		"data.json"
+	],d=>{
+		console.log(d);
+		return d;
+	}).then((...d)=>{
+		console.log("fetch all",d)
+	})
+	</script>
+</body>
+</html>

@@ -9,8 +9,8 @@
 
 ### Query.js
 
-- **[query.min.js](https://bronkula.github.io/apptools/tools/bin/query.min.js)**
-- **[apptools.min.js](https://bronkula.github.io/apptools/tools/bin/query.min.js)**
+- **[query.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/query.min.js)**
+- **[apptools.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/apptools.min.js)**
 
 This set of tools is a small simplified alternative to some basic jQuery functionality for selecting elements and delegating events.
 

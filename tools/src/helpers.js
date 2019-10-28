@@ -40,6 +40,9 @@ const readFiles = (f,c,i=0) => {
 }
 
 
+
+
+
 // Use these functions to call function after function passing the return value forward to the next function
 const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
 const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
@@ -47,6 +50,29 @@ const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
 const trace = l => v => { console.log(`${l}: ${v}`); return v; }
 // Delay a promise
 const delay = t => new Promise(r=>setTimeout(r,t));
+
+
+
+
+
+// const makeQuery = t => d => aQuery(t(d));
+// const aQuery = d => fetch(d).then(r => r.json());
+// const aQueries = d => Promise.all(d.map(o=>aQuery(...o)));
+// const aSlowQueries = async (q) =>
+// 	await q.map(d=>pipeQuery(d))
+//     .reduce((r,f)=>r.then(f),Promise.resolve([]));
+// const aSlowQueriesIntercept = async (q) =>
+//     await q.flatMap(([d,f])=>[pipeQuery(d),pipeback(f)])
+//     .reduce((r,d)=>r.then(d),Promise.resolve([]));
+// const pipeQuery = d => pd =>
+//     aQuery(...d).then(d=>pd.concat([d]));
+// const pipeback = fn => pd =>
+//     new Promise(r=>{fn?fn(pd):!1;r(pd);});
+
+
+
+
+
 
 // A simple asynchronous version of fetch and json
 const aGetFile = async (f) => { const r = await fetch(f); return await r.json(); }
