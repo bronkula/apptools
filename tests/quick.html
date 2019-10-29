@@ -9,8 +9,7 @@
 </head>
 <body>
 	<script>
-	console.dir(q([]).prototype)
-	console.dir(q.Q())
+	q(()=>{
 	console.dir(q("body"))
 	q("body").append(q.make("<div class='groot'><a href='#'>text</a></div>"))
 	let e = q(`<ul>
@@ -35,6 +34,8 @@
 		.reduce((r,o,i,a)=>r+f(o,i,a),'')
 	);
 	console.dir(q([]).templater(o=>`<div>${o.id}</div>`)({id:1}));
+		
+	})
 	</script>
 </body>
 </html>

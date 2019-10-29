@@ -32,6 +32,7 @@ class Q {
             q.isString(s) && s.trim()[0]=="<" ? q.make(s) :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             sc.querySelectorAll(s);
+        if(!nl) return false;
         Object.assign(this,nl);
         this.length = nl.length;
     }
