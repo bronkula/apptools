@@ -167,6 +167,32 @@
 
 		})()
 		</script>
+
+		<h2>Traversal and Manipulation</h2>
+
+		<div class="test3"></div>
+
+		<script>
+		console.dir(q(".test3"))
+		q(".test3").append(q.make("<div class='groot'><a href='#'>text</a></div>"))
+		let e = q(`<ul>
+			<li>yup</li>
+			<li>yup</li>
+			<li>yup</li>
+		</ul><div>mhm</div>`);
+		console.log("2",e)
+		let e1 = q(".test3").prepend(e);
+		console.log("3",e1.style({color:'red'}))
+		console.log("4",e1.style('color'))
+		console.log("5",e1.attr({title:'yup'}))
+		console.log("7",e1.attr('title'))
+		console.log("8",e1.data({id:{mhm:'yup'},other:true}))
+		console.log("9",e1.data('other'))
+		console.dir(e1[0])
+
+		console.log(q(".test3").children().last().remove());
+		console.log();
+		</script>
 	</section>
 </body>
 </html>

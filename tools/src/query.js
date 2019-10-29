@@ -6,8 +6,8 @@ Created by Hamilton Cline hamdiggy@gmail.com
 
 ((w)=>{
 
-// const q = (s,sc) => new Q(s,sc);
-const q = (s,sc) => new QOR(s,sc);
+
+const q = (s,sc) => new Q(s,sc);
 
 
 
@@ -51,18 +51,7 @@ q.getData = function(o,e) {
         q.setCache(o,e,JSON.parse(o.dataset[e]));
     return o.qcache[e]; }
 
-// /* Nodelist object with basic array methods, event delegation, and dom traversal */
-// const Q = function(s,sc=document) {
-//     let nl = !s || !q.isHTML(sc) ? [] : 
-//         q.isHTML(s) || s==sc ? [s] : 
-//         q.isArray(s) ? s :
-//         q.isString(s) && s.trim()[0]=="<" ? q.make(s) :
-//         sc.querySelectorAll(s);
-//     Object.assign(this,nl);
-//     this.length = nl.length;
-// }
-
-class QOR {
+class Q {
     constructor(s,sc=document) {
         let nl = !s || !q.isHTML(sc) ? [] : 
             q.isHTML(s) || s==sc ? [s] : 
@@ -72,6 +61,8 @@ class QOR {
         Object.assign(this,nl);
         this.length = nl.length;
     }
+
+
     /* Apply events to Q elements */
     on(eventString,fn,capture=false) {
         eventString.trim().split(/\s+/).forEach(event=>{
@@ -90,6 +81,8 @@ class QOR {
         },{capture:true});
         return this;
     }
+
+
     /* Apply a function to each element of a Q and then return only unique, non false, elements */
     sift(f) { return q([...new Set(this.flatMap(f))]
         .reduce((r,o)=>o?r.concat([o]):r,[])); }
@@ -123,6 +116,7 @@ class QOR {
             })
         }); }
 
+
     /* Manipulation methods */
     remove() {
         return this.sift(o=>{o.parentElement.removeChild(o); return false; }) }
@@ -142,95 +136,18 @@ class QOR {
     data(e) {
         if(q.isString(e)) return q.getData(this[0],e);
         return this.sift(o=>q.setData(o,e)); }
-
 }
 
 
 /* Basic array methods */
-QOR.prototype.forEach = Array.prototype.forEach;
-QOR.prototype.map = Array.prototype.map;
-QOR.prototype.flatMap = Array.prototype.flatMap;
-QOR.prototype.reduce = Array.prototype.reduce;
-QOR.prototype.some = Array.prototype.some;
-QOR.prototype.every = Array.prototype.every;
-QOR.prototype.filter = Array.prototype.filter;
+Q.prototype.forEach = Array.prototype.forEach;
+Q.prototype.map = Array.prototype.map;
+Q.prototype.flatMap = Array.prototype.flatMap;
+Q.prototype.reduce = Array.prototype.reduce;
+Q.prototype.some = Array.prototype.some;
+Q.prototype.every = Array.prototype.every;
+Q.prototype.filter = Array.prototype.filter;
 
-
-// /* Apply events to Q elements */
-// Q.prototype.on = function(eventString,fn,capture=false) {
-//     eventString.trim().split(/\s+/).forEach(event=>{
-//         this.forEach(el=>{
-//             return el.addEventListener(event,fn,capture)
-//         })
-//     });
-//     return this;
-// }
-// /* Delegate events to children of Q elements */
-// Q.prototype.delegate = function(eventString,selector,fn) {
-//     this.on(eventString,event=>{
-//         return this.find(selector).forEach(o=>{
-//             return q.inPath(event,o)?fn.call(o,event,o):0
-//         })
-//     },{capture:true});
-//     return this;
-// }
-
-
-// /* Apply a function to each element of a Q and then return only unique, non false, elements */
-// Q.prototype.sift = function(f) {
-//     return q([...new Set(this.flatMap(f))].reduce((r,o)=>o?r.concat([o]):r,[])); }
-// /* Get array from Q */
-// Q.prototype.toArray = function() {
-//     return this.reduce((r,o)=>r.concat([o]),[]) }
-// /* See if any Q elements match a selector */
-// Q.prototype.is = function(s) {
-//     return this.every(o=>o.matches(s)); }
-
-
-// /* Traversal methods */
-// Q.prototype.find = function(s) {
-//     return q(this.reduce((r,o)=>[...r,...q(s,o).toArray()],[])); }
-// Q.prototype.next = function() {
-//     return this.sift(o=>o.nextElementSibling); }
-// Q.prototype.prev = function() {
-//     return this.sift(o=>o.previousElementSibling); }
-// Q.prototype.parent = function() {
-//     return this.sift(o=>o.parentElement); }
-// Q.prototype.closest = function(s) {
-//     return this.sift(o=>o.closest(s)); }
-// Q.prototype.children = function(s) {
-//     return this.sift(o=>[...o.children].filter(a=>s?a.matches(s)?a:false:true)); }
-// Q.prototype.last = function() {
-//     return this.sift(o=>this[this.length-1]); }
-// Q.prototype.first = function() {
-//     return this.sift(o=>this[0]); }
-// Q.prototype.siblings = function(s) {
-//     return this.sift(o=>{
-//         return [...o.parentElement.children].filter(a=>{
-//             return a==o?false:s?a.matches(s):true;
-//         })
-//     }); }
-
-
-// /* Manipulation methods */
-// Q.prototype.remove = function() {
-//     return this.sift(o=>{o.parentElement.removeChild(o); return false; }) }
-// Q.prototype.append = function(e) {
-//     return this.sift(o=>e.map(el=>{ o.appendChild(el); return o; })); }
-// Q.prototype.appendTo = function(e) {
-//     return this.sift(o=>e.map(el=>{ el.appendChild(o); return o; })); }
-// Q.prototype.prepend = function(e) {
-//     return this.sift(o=>e.map(el=>{ o.insertBefore(el,o.children[0]); return o; })); }
-
-// Q.prototype.style = function(e) {
-//     if(q.isString(e)) return this[0].style[e];
-//     return this.sift(o=>{ Object.assign(o.style,e); return o; }); }
-// Q.prototype.attr = function(e) {
-//     if(q.isString(e)) return this[0].attributes[e];
-//     return this.sift(o=>q.setAttr(o,e)); }
-// Q.prototype.data = function(e) {
-//     if(q.isString(e)) return q.getData(this[0],e);
-//     return this.sift(o=>q.setData(o,e)); }
 
 w.q = q;
 
