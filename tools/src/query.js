@@ -31,6 +31,7 @@ q.isString = d => typeof d == "string" || d instanceof String;
 q.isArray = d => Array.isArray(d);
 q.inPath = (e,t) => q.getPath(e).some(o=>o==t);
 
+
 /* Manipulation functions of q elements */
 q.make = function(s) {
     return q([...document.createRange().createContextualFragment(s).childNodes]) }
@@ -50,6 +51,8 @@ q.getData = function(o,e) {
     if(o.dataset[e]!==undefined&&o.qcache[e]!=o.dataset[e])
         q.setCache(o,e,JSON.parse(o.dataset[e]));
     return o.qcache[e]; }
+
+
 
 class Q {
     constructor(s,sc=document) {
@@ -106,9 +109,9 @@ class Q {
     children(s) {
         return this.sift(o=>[...o.children].filter(a=>s?a.matches(s)?a:false:true)); }
     last() {
-        return this.sift(o=>this[this.length-1]); }
+        return q(o=>this[this.length-1]); }
     first() {
-        return this.sift(o=>this[0]); }
+        return q(o=>this[0]); }
     siblings(s) {
         return this.sift(o=>{
             return [...o.parentElement.children].filter(a=>{
@@ -136,7 +139,11 @@ class Q {
     data(e) {
         if(q.isString(e)) return q.getData(this[0],e);
         return this.sift(o=>q.setData(o,e)); }
+
+
 }
+
+
 
 
 /* Basic array methods */
@@ -147,6 +154,11 @@ Q.prototype.reduce = Array.prototype.reduce;
 Q.prototype.some = Array.prototype.some;
 Q.prototype.every = Array.prototype.every;
 Q.prototype.filter = Array.prototype.filter;
+
+
+
+q.extend = (k,f) => { Q.prototype[k] = f; }
+
 
 
 w.q = q;
