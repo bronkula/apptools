@@ -1,5 +1,6 @@
 
 ;(()=>{
+if(!q) throw "qjs not imported yet";
 
 /* required */
 q.extend('find',function(s){

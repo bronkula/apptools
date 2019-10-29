@@ -13,6 +13,7 @@ const q = (s,sc) => new Q(s,sc);
 /* Helper Functions */
 q.isHTML = d => d instanceof HTMLElement || d instanceof HTMLDocument;
 q.isString = d => typeof d == "string" || d instanceof String;
+q.isFunction = d => typeof d == "function";
 q.isArray = d => Array.isArray(d);
 
 
@@ -29,6 +30,7 @@ class Q {
             q.isHTML(s) || s==sc ? [s] : 
             q.isArray(s) ? s :
             q.isString(s) && s.trim()[0]=="<" ? q.make(s) :
+            q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             sc.querySelectorAll(s);
         Object.assign(this,nl);
         this.length = nl.length;
@@ -57,7 +59,7 @@ Q.prototype.filter = Array.prototype.filter;
 
 /* Extend the prototype of qjs selections */
 q.extend = (k,f,o=false) => { if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
-q.hasExtension = (k) => typeof Q.prototype[k] === 'function';
+q.hasExtension = (k) => q.isFunction(Q.prototype[k]);
 
 
 w.q = q;
