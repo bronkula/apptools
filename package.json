@@ -16,10 +16,11 @@
     "drawtoolsmaths":"uglifyjs tools/src/maths.js -o tools/bin/maths.min.js -c",
     "drawtools":"npm run drawtoolsc & npm run drawtoolsb & npm run drawtoolsevents & npm run drawtoolscanvas & npm run drawtoolscolors & npm run drawtoolsmaths",
 
-    "query":"uglifyjs tools/src/query.js -o tools/bin/query.min.js -c -m",
+    "query":"uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/query.min.js -c -m reserved=['q','Q']",
+    "querylite":"uglifyjs tools/src/query.js tools/src/query-events.js -o tools/bin/query-lite.min.js -c -m reserved=['q','Q']",
     "helpers":"uglifyjs tools/src/helpers.js -o tools/bin/helpers.min.js -c -m",
-    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js -o tools/bin/apptools.min.js -c -m --source-map",
-    "apptools":"npm run apptoolsc & npm run query & npm run helpers"
+    "apptoolsc":"uglifyjs tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/apptools.min.js -c -m reserved=['q','Q'] --source-map",
+    "apptools":"npm run apptoolsc & npm run query & npm run querylite & npm run helpers"
   },
   "author": "",
   "license": "ISC"
