@@ -1,7 +1,4 @@
-/*
-A small set of query selector tools, including event delegation
-Created by Hamilton Cline hamdiggy@gmail.com
-*/
+/** @preserve qjs created by Hamilton Cline - hamdiggy@gmail.com */
 
 
 ;((w)=>{
@@ -41,9 +38,7 @@ class Q {
     /* Apply a function to each element of a Q and then return only unique, non false, elements */
     sift(f) { return q([...new Set(this.flatMap(f))]
         .reduce((r,o)=>o?r.concat([o]):r,[])); }
-
 }
-
 
 
 
@@ -58,11 +53,12 @@ Q.prototype.filter = Array.prototype.filter;
 
 
 
+
 /* Extend the prototype of qjs selections */
 q.extend = (k,f,o=false) => { if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
 q.hasExtension = (k) => q.isFunction(Q.prototype[k]);
 
 
-w.q = q;
 
+w.q = q;
 })(window);

@@ -16,10 +16,10 @@
     "drawtoolsmaths":"uglifyjs tools/src/maths.js -o tools/bin/maths.min.js -c",
     "drawtools":"concurrently \"npm:drawtoolsc\" \"npm:drawtoolsb\" \"npm:drawtoolsevents\" \"npm:drawtoolscanvas\" \"npm:drawtoolscolors\" \"npm:drawtoolsmaths\"",
 
-    "queryfull":"uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/query.min.js -c -m reserved=['q','Q']",
-    "querylite":"uglifyjs tools/src/query.js tools/src/query-events.js -o tools/bin/query-lite.min.js -c -m reserved=['q','Q']",
+    "queryfull":"uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/query.min.js -c -m reserved=['q','Q','E'] --comments",
+    "querylite":"uglifyjs tools/src/query.js tools/src/query-events.js -o tools/bin/query-lite.min.js -c -m reserved=['q','Q','E'] --comments",
     "helpers":"uglifyjs tools/src/helpers.js -o tools/bin/helpers.min.js -c -m",
-    "apptools":"uglifyjs tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/apptools.min.js -c -m reserved=['q','Q'] --source-map",
+    "apptools":"uglifyjs tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/bin/apptools.min.js -c -m reserved=['q','Q','E'] --comments --source-map",
     "query":"concurrently \"npm:queryfull\" \"npm:querylite\"",
     "apptoolsall":"concurrently \"npm:apptools\" \"npm:query\" \"npm:helpers\""
   },

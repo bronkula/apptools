@@ -19,13 +19,19 @@
 	</ul><div>mhm</div>`);
 	console.log("2",e)
 	let e1 = q("body").prepend(e);
-	console.log("3",e1.style({color:'red'}))
-	console.log("4",e1.style('color'))
+	console.log("3",e1.css({"background-color":'red'}))
+	console.log("4",e1.css('color'))
 	console.log("5",e1.attr({title:'yup'}))
 	console.log("7",e1.attr('title'))
 	console.log("8",e1.data({id:{mhm:'yup'},other:true}))
 	console.log("9",e1.data('other'))
+	console.log("11",q("li").last().html("This is some text"))
+	console.log("12",q("li").last().html())
 	console.dir(e1[0])
+
+	e1.on("click",e=>{
+		console.log(e instanceof Event)
+	})
 
 	console.log(q("body").children().last().remove());
 

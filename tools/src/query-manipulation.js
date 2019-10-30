@@ -2,10 +2,11 @@
 if(!q) throw "qjs not imported yet";
 
 
-
 /* Manipulation methods */
 q.extend('remove',function(){
     return this.sift(o=>{ o.parentElement.removeChild(o); return false; }) });
+q.extend('clear',function(){
+    return this.sift(o=>{ o.innerHTML = ""; return o; }) });
 q.extend('append',function(e){
     return this.sift(o=>e.map(el=>{ o.appendChild(el); return o; })); });
 q.extend('appendTo',function(e){
@@ -30,7 +31,7 @@ q.extend('hasClass',function(e){ return this.every(o=>o.matches(s)); });
 /* Manipulation functions of q elements */
 q.setCSS = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
-        o.style[q.toProp(e)] = e[i]; } }
+        o.style[q.toPropCase(i)] = e[i]; } }
     return o; }
 q.setAttr = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
@@ -54,13 +55,14 @@ q.getData = function(o,e) {
     return o.qcache[e]; }
 
 
-q.toProp = function() {
+/* Turn css dash case properties to Camelcase */
+q.toPropCase = function(e) {
     return e.replace(/\-([a-z])/g,(m,p)=>p.toUpperCase()); }
 
 
 
 q.extend('css',function(e){
-    if(q.isString(e)) return this[0].style[q.toProp(e)];
+    if(q.isString(e)) return this[0].style[q.toPropCase(e)];
     return this.sift(o=>q.setCSS(o,e)); });
 q.extend('attr',function(e){
     if(q.isString(e)) return this[0].getAttribute(e);
