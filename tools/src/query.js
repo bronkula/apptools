@@ -35,9 +35,13 @@ class Q {
     }
 
 
-    /* Apply a function to each element of a Q and then return only unique, non false, elements */
-    sift(f) { return q([...new Set(this.flatMap(f))]
-        .reduce((r,o)=>o?r.concat([o]):r,[])); }
+    /* Return only unique, non false, elements */
+    sift(f) { return q([...new Set(this.flatMap(f).filter(o=>o))]); }
+    /* See if any Q elements match a selector */
+    is(s){ return this.some(o=>o.matches(s)); }
+    /* See if all Q elements do not match a selector */
+    not(s){ return !this.is(s); }
+    pipe(f) { return q(this.map(f)); }
 }
 
 

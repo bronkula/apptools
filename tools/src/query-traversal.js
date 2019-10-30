@@ -5,8 +5,6 @@ if(!q) throw "qjs not imported yet";
 
 /* Get array from Q */
 q.extend('toArray',function(){ return this.reduce((r,o)=>r.concat([o]),[]) });
-/* See if any Q elements match a selector */
-q.extend('is',function(s){ return this.every(o=>o.matches(s)); });
 
 
 

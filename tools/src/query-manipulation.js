@@ -6,7 +6,7 @@ if(!q) throw "qjs not imported yet";
 q.extend('remove',function(){
     return this.sift(o=>{ o.parentElement.removeChild(o); return false; }) });
 q.extend('clear',function(){
-    return this.sift(o=>{ o.innerHTML = ""; return o; }) });
+    return this.pipe(o=>{ o.innerHTML = ""; return o; }) });
 q.extend('append',function(e){
     return this.sift(o=>e.map(el=>{ o.appendChild(el); return o; })); });
 q.extend('appendTo',function(e){
@@ -15,16 +15,20 @@ q.extend('prepend',function(e){
     return this.sift(o=>e.map(el=>{ o.insertBefore(el,o.children[0]); return o; })); });
 q.extend('prependTo',function(e){
     return this.sift(o=>e.map(el=>{ el.insertBefore(o,el.children[0]); return o; })); });
+q.extend('before',function(e){
+    return this.sift(o=>e.map(el=>{ o.parentElement.insertBefore(el,o); return o; })); });
+q.extend('after',function(e){
+    return this.sift(o=>e.map(el=>{ o.parentElement.insertBefore(el,o.nextSibling); return o; })); });
 
 
 
 q.extend('addClass',function(e){
-    return this.sift(o=>e.map(el=>{ el.classList.add(e); return o; })); });
+    return q.pipe(o=>{ o.classList.add(e); return o; }); });
 q.extend('removeClass',function(e){
-    return this.sift(o=>e.map(el=>{ el.classList.remove(e); return o; })); });
+    return q.pipe(o=>{ o.classList.remove(e); return o; }); });
 q.extend('toggleClass',function(e){
-    return this.sift(o=>e.map(el=>{ el.classList.toggle(e); return o; })); });
-q.extend('hasClass',function(e){ return this.every(o=>o.matches(s)); });
+    return q.pipe(o=>{ o.classList.toggle(e); return o; }); });
+q.extend('hasClass',function(e){ return this.is(s); });
 
 
 

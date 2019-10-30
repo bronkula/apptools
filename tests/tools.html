@@ -174,25 +174,42 @@
 		<div class="test3"></div>
 
 		<script>
-		console.dir(q(".test3"))
-		q(".test3").append(q.make("<div class='groot'><a href='#'>text</a></div>"))
-		let e = q(`<ul>
-			<li>yup</li>
-			<li>yup</li>
-			<li>yup</li>
-		</ul><div>mhm</div>`);
-		console.log("2",e)
-		let e1 = q(".test3").prepend(e);
-		console.log("3",e1.css({color:'red'}))
-		console.log("4",e1.css('color'))
-		console.log("5",e1.attr({title:'yup'}))
-		console.log("7",e1.attr('title'))
-		console.log("8",e1.data({id:{mhm:'yup'},other:true}))
-		console.log("9",e1.data('other'))
-		console.dir(e1[0])
+		q(()=>{
+			console.group();
+			console.dir(q("body"));
 
-		console.log(q(".test3").children().last().remove());
-		console.log();
+			let e3 = q(".test3").append(q.make("<div class='groot'><a href='#'>text</a></div>"))
+			let e = q(`<ul>
+				<li>yup</li>
+				<li>yup</li>
+				<li>yup</li>
+			</ul><div>mhm</div>`);
+			console.log("2",e)
+			let e1 = e3.prepend(e);
+			console.log("3",e1.css({"background-color":'#fafafa'}))
+			console.log("4",e1.css('color'))
+			console.log("5",e1.attr({title:'yup'}))
+			console.log("7",e1.attr('title'))
+			console.log("8",e1.data({id:{mhm:'yup'},other:true}))
+			console.log("9",e1.data('other'))
+			console.log("11",q("li").last().html("This is some text"))
+			console.log("12",q("li").last().html())
+			console.dir(e1[0])
+
+			e1.on("click",e=>{
+				console.log(e instanceof Event)
+			})
+
+			console.log(e3.find("li").children().first().remove());
+
+			q.extend('templater',f => a =>
+				(q.isArray(a)?a:[a])
+				.reduce((r,o,i,a)=>r+f(o,i,a),'')
+			);
+			console.dir(q(q([]).templater(o=>`<div>${o.id}</div>`)({id:1})).appendTo(e3.find("ul")));
+			console.groupEnd();
+			
+		})
 		</script>
 	</section>
 </body>
