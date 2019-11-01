@@ -1,4 +1,4 @@
-/** @preserve qjs created by Hamilton Cline - hamdiggy@gmail.com */
+/** qjs created by Hamilton Cline - hamdiggy@gmail.com */
 
 
 ;((w)=>{
@@ -7,27 +7,37 @@
 const q = (s,sc) => new Q(s,sc);
 
 
-/* Helper Functions */
+
 q.isHTML = d => d instanceof HTMLElement || d instanceof HTMLDocument;
 q.isString = d => typeof d == "string" || d instanceof String;
 q.isFunction = d => typeof d == "function";
+q.isQ = d => d instanceof Q;
 q.isArray = d => Array.isArray(d);
+q.isHTMLString = d => q.isString(d) && d.trim()[0]=="<";
+
+q.make = function(s) { if(!q.isHTMLString(s)) return false;
+    else return q([...document.createRange().createContextualFragment(s).childNodes]) }
+q.extend = (k,f,o=false) => {
+    if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
+q.hasExtension = (k) => {
+    return q.isFunction(Q.prototype[k]); }
 
 
-
-/* Manipulation functions of q elements */
-q.make = function(s) {
-    return q([...document.createRange().createContextualFragment(s).childNodes]) }
-
+q.sift = (s,f) => {
+    return [...new Set(s.flatMap(f).filter(o=>o))]; }
+q.settle = o => {
+    return o.flatMap(e=>{ return q.isQ(e) ? e[0] : q.isHTML(e) ? e : q.make(e); }); }
 
 
 class Q {
     constructor(s,sc=document) {
-        let nl = !s || !q.isHTML(sc) ? [] : 
-            q.isHTML(s) || s==sc ? [s] : 
-            q.isArray(s) ? s :
-            q.isString(s) && s.trim()[0]=="<" ? q.make(s) :
+        let nl =
+            !s || !q.isHTML(sc) ? [] :
+            q.isQ(s) ? s :
+            q.isHTML(s) || s==sc ? [s] :
+            q.isHTMLString(s) ? q.make(s) :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
+            q.isArray(s) ? q.settle(s) :
             sc.querySelectorAll(s);
         if(!nl) return false;
         Object.assign(this,nl);
@@ -36,12 +46,12 @@ class Q {
 
 
     /* Return only unique, non false, elements */
-    sift(f) { return q([...new Set(this.flatMap(f).filter(o=>o))]); }
-    /* See if any Q elements match a selector */
-    is(s){ return this.some(o=>o.matches(s)); }
-    /* See if all Q elements do not match a selector */
-    not(s){ return !this.is(s); }
+    sift(f) { return q(q.sift(this,f)); }
     pipe(f) { return q(this.map(f)); }
+
+    /* See if any Q elements match a selector */
+    is(s) { return this.some(o=>o.matches(s)); }
+    not(s) { return !this.is(s); }
 }
 
 
@@ -54,13 +64,6 @@ Q.prototype.reduce = Array.prototype.reduce;
 Q.prototype.some = Array.prototype.some;
 Q.prototype.every = Array.prototype.every;
 Q.prototype.filter = Array.prototype.filter;
-
-
-
-
-/* Extend the prototype of qjs selections */
-q.extend = (k,f,o=false) => { if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
-q.hasExtension = (k) => q.isFunction(Q.prototype[k]);
 
 
 

@@ -11,6 +11,16 @@
 	<script>
 	q(()=>{
 		console.log(q(".nav li").pipe(o=>{console.log(o); return o;}))
+		q(".nav ul").append("<div>append</div>");
+		q(".nav ul").prepend("<div>prepend</div>");
+		q("<li>prependTo</li>").prependTo(".nav ul");
+		q("<li>appendTo</li>").appendTo(".nav ul");
+		q(".nav ul").before("<div>before</div>");
+		q(".nav ul").after("<div>after</div>");
+		let e = q(".nav ul").addClass("active");
+		console.log(q(".nav ul"))
+		e.find("a").last()
+			.html(q(".nav ul").hasClass("active")?"has class active":"has no class");
 	})
 	</script>
 	<nav class="nav">
