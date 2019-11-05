@@ -1,0 +1,181 @@
+
+.chromeless {
+    border-width: 0;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    line-height:inherit;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+/* Buttons */
+.btn {
+    display:inline-block;
+    position:relative;
+    padding: 0 1em;
+    border-radius: 0.2rem;
+    font-family: Verdana, sans-serif;
+    color: inherit;
+    background-color: transparent;
+    font-size: inherit;
+    border:solid transparent 0.1rem;
+    cursor:pointer;
+    line-height:2;
+    outline: 0;
+
+
+    &.text {
+        background-color:transparent;
+        border-width:0;
+        color:inherit;
+    }
+
+    &.solid {
+        color: var(--color-white);
+        background-color: var(--color-neutral-light);
+    }
+
+    &.solid.main { background-color:var(--color-main-light); }
+    &.solid.neutral { background-color:var(--color-neutral-light); }
+    &.solid.commit { background-color:var(--color-commit-light); }
+    &.solid.cancel { background-color:var(--color-cancel-light); }
+
+    &.lined.main { border-color:var(--color-main); }
+    &.lined.neutral { border-color:var(--color-neutral); }
+    &.lined.commit { border-color:var(--color-commit); }
+    &.lined.cancel { border-color:var(--color-cancel); }
+
+    &.main:active { border-color:var(--color-main-dark); }
+    &.neutral:active { border-color:var(--color-neutral-dark); }
+    &.commit:active { border-color:var(--color-commit-dark); }
+    &.cancel:active { border-color:var(--color-cancel-dark); }
+
+    &.text.main,&.lined.main { color:var(--color-main); }
+    &.text.neutral,&.lined.neutral { color:var(--color-neutral); }
+    &.text.commit,&.lined.commit { color:var(--color-commit); }
+    &.text.cancel,&.lined.cancel { color:var(--color-cancel); }
+
+    &.full {
+        width:100%;
+        &+.full {
+            margin-top: 0.3rem;
+        }
+    }
+    &.flush {
+        padding:0;
+    }
+
+
+    &.small {
+        font-size:0.7em;
+    }
+    &.large {
+        font-size:1.25em;
+    }
+
+}
+
+
+
+.form {
+    &-control {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    &-input {
+        background-color: transparent;
+        border-width: 0;
+        border-bottom: 1px solid var(--color-gray-medium);
+        width: 100%;
+        display: inline-block;
+        outline: 0;
+        font:inherit;
+        color:inherit;
+        padding:0.2em 1em;
+    }
+    &-label {
+        margin: 0 !important;
+        font-size: 0.7em;
+        color:var(--color-gray-medium);
+    }
+    &-button {
+        @extend .btn;
+        // background-color: var(--color-gray-medium);
+        // color: white;
+        // width: 100%;
+        // border-width: 0;
+        // padding: 0.2em 1em;
+        // font: inherit;
+        // outline:0;
+    }
+    &-blank {
+        border-width:0;
+        background-color:transparent;
+        font:inherit;
+        color:inherit;
+        width:100%;
+        outline:0;
+    }
+    
+
+    &-group {
+        display:flex;
+
+        &>:not(:first-child):not(:last-child) {
+            border-radius:0;
+        }
+        &>:last-child {
+            border-top-left-radius:0;
+            border-bottom-left-radius:0;
+        }
+        &>:first-child {
+            border-top-right-radius:0;
+            border-bottom-right-radius:0;
+        }
+    }
+}
+
+
+
+.hotdog {
+    width: 100%;
+    padding: 0 1em;
+    border-radius: 2em;
+    background-color: var(--color-neutral-light);
+    line-height: 2;
+    border-width: 0;
+    color: var(--color-black);
+    font: inherit;
+    display:flex;
+
+    input {
+        @extend .chromeless;
+    }
+
+    .nav-overlay & {
+        background-color: white;
+        box-shadow:1px 1px 10px rgba(0,0,0,0.2);
+        width: initial;
+        height: var(--header-height);
+    }
+    
+    a {
+        padding: 0;
+        background-color: rgba(255,255,255,0.5);
+        border-radius: 2em;
+        width: 1.8em;
+        height: 1.8em;
+        align-self: center;
+        display: block;
+        text-align: center;
+        line-height: 1.8em;
+    }
+}
+
+
+

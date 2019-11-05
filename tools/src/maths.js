@@ -1,4 +1,3 @@
-/* yup */
 
 /* MATHS.JS */
 /*---------------------- Math Helper Functions -----------------------------*/
@@ -31,7 +30,7 @@ const xy = (x,y) => ({x,y});
 const vxs = (x0,y0,x1,y1) => (x0*y1) - (x1*y0);
    
 /* If p(osition) is outside of n or x, return a reversed s(peed) */
-const bounce = (n,x) => (p,s) => p>=x||p<=n?-s:s;
+const bounce = (min,max) => (pos,spd) => pos>=max||pos<=min?-spd:spd;
 
 /* Bounce angle a off of a vertical or horizontal wall */
 const bounceX = a => Math.sign(a)*unsignHalfRadian(-signHalfRadian(Math.abs(signRadian(a))));
@@ -70,13 +69,12 @@ const wrapNumber = max => {
    return n => t(s(n));
 }
 
-/* This function returns an arbitrary positive number looped inside an arbitrary positive number range. Results not guaranteed. */
+/* This function returns an arbitrary positive number looped inside an arbitrary positive number range. */
 const within = (min,max) => {
-   const r = max-min+1;
-   const t = unsignNumber(r);
-   const s = signNumber(r);
-   return n => t(s(n-min))+min;
+   const t = wrapNumber(max-min+1);
+   return n => t(n-min)+min;
 }
+
 
 
 /* ----------------------------  MAPPING ----------------------------*/
@@ -172,3 +170,4 @@ const rectInRect = (x1,y1,x2,y2) => {
 /* detect if a circle is touching another circle. Use 0 for r1 if a point */
 const circleCollission = (x1,y1,r1,x2,y2,r2) =>
    pointDistance(x1,y1,x2,y2) < (r1 + r2);
+

@@ -1,0 +1,40 @@
+
+
+.icon {
+    font-size:1.3rem;
+    width:1em;
+    height:1em;
+    display:inline-block;
+    line-height:1em;
+    text-align:center;
+    vertical-align: text-bottom;
+    font-style: normal;
+    font-weight: normal;
+    position:relative;
+    
+    a & {
+        pointer-events:none;
+    }
+
+    &>img,
+    &>svg {
+        width: 1em;
+        height: 1em;
+    }
+
+    &-labels a {
+        flex-direction:column;
+
+        .icon-img {
+            height:  calc(var(--header-height) * 0.7);
+            line-height: calc(var(--header-height) * 0.7);
+            display: block;
+        }
+        .icon-label {
+            height:  calc(var(--header-height) * 0.3);
+            line-height: calc(var(--header-height) * 0.3);
+            font-size: 0.6em;
+            display: block;
+        }
+    }
+}

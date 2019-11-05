@@ -1,0 +1,281 @@
+
+
+
+
+
+/* NAVS */
+
+
+
+.nav {
+
+    ul {
+        @extend .compact;
+    }
+
+    &bar {
+        background-color:var(--color-main-dark);
+        color: var(--color-white);
+        line-height: var(--header-height);
+
+        h1 {
+            font-size: 1.1em;
+            line-height:inherit;
+            font-family:arial,sans-serif;
+            margin:0;
+        }
+
+        a {
+            padding-top:0;
+            padding-bottom:0;
+            border-top-width:0;
+            border-bottom-width:0;
+            color:inherit;
+
+            &:hover {
+                background-color:var(--color-neutral-light);
+                color:var(--color-neutral-dark);
+            }
+        }
+    }
+
+    a, span {
+        display:block;
+        padding: 0.2em 0.5em;
+        font-family:Verdana, sans-serif;
+
+        &:hover {
+            text-decoration:none;
+            background-color:var(--color-main-light);
+        }
+    }
+
+    .active>a, .active>span { background-color:var(--color-main-dark) }
+
+
+    &-default {
+        @extend .nav;
+        --border-size:0.1em;
+
+        a, span { border:var(--border-size) solid transparent; }
+        .active>a, .active>span { border:var(--border-size) solid var(--color-main); }
+    }
+
+    &-flex {
+        @extend .nav;
+
+        ul { display:flex; }
+    }
+
+    &-inline {
+        @extend .nav;
+
+        ul {
+            display:inline-flex;
+            overflow:auto;
+            white-space:nowrap;
+        }
+    }
+
+    &-stretch {
+        @extend .nav-flex;
+
+        li { flex: 1 1 auto; }
+    }
+
+    &-pills {
+        @extend .nav-inline;
+
+        a,span {
+            border-radius:1em;
+            margin:0 0.2em;
+            padding:0.2em 1em;
+        }
+    }
+
+    &-tabs {
+        @extend .nav-stretch;
+
+        ul {
+            border-bottom: var(--border-size) solid var(--color-neutral-light);
+            align-items:flex-end;
+        }
+        li {
+            margin:0 0.2em;
+        }
+        a {
+            position:relative;
+            border-bottom-width:0 !important;
+            border-radius: 0.3em 0.3em 0 0;
+        }
+        .active>a::after {
+                position: absolute;
+                content: '';
+                bottom: 0;
+                left: 0;
+                transform: translateY(calc(100% - (var(--border-size) * 0.5)));
+                width: 100%;
+                height: calc(2 * var(--border-size));
+                background-color: var(--color-white);
+        }
+    }
+
+    &-material {
+        @extend .nav-stretch;
+
+        ul {
+            border-bottom: calc(0.5 * var(--border-size)) solid var(--color-neutral);
+            align-items:flex-end;
+        }
+        a {
+            position: relative;
+            border-width:0 !important;
+            padding:0.75em 1em;
+
+            &::after {
+                position: absolute;
+                content: '';
+                bottom: -1px;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color:var(--color-main);
+                transition: height 0.3s;
+            }
+        }
+        .active>a::after {
+            height: calc(3 * var(--border-size));
+        }
+    }
+
+    &-crumbs {
+        @extend .nav-inline;
+
+        font-size:0.9em;
+        padding: 1em 0;
+
+        ul { display:flex; }
+
+        a { display:inline-block; }
+
+        li:not(:first-child)::before { content: '/'; }
+    }
+
+
+
+
+
+
+    &-mobile {
+        @extend .nav;
+
+        ul {
+            position:relative;
+            align-items: center;
+        }
+        li {
+            height: var(--header-height);
+            &>a, &>span {
+                padding:0 0.5rem;
+                color:inherit;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                line-height: 1;
+                height: 100%;
+                width: 100%;
+            }
+            &:first-child>h1,
+            &:first-child>a,
+            &:first-child>span {
+                padding-left: 1rem;
+            }
+            &:last-child>h1,
+            &:last-child>a,
+            &:last-child>span {
+                padding-right: 1rem;
+            }
+            &>a:hover {
+                text-decoration:none;
+                background-color:#eee;
+            }
+        }
+
+
+
+
+        &-background li.active>a,
+        &-background li.active a::before,
+        &-background li.active a::after {
+            background-color: var(--color-main-light);
+        }
+
+        &-grow-icon {
+            .icon {
+                transform: scale(1,1);
+                transition: all 0.3s;
+            }
+            li.active .icon {
+                transform: scale(1.6,1.6);
+            }
+        }
+        &-hump {
+            a {
+                position: relative;
+                z-index: 3;
+                background-color: var(--color-white);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 50%;
+                    width: 5em;
+                    height: 3em;
+                    background-color: var(--color-white);
+                    border-radius: 50%;
+                    transform: translate(-50%,1em);
+                    transition: all 0.3s;
+                    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: var(--color-white);
+                    transition: all 0.3s;
+                }
+            }
+            li.active a::before {
+                transform: translate(-50%,-1em);
+            }
+            .icon {
+                content: '';
+                position: relative;
+                z-index: 4;
+                transition: all 0.3s;
+            }
+        }
+        &-hump.nav-mobile-grow-icon li.active .icon {
+            transform: scale(1.6,1.6) translateY(-0.25rem);
+        }
+    }
+
+
+
+    &-overlay-grow {
+        a {
+            transition:all 0.3s;
+            transform:scale(1,1);
+            transform-origin:bottom center;
+        }
+        li.active a {
+            transform:scale(1.4,1.4);
+        }
+    }
+
+}

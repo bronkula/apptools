@@ -1,0 +1,47 @@
+
+
+/* Helpers */
+.no-touch { pointer-events: none; }
+.do-touch { pointer-events: initial; }
+.hidden { display:none; }
+
+
+
+.fill-parent {
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+
+.overscroll,.overscroll-y { overflow-y: auto; }
+.overscroll,.overscroll-x { overflow-x: auto; }
+
+@supports (-webkit-overflow-scrolling:touch) {
+    .overscroll,.overscroll-y {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling:touch;
+    }
+    .overscroll,.overscroll-x {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling:touch;
+    }
+}
+
+
+
+
+.chromeless {
+    background-color:transparent;
+    border-radius:0;
+    border-width:0;
+    font:inherit;
+    color:inherit;
+}
+.compact {
+    list-style-type:none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
