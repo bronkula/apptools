@@ -1,6 +1,6 @@
 # CORE CSS
 
-** Sections **
+**Sections**
 
 - [Cosmetic](#user-content-cosmetic)
 - [Systems](#user-content-responsive-systems)
