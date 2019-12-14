@@ -98,9 +98,7 @@
         pointer-events:initial;
         opacity:1;
 
-        .modal-popup {
-            transform:translate(-50%,-50%);
-        }
+        .modal-popup { transform:translate(-50%,-50%); }
 
         .modal-drawer.right,
         .modal-drawer.left { transform: translateX(0); }

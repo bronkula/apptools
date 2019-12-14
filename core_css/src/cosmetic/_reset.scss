@@ -3,10 +3,11 @@
 body {
     margin:0;
     padding-bottom:8em;
-    font-family:Georgia, serif;
+    font-family:var(--font-body);
     line-height:1.2;
 }
 
+h1,h2,h3 { font-family:var(--font-heading); }
 h1 {
     font-size: 1.5em;
     line-height: 2;

@@ -21,7 +21,7 @@
         h1 {
             font-size: 1.1em;
             line-height:inherit;
-            font-family:arial,sans-serif;
+            font-family:var(--font-sans);
             margin:0;
         }
 
@@ -278,4 +278,30 @@
         }
     }
 
+}
+
+
+.nav-menu-activator+label {
+    display:none;
+}
+
+@media (max-width:600px) {
+    .responsive {
+        .nav {
+            width:100%;
+            line-height:calc(var(--header-height) * 0.66);
+        }
+        ul {
+            display:none;
+        }
+    }
+    .nav-menu-activator {
+        &+label {
+            display:block;
+        }
+        &:checked~.nav ul {
+            display:block;
+            padding-bottom:1em;
+        }
+    }
 }

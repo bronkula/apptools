@@ -105,21 +105,9 @@
     }
     &-button {
         @extend .btn;
-        // background-color: var(--color-gray-medium);
-        // color: white;
-        // width: 100%;
-        // border-width: 0;
-        // padding: 0.2em 1em;
-        // font: inherit;
-        // outline:0;
     }
     &-blank {
-        border-width:0;
-        background-color:transparent;
-        font:inherit;
-        color:inherit;
-        width:100%;
-        outline:0;
+        @extend .chromeless;
     }
     
 

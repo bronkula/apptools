@@ -20,5 +20,10 @@
     --color-cancel-dark: #7d2020;
     --color-cancel-light: #fbb9b9;
 
-    --header-height: 3em;
+    --header-height: 3rem;
+
+    --font-sans:'Trebuchet MS','Tahoma',sans-serif;
+    --font-serif:'Georgia','Lucida Bright',serif;
+    --font-heading:--var(--font-serif);
+    --font-body:--var(--font-sans);
 }
