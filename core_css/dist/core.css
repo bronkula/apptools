@@ -254,6 +254,12 @@ a .icon { pointer-events: none; }
 .card > :last-child, .card-bright > :last-child, .card-dark > :last-child, .card-main > :last-child { margin-bottom: 0; }
 
 /* NAVS */
+.nav a, .nav-default a, .nav-flex a, .nav-stretch a, .nav-tabs a, .nav-material a, .nav-inline a, .nav-pills a, .nav-crumbs a, .nav-mobile a, .nav span, .nav-default span, .nav-flex span, .nav-stretch span, .nav-tabs span, .nav-material span, .nav-inline span, .nav-pills span, .nav-crumbs span, .nav-mobile span { display: block; padding: 0.2em 0.5em; font-family: Verdana, sans-serif; }
+
+.nav a:hover, .nav-default a:hover, .nav-flex a:hover, .nav-stretch a:hover, .nav-tabs a:hover, .nav-material a:hover, .nav-inline a:hover, .nav-pills a:hover, .nav-crumbs a:hover, .nav-mobile a:hover, .nav span:hover, .nav-default span:hover, .nav-flex span:hover, .nav-stretch span:hover, .nav-tabs span:hover, .nav-material span:hover, .nav-inline span:hover, .nav-pills span:hover, .nav-crumbs span:hover, .nav-mobile span:hover { text-decoration: none; background-color: var(--color-main-light); }
+
+.nav .active > a, .nav-default .active > a, .nav-flex .active > a, .nav-stretch .active > a, .nav-tabs .active > a, .nav-material .active > a, .nav-inline .active > a, .nav-pills .active > a, .nav-crumbs .active > a, .nav-mobile .active > a, .nav .active > span, .nav-default .active > span, .nav-flex .active > span, .nav-stretch .active > span, .nav-tabs .active > span, .nav-material .active > span, .nav-inline .active > span, .nav-pills .active > span, .nav-crumbs .active > span, .nav-mobile .active > span { background-color: var(--color-main-dark); }
+
 .navbar { background-color: var(--color-main-dark); color: var(--color-white); line-height: var(--header-height); }
 
 .navbar h1 { font-size: 1.1em; line-height: inherit; font-family: var(--font-sans); margin: 0; }
@@ -261,12 +267,6 @@ a .icon { pointer-events: none; }
 .navbar a { padding-top: 0; padding-bottom: 0; border-top-width: 0; border-bottom-width: 0; color: inherit; }
 
 .navbar a:hover { background-color: var(--color-neutral-light); color: var(--color-neutral-dark); }
-
-.nav a, .nav-default a, .nav-flex a, .nav-stretch a, .nav-tabs a, .nav-material a, .nav-inline a, .nav-pills a, .nav-crumbs a, .nav-mobile a, .nav span, .nav-default span, .nav-flex span, .nav-stretch span, .nav-tabs span, .nav-material span, .nav-inline span, .nav-pills span, .nav-crumbs span, .nav-mobile span { display: block; padding: 0.2em 0.5em; font-family: Verdana, sans-serif; }
-
-.nav a:hover, .nav-default a:hover, .nav-flex a:hover, .nav-stretch a:hover, .nav-tabs a:hover, .nav-material a:hover, .nav-inline a:hover, .nav-pills a:hover, .nav-crumbs a:hover, .nav-mobile a:hover, .nav span:hover, .nav-default span:hover, .nav-flex span:hover, .nav-stretch span:hover, .nav-tabs span:hover, .nav-material span:hover, .nav-inline span:hover, .nav-pills span:hover, .nav-crumbs span:hover, .nav-mobile span:hover { text-decoration: none; background-color: var(--color-main-light); }
-
-.nav .active > a, .nav-default .active > a, .nav-flex .active > a, .nav-stretch .active > a, .nav-tabs .active > a, .nav-material .active > a, .nav-inline .active > a, .nav-pills .active > a, .nav-crumbs .active > a, .nav-mobile .active > a, .nav .active > span, .nav-default .active > span, .nav-flex .active > span, .nav-stretch .active > span, .nav-tabs .active > span, .nav-material .active > span, .nav-inline .active > span, .nav-pills .active > span, .nav-crumbs .active > span, .nav-mobile .active > span { background-color: var(--color-main-dark); }
 
 .nav-default { --border-size:0.1em; }
 
