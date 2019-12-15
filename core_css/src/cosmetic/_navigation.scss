@@ -13,6 +13,19 @@
         @extend .compact;
     }
 
+    a, span {
+        display:block;
+        padding: 0.2em 0.5em;
+        font-family:Verdana, sans-serif;
+
+        &:hover {
+            text-decoration:none;
+            background-color:var(--color-main-light);
+        }
+    }
+
+    .active>a, .active>span { background-color:var(--color-main-dark) }
+
     &bar {
         background-color:var(--color-main-dark);
         color: var(--color-white);
@@ -38,19 +51,6 @@
             }
         }
     }
-
-    a, span {
-        display:block;
-        padding: 0.2em 0.5em;
-        font-family:Verdana, sans-serif;
-
-        &:hover {
-            text-decoration:none;
-            background-color:var(--color-main-light);
-        }
-    }
-
-    .active>a, .active>span { background-color:var(--color-main-dark) }
 
 
     &-default {
