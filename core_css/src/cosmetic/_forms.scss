@@ -135,11 +135,16 @@
     padding: 0 1em;
     border-radius: 2em;
     background-color: var(--color-neutral-light);
+    color: var(--color-black);
     line-height: 2;
     border-width: 0;
-    color: var(--color-black);
     font: inherit;
     display:flex;
+
+    .navbar & {
+        background-color: var(--color-main-light);
+        color: var(--color-main-dark);
+    }
 
     input {
         @extend .chromeless;
@@ -162,6 +167,14 @@
         display: block;
         text-align: center;
         line-height: 1.8em;
+    }
+
+    &-bun {
+        padding: 0.3em 0.5em;
+        height:100%;
+        &>.hotdog {
+            height:100%;
+        }
     }
 }
 

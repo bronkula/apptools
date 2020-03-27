@@ -30,11 +30,12 @@
         background-color:var(--color-main-dark);
         color: var(--color-white);
         line-height: var(--header-height);
+        font-family: var(--font-sans);
 
         h1 {
             font-size: 1.1em;
             line-height:inherit;
-            font-family:var(--font-sans);
+            font-family:inherit;
             margin:0;
         }
 
@@ -298,6 +299,8 @@
     .nav-menu-activator {
         &+label {
             display:block;
+            padding: 0 0 0 1rem;
+            font-size:1.5em;
         }
         &:checked~.nav ul {
             display:block;
