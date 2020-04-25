@@ -118,7 +118,7 @@ code[data-title='css'] { background-color: #efe; }
 .chromeless, .form-blank, .hotdog input { border-width: 0; font: inherit; color: inherit; background-color: transparent; outline: 0; width: 100%; height: 100%; line-height: inherit; padding: 0; margin: 0; display: inline-block; }
 
 /* Buttons */
-.btn, .form-button { display: inline-block; position: relative; padding: 0 1em; border-radius: 0.2rem; font-family: Verdana, sans-serif; color: inherit; background-color: transparent; font-size: inherit; border: solid transparent 0.1rem; cursor: pointer; line-height: 2; outline: 0; }
+.btn, .form-button { display: inline-block; position: relative; padding: 0 1em; border-radius: 0.2rem; color: inherit; background-color: transparent; font: inherit; border: solid transparent 0.1rem; cursor: pointer; line-height: inherit; text-align: center; outline: 0; }
 
 .btn.text, .text.form-button { background-color: transparent; border-width: 0; color: inherit; }
 
@@ -172,7 +172,7 @@ code[data-title='css'] { background-color: #efe; }
 
 .form-label { margin: 0 !important; font-size: 0.7em; color: var(--color-neutral-medium); }
 
-.form-button { width: 100%; }
+.form-button { width: 100%; border-width: 0; background-color: var(--color-neutral-light); }
 
 .form-group { display: flex; }
 
