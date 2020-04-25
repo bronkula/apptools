@@ -15,7 +15,7 @@
     &-justify-end { justify-content: flex-end; }
 
     &-stretch { flex: 1; }
-    &-nostretch { flex: none; }
+    &-none { flex: none; }
 	}
 	@for $i from 1 through 10 {
     .order#{$breakpoint}-#{$i} { order:$i; }

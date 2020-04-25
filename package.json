@@ -18,7 +18,7 @@
     "drawtoolsmaths":"uglifyjs tools/src/maths.js -o tools/dist/maths.min.js -c",
     "drawtools":"concurrently \"npm:drawtoolsc\" \"npm:drawtoolsb\" \"npm:drawtoolsevents\" \"npm:drawtoolscanvas\" \"npm:drawtoolscolors\" \"npm:drawtoolsmaths\"",
 
-    "queryfull":"uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/query.min.js -c -m reserved=['q','Q','E'] --comments",
+    "queryfull":"uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-events.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/query.min.js -c -m reserved=['q','Q','E'] --comments",
     "querylite":"uglifyjs tools/src/query.js tools/src/query-events.js -o tools/dist/query-lite.min.js -c -m reserved=['q','Q','E'] --comments",
     "helpers":"uglifyjs tools/src/helpers.js -o tools/dist/helpers.min.js -c -m",
     "apptools":"uglifyjs tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/apptools.min.js -c -m reserved=['q','Q','E'] --comments --source-map",

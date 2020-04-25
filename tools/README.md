@@ -2,6 +2,7 @@
 - [App Tools](#user-content-app-tools)
 	- [Query.js](#user-content-queryjs)
 - [Draw Tools](#user-content-draw-tools)
+- [Distribution](#user-content-distribution)
 
 ---
 
@@ -134,3 +135,8 @@ templater(o=>`<div>${o.name}</div>`)(".output")(
 .output: "<div>George</div><div>Fred</div>"
 ```
 
+## Distribution
+
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query-lite.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/drawtools.min.js)**
