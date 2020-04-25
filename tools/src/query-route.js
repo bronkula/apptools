@@ -16,16 +16,40 @@ const route = {
         } else {
             w.location.assign(stateObj.url);
         }
+    },
+    make: (routes,defaultRoute=()=>{}) => {
+        let hash = w.location.hash.substr(1).split("/");
+        for(let [route,callback] of Object.entries(routes)) {
+            let h = route.split("/");
+            if(h[0]==hash[0]) {
+                let v = {};
+                if(hash.length==h.length){
+                    h.forEach((o,i)=>{
+                        if(o!==hash[i]) v[o.substr(1)] = hash[i];
+                    });
+                    return callback(v);
+                }
+            }
+        }
+        return defaultRoute();
     }
 };
 
 const setActive = (state,update) => {
+
+    // console.log(w.history,state,stateObj);
+
     if(state==null) {
         state = {
             title:w.location.hash.substr(1),
             url:w.location.href
         };
     }
+    
+    stateObj.state = {...state};
+    
+    w.history[update?'pushState':'replaceState']
+        (state, state.title, state.url);
 
     w.document.dispatchEvent(
         new CustomEvent("pageshow",{
@@ -35,26 +59,26 @@ const setActive = (state,update) => {
             }
         })
     );
-    
-    stateObj.state = {...state};
-    
-    w.history[update?'pushState':'replaceState']
-        (state, state.title, state.url);
 
 };
 
 if(w.q) {
-    w.q(()=>{
-        console.log(w.q,w.q(document))
-        w.q(document).delegate("click","a[href^='#']",e=>{
+    q(()=>{
+        q(document).delegate("click","a[href^='#']",e=>{
             e.preventDefault();
-            let r = e.target.href.substr(1);
+            let r = e.target.attributes.href.value.substr(1);
             if(r!="") route.navigate(r);
         })
-    })
-    w.q.extend('route',route);
+    });
+    q.route = route;
 }
+else w.route = route;
 
-w.addEventListener("popstate",o=>setActive(o.state));
+
+w.addEventListener("load",()=>{
+    setTimeout(()=>w.addEventListener("popstate",o=>setActive(o.state)),0)
+});
+w.addEventListener("DOMContentLoaded",e=>setActive(null))
+
 
 })(window);
