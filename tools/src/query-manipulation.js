@@ -39,7 +39,13 @@ q.setCSS = function(o,e) {
 q.setAttr = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
         o.setAttribute(i,e[i]); } } return o; }
-q.setHTML = function(o,e) { o.innerHTML=e; return o; }
+q.setHTML = function(o,e) { 
+    if(q.isQ(e)) {
+        o.clear();
+        e.forEach(i=>o.appendChild(i));
+    } else if(q.isString(e)) o.innerHTML=e;
+    return o;
+}
 
 
 /* Cache methods for data manipulation */

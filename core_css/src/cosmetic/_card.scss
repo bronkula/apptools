@@ -12,7 +12,7 @@
 
     &-dark { @extend .card; background-color: var(--color-neutral-dark); }
 
-    &-main { @extend .card; background-color: var(--color-main); }
+    &-main { @extend .card; background-color: var(--color-main-medium); }
 
     &.shadow {
     	box-shadow: 0 2px 0 rgba(0,0,0,0.2);

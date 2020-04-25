@@ -17,18 +17,21 @@ const route = {
             w.location.assign(stateObj.url);
         }
     },
+    matches:(r) => {
+        let hash = w.location.hash.substr(1).split("/");
+        let h = r.split("/");
+        return h[0]==hash[0] && h.length==hash.length;
+    },
     make: (routes,defaultRoute=()=>{}) => {
         let hash = w.location.hash.substr(1).split("/");
         for(let [route,callback] of Object.entries(routes)) {
             let h = route.split("/");
-            if(h[0]==hash[0]) {
+            if(h[0]==hash[0] && h.length==hash.length) {
                 let v = {};
-                if(hash.length==h.length){
-                    h.forEach((o,i)=>{
-                        if(o!==hash[i]) v[o.substr(1)] = hash[i];
-                    });
-                    return callback(v);
-                }
+                h.forEach((o,i)=>{
+                    if(o!==hash[i]) v[o.substr(1)] = hash[i];
+                });
+                return callback(v);
             }
         }
         return defaultRoute();

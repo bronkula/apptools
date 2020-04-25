@@ -24,7 +24,7 @@
 
 .flex-stretch { flex: 1; }
 
-.flex-nostretch { flex: none; }
+.flex-none { flex: none; }
 
 .order-1 { order: 1; }
 
@@ -59,7 +59,7 @@
   .flex-xs-justify-start { justify-content: flex-start; }
   .flex-xs-justify-end { justify-content: flex-end; }
   .flex-xs-stretch { flex: 1; }
-  .flex-xs-nostretch { flex: none; }
+  .flex-xs-none { flex: none; }
   .order-xs-1 { order: 1; }
   .order-xs-2 { order: 2; }
   .order-xs-3 { order: 3; }
@@ -84,7 +84,7 @@
   .flex-sm-justify-start { justify-content: flex-start; }
   .flex-sm-justify-end { justify-content: flex-end; }
   .flex-sm-stretch { flex: 1; }
-  .flex-sm-nostretch { flex: none; }
+  .flex-sm-none { flex: none; }
   .order-sm-1 { order: 1; }
   .order-sm-2 { order: 2; }
   .order-sm-3 { order: 3; }
@@ -109,7 +109,7 @@
   .flex-md-justify-start { justify-content: flex-start; }
   .flex-md-justify-end { justify-content: flex-end; }
   .flex-md-stretch { flex: 1; }
-  .flex-md-nostretch { flex: none; }
+  .flex-md-none { flex: none; }
   .order-md-1 { order: 1; }
   .order-md-2 { order: 2; }
   .order-md-3 { order: 3; }
@@ -134,7 +134,7 @@
   .flex-lg-justify-start { justify-content: flex-start; }
   .flex-lg-justify-end { justify-content: flex-end; }
   .flex-lg-stretch { flex: 1; }
-  .flex-lg-nostretch { flex: none; }
+  .flex-lg-none { flex: none; }
   .order-lg-1 { order: 1; }
   .order-lg-2 { order: 2; }
   .order-lg-3 { order: 3; }
@@ -159,7 +159,7 @@
   .flex-xl-justify-start { justify-content: flex-start; }
   .flex-xl-justify-end { justify-content: flex-end; }
   .flex-xl-stretch { flex: 1; }
-  .flex-xl-nostretch { flex: none; }
+  .flex-xl-none { flex: none; }
   .order-xl-1 { order: 1; }
   .order-xl-2 { order: 2; }
   .order-xl-3 { order: 3; }

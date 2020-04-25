@@ -51,7 +51,7 @@
 
     &-header,
     &-footer {
-        background-color:var(--neutral-light-color);
+        background-color:var(--color-neutral-light);
         --header-height:2.5rem;
         height:var(--header-height);
         line-height:var(--header-height);
@@ -70,7 +70,7 @@
         --drawer-depth:200px;
         --drawer-breadth:100%;
         position: absolute;
-        background-color: white;
+        background-color: var(--color-white);
 
         &.right,
         &.left {
