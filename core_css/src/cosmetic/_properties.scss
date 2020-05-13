@@ -24,6 +24,6 @@
 
     --font-sans:'Trebuchet MS','Tahoma',sans-serif;
     --font-serif:'Georgia','Lucida Bright',serif;
-    --font-heading:--var(--font-serif);
-    --font-body:--var(--font-sans);
+    --font-heading:var(--font-serif);
+    --font-body:var(--font-sans);
 }

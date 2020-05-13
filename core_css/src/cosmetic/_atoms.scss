@@ -45,3 +45,14 @@
     margin-bottom: 0;
     padding-left: 0;
 }
+
+
+
+.display {
+    &-flex { display:flex; }
+    &-none { display:none; }
+    &-block { display:block; }
+    &-inlineblock { display: inline-block; }
+    &-inlineflex { display: inline-flex; }
+    &-inline { dsiplay:inline; }
+}

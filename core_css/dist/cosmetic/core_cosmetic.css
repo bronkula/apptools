@@ -1,4 +1,4 @@
-:root { --color-white: #fff; --color-black: #000; --color-main-light:#e5edff; --color-main-medium: #3e73dd; --color-main-dark:#0f3070; --color-neutral-light:rgb(236, 232, 232); --color-neutral-medium: rgb(146, 138, 138); --color-neutral-dark:#3d3636; --color-commit-light: #daffc8; --color-commit-medium: #61ce2e; --color-commit-dark: #245a0b; --color-cancel-light: #fdd8d8; --color-cancel-medium: #e64949; --color-cancel-dark: #4e0e0e; --header-height: 3rem; --font-sans:'Trebuchet MS','Tahoma',sans-serif; --font-serif:'Georgia','Lucida Bright',serif; --font-heading:--var(--font-serif); --font-body:--var(--font-sans); }
+:root { --color-white: #fff; --color-black: #000; --color-main-light:#e5edff; --color-main-medium: #3e73dd; --color-main-dark:#0f3070; --color-neutral-light:rgb(236, 232, 232); --color-neutral-medium: rgb(146, 138, 138); --color-neutral-dark:#3d3636; --color-commit-light: #daffc8; --color-commit-medium: #61ce2e; --color-commit-dark: #245a0b; --color-cancel-light: #fdd8d8; --color-cancel-medium: #e64949; --color-cancel-dark: #4e0e0e; --header-height: 3rem; --font-sans:'Trebuchet MS','Tahoma',sans-serif; --font-serif:'Georgia','Lucida Bright',serif; --font-heading:var(--font-serif); --font-body:var(--font-sans); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -47,6 +47,18 @@ code { padding: 1em; background-color: var(--color-neutral-light); border-radius
 .chromeless, .form-blank, .hotdog input { background-color: transparent; border-radius: 0; border-width: 0; font: inherit; color: inherit; }
 
 .compact, .nav ul, .nav-default ul, .nav-flex ul, .nav-stretch ul, .nav-tabs ul, .nav-material ul, .nav-inline ul, .nav-pills ul, .nav-crumbs ul, .nav-mobile ul { list-style-type: none; margin-top: 0; margin-bottom: 0; padding-left: 0; }
+
+.display-flex { display: flex; }
+
+.display-none { display: none; }
+
+.display-block { display: block; }
+
+.display-inlineblock { display: inline-block; }
+
+.display-inlineflex { display: inline-flex; }
+
+.display-inline { dsiplay: inline; }
 
 /* Pattern demo definitions */
 .well { padding: 1em; border: solid 2px var(--color-neutral-light); border-radius: 0.3em; }
@@ -118,61 +130,61 @@ code[data-title='css'] { background-color: #efe; }
 .chromeless, .form-blank, .hotdog input { border-width: 0; font: inherit; color: inherit; background-color: transparent; outline: 0; width: 100%; height: 100%; line-height: inherit; padding: 0; margin: 0; display: inline-block; }
 
 /* Buttons */
-.btn, .form-button { display: inline-block; position: relative; padding: 0 1em; border-radius: 0.2rem; color: inherit; background-color: transparent; font: inherit; border: solid transparent 0.1rem; cursor: pointer; line-height: inherit; text-align: center; outline: 0; }
+.btn { display: inline-block; position: relative; padding: 0 1em; border-radius: 0.2rem; color: inherit; background-color: transparent; font: inherit; border: solid transparent 0.1rem; cursor: pointer; line-height: inherit; text-align: center; outline: 0; }
 
-.btn.text, .text.form-button { background-color: transparent; border-width: 0; color: inherit; }
+.btn.text { background-color: transparent; border-width: 0; color: inherit; }
 
-.btn.solid, .solid.form-button { color: var(--color-white); background-color: var(--color-neutral-light); }
+.btn.solid { color: var(--color-white); background-color: var(--color-neutral-light); }
 
-.btn.solid.main, .solid.main.form-button { background-color: var(--color-main-light); }
+.btn.solid.main { background-color: var(--color-main-light); }
 
-.btn.solid.neutral, .solid.neutral.form-button { background-color: var(--color-neutral-light); }
+.btn.solid.neutral { background-color: var(--color-neutral-light); }
 
-.btn.solid.commit, .solid.commit.form-button { background-color: var(--color-commit-light); }
+.btn.solid.commit { background-color: var(--color-commit-light); }
 
-.btn.solid.cancel, .solid.cancel.form-button { background-color: var(--color-cancel-light); }
+.btn.solid.cancel { background-color: var(--color-cancel-light); }
 
-.btn.lined.main, .lined.main.form-button { border-color: var(--color-main); }
+.btn.lined.main { border-color: var(--color-main); }
 
-.btn.lined.neutral, .lined.neutral.form-button { border-color: var(--color-neutral); }
+.btn.lined.neutral { border-color: var(--color-neutral); }
 
-.btn.lined.commit, .lined.commit.form-button { border-color: var(--color-commit); }
+.btn.lined.commit { border-color: var(--color-commit); }
 
-.btn.lined.cancel, .lined.cancel.form-button { border-color: var(--color-cancel); }
+.btn.lined.cancel { border-color: var(--color-cancel); }
 
-.btn.main:active, .main.form-button:active { border-color: var(--color-main-dark); }
+.btn.main:active { border-color: var(--color-main-dark); }
 
-.btn.neutral:active, .neutral.form-button:active { border-color: var(--color-neutral-dark); }
+.btn.neutral:active { border-color: var(--color-neutral-dark); }
 
-.btn.commit:active, .commit.form-button:active { border-color: var(--color-commit-dark); }
+.btn.commit:active { border-color: var(--color-commit-dark); }
 
-.btn.cancel:active, .cancel.form-button:active { border-color: var(--color-cancel-dark); }
+.btn.cancel:active { border-color: var(--color-cancel-dark); }
 
-.btn.text.main, .text.main.form-button, .btn.lined.main, .lined.main.form-button { color: var(--color-main); }
+.btn.text.main, .btn.lined.main { color: var(--color-main); }
 
-.btn.text.neutral, .text.neutral.form-button, .btn.lined.neutral, .lined.neutral.form-button { color: var(--color-neutral); }
+.btn.text.neutral, .btn.lined.neutral { color: var(--color-neutral); }
 
-.btn.text.commit, .text.commit.form-button, .btn.lined.commit, .lined.commit.form-button { color: var(--color-commit); }
+.btn.text.commit, .btn.lined.commit { color: var(--color-commit); }
 
-.btn.text.cancel, .text.cancel.form-button, .btn.lined.cancel, .lined.cancel.form-button { color: var(--color-cancel); }
+.btn.text.cancel, .btn.lined.cancel { color: var(--color-cancel); }
 
-.btn.full, .full.form-button { width: 100%; }
+.btn.full { width: 100%; }
 
-.btn.full + .full, .full.form-button + .full { margin-top: 0.3rem; }
+.btn.full + .full { margin-top: 0.3rem; }
 
-.btn.flush, .flush.form-button { padding: 0; }
+.btn.flush { padding: 0; }
 
-.btn.small, .small.form-button { font-size: 0.7em; }
+.btn.small { font-size: 0.7em; }
 
-.btn.large, .large.form-button { font-size: 1.25em; }
+.btn.large { font-size: 1.25em; }
 
 .form-control { margin-top: 1em; margin-bottom: 1em; }
 
-.form-input { background-color: transparent; border-width: 0; border-bottom: 1px solid var(--color-neutral-medium); width: 100%; display: inline-block; outline: 0; font: inherit; color: inherit; padding: 0.2em 1em; }
+.form-input { background-color: transparent; border-width: 0; border-bottom: 1px solid var(--color-neutral-medium); width: 100%; display: inline-block; outline: 0; font: inherit; color: inherit; padding: 0 1em; line-height: 2em; }
 
-.form-label { margin: 0 !important; font-size: 0.7em; color: var(--color-neutral-medium); }
+.form-label { margin: 0 1em; font-size: 0.7em; color: var(--color-neutral-medium); }
 
-.form-button { width: 100%; border-width: 0; background-color: var(--color-neutral-light); }
+.form-button { display: inline-block; vertical-align: baseline; width: 100%; border-width: 0; color: inherit; font: inherit; padding: 0 1em; line-height: 2em; -webkit-appearance: none; outline: 0; text-align: center; border-radius: 0.3em; text-decoration: none; cursor: pointer; background-color: var(--color-neutral-light); }
 
 .form-group { display: flex; }
 
