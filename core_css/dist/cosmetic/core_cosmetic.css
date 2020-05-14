@@ -206,6 +206,20 @@ code[data-title='css'] { background-color: #efe; }
 
 .hotdog-bun > .hotdog { height: 100%; }
 
+.table { width: 100%; border-collapse: collapse; }
+
+.table th, .table td { text-align: left; padding: 0.5em; }
+
+.table.striped tbody tr:nth-child(odd) { background-color: rgba(0, 0, 0, 0.1); }
+
+.table.striped tbody tr:hover { background-color: rgba(0, 0, 0, 0.2); }
+
+.table.lined.all tbody tr, .table.lined.horizontal tbody tr { border-top: 1px solid var(--color-neutral-light); }
+
+.table.lined.all th:not(:first-child), .table.lined.all td:not(:first-child), .table.lined.vertical th:not(:first-child), .table.lined.vertical td:not(:first-child) { border-left: 1px solid var(--color-neutral-light); }
+
+.table.lined.all, .table.lined.outline { border: 1px solid var(--color-neutral-light); }
+
 .icon { font-size: 1.3rem; width: 1em; height: 1em; display: inline-block; line-height: 1em; text-align: center; vertical-align: text-bottom; font-style: normal; font-weight: normal; position: relative; }
 
 a .icon { pointer-events: none; }
