@@ -8,9 +8,9 @@ const q = (s,sc) => new Q(s,sc);
 
 
 
-q.isElement = d => d instanceof HTMLDocument || d instanceof HTMLElement || d instanceof SVGlement;
+q.isElement = d => d instanceof HTMLDocument || d instanceof HTMLElement || d instanceof SVGElement || d instanceof Element;
 q.isHTML = d => d instanceof HTMLElement || d instanceof HTMLDocument;
-q.isSVG = d => d instanceof SVGlement;
+q.isSVG = d => d instanceof SVGElement;
 q.isString = d => typeof d == "string" || d instanceof String;
 q.isFunction = d => typeof d == "function";
 q.isQ = d => d instanceof Q;
