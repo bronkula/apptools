@@ -3,9 +3,8 @@ if(!q) throw "qjs not imported yet";
 
 
 /* required */
-q.extend('find',function(selector){
-    return q(this.reduce((r,o)=>
-        [...r,...q(selector,o).toArray()],[])); });
+q.extend('find',function(s){
+    return q(q.sift(this,o=>q(s,o))); });
 
 
 
@@ -42,8 +41,8 @@ q.extend('on',function(eventString,fn,capture=false) {
 /* Delegate events to children of Q elements */
 q.extend('delegate',function(eventString,selector,fn) {
     this.on(eventString,event=>{
-        return this.find(selector).forEach(o=>{
-            return q.inPath(event,o)?fn.call(o,event,o):0;
+        this.find(selector).forEach(o=>{
+            if(q.inPath(event,o)) fn.call(o,event,o);
         });
     },{capture:true});
     return this;

@@ -4,7 +4,7 @@
 ;((w)=>{
 
 
-const q = (s,sc) => new Q(s,sc);
+const q = (s,sc,d) => new Q(s,sc,d);
 
 
 
@@ -26,21 +26,36 @@ q.hasExtension = (k) => {
 
 
 q.sift = (s,f) => {
-    return [...(new Set(s.flatMap(f).filter(o=>o)))]; }
+    let set = s.toArray().flatMap(f);
+    let fset = set.filter(o=>o);
+    return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=>{ return q.isQ(e) ? e[0] : q.isElement(e) ? e : q.make(e); }); }
+    return o.flatMap(e=>{ return q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e); }); }
 
 
 class Q {
-    constructor(s,sc=document) {
+    constructor(s,sc=document,debug=false) {
         let nl =
-            !s || !q.isHTML(sc) ? [] :
+            !s || !q.isElement(sc) ? [] :
             q.isQ(s) ? s :
-            q.isHTML(s) || s==sc || q.isSVG(s) ? [s] :
+            q.isElement(s) || s==sc ? [s] :
             q.isHTMLString(s) ? q.make(s) :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             q.isArray(s) ? q.settle(s) :
             sc.querySelectorAll(s);
+        if(debug) console.log("debug",
+            s,sc,
+            q.isHTML(sc),
+            q.isHTML(s),
+            q.isSVG(s),
+            q.isQ(s),
+            q.isElement(s),
+            q.isHTMLString(s),
+            q.isFunction(s),
+            q.isArray(s),
+            sc.querySelectorAll(s),
+            nl
+            );
         if(!nl) return false;
         Object.assign(this,nl);
         this.length = nl.length;
