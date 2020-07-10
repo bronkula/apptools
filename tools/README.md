@@ -10,12 +10,12 @@
 ## Distribution
 
 ### Current Version
-v0.3.23
+v0.3.25
 
-- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.23/tools/dist/query.min.js)**
-- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.23/tools/dist/query-lite.min.js)**
-- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.23/tools/dist/query-route.min.js)**
-- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.23/tools/dist/drawtools.min.js)**
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.25/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.25/tools/dist/query-lite.min.js)**
+- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.25/tools/dist/query-route.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.25/tools/dist/drawtools.min.js)**
 
 ## App Tools
 
@@ -71,6 +71,7 @@ v0.3.23
 
 - q.setCSS
 - q.setAttr
+- q.setVal
 - q.setHTML
 - q.setCache
 - q.setData
@@ -98,6 +99,7 @@ v0.3.23
 - q().css
 - q().attr
 - q().data
+- q().val
 - q().html
 
 

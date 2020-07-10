@@ -48,6 +48,7 @@ q.setCSS = function(o,e) {
 q.setAttr = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
         o.setAttribute(i,e[i]); } } return o; }
+q.setVal = function(o,e) { o.value = e; return o; }
 q.setHTML = function(o,e) { 
     if(q.isQ(e)) {
         o.clear();
@@ -88,6 +89,9 @@ q.extend('attr',function(e){
 q.extend('data',function(e){
     if(q.isString(e)) return q.getData(this[0],e);
     return this.pipe(o=>q.setData(o,e)); });
+q.extend('val',function(e){
+    if(e===undefined) return this[0].value;
+    return this.pipe(o=>q.setVal(o,e)); });
 q.extend('html',function(e){
     if(e===undefined) return this[0].innerHTML;
     return this.pipe(o=>q.setHTML(o,e)); });
