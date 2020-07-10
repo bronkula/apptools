@@ -4,7 +4,7 @@ if(!q) throw "qjs not imported yet";
 
 /* required */
 q.extend('find',function(s){
-    return q(q.sift(this,o=>q(s,o))); });
+    return this.sift(o=>q(s,o)); });
 
 
 

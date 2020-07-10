@@ -43,19 +43,19 @@ class Q {
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             q.isArray(s) ? q.settle(s) :
             sc.querySelectorAll(s);
-        if(debug) console.log("debug",
-            s,sc,
-            q.isHTML(sc),
-            q.isHTML(s),
-            q.isSVG(s),
-            q.isQ(s),
-            q.isElement(s),
-            q.isHTMLString(s),
-            q.isFunction(s),
-            q.isArray(s),
-            sc.querySelectorAll(s),
-            nl
-            );
+        // if(debug) console.log("debug",
+        //     s,sc,
+        //     q.isHTML(sc),
+        //     q.isHTML(s),
+        //     q.isSVG(s),
+        //     q.isQ(s),
+        //     q.isElement(s),
+        //     q.isHTMLString(s),
+        //     q.isFunction(s),
+        //     q.isArray(s),
+        //     sc.querySelectorAll(s),
+        //     nl
+        //     );
         if(!nl) return false;
         Object.assign(this,nl);
         this.length = nl.length;
