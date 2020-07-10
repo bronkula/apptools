@@ -32,6 +32,15 @@ q.extend('hasClass',function(e){
     return this.some(o=>o.classList.contains(e)); });
 
 
+q.extend('addAttr',function(e){
+    return this.pipe(o=>{ o.setAttribute(e,true); return o; }); });
+q.extend('removeAttr',function(e){
+    return this.pipe(o=>{ o.removeAttribute(e); return o; }); });
+q.extend('toggleAttr',function(e){
+    return this.pipe(o=>{ o.toggleAttribute(e); return o; }); });
+q.extend('hasAttr',function(e){
+    return this.pipe(o=>{ o.hasAttribute(e); return o; }); });
+
 
 q.setCSS = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){

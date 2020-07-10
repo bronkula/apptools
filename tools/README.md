@@ -1,14 +1,135 @@
 # Helpers Documentation
+- [Distribution](#user-content-distribution)
+	- [Current Version](#user-content-current-version)
 - [App Tools](#user-content-app-tools)
 	- [Query.js](#user-content-queryjs)
 - [Draw Tools](#user-content-draw-tools)
-- [Distribution](#user-content-distribution)
 
 ---
+
+## Distribution
+
+### Current Version
+0.3.22
+
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.22/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.22/tools/dist/query-lite.min.js)**
+- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.22/tools/dist/query-route.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.22/tools/dist/drawtools.min.js)**
 
 ## App Tools
 
 ### Query.js
+
+#### Core
+
+- q.isElement
+- q.isHTML
+- q.isSVG
+- q.isString
+- q.isFunction
+- q.isQ
+- q.isArray
+- q.isHTMLString
+- q.make
+- q.extend
+- q.hasExtension
+- q.sift
+- q.settle
+
+#### Q Prototype
+
+- q().sift
+- q().pipe
+- q().is
+- q().not
+
+#### Array Prototype
+
+- q().forEach
+- q().map
+- q().flatMap
+- q().reduce
+- q().some
+- q().every
+- q().filter
+
+#### Traversal Extensions
+
+- q().toArray
+- q().find
+- q().next
+- q().prev
+- q().parent
+- q().closest
+- q().children
+- q().last
+- q().first
+- q().siblings
+
+#### Manipulation Core
+
+- q.setCSS
+- q.setAttr
+- q.setHTML
+
+- q.setCache
+- q.setData
+- q.getData
+
+- q.toPropCase
+
+#### Manipulation Extensions
+
+- q().remove
+- q().clear
+- q().append
+- q().appendTo
+- q().prepend
+- q().prependTo
+- q().before
+- q().after
+
+- q().addClass
+- q().removeClass
+- q().toggleClass
+- q().hasClass
+
+- q().addAttr
+- q().removeAttr
+- q().toggleAttr
+- q().hasAttr
+
+- q().css
+- q().attr
+- q().data
+- q().html
+
+
+#### Events Core
+
+- q.getPath
+- q.inPath
+- q.evPoints
+- q.getEXY
+- q.getEventXY
+
+
+#### Events Extensions
+
+- q().on
+- q().delegate
+
+
+#### Fetch Core
+
+- q.fetch
+- q.fetchAll
+- q.fetchEach
+- q.post
+
+
+### Details
 
 - **[query.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/query.min.js)**
 - **[apptools.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/apptools.min.js)**
@@ -134,9 +255,3 @@ templater(o=>`<div>${o.name}</div>`)(".output")(
 
 .output: "<div>George</div><div>Fred</div>"
 ```
-
-## Distribution
-
-- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query.min.js)**
-- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query-lite.min.js)**
-- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/drawtools.min.js)**

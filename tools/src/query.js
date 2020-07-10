@@ -8,7 +8,9 @@ const q = (s,sc) => new Q(s,sc);
 
 
 
+q.isElement = d => d instanceof HTMLDocument || d instanceof HTMLElement || d instanceof SVGlement;
 q.isHTML = d => d instanceof HTMLElement || d instanceof HTMLDocument;
+q.isSVG = d => d instanceof SVGlement;
 q.isString = d => typeof d == "string" || d instanceof String;
 q.isFunction = d => typeof d == "function";
 q.isQ = d => d instanceof Q;
@@ -34,7 +36,7 @@ class Q {
         let nl =
             !s || !q.isHTML(sc) ? [] :
             q.isQ(s) ? s :
-            q.isHTML(s) || s==sc ? [s] :
+            q.isHTML(s) || s==sc || q.isSVG(s) ? [s] :
             q.isHTMLString(s) ? q.make(s) :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             q.isArray(s) ? q.settle(s) :
