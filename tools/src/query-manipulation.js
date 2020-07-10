@@ -61,14 +61,16 @@ q.setHTML = function(o,e) {
 /* Cache methods for data manipulation */
 q.setCache = function(o,k,v) {
     if(o.qcache===undefined) o.qcache = {};
-    o.qcache[k]=v; }
+    if(k) o.qcache[k]=v; }
 q.setData = function(o,e) {
     if(o.qcache===undefined) o.qcache = {};
     for(let i in e) { if(e.hasOwnProperty(i)){ o.qcache[i]=e[i]; } } return o; }
 q.getData = function(o,e) {
-    if(o.qcache===undefined)
+    if(o.qcache===undefined) {
+        o.qcache = {};
         for(let [k,v] of Object.entries(o.dataset))
             q.setCache(o,k,JSON.data.parse(v));
+    }
     if(o.dataset[e]!==undefined&&o.qcache[e]!=o.dataset[e])
         q.setCache(o,e,JSON.parse(o.dataset[e]));
     return e===undefined?o.qcache:o.qcache[e]; }
