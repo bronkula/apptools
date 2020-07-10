@@ -26,9 +26,9 @@ q.hasExtension = (k) => {
 
 
 q.sift = (s,f) => {
-    return [...new Set(s.flatMap(f).filter(o=>o))]; }
+    return [...(new Set(s.flatMap(f).filter(o=>o)))]; }
 q.settle = o => {
-    return o.flatMap(e=>{ return q.isQ(e) ? e[0] : q.isHTML(e) ? e : q.make(e); }); }
+    return o.flatMap(e=>{ return q.isQ(e) ? e[0] : q.isElement(e) ? e : q.make(e); }); }
 
 
 class Q {
