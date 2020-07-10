@@ -7,24 +7,26 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "systems": "node-sass --watch responsive_systems/scss -o responsive_systems/css --output-style compact",
     "sass:build": "node-sass core_css/src -o core_css/dist --output-style compact",
-    "drawtoolsc": "uglifyjs tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/dist/drawtools.min.js -c --source-map \"url='../src/drawtools.min.js.map'\"",
-    "drawtoolsb": "uglifyjs tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/dist/drawtools.js -b",
-    "drawtoolsevents": "uglifyjs tools/src/events.js -o tools/dist/events.min.js -c",
-    "drawtoolscanvas": "uglifyjs tools/src/canvas.js -o tools/dist/canvas.min.js -c",
-    "drawtoolscolors": "uglifyjs tools/src/colors.js -o tools/dist/colors.min.js -c",
-    "drawtoolsmaths": "uglifyjs tools/src/maths.js -o tools/dist/maths.min.js -c",
+    "drawtoolsc": "terser tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/dist/drawtools.min.js -c --source-map \"url='../src/drawtools.min.js.map'\"",
+    "drawtoolsb": "terser tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/dist/drawtools.js -b",
+    "drawtoolsevents": "terser tools/src/events.js -o tools/dist/events.min.js -c",
+    "drawtoolscanvas": "terser tools/src/canvas.js -o tools/dist/canvas.min.js -c",
+    "drawtoolscolors": "terser tools/src/colors.js -o tools/dist/colors.min.js -c",
+    "drawtoolsmaths": "terser tools/src/maths.js -o tools/dist/maths.min.js -c",
     "drawtools": "concurrently \"npm:drawtoolsc\" \"npm:drawtoolsb\" \"npm:drawtoolsevents\" \"npm:drawtoolscanvas\" \"npm:drawtoolscolors\" \"npm:drawtoolsmaths\"",
-    "queryfull": "uglifyjs tools/src/query.js tools/src/query-fetch.js tools/src/query-events.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/query.min.js -c -m reserved=['q','Q','E'] --comments",
-    "querylite": "uglifyjs tools/src/query.js tools/src/query-events.js -o tools/dist/query-lite.min.js -c -m reserved=['q','Q','E'] --comments",
-    "queryroute": "uglifyjs tools/src/query-route.js -o tools/dist/query-route.min.js -c -m reserved=['q','Q','E'] --comments",
-    "helpers": "uglifyjs tools/src/helpers.js -o tools/dist/helpers.min.js -c -m",
-    "apptools": "uglifyjs tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/apptools.min.js -c -m reserved=['q','Q','E'] --comments --source-map",
+    "queryfull": "terser tools/src/query.js tools/src/query-fetch.js tools/src/query-events.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/query.min.js -c -m reserved=['q','Q','E'] --comments",
+    "querylite": "terser tools/src/query.js tools/src/query-events.js -o tools/dist/query-lite.min.js -c -m reserved=['q','Q','E'] --comments",
+    "queryroute": "terser tools/src/query-route.js -o tools/dist/query-route.min.js -c -m reserved=['q','Q','E'] --comments",
+    "helpers": "terser tools/src/helpers.js -o tools/dist/helpers.min.js -c -m",
+    "apptools": "terser tools/src/helpers.js tools/src/query.js tools/src/query-events.js tools/src/query-fetch.js tools/src/query-manipulation.js tools/src/query-traversal.js -o tools/dist/apptools.min.js -c -m reserved=['q','Q','E'] --comments --source-map",
     "query": "concurrently \"npm:queryfull\" \"npm:querylite\"",
     "apptoolsall": "concurrently \"npm:apptools\" \"npm:query\" \"npm:helpers\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-sass": "^4.14.0"
+    "concurrently": "^5.2.0",
+    "node-sass": "^4.14.0",
+    "terser": "^4.0.0"
   }
 }
