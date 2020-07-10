@@ -71,7 +71,7 @@ q.getData = function(o,e) {
             q.setCache(o,k,JSON.data.parse(v));
     if(o.dataset[e]!==undefined&&o.qcache[e]!=o.dataset[e])
         q.setCache(o,e,JSON.parse(o.dataset[e]));
-    return o.qcache[e]; }
+    return e===undefined?o.qcache:o.qcache[e]; }
 
 
 /* Turn css dash case properties to Camelcase */
@@ -87,7 +87,7 @@ q.extend('attr',function(e){
     if(q.isString(e)) return this[0].getAttribute(e);
     return this.pipe(o=>q.setAttr(o,e)); });
 q.extend('data',function(e){
-    if(q.isString(e)) return q.getData(this[0],e);
+    if(q.isString(e) || e===undefined) return q.getData(this[0],e);
     return this.pipe(o=>q.setData(o,e)); });
 q.extend('val',function(e){
     if(e===undefined) return this[0].value;
