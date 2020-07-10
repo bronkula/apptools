@@ -21,7 +21,7 @@
 
 ### Query.js
 
-#### Core
+#### Q Core
 
 - q.isElement
 - q.isHTML
@@ -37,14 +37,14 @@
 - q.sift
 - q.settle
 
-#### Q Prototype
+#### Q Extensions
 
 - q().sift
 - q().pipe
 - q().is
 - q().not
 
-#### Array Prototype
+#### Array Extensions
 
 - q().forEach
 - q().map
