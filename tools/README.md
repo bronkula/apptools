@@ -72,11 +72,9 @@
 - q.setCSS
 - q.setAttr
 - q.setHTML
-
 - q.setCache
 - q.setData
 - q.getData
-
 - q.toPropCase
 
 #### Manipulation Extensions
@@ -89,17 +87,14 @@
 - q().prependTo
 - q().before
 - q().after
-
 - q().addClass
 - q().removeClass
 - q().toggleClass
 - q().hasClass
-
 - q().addAttr
 - q().removeAttr
 - q().toggleAttr
 - q().hasAttr
-
 - q().css
 - q().attr
 - q().data
