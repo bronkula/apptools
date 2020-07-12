@@ -17,24 +17,30 @@ const route = {
             w.location.assign(stateObj.url);
         }
     },
-    matches:(r) => {
-        let hash = w.location.hash.substr(1).split("/");
-        let h = r.split("/");
-        return h[0]==hash[0] && h.length==hash.length;
+    matches:(h,r) => {
+        if(h[0]!=r[0]) return false;
+        let v = {};
+        for(let i in h) {
+            if(h[i]==r[i]) continue;
+            else if(r[i].substr(0,1)==":") v[r[i].substr(1)] = h[i];
+            else if(h[i]!=r[i]) return false;
+        }
+        return v;
     },
-    make: (routes,defaultRoute=()=>{}) => {
-        let hash = w.location.hash.substr(1).split("/");
-        for(let [route,callback] of Object.entries(routes)) {
-            let h = route.split("/");
-            if(h[0]==hash[0] && h.length==hash.length) {
-                let v = {};
-                h.forEach((o,i)=>{
-                    if(o!==hash[i]) v[o.substr(1)] = hash[i];
-                });
-                return callback(v);
+    make: (routes,page=()=>{},basis) => {
+        let hashroute = (basis?basis:w.location.hash.substr(1));
+        let hashsplit = hashroute.split("/");
+        let v={};
+        for(let [checkroute,fn] of Object.entries(routes)) {
+            v={};
+            if(checkroute==hashroute) { page = fn; break; }
+            let checksplit = checkroute.split("/");
+            if(checksplit[0]==hashsplit[0] && checksplit.length==hashsplit.length) {
+                v = route.matches(hashsplit,checksplit);
+                if(v!==false) { page = fn; break; }
             }
         }
-        return defaultRoute();
+        return (d)=>page(v,d);
     }
 };
 
@@ -67,9 +73,9 @@ const setActive = (state,update) => {
 
 if(w.q) {
     q(()=>{
-        q(document).delegate("click","a[href^='#']",e=>{
+        q(document).delegate("click","a[href^='#']",function(e){
             e.preventDefault();
-            let r = e.target.attributes.href.value.substr(1);
+            let r = this.attributes.href.value.substr(1);
             if(r!="") route.navigate(r);
         })
     });
