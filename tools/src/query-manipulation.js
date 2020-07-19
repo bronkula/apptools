@@ -69,7 +69,7 @@ q.getData = function(o,e) {
     if(o.qcache===undefined) {
         o.qcache = {};
         for(let [k,v] of Object.entries(o.dataset))
-            q.setCache(o,k,JSON.data.parse(v));
+            q.setCache(o,k,JSON.parse(v));
     }
     if(o.dataset[e]!==undefined&&o.qcache[e]!=o.dataset[e])
         q.setCache(o,e,JSON.parse(o.dataset[e]));
