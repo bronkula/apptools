@@ -30,7 +30,7 @@ q.sift = (s,f) => {
     let fset = set.filter(o=>o);
     return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=>{ return q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e); }); }
+    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e) ); }
 
 
 class Q {
@@ -69,6 +69,8 @@ class Q {
     /* See if any Q elements match a selector */
     is(s) { return this.some(o=>o.matches(s)); }
     not(s) { return !this.is(s); }
+
+    toArray() { return this.reduce((r,o)=>r.concat([o]),[]) }
 }
 
 

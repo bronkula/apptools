@@ -3,8 +3,6 @@ if(!q) throw "qjs not imported yet";
 
 
 
-/* Get array from Q */
-q.extend('toArray',function(){ return this.reduce((r,o)=>r.concat([o]),[]) });
 
 
 /* Traversal methods */

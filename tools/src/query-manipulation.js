@@ -21,6 +21,9 @@ q.extend('after',function(e){ e=q(e);
     return this.sift(o=>e.map(el=>{ o.parentElement.insertBefore(el,o.nextSibling); return o; })); });
 
 
+q.extend('replaceWith',function(e){ e=q(e);
+    return this.sift(o=>q.replaceWith(o,e[0])); });
+
 
 q.extend('addClass',function(e){
     return this.pipe(o=>{ o.classList.add(e); return o; }); });
@@ -42,6 +45,24 @@ q.extend('hasAttr',function(e){
     return this.pipe(o=>{ o.hasAttribute(e); return o; }); });
 
 
+q.extend('css',function(e){
+    if(q.isString(e)) return this[0].style[q.toPropCase(e)];
+    return this.pipe(o=>q.setCSS(o,e)); });
+q.extend('attr',function(e){
+    if(q.isString(e)) return this[0].getAttribute(e);
+    return this.pipe(o=>q.setAttr(o,e)); });
+q.extend('data',function(e){
+    if(q.isString(e) || e===undefined) return q.getData(this[0],e);
+    return this.pipe(o=>q.setData(o,e)); });
+q.extend('val',function(e){
+    if(e===undefined) return this[0].value;
+    return this.pipe(o=>q.setVal(o,e)); });
+q.extend('html',function(...e){
+    if(e.length===0) return this[0].innerHTML;
+    return this.pipe(o=>q.setHTML(o,...e)); });
+
+
+
 q.setCSS = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
         o.style[q.toPropCase(i)] = e[i]; } } return o; }
@@ -49,13 +70,9 @@ q.setAttr = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
         o.setAttribute(i,e[i]); } } return o; }
 q.setVal = function(o,e) { o.value = e; return o; }
-q.setHTML = function(o,e) { 
-    if(q.isQ(e)) {
-        o.clear();
-        e.forEach(i=>o.appendChild(i));
-    } else if(q.isString(e)) o.innerHTML=e;
-    return o;
-}
+q.replaceWith = function(o,e) { o.replaceWith(e); return o; }
+q.setHTML = function(o,...e) {
+    o.innerHTML = ""; q.settle(e).forEach(i=>o.appendChild(i)); return o; }
 
 
 /* Cache methods for data manipulation */
@@ -79,24 +96,6 @@ q.getData = function(o,e) {
 /* Turn css dash case properties to Camelcase */
 q.toPropCase = function(e) {
     return e.replace(/\-([a-z])/g,(m,p)=>p.toUpperCase()); }
-
-
-
-q.extend('css',function(e){
-    if(q.isString(e)) return this[0].style[q.toPropCase(e)];
-    return this.pipe(o=>q.setCSS(o,e)); });
-q.extend('attr',function(e){
-    if(q.isString(e)) return this[0].getAttribute(e);
-    return this.pipe(o=>q.setAttr(o,e)); });
-q.extend('data',function(e){
-    if(q.isString(e) || e===undefined) return q.getData(this[0],e);
-    return this.pipe(o=>q.setData(o,e)); });
-q.extend('val',function(e){
-    if(e===undefined) return this[0].value;
-    return this.pipe(o=>q.setVal(o,e)); });
-q.extend('html',function(e){
-    if(e===undefined) return this[0].innerHTML;
-    return this.pipe(o=>q.setHTML(o,e)); });
 
 
 })();
