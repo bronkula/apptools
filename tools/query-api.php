@@ -56,10 +56,7 @@ $t = database table
 $a = associative array of SET name value pairs
 $p = parameter values array
 */
-function makeInsert($c,$t,$a,$p,$admin=false) {
-    if(checkYourPrivilege($admin))
-        return ["error"=>"Not an Admin Account"];
-
+function makeInsert($c,$t,$a,$p) {
     try {
         $query = makeInsertStatement($t,array_keys($a),array_values($a));
         $c->prepare($query)->execute($p);
@@ -87,12 +84,8 @@ $t = database table
 $a = associative array of SET name value pairs
 $w = associative array of WHERE name value pairs
 $p = parameter values array
-example: makeUpdate($c,'products',$a,$w,$p,$admin=false)
 */
-function makeUpdate($c,$t,$a,$w,$p,$admin=false) {
-    if(checkYourPrivilege($admin))
-        return ["error"=>"Not an Admin Account"];
-
+function makeUpdate($c,$t,$a,$w,$p) {
     try {
         $query = makeUpdateStatement($t,$a,$w);
         $c->prepare($query)->execute($p);
@@ -107,10 +100,7 @@ $c = database connection
 $t = database table
 $p = parameter values array
 */
-function makeDelete($c,$t,$p,$admin=false) {
-    if(checkYourPrivilege($admin))
-        return ["error"=>"Not an Admin Account"];
-
+function makeDelete($c,$t,$p) {
     try {
         $query = "DELETE FROM $t WHERE id=?";
         $c->prepare($query)->execute($p);
@@ -126,10 +116,7 @@ $c = database connection
 $ps = prepared statement
 $p = parameter values array
 */
-function makeQuery($c,$ps,$p,$admin=false) {
-    if(checkYourPrivilege($admin))
-        return ["error"=>"Not an Admin Account"];
-
+function makeQuery($c,$ps,$p) {
     try {
         if(count($p)) {
             $stmt = $c->prepare($ps);
