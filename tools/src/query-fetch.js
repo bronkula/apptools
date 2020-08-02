@@ -1,7 +1,5 @@
-
 ;(()=>{
 if(!q) throw "qjs not imported yet";
-
 
 
 /* Fetch and Post functions */

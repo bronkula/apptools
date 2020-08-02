@@ -21,7 +21,7 @@ q.extend('after',function(e){ e=q(e);
     return this.sift(o=>e.map(el=>{ o.parentElement.insertBefore(el,o.nextSibling); return o; })); });
 
 
-q.extend('replaceWith',function(e){ e=q(e);
+q.extend('replaceWith',function(e){ if(!q.isQ(e) e=q(e);
     return this.sift(o=>q.replaceWith(o,e[0])); });
 
 
