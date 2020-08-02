@@ -21,7 +21,7 @@ q.extend('after',function(e){ e=q(e);
     return this.sift(o=>e.map(el=>{ o.parentElement.insertBefore(el,o.nextSibling); return o; })); });
 
 
-q.extend('replaceWith',function(e){ if(!q.isQ(e) e=q(e);
+q.extend('replaceWith',function(e){ if(!q.isQ(e)) e=q(e);
     return this.sift(o=>q.replaceWith(o,e[0])); });
 
 
@@ -72,7 +72,7 @@ q.setAttr = function(o,e) {
 q.setVal = function(o,e) { o.value = e; return o; }
 q.replaceWith = function(o,e) { o.replaceWith(e); return o; }
 q.setHTML = function(o,...e) {
-    o.innerHTML = ""; q.settle(e).forEach(i=>o.appendChild(i)); return o; }
+    o.innerHTML = ""; q.settle(e).forEach(i=>o.append(i)); return o; }
 
 
 /* Cache methods for data manipulation */

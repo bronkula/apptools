@@ -30,7 +30,7 @@ q.sift = (s,f) => {
     let fset = set.filter(o=>o);
     return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e) ); }
+    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e.trim()).toArray() ); }
 
 
 class Q {
