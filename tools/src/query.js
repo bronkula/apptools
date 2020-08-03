@@ -15,12 +15,13 @@ q.isString = d => typeof d == "string" || d instanceof String;
 q.isFunction = d => typeof d == "function";
 q.isQ = d => d instanceof Q;
 q.isArray = d => Array.isArray(d);
-q.isHTMLString = d => q.isString(d) && d.trim()[0]=="<";
+q.isFragment = d => q.isString(d) && d.trim()[0]=="<";
 q.parse = d => { try{ return JSON.parse(d); } catch(e){ return d; } }
 
 
-q.make = function(s) { if(!q.isHTMLString(s)) return false;
-    else return q([...document.createRange().createContextualFragment(s.trim()).childNodes]) }
+q.makeFragment = s => q.isFragment(s) ?
+    [...document.createRange().createContextualFragment(s.trim()).childNodes] : [s];
+q.make = (s) => q(q.makeFragment(s));
 q.extend = (k,f,o=false) => {
     if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
 q.hasExtension = (k) => {
@@ -32,9 +33,9 @@ q.sift = (s,f) => {
     let fset = set.filter(o=>o);
     return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=> q.isQ(e) ? e.toArray() :
-        q.isElement(e) ? e :
-        q.isHTMLString(e) ? q.make(e.trim()).toArray() :
+    return o.flatMap(e=> !e ? [] :
+        q.isFragment(e) ? q.makeFragment(e) :
+        q.isQ(e) ? e.toArray() :
         e ); }
 
 
@@ -42,11 +43,11 @@ class Q {
     constructor(s,sc=document,debug=false) {
         let nl =
             !s || !q.isElement(sc) ? [] :
-            q.isQ(s) ? s :
+            q.isQ(s) ? s.toArray() :
             q.isElement(s) || s==sc ? [s] :
-            q.isHTMLString(s) ? q.make(s) :
-            q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
+            q.isFragment(s) ? q.makeFragment(s) :
             q.isArray(s) ? q.settle(s) :
+            q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             sc.querySelectorAll(s);
         // if(debug) console.log("debug",
         //     s,sc,
@@ -55,7 +56,7 @@ class Q {
         //     q.isSVG(s),
         //     q.isQ(s),
         //     q.isElement(s),
-        //     q.isHTMLString(s),
+        //     q.isFragment(s),
         //     q.isFunction(s),
         //     q.isArray(s),
         //     sc.querySelectorAll(s),
@@ -76,6 +77,7 @@ class Q {
     not(s) { return !this.is(s); }
 
     toArray() { return this.reduce((r,o)=>r.concat([o]),[]) }
+    toString() { return this.reduce((r,o)=>r+q.isElement(o)?o.outerHTML:`${o}`,'') }
 }
 
 
