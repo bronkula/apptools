@@ -44,7 +44,7 @@ class Q {
             !s || !q.isElement(sc) ? [] :
             q.isQ(s) ? s :
             q.isElement(s) || s==sc ? [s] :
-            q.isHTMLString(s) ? q.make() :
+            q.isHTMLString(s) ? q.make(s) :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             q.isArray(s) ? q.settle(s) :
             sc.querySelectorAll(s);
