@@ -10,12 +10,12 @@
 ## Distribution
 
 ### Current Version
-v0.3.35
+v0.3.36
 
-- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.35/tools/dist/query.min.js)**
-- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.35/tools/dist/query-lite.min.js)**
-- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.35/tools/dist/query-route.min.js)**
-- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.35/tools/dist/drawtools.min.js)**
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.36/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.36/tools/dist/query-lite.min.js)**
+- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.36/tools/dist/query-route.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.36/tools/dist/drawtools.min.js)**
 
 ## App Tools
 

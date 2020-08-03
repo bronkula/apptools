@@ -20,7 +20,7 @@ q.parse = d => { try{ return JSON.parse(d); } catch(e){ return d; } }
 
 
 q.make = function(s) { if(!q.isHTMLString(s)) return false;
-    else return q([...document.createRange().createContextualFragment(s).childNodes]) }
+    else return q([...document.createRange().createContextualFragment(s.trim()).childNodes]) }
 q.extend = (k,f,o=false) => {
     if(!q.hasExtension(k) || o) Q.prototype[k] = f; }
 q.hasExtension = (k) => {
@@ -32,7 +32,10 @@ q.sift = (s,f) => {
     let fset = set.filter(o=>o);
     return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.isHTMLString(e) ? q.make(e.trim()).toArray() : e ); }
+    return o.flatMap(e=> q.isQ(e) ? e.toArray() :
+        q.isElement(e) ? e :
+        q.isHTMLString(e) ? q.make(e.trim()).toArray() :
+        e ); }
 
 
 class Q {
@@ -41,7 +44,7 @@ class Q {
             !s || !q.isElement(sc) ? [] :
             q.isQ(s) ? s :
             q.isElement(s) || s==sc ? [s] :
-            q.isHTMLString(s) ? q.make(s) :
+            q.isHTMLString(s) ? q.make() :
             q.isFunction(s) ? !window.addEventListener('DOMContentLoaded',s) :
             q.isArray(s) ? q.settle(s) :
             sc.querySelectorAll(s);
