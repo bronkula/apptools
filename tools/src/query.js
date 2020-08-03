@@ -16,6 +16,8 @@ q.isFunction = d => typeof d == "function";
 q.isQ = d => d instanceof Q;
 q.isArray = d => Array.isArray(d);
 q.isHTMLString = d => q.isString(d) && d.trim()[0]=="<";
+q.parse = d => { try{ return JSON.parse(d); } catch(e){ return d; } }
+
 
 q.make = function(s) { if(!q.isHTMLString(s)) return false;
     else return q([...document.createRange().createContextualFragment(s).childNodes]) }
@@ -30,7 +32,7 @@ q.sift = (s,f) => {
     let fset = set.filter(o=>o);
     return [...(new Set(set))]; }
 q.settle = o => {
-    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.make(e.trim()).toArray() ); }
+    return o.flatMap(e=> q.isQ(e) ? e.toArray() : q.isElement(e) ? e : q.isHTMLString(e) ? q.make(e.trim()).toArray() : e ); }
 
 
 class Q {
