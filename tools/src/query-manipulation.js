@@ -72,7 +72,11 @@ q.setAttr = function(o,e) {
 q.setVal = function(o,e) { o.value = e; return o; }
 q.replaceWith = function(o,e) { o.replaceWith(e); return o; }
 q.setHTML = function(o,...e) {
-    o.innerHTML = ""; q.settle(e).forEach(i=>o.append(i)); return o; }
+    o.innerHTML = "";
+    let s = q.settle(e);
+    console.log('settle',s)
+    s.forEach(i=>o.append(i));
+    return o; }
 
 
 /* Cache methods for data manipulation */

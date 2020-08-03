@@ -186,14 +186,14 @@
 			</ul><div>mhm</div>`);
 			console.log("2",e)
 			let e1 = e3.prepend(e);
-			console.log("3",e1.css({"background-color":'#fafafa'}))
-			console.log("4",e1.css('color'))
-			console.log("5",e1.attr({title:'yup'}))
-			console.log("7",e1.attr('title'))
-			console.log("8",e1.data({id:{mhm:'yup'},other:true}))
-			console.log("9",e1.data('other'))
-			console.log("11",q("li").last().html("This is some text"))
-			console.log("12",q("li").last().html())
+			console.log(".css set",e1.css({"background-color":'#fafafa'}))
+			console.log(".css get",e1.css('color'))
+			console.log(".attr set",e1.attr({title:'yup'}))
+			console.log(".attr get",e1.attr('title'))
+			console.log(".data set",e1.data({id:{mhm:'yup'},other:true}))
+			console.log(".data get",e1.data('other'))
+			console.log("last set html",q("li").last().html("This is some text"))
+			console.log("last get html",q("li").last().html())
 			console.dir(e1[0])
 
 			e1.on("click",e=>{
@@ -208,7 +208,27 @@
 			);
 			console.dir(q(q([]).templater(o=>`<div>${o.id}</div>`)({id:1})).appendTo(e3.find("ul")));
 			console.groupEnd();
+		})
+
+		q(()=>{
 			
+			console.group();
+			
+			let e = q(['   ',' <div></div>  '])
+				console.log('bad fragments',e)
+			e = q.make(' <div></div>  ')
+				console.log('make',e)
+			e = q.makeFragment(' <div>  ')
+				console.log('makeFragment',e)
+			e = q.settle([q('section'),q('section')[0],' <div>','Text',false,[false]])
+				console.log('settle',e)
+			let d = q('<div>');
+			d.html(' <div>Div</div>','Text',false,q("<span>Span"))
+				console.log('.html',d,d.children())
+			q('body').append(d)
+
+			console.groupEnd();
+
 		})
 		</script>
 	</section>
