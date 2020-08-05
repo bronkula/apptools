@@ -74,7 +74,7 @@ q.replaceWith = function(o,e) { o.replaceWith(e); return o; }
 q.setHTML = function(o,...e) {
     o.innerHTML = "";
     let s = q.settle(e);
-    console.log('settle',s)
+    //console.log('settle',s)
     s.forEach(i=>o.append(i));
     return o; }
 

@@ -11,8 +11,7 @@ function array_reduce_assoc(array $array, callable $callback, $initial=null) {
 }
 
 /* surround column names with backticks */
-function makeBacktick($o) { \
-    return "`".preg_replace('/`/g','',$o)."`"; }
+function makeBacktick($o) { return "`".preg_replace('/`/g','',$o)."`"; }
 
 /*
 $r = reducer value
