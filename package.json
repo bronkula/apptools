@@ -19,7 +19,7 @@
     "queryroute": "terser tools/src/query-route.js -o tools/dist/query-route.min.js -c -m reserved=['q','Q','E'] --comments",
     "helpers": "terser tools/src/helpers.js -o tools/dist/helpers.min.js -c -m",
     "apptools": "terser tools/src/helpers.js tools/src/query.js tools/src/query-manipulation.js tools/src/query-traversal.js tools/src/query-events.js tools/src/query-fetch.js -o tools/dist/apptools.min.js -c -m reserved=['q','Q','E'] --comments --source-map",
-    "query": "concurrently \"npm:queryfull\" \"npm:querylite\"",
+    "query": "concurrently \"npm:queryfull\" \"npm:querylite\" \"npm:queryroute\"",
     "apptoolsall": "concurrently \"npm:apptools\" \"npm:query\" \"npm:helpers\""
   },
   "author": "",

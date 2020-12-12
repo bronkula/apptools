@@ -91,7 +91,7 @@ class Q {
         this.length = nl.length;
     }
 
-    find(s){ return this.sift(o=>q(s,o)); })
+    find(s){ return this.sift(o=>q(s,o)); }
 
     /* Return only unique, non false, elements */
     sift(f) { return q(q.sift(this,f)); }

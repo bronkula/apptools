@@ -8,8 +8,8 @@ q.catchJson = async d => {
       Promise.resolve({error:r}); }
 
 
-q.promiseList = (t) => (l) => 
-   d.map([u,f=d=>d] => pd => t(u).then(d => pd.concat([f(d)])))
+q.promiseList = (t) => (l,f=d=>d) => 
+   l.map((...u) => pd => t(...u).then(d => pd.concat([f(d)])))
 q.promiseEach = (l) => 
    l.reduce((r,f) => r.then(f),Promise.resolve([]));
 
