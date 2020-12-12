@@ -5,8 +5,9 @@ if(!q) throw "qjs not imported yet";
 /* Manipulation methods */
 q.extend('remove',function(){
     return this.sift(o=>{ o.parentElement.removeChild(o); return false; }) });
-q.extend('clear',function(){
-    return this.pipe(o=>{ o.innerHTML = ""; return o; }) });
+
+q.extend(['clear','empty'],function(){ return this.pipe(q.clear) });
+
 q.extend('append',function(e){ e=q(e);
     return this.sift(o=>e.map(el=>{ o.appendChild(el); return o; })); });
 q.extend('appendTo',function(e){ e=q(e);
@@ -63,6 +64,9 @@ q.extend('html',function(...e){
 
 
 
+q.clear = function(o){ o.innerHTML = ""; return o; }
+
+
 q.setCSS = function(o,e) {
     for(let i in e) { if(e.hasOwnProperty(i)){
         o.style[q.toPropCase(i)] = e[i]; } } return o; }
@@ -72,10 +76,9 @@ q.setAttr = function(o,e) {
 q.setVal = function(o,e) { o.value = e; return o; }
 q.replaceWith = function(o,e) { o.replaceWith(e); return o; }
 q.setHTML = function(o,...e) {
-    o.innerHTML = "";
-    let s = q.settle(e);
+    o.innerHTML = ""; let s = q.settle(e);
     //console.log('settle',s)
-    s.forEach(i=>o.append(i));
+    s.forEach(i=>o.append(q.isString(i)?q.htmlEncode(i):i));
     return o; }
 
 

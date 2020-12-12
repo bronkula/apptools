@@ -2,9 +2,6 @@
 if(!q) throw "qjs not imported yet";
 
 
-/* required */
-q.extend('find',function(s){
-    return this.sift(o=>q(s,o)); });
 
 
 

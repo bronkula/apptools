@@ -23,6 +23,8 @@ v0.3.4
 
 #### Q Core
 
+- q()
+
 - q.isElement
 - q.isHTML
 - q.isSVG
@@ -30,19 +32,34 @@ v0.3.4
 - q.isFunction
 - q.isQ
 - q.isArray
-- q.isHTMLString
+- q.isFragment
+- q.isEntity
+- q.isJson
+
+- q.parse
+- q.asArray
+- q.makeFragment
 - q.make
+- q.htmlEncode
+
 - q.extend
 - q.hasExtension
+
 - q.sift
 - q.settle
 
+- q.debug
+
 #### Q Extensions
 
+- q().find
 - q().sift
 - q().pipe
 - q().is
 - q().not
+- q().toArray
+- q().toString
+- q().toText
 
 #### Array Extensions
 
@@ -56,7 +73,6 @@ v0.3.4
 
 #### Traversal Extensions
 
-- q().toArray
 - q().find
 - q().next
 - q().prev
@@ -69,6 +85,7 @@ v0.3.4
 
 #### Manipulation Core
 
+- q.clear
 - q.setCSS
 - q.setAttr
 - q.setVal
@@ -81,21 +98,24 @@ v0.3.4
 #### Manipulation Extensions
 
 - q().remove
-- q().clear
+- q().clear, q().empty
 - q().append
 - q().appendTo
 - q().prepend
 - q().prependTo
 - q().before
 - q().after
+
 - q().addClass
 - q().removeClass
 - q().toggleClass
 - q().hasClass
+
 - q().addAttr
 - q().removeAttr
 - q().toggleAttr
 - q().hasAttr
+
 - q().css
 - q().attr
 - q().data
@@ -120,10 +140,20 @@ v0.3.4
 
 #### Fetch Core
 
-- q.fetch
-- q.fetchAll
-- q.fetchEach
+- q.catchJson
+
+- q.promiseList
+- q.promiseEach
+
+- q.get
+- q.getAll
+- q.getList
+- q.getEach
+
 - q.post
+- q.postAll
+- q.postList
+- q.postEach
 
 
 ### Details
