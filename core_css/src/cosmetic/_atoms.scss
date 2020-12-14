@@ -31,14 +31,6 @@
 
 
 
-
-.chromeless {
-    background-color:transparent;
-    border-radius:0;
-    border-width:0;
-    font:inherit;
-    color:inherit;
-}
 .compact {
     list-style-type:none;
     margin-top: 0;
@@ -48,11 +40,11 @@
 
 
 
-.display {
-    &-flex { display:flex; }
-    &-none { display:none; }
-    &-block { display:block; }
-    &-inlineblock { display: inline-block; }
-    &-inlineflex { display: inline-flex; }
-    &-inline { dsiplay:inline; }
-}
+// .display {
+//     &-flex { display:flex; }
+//     &-none { display:none; }
+//     &-block { display:block; }
+//     &-inlineblock { display: inline-block; }
+//     &-inlineflex { display: inline-flex; }
+//     &-inline { dsiplay:inline; }
+// }

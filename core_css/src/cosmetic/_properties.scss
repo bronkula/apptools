@@ -4,26 +4,56 @@
     --color-white: #fff;
     --color-black: #000;
 
-    --color-main-light:#e5edff;
-    --color-main-medium: #3e73dd;
-    --color-main-dark:#0f3070;
+    --rgb-main-light: 224, 230, 245;
+    --rgb-main-medium: 47, 104, 230;
+    --rgb-main-dark: 0, 39, 127;
 
-    --color-neutral-light:rgb(236, 232, 232);
-    --color-neutral-medium: rgb(146, 138, 138);
-    --color-neutral-dark:#3d3636;
+    --color-main-light: rgb(var(--rgb-main-light));
+    --color-main-medium: rgb(var(--rgb-main-medium));
+    --color-main-dark: rgb(var(--rgb-main-dark));
 
-    --color-commit-light: #daffc8;
-    --color-commit-medium: #61ce2e;
-    --color-commit-dark: #245a0b;
+    --rgb-neutral-lighter: 245, 241, 241;
+    --rgb-neutral-light: 236, 232, 232;
+    --rgb-neutral-medium: 146, 138, 138;
+    --rgb-neutral-dark: 68, 53, 53;
 
-    --color-cancel-light: #fdd8d8;
-    --color-cancel-medium: #e64949;
-    --color-cancel-dark: #4e0e0e;
+    --color-neutral-lighter: rgb(var(--rgb-neutral-lighter));
+    --color-neutral-light: rgb(var(--rgb-neutral-light));
+    --color-neutral-medium: rgb(var(--rgb-neutral-medium));
+    --color-neutral-dark: rgb(var(--rgb-neutral-dark));
+
+    --rgb-commit-light: 219, 243, 208;
+    --rgb-commit-medium: 120, 234, 64;
+    --rgb-commit-dark: 54, 138, 14;
+
+    --color-commit-light: rgb(var(--rgb-commit-light));
+    --color-commit-medium: rgb(var(--rgb-commit-medium));
+    --color-commit-dark: rgb(var(--rgb-commit-dark));
+
+    --rgb-cancel-light: 255, 227, 227;
+    --rgb-cancel-medium: 241, 46, 68;
+    --rgb-cancel-dark: 136, 0, 15;
+
+    --color-cancel-light: rgb(var(--rgb-cancel-light));
+    --color-cancel-medium: rgb(var(--rgb-cancel-medium));
+    --color-cancel-dark: rgb(var(--rgb-cancel-dark));
+
+    --rgb-warning-light: 253, 251, 231;
+    --rgb-warning-medium: 247, 227, 44;
+    --rgb-warning-dark: 175, 150, 0;
+
+    --color-warning-light: rgb(var(--rgb-warning-light));
+    --color-warning-medium: rgb(var(--rgb-warning-medium));
+    --color-warning-dark: rgb(var(--rgb-warning-dark));
 
     --header-height: 3rem;
 
-    --font-sans:'Trebuchet MS','Tahoma',sans-serif;
-    --font-serif:'Georgia','Lucida Bright',serif;
-    --font-heading:var(--font-serif);
+
+
+    --font-sans: 'Trebuchet MS', Tahoma, sans-serif;
+    --font-serif: Georgia, 'Lucida Bright', serif;
+    --font-monospace: Consolas, Monaco, monospace;
+
+    --font-heading:var(--font-sans);
     --font-body:var(--font-sans);
 }

@@ -21,7 +21,7 @@
 
   @extend .site-container;
 
-  overflow:hidden;
+  // overflow:hidden;
 
   @media (max-width:map-get($breakpoints,'lg')) {
     padding-left:#{map-get($sizes,'m')};

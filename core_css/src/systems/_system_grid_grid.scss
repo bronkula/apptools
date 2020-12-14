@@ -2,6 +2,10 @@
 .grid {
   display:grid;
   grid-template-columns: repeat(nth($grids,1), 1fr);
+
+  &.decimal {
+    grid-template-columns: repeat(nth($grids,2), 1fr);
+  }
   &.gap {
     --gap-size:#{map-get($sizes,'s')};
     grid-gap:var(--gap-size);

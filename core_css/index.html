@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Core CSS</title>
+
+   <link rel="stylesheet" href="dist/core.css">
+
+
+   <script>
+   const makeNav = (classes='') => {
+      const links = ['home','store','about','cart'];
+      let rand = Math.floor(Math.random()*links.length);
+      document.write(`
+      <div>
+      <nav class="${classes}">
+         <ul>
+            ${links.reduce((r,o,i)=>r+`<li ${i==rand?'class="active"':''}><a href="#">${o}</a></li>`,'')}
+         </ul>
+      </nav>
+      </div>
+      `)
+   }
+   const makeTable = (classes='') => {
+      const head = ['ID','Office','Name','Email','Phone'];
+      const body = [
+         ['522',"Hamilton Cline",'hcline@academyart.edu','555-2424'],
+         ['512',"Fred McHale",'fmchale@academyart.edu','555-2424'],
+         ['522',"Michael Catanzaro",'mcatanzaro@academyart.edu','555-2424'],
+         ['514',"Andrea Pimentel",'apimentel@academyart.edu','555-2424'],
+         ['516',"DC Scarpelli",'dscarpelli@academyart.edu','555-2424'],
+      ];
+
+      document.write(`
+      <table class="${classes}">
+         <thead><tr>${head.reduce((r,o)=>r+`<th>${o}</th>`,'')}</tr></thead>
+         <tbody>
+            ${body.reduce((r,o,i)=>r+
+               `<tr>${[i+1,...o].reduce((r,o)=>r+`<td>${o}</td>`,'')}</tr>`
+            ,'')}
+         </tbody>
+      </table>
+      `)
+   }
+
+   </script>
+</head>
+<body>
+
+   <header>
+      <div class="container">
+         <h1>Core CSS</h1>
+      </div>
+   </header>
+
+   <div class="container" id="toc">
+      <nav class="toc card soft">
+         <h2>Table of Contents</h2>
+         <ul>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#navs">Navs</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+         </ul>
+      </nav>
+   </div>
+   
+   <div class="container" id="cards">
+      <div class="card soft">
+         <h2>Cards</h2>
+
+         <div class="card">
+            <h3>Basic Card</h3>
+         </div>
+         <div class="card medium">
+            <h3>Medium Card</h3>
+         </div>
+         <div class="card dark">
+            <h3>Dark Card</h3>
+         </div>
+
+         <div class="card shadow">
+            <h3>Basic Shadow Card</h3>
+         </div>
+         <div class="card shadow medium">
+            <h3>Medium Shadow Card</h3>
+         </div>
+         <div class="card shadow dark">
+            <h3>Dark Shadow Card</h3>
+         </div>
+         
+         <div class="card soft">
+            <h3>Basic Soft Card</h3>
+         </div>
+         <div class="card soft medium">
+            <h3>Medium Soft Card</h3>
+         </div>
+         <div class="card soft dark">
+            <h3>Dark Soft Card</h3>
+         </div>
+
+         <div class="card soft flat">
+            <div class="card-section">
+               Flat Soft Card
+            </div>
+            <div class="card-section">
+               Card Sections
+            </div>
+            <div class="card-section">
+               Card Sections
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="container" id="navs">
+      <div class="card soft">
+         <h2>Navs</h2>
+
+         <h3>Default Nav</h3>
+         <script>makeNav('')</script>
+
+         <h3>Basic Nav</h3>
+         <script>makeNav('nav')</script>
+
+         <h3>Flex Nav</h3>
+         <script>makeNav('nav flex')</script>
+
+         <h3>Inline Nav</h3>
+         <script>makeNav('nav inline')</script>
+
+         <h3>Stretch Nav</h3>
+         <script>makeNav('nav stretch')</script>
+
+         <h3>Pills Nav</h3>
+         <script>makeNav('nav pills')</script>
+
+         <h3>Tabs Nav</h3>
+         <script>makeNav('nav tabs')</script>
+
+         <h3>Material Nav</h3>
+         <script>makeNav('nav material')</script>
+
+         <h3>Crumbs Nav</h3>
+         <script>makeNav('nav crumbs')</script>
+
+         <h3>Table of Contents</h3>
+         <nav class="toc">
+            <ul>
+               <li><a href="#">Title</a></li>
+               <li><a href="#">Title</a></li>
+               <ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+                  <ul>
+                     <li><a href="#">Title</a></li>
+                     <li><a href="#">Title</a></li>
+                  </ul>
+                  <li><a href="#">Title</a></li>
+               </ul>
+               <li><a href="#">Title</a></li>
+               <li><a href="#">Title</a></li>
+            </ul>
+         </nav>
+
+         <h3>Glossary</h3>
+         <nav class="gloss">
+            <ul>
+               <li><a href="#">Title</a></li>
+               <li><a href="#">Title</a></li>
+               <ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+                  <ul>
+                     <li><a href="#">Title</a></li>
+                     <li><a href="#">Title</a></li>
+                  </ul>
+                  <li><a href="#">Title</a></li>
+               </ul>
+               <li><a href="#">Title</a></li>
+               <li><a href="#">Title</a></li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+
+   <div class="container" id="tables">
+      <div class="card soft">
+         <h2>Tables</h2>
+
+         <h3>Default Table</h3>
+         <script>makeTable('')</script>
+
+         <h3>Basic Table</h3>
+         <script>makeTable('table')</script>
+
+         <h3>Striped Table</h3>
+         <script>makeTable('table striped')</script>
+
+         <h3>Lined Horizontal Table</h3>
+         <script>makeTable('table lined horizontal')</script>
+
+         <h3>Lined Vertical Table</h3>
+         <script>makeTable('table lined vertical')</script>
+
+         <h3>Lined Outline Table</h3>
+         <script>makeTable('table lined outline')</script>
+
+         <h3>Striped Outline Table</h3>
+         <script>makeTable('table lined outline striped')</script>
+
+         <h3>Lined All Table</h3>
+         <script>makeTable('table lined all')</script>
+
+      </div>
+   </div>
+
+   <div class="container" id="buttons">
+      <div class="card soft">
+         <h2>Buttons</h2>
+
+         <h3>Default Button</h3>
+         <div><button>Button</button></div>
+
+         <h3>Basic Button</h3>
+         <div><button class="btn">Button</button></div>
+
+         <h3>Solid Buttons</h3>
+         <div>
+            <button class="btn solid main">Button</button>
+            <button class="btn solid neutral">Button</button>
+            <button class="btn solid commit">Button</button>
+            <button class="btn solid cancel">Button</button>
+         </div>
+
+         <h3>Lined Buttons</h3>
+         <div>
+            <button class="btn lined main">Button</button>
+            <button class="btn lined neutral">Button</button>
+            <button class="btn lined commit">Button</button>
+            <button class="btn lined cancel">Button</button>
+         </div>
+
+         <h3>Text Buttons</h3>
+         <div>
+            <button class="btn text main">Button</button>
+            <button class="btn text neutral">Button</button>
+            <button class="btn text commit">Button</button>
+            <button class="btn text cancel">Button</button>
+         </div>
+
+         <h3>Full Buttons</h3>
+         <div>
+            <button class="btn solid neutral full">Button</button>
+            <button class="btn solid neutral full">Button</button>
+         </div>
+
+         <h3>Flush Buttons</h3>
+         <div>
+            <button class="btn solid neutral flush">Button</button>
+            <button class="btn solid neutral flush">Button</button>
+         </div>
+
+         <h3>Small Buttons</h3>
+         <div>
+            <button class="btn solid neutral small">Button</button>
+            <button class="btn solid neutral small">Button</button>
+         </div>
+
+         <h3>Large Buttons</h3>
+         <div>
+            <button class="btn solid neutral large">Button</button>
+            <button class="btn solid neutral large">Button</button>
+         </div>
+
+         <h3>Anchor Buttons</h3>
+         <div>
+            <a href="#" class="btn solid neutral">Button</a>
+            <a href="#" class="btn solid neutral">Button</a>
+         </div>
+
+         <h3>Input Buttons</h3>
+         <div>
+            <input type="button" class="btn solid neutral" value="Button">
+            <input type="button" class="btn solid neutral" value="Button">
+         </div>
+
+
+      </div>
+   </div>
+
+   <div class="container" id="forms">
+      <div class="card soft">
+         <h2>Forms</h2>
+
+         <h3>Basic Input</h3>
+         <div>
+            <input type="text" class="form-input" placeholder="Text Input">
+         </div>
+
+         <h3>Basic Button</h3>
+         <div>
+            <input type="submit" class="form-button">
+         </div>
+
+         <h3>Basic Control</h3>
+         <div class="form-control">
+            <label for="example-1" class="form-label">Label</label>
+            <input id="example-1" type="text" class="form-input" placeholder="Text Input">
+         </div>
+
+         <h3>Basic Login</h3>
+         <div class="form-control">
+            <label for="example-username" class="form-label">Username</label>
+            <input id="example-username" type="text" class="form-input" placeholder="Enter Username">
+         </div>
+         <div class="form-control">
+            <label for="example-password" class="form-label">Password</label>
+            <input id="example-password" type="password" class="form-input" placeholder="Enter Password">
+         </div>
+         <div class="form-control">
+            <input type="submit" class="form-button" placeholder="Enter Password">
+         </div>
+
+         <h3>Basic Group</h3>
+         <div class="form-control">
+            <div class="form-group">
+               <input id="example-2" type="text" class="form-input" placeholder="Enter Username">
+               <input id="example-3" type="password" class="form-input" placeholder="Enter Password">
+               <input type="submit" value="Login" class="form-button">
+            </div>
+         </div>
+
+         <h3>Hotdog Input</h3>
+         <form>
+            <input class="hotdog" type="search" placeholder="search">
+         </form>
+
+         <h3>Hotdog Label</h3>
+         <form>
+            <label class="hotdog">
+               <input type="search" placeholder="search">
+            </label>
+         </form>
+
+         <h3>Hotdog Bun</h3>
+         <form class="hotdog-bun">
+            <label class="hotdog">
+               <input type="search" placeholder="search">
+            </label>
+         </form>
+      </div>
+   </div>
+
+   <div class="container" id="documentation">
+      <div class="card soft">
+         <h2>Documentation</h2>
+
+         <h3>Well</h3>
+         <div class="well">Well</div>
+
+         <h3>Pattern</h3>
+         <div class="pattern">Pattern</div>
+
+         <h3>Pattern Well</h3>
+         <div class="pattern well">Pattern</div>
+
+         <h3>Pattern Well Gray</h3>
+         <div class="pattern well gray">Pattern</div>
+
+         <h3>Pattern Card Soft</h3>
+         <div class="pattern card soft">Pattern</div>
+
+         <h3>Code</h3>
+         <div>
+            <code class="code">Code</code>
+         </div>
+
+         <h3>Code Block</h3>
+         <div>
+            <code class="code block">Code {
+   Such Code
+}</code>
+         </div>
+
+         <h3>Code Inline</h3>
+         <div>
+            Inline <code class="code inline">Code</code> Bit
+         </div>
+
+         <h3>Code Output</h3>
+         <div>
+            <code class="code output">Code</code>
+         </div>
+      </div>
+   </div>
+
+
+
+
+   <div class="container">
+      <div class="card soft">
+         <h2>Layout Flex</h2>
+
+         <h3>Flex Box System</h3>
+         <div class="display-flex">
+            <div class="flex-stretch"><div class="well">Stretch</div></div>
+            <div class="flex-stretch"><div class="well">Stretch</div></div>
+         </div>
+         <div class="display-flex">
+            <div class="flex-none"><div class="well">None</div></div>
+            <div class="flex-stretch"><div class="well">Stretch</div></div>
+            <div class="flex-none"><div class="well">None</div></div>
+         </div>
+         <div class="display-flex">
+            <div class="flex-stretch"></div>
+            <div class="flex-none"><div class="well">None</div></div>
+            <div class="flex-none"><div class="well">None</div></div>
+         </div>
+
+
+         <h2>Layout Grid</h2>
+
+         <h3>Dozenal Grid System</h3>
+         <div class="grid">
+            <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+            <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+
+            <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+            <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+            <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+            <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

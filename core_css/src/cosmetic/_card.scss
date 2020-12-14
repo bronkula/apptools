@@ -1,24 +1,75 @@
 
 .card {
-    padding: 1em;
-    border-radius: 0.3em;
+    --card-padding:1rem;
+    padding: var(--card-padding);
 
     overflow:hidden;
 
-    margin-top:1em;
-    margin-bottom: 1em;
-
-    &-bright { @extend .card; background-color: var(--color-white); }
-
-    &-dark { @extend .card; background-color: var(--color-neutral-dark); }
-
-    &-main { @extend .card; background-color: var(--color-main-medium); }
+    margin-top:var(--card-padding);
+    margin-bottom: var(--card-padding);
+    
+    --shadow-offset:0 0;
+    --shadow-opacity:0;
+    --shadow-blur:0;
+    --shadow-spread:0;
+    box-shadow: 
+        var(--shadow-offset)
+        var(--shadow-blur)
+        var(--shadow-spread)
+        rgba(var(--rgb-neutral-dark),var(--shadow-opacity));
 
     &.shadow {
-    	box-shadow: 0 2px 0 rgba(0,0,0,0.2);
-    	&-large {
-    		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    	}
+        --shadow-offset:0 2px;
+        --shadow-blur:2px;
+        --shadow-opacity:0.15;
+        &-medium {
+            --shadow-offset:0 2px;
+            --shadow-blur:5px;
+            --shadow-opacity:0.2;
+        }
+        &-large {
+            --shadow-offset:0 2px;
+            --shadow-blur:10px;
+            --shadow-opacity:0.2;
+        }
+    }
+
+    --shadow-opacity:0.15;
+    background-color: var(--color-white);
+    color:var(--color-black);
+
+    &.light {
+        --shadow-opacity:0.15;
+        background-color: var(--color-neutral-light);
+        color:var(--color-neutral-dark);
+    }
+
+    &.medium {
+        --shadow-opacity:0.3;
+        background-color: var(--color-neutral-medium);
+        color:var(--color-white);
+    }
+
+    &.dark {
+        --shadow-opacity:0.5;
+        background-color: var(--color-neutral-dark);
+        color:var(--color-neutral-light);
+    }
+
+    &.soft {
+        @extend .card.shadow-large;
+        border-radius: 0.3rem;
+    }
+
+    &.flat {
+        padding:0;
+    }
+
+    &-section {
+        padding:var(--card-padding);
+        &~& {
+            border-top: 1px solid rgba(var(--rgb-neutral-dark), 0.2)
+        }
     }
 
 	&>:first-child { margin-top:0; }

@@ -1,5 +1,7 @@
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); }
 
+.grid.decimal { grid-template-columns: repeat(10, 1fr); }
+
 .grid.gap { --gap-size:0.5rem; grid-gap: var(--gap-size); }
 
 .col-1 { grid-column-end: span 1; }
