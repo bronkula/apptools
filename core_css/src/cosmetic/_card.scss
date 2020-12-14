@@ -34,12 +34,17 @@
         }
     }
 
-    --shadow-opacity:0.15;
-    background-color: var(--color-white);
-    color:var(--color-black);
+    &.white {
+        --shadow-opacity:0.15;
+        background-color: var(--color-white);
+        color:var(--color-black);
+    }
+
+    @extend .card.white;
+
 
     &.light {
-        --shadow-opacity:0.15;
+        --shadow-opacity:0.25;
         background-color: var(--color-neutral-light);
         color:var(--color-neutral-dark);
     }

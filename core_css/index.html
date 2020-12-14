@@ -58,6 +58,7 @@
       <nav class="toc card soft">
          <h2>Table of Contents</h2>
          <ul>
+            <li><a href="#colors">Colors</a></li>
             <li><a href="#cards">Cards</a></li>
             <li><a href="#navs">Navs</a></li>
             <li><a href="#tables">Tables</a></li>
@@ -68,12 +69,57 @@
       </nav>
    </div>
    
+   <div class="container" id="colors">
+      <div class="card soft">
+         <h2>Colors</h2>
+
+         <div>
+            <h3>Main Colors</h3>
+            <div style="padding:1em;background-color:var(--color-main-light)">--rgb-main-light: 224, 230, 245;</div>
+            <div style="padding:1em;background-color:var(--color-main-medium); color:var(--color-white)">--rgb-main-medium: 47, 104, 230;</div>
+            <div style="padding:1em;background-color:var(--color-main-dark); color:var(--color-white)">--rgb-main-dark: 0, 39, 127;</div>
+         </div>
+
+         <div>
+            <h3>Neutral Colors</h3>
+            <div style="padding:1em;background-color:var(--color-neutral-lighter)">--rgb-neutral-lighter: 241, 241, 243;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-light)">--rgb-neutral-light: 216, 216, 220;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-medium); color:var(--color-white)">--rgb-neutral-medium: 138, 138, 146;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-dark); color:var(--color-white)">--rgb-neutral-dark: 53, 53, 68;</div>
+         </div>
+
+         <div>
+            <h3>Commit Colors</h3>
+            <div style="padding:1em;background-color:var(--color-commit-light)">--rgb-commit-light: 219, 243, 208;</div>
+            <div style="padding:1em;background-color:var(--color-commit-medium);">--rgb-commit-medium: 120, 234, 64;</div>
+            <div style="padding:1em;background-color:var(--color-commit-dark); color:var(--color-white)">--rgb-commit-dark: 54, 138, 14;</div>
+         </div>
+
+         <div>
+            <h3>Cancel Colors</h3>
+            <div style="padding:1em;background-color:var(--color-cancel-light)">--rgb-cancel-light: 255, 227, 227;</div>
+            <div style="padding:1em;background-color:var(--color-cancel-medium);">--rgb-cancel-medium: 241, 46, 68;</div>
+            <div style="padding:1em;background-color:var(--color-cancel-dark); color:var(--color-white)">--rgb-cancel-dark: 136, 0, 15;</div>
+         </div>
+
+         <div>
+            <h3>Warning Colors</h3>
+            <div style="padding:1em;background-color:var(--color-warning-light)">--rgb-warning-light: 255, 249, 191;</div>
+            <div style="padding:1em;background-color:var(--color-warning-medium);">--rgb-warning-medium: 247, 227, 44;</div>
+            <div style="padding:1em;background-color:var(--color-warning-dark); color:var(--color-white)">--rgb-warning-dark: 175, 150, 0;</div>
+         </div>
+      </div>
+   </div>
+   
    <div class="container" id="cards">
       <div class="card soft">
          <h2>Cards</h2>
 
          <div class="card">
             <h3>Basic Card</h3>
+         </div>
+         <div class="card light">
+            <h3>Light Card</h3>
          </div>
          <div class="card medium">
             <h3>Medium Card</h3>
@@ -85,6 +131,9 @@
          <div class="card shadow">
             <h3>Basic Shadow Card</h3>
          </div>
+         <div class="card shadow light">
+            <h3>Light Shadow Card</h3>
+         </div>
          <div class="card shadow medium">
             <h3>Medium Shadow Card</h3>
          </div>
@@ -94,6 +143,9 @@
          
          <div class="card soft">
             <h3>Basic Soft Card</h3>
+         </div>
+         <div class="card soft light">
+            <h3>Light Soft Card</h3>
          </div>
          <div class="card soft medium">
             <h3>Medium Soft Card</h3>
@@ -230,26 +282,46 @@
 
          <h3>Solid Buttons</h3>
          <div>
-            <button class="btn solid main">Button</button>
-            <button class="btn solid neutral">Button</button>
-            <button class="btn solid commit">Button</button>
-            <button class="btn solid cancel">Button</button>
+            <h4>Light</h4>
+            <button class="btn solid main">Main</button>
+            <button class="btn solid neutral">Neutral</button>
+            <button class="btn solid commit">Commit</button>
+            <button class="btn solid cancel">Cancel</button>
+            <button class="btn solid warning">Warning</button>
+         </div>
+         <div>
+            <h4>Medium</h4>
+            <button class="btn solid main medium">Main</button>
+            <button class="btn solid neutral medium">Neutral</button>
+            <button class="btn solid commit medium">Commit</button>
+            <button class="btn solid cancel medium">Cancel</button>
+            <button class="btn solid warning medium">Warning</button>
+         </div>
+         <div>
+            <h4>Dark</h4>
+            <button class="btn solid main dark">Main</button>
+            <button class="btn solid neutral dark">Neutral</button>
+            <button class="btn solid commit dark">Commit</button>
+            <button class="btn solid cancel dark">Cancel</button>
+            <button class="btn solid warning dark">Warning</button>
          </div>
 
          <h3>Lined Buttons</h3>
          <div>
-            <button class="btn lined main">Button</button>
-            <button class="btn lined neutral">Button</button>
-            <button class="btn lined commit">Button</button>
-            <button class="btn lined cancel">Button</button>
+            <button class="btn lined main">Main</button>
+            <button class="btn lined neutral">Neutral</button>
+            <button class="btn lined commit">Commit</button>
+            <button class="btn lined cancel">Cancel</button>
+            <button class="btn lined warning">Warning</button>
          </div>
 
          <h3>Text Buttons</h3>
          <div>
-            <button class="btn text main">Button</button>
-            <button class="btn text neutral">Button</button>
-            <button class="btn text commit">Button</button>
-            <button class="btn text cancel">Button</button>
+            <button class="btn text main">Main</button>
+            <button class="btn text neutral">Neutral</button>
+            <button class="btn text commit">Commit</button>
+            <button class="btn text cancel">Cancel</button>
+            <button class="btn text warning">Warning</button>
          </div>
 
          <h3>Full Buttons</h3>

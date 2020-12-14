@@ -50,21 +50,43 @@
 	&.solid.neutral { background-color:var(--color-neutral-light); }
 	&.solid.commit { background-color:var(--color-commit-light); }
 	&.solid.cancel { background-color:var(--color-cancel-light); }
+	&.solid.warning { background-color:var(--color-warning-light); }
+
+	&.solid.main.light { background-color:var(--color-main-light); }
+	&.solid.neutral.light { background-color:var(--color-neutral-light); }
+	&.solid.commit.light { background-color:var(--color-commit-light); }
+	&.solid.cancel.light { background-color:var(--color-cancel-light); }
+	&.solid.warning.light { background-color:var(--color-warning-light); }
+
+	&.solid.main.medium { background-color:var(--color-main-medium); color:var(--color-white); }
+	&.solid.neutral.medium { background-color:var(--color-neutral-medium); color:var(--color-white); }
+	&.solid.commit.medium { background-color:var(--color-commit-medium); color:var(--color-white); }
+	&.solid.cancel.medium { background-color:var(--color-cancel-medium); color:var(--color-white); }
+	&.solid.warning.medium { background-color:var(--color-warning-medium); color:var(--color-white); }
+
+	&.solid.main.dark { background-color:var(--color-main-dark); color:var(--color-main-light); }
+	&.solid.neutral.dark { background-color:var(--color-neutral-dark); color:var(--color-neutral-light); }
+	&.solid.commit.dark { background-color:var(--color-commit-dark); color:var(--color-commit-light); }
+	&.solid.cancel.dark { background-color:var(--color-cancel-dark); color:var(--color-cancel-light); }
+	&.solid.warning.dark { background-color:var(--color-warning-dark); color:var(--color-warning-light); }
 
 	&.lined.main { border-color:var(--color-main-medium); }
 	&.lined.neutral { border-color:var(--color-neutral-medium); }
-	&.lined.commit { border-color:var(--color-commit-medium); }
+	&.lined.commit { border-color:var(--color-commit-dark); }
 	&.lined.cancel { border-color:var(--color-cancel-medium); }
+	&.lined.warning { border-color:var(--color-warning-dark); }
 
 	&.main:active { border-color:var(--color-main-dark); }
 	&.neutral:active { border-color:var(--color-neutral-dark); }
 	&.commit:active { border-color:var(--color-commit-dark); }
 	&.cancel:active { border-color:var(--color-cancel-dark); }
+	&.warning:active { border-color:var(--color-warning-dark); }
 
 	&.text.main,&.lined.main { color:var(--color-main-medium); }
 	&.text.neutral,&.lined.neutral { color:var(--color-neutral-medium); }
-	&.text.commit,&.lined.commit { color:var(--color-commit-medium); }
+	&.text.commit,&.lined.commit { color:var(--color-commit-dark); }
 	&.text.cancel,&.lined.cancel { color:var(--color-cancel-medium); }
+	&.text.warning,&.lined.warning { color:var(--color-warning-dark); }
 
 	&.full {
 		width:100%;
