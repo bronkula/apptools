@@ -14,9 +14,10 @@
 
 
 @mixin makeGridGrid($breakpoint:'',$columns:12) {
+  .offset#{$breakpoint}-0 { grid-column-start: 1; }
   @for $i from 1 through $columns {
     .col#{$breakpoint}-#{$i} { grid-column-end:span #{$i}; }
-    .offset#{$breakpoint}-#{$i} { grid-column-start:span #{$i}; }
+    .offset#{$breakpoint}-#{$i} { grid-column-start: #{$i + 1}; }
   }
   @each $i, $v in $sizes {
     .gap.gap#{$breakpoint}-#{$i} { --gap-size:#{$v}; }

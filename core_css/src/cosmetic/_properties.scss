@@ -1,8 +1,10 @@
 
 :root {
 
-   --color-white: #fff;
-   --color-black: #000;
+   --rgb-white: 255,255,255;
+   --rgb-black: 0,0,0;
+   --color-white: rgb(var(--rgb-white));
+   --color-black: rgb(var(--rgb-black));
 
    --rgb-main-light: 224, 230, 245;
    --rgb-main-medium: 47, 104, 230;

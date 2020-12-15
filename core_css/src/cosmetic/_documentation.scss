@@ -6,6 +6,12 @@
     border-radius: 0.3em;
     margin:1px;
 }
+.well-light {
+    display: inline-block;
+    border-width:0;
+    background-color: rgba(var(--rgb-neutral-dark),0.2);
+    border-radius:0.2em;
+}
 .pattern {
     max-width:500px;
     margin-left:auto;
