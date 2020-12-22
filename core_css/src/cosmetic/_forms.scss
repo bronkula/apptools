@@ -13,18 +13,64 @@
 	display: inline-block;
 }
 
+
+
+@mixin buttons($root:'',$variants:(),$option:'.solid') {
+	/*
+
+
+
+	Button
+
+
+
+	*/
+
+	// @debug $root;
+	// @debug $variants;
+	// @debug $option;
+	@each $k,$v in $variants {
+		&.#{$k}#{$option} {
+			@if(map-has-key($v, "back")) {background-color:var(--color-#{map-get($v, "back")});}
+			@if(map-has-key($v, "color")) {color:var(--color-#{map-get($v, "color")});}
+			@if(map-has-key($v, "border")) {border: var(--border-width) solid var(--color-#{map-get($v, "border")});}
+			&:active {
+				@if(map-has-key($v, "activeback")) {background-color:var(--color-#{map-get($v, "activeback")});}
+				@if(map-has-key($v, "activecolor")) {color:var(--color-#{map-get($v, "activecolor")});}
+				@if(map-has-key($v, "activeborder")) {border:var(--border-width) solid var(--color-#{map-get($v, "activeborder")});}
+			}
+			&:hover {
+				@if(map-has-key($v, "hoverback")) {background-color:var(--color-#{map-get($v, "hoverback")});}
+				@if(map-has-key($v, "hovercolor")) {color:var(--color-#{map-get($v, "hovercolor")});}
+				@if(map-has-key($v, "hoverborder")) {border:var(--border-width) solid var(--color-#{map-get($v, "hoverborder")});}
+			}
+		}
+	}
+}
+
+
+
+
+
 /* Buttons */
 .btn {
+
+	&-size {
+		line-height:var(--button-height);
+		height:var(--button-height);
+	}
+
+	@extend .btn-size;
 	display:inline-block;
 	position:relative;
-	padding: 0.25em 1em;
-	border-radius: 0.2rem;
+	padding: 0 1em;
+	border-radius:  var(--radius);
 	color: inherit;
 	background-color: transparent;
 	font: inherit;
-	border:solid transparent 0.1rem;
+	border-width:0;
+	// border:solid transparent 0.1rem;
 	cursor:pointer;
-	line-height:inherit;
 	text-align:center;
 	outline: 0;
 
@@ -46,47 +92,96 @@
 		background-color: var(--color-neutral-light);
 	}
 
-	&.solid.main { background-color:var(--color-main-light); }
-	&.solid.neutral { background-color:var(--color-neutral-light); }
-	&.solid.commit { background-color:var(--color-commit-light); }
-	&.solid.cancel { background-color:var(--color-cancel-light); }
-	&.solid.warning { background-color:var(--color-warning-light); }
+	/* do a buttons */
+	@include buttons(#{&},(
+		main:(back:'main-light',activeback:'main-medium'),
+		neutral:(back:'neutral-light',activeback:'neutral-medium'),
+		commit:(back:'commit-light',activeback:'commit-medium'),
+		cancel:(back:'cancel-light',activeback:'cancel-medium'),
+		warning:(back:'warning-light',activeback:'warning-medium') ));
+	@include buttons(#{&},(
+		main:(back:'main-light',activeback:'main-medium'),
+		neutral:(back:'neutral-light',activeback:'neutral-medium'),
+		commit:(back:'commit-light',activeback:'commit-medium'),
+		cancel:(back:'cancel-light',activeback:'cancel-medium'),
+		warning:(back:'warning-light',activeback:'warning-medium') ),
+		'.solid.light');
+	@include buttons(#{&},(
+		main:(back:'main-medium',activeback:'main-light',color:'main-light',activecolor:'main-dark'),
+		neutral:(back:'neutral-medium',activeback:'neutral-light',color:'neutral-light',activecolor:'neutral-dark'),
+		commit:(back:'commit-medium',activeback:'commit-light'),
+		cancel:(back:'cancel-medium',activeback:'cancel-light',color:'cancel-light',activecolor:'cancel-dark'),
+		warning:(back:'warning-medium',activeback:'warning-light') ),
+		'.solid.medium');
+	@include buttons(#{&},(
+		main:(back:'main-dark',color:'white',activeback:'main-medium',activecolor:'black'),
+		neutral:(back:'neutral-dark',color:'white',activeback:'neutral-medium',activecolor:'black'),
+		commit:(back:'commit-dark',color:'white',activeback:'commit-medium',activecolor:'black'),
+		cancel:(back:'cancel-dark',color:'white',activeback:'cancel-medium',activecolor:'black'),
+		warning:(back:'warning-dark',color:'white',activeback:'warning-medium',activecolor:'black') ),
+		'.solid.dark');
+	@include buttons(#{&},(
+		main:(border:'main-medium',color:'main-dark',activeborder:'main-dark',activecolor:'main-dark'),
+		neutral:(border:'neutral-medium',color:'neutral-dark',activeborder:'neutral-dark',activecolor:'neutral-dark'),
+		commit:(border:'commit-medium',color:'commit-dark',activeborder:'commit-dark',activecolor:'commit-dark'),
+		cancel:(border:'cancel-medium',color:'cancel-dark',activeborder:'cancel-dark',activecolor:'cancel-dark'),
+		warning:(border:'warning-medium',color:'warning-dark',activeborder:'warning-dark',activecolor:'warning-dark') ),
+		'.lined');
 
-	&.solid.main.light { background-color:var(--color-main-light); }
-	&.solid.neutral.light { background-color:var(--color-neutral-light); }
-	&.solid.commit.light { background-color:var(--color-commit-light); }
-	&.solid.cancel.light { background-color:var(--color-cancel-light); }
-	&.solid.warning.light { background-color:var(--color-warning-light); }
+	// @include buttons((
+	// 	main:'light',
+	// 	neutral:'light',
+	// 	commit:'light',
+	// 	cancel:'light',
+	// 	warning:'light' ),'.solid.light');
 
-	&.solid.main.medium { background-color:var(--color-main-medium); color:var(--color-white); }
-	&.solid.neutral.medium { background-color:var(--color-neutral-medium); color:var(--color-white); }
-	&.solid.commit.medium { background-color:var(--color-commit-medium); color:var(--color-white); }
-	&.solid.cancel.medium { background-color:var(--color-cancel-medium); color:var(--color-white); }
-	&.solid.warning.medium { background-color:var(--color-warning-medium); color:var(--color-white); }
+	// &.solid.main { background-color:var(--color-main-light); }
+	// &.solid.neutral { background-color:var(--color-neutral-light); }
+	// &.solid.commit { background-color:var(--color-commit-light); }
+	// &.solid.cancel { background-color:var(--color-cancel-light); }
+	// &.solid.warning { background-color:var(--color-warning-light); }
 
-	&.solid.main.dark { background-color:var(--color-main-dark); color:var(--color-main-light); }
-	&.solid.neutral.dark { background-color:var(--color-neutral-dark); color:var(--color-neutral-light); }
-	&.solid.commit.dark { background-color:var(--color-commit-dark); color:var(--color-commit-light); }
-	&.solid.cancel.dark { background-color:var(--color-cancel-dark); color:var(--color-cancel-light); }
-	&.solid.warning.dark { background-color:var(--color-warning-dark); color:var(--color-warning-light); }
+	// &.solid.main.light { background-color:var(--color-main-light); }
+	// &.solid.neutral.light { background-color:var(--color-neutral-light); }
+	// &.solid.commit.light { background-color:var(--color-commit-light); }
+	// &.solid.cancel.light { background-color:var(--color-cancel-light); }
+	// &.solid.warning.light { background-color:var(--color-warning-light); }
 
-	&.lined.main { border-color:var(--color-main-medium); }
-	&.lined.neutral { border-color:var(--color-neutral-medium); }
-	&.lined.commit { border-color:var(--color-commit-dark); }
-	&.lined.cancel { border-color:var(--color-cancel-medium); }
-	&.lined.warning { border-color:var(--color-warning-dark); }
+	// &.solid.main.medium { background-color:var(--color-main-medium); color:var(--color-white); }
+	// &.solid.neutral.medium { background-color:var(--color-neutral-medium); color:var(--color-white); }
+	// &.solid.commit.medium { background-color:var(--color-commit-medium); color:var(--color-white); }
+	// &.solid.cancel.medium { background-color:var(--color-cancel-medium); color:var(--color-white); }
+	// &.solid.warning.medium { background-color:var(--color-warning-medium); color:var(--color-white); }
 
-	&.main:active { border-color:var(--color-main-dark); }
-	&.neutral:active { border-color:var(--color-neutral-dark); }
-	&.commit:active { border-color:var(--color-commit-dark); }
-	&.cancel:active { border-color:var(--color-cancel-dark); }
-	&.warning:active { border-color:var(--color-warning-dark); }
+	// &.solid.main.dark { background-color:var(--color-main-dark); color:var(--color-main-light); }
+	// &.solid.neutral.dark { background-color:var(--color-neutral-dark); color:var(--color-neutral-light); }
+	// &.solid.commit.dark { background-color:var(--color-commit-dark); color:var(--color-commit-light); }
+	// &.solid.cancel.dark { background-color:var(--color-cancel-dark); color:var(--color-cancel-light); }
+	// &.solid.warning.dark { background-color:var(--color-warning-dark); color:var(--color-warning-light); }
 
-	&.text.main,&.lined.main { color:var(--color-main-medium); }
-	&.text.neutral,&.lined.neutral { color:var(--color-neutral-medium); }
-	&.text.commit,&.lined.commit { color:var(--color-commit-dark); }
-	&.text.cancel,&.lined.cancel { color:var(--color-cancel-medium); }
-	&.text.warning,&.lined.warning { color:var(--color-warning-dark); }
+	// &.lined.main { border-color:var(--color-main-medium); }
+	// &.lined.neutral { border-color:var(--color-neutral-medium); }
+	// &.lined.commit { border-color:var(--color-commit-dark); }
+	// &.lined.cancel { border-color:var(--color-cancel-medium); }
+	// &.lined.warning { border-color:var(--color-warning-dark); }
+
+	// &.main:active { border-color:var(--color-main-dark); }
+	// &.neutral:active { border-color:var(--color-neutral-dark); }
+	// &.commit:active { border-color:var(--color-commit-dark); }
+	// &.cancel:active { border-color:var(--color-cancel-dark); }
+	// &.warning:active { border-color:var(--color-warning-dark); }
+
+	// &.text.main,&.lined.main { color:var(--color-main-medium); }
+	// &.text.neutral,&.lined.neutral { color:var(--color-neutral-medium); }
+	// &.text.commit,&.lined.commit { color:var(--color-commit-dark); }
+	// &.text.cancel,&.lined.cancel { color:var(--color-cancel-medium); }
+	// &.text.warning,&.lined.warning { color:var(--color-warning-dark); }
+
+
+	&.lined {
+		line-height:calc(var(--button-height) - (var(--border-width) * 2));
+		// height:calc(var(--button-height) - (var(--border-width) * 2));
+	}
 
 	&.full {
 		width:100%;
@@ -110,6 +205,8 @@
 
 
 
+
+
 .form {
 	&-control {
 		margin-top: 1em;
@@ -117,8 +214,8 @@
 	}
 	&-input {
 		@extend .chromeless;
+		@extend .btn-size;
 		padding:0 1em;
-		line-height:2em;
 		border-bottom: 1px solid var(--color-neutral-medium);
 	}
 	&-label {
@@ -138,6 +235,36 @@
 	&-blank {
 		@extend .chromeless;
 	}
+
+
+
+	&-select>select {
+		@extend .btn-size;
+		padding: 0 1.5em 0 1em;
+		background-color: var(--color-neutral-light);
+		border-width: 0;
+		border-radius: var(--radius);
+		cursor: pointer;
+		-webkit-appearance:none;
+		display:inline-block;
+		width:100%;
+		font:inherit;
+		outline:0;
+	}
+	&-select {
+	   position:relative;
+	}
+	&-select::after {
+	   position:absolute;
+	   content:'▼';
+	   font-family:Arial,sans-serif;
+	   font-size:0.6em;
+	   top:50%;
+	   transform:translateY(-50%);
+	   right:0.4rem;
+	   pointer-events:none;
+	   color:var(--color-neutral-medium);
+	}
 	
 
 	&-group {
@@ -156,6 +283,52 @@
 		}
 	}
 }
+.solid-input {
+	@extend .chromeless;
+	@extend .btn-size;
+	padding:0 1em;
+	background-color:var(--color-neutral-lighter);
+	border-radius: var(--radius);
+}
+
+
+
+
+.toggle {
+	--line-width:2px;
+	label {
+		display: inline-block;
+		width: 2em;
+		height: 1em;
+		background-color: var(--color-neutral-light);
+		border: var(--line-width) solid var(--color-neutral-medium);
+		border-radius: 1em;
+		position: relative;
+		font-size: 1.3em;
+		overflow:hidden;
+		box-sizing:content-box;
+	}
+	label::after {
+	   content:'';
+	   position:absolute;
+	   width:1em;
+	   height:1em;
+	   display:inline-block;
+	   border-radius:1em;
+	   background-color:var(--color-white);
+	   transition:all 0.3s;
+	   box-shadow:0 0 6px rgba(0,0,0,0.6);
+	}
+	input:checked + label::after {
+	   transform:translateX(1em);
+	}
+	&.square {
+		label,
+		label::after {
+			border-radius:var(--line-width);
+		}
+	}
+}
 
 
 
@@ -165,8 +338,7 @@
 	border-radius: 2em;
 	background-color: var(--color-neutral-light);
 	color: var(--color-black);
-	line-height: 2;
-	height:2em;
+	@extend .btn-size;
 	border-width: 0;
 	font: inherit;
 	display:inline-flex;
@@ -179,7 +351,7 @@
 
 	&>input {
 		@extend .chromeless;
-		line-height: 2;
+		@extend .btn-size;
 	}
 
 	.nav-overlay & {

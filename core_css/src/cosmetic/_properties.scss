@@ -1,3 +1,7 @@
+// @font-face {
+//    font-family:'InBubbleLight';
+//    src:url('https://hdraws.com/font/InBubbleLight.ttf');
+// }
 
 :root {
 
@@ -48,13 +52,20 @@
    --color-warning-medium: rgb(var(--rgb-warning-medium));
    --color-warning-dark: rgb(var(--rgb-warning-dark));
 
+
+
    --header-height: 3rem;
+   --button-height: 2em;
+   --border-width:2px;
+
+   --radius:0.2rem;
 
 
 
    --font-sans: 'Trebuchet MS', Tahoma, sans-serif;
    --font-serif: Georgia, 'Lucida Bright', serif;
    --font-monospace: Consolas, Monaco, monospace;
+   --font-cursive: InBubbleLight, cursive;
 
    --font-heading:var(--font-sans);
    --font-body:var(--font-sans);

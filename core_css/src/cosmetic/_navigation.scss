@@ -17,8 +17,9 @@
 
 
     a, span {
+        @extend .btn-size;
         display:block;
-        padding: 0.5em 1em;
+        padding: 0 1em;
         font-family:var(--font-sans);
 
         &:hover {
@@ -33,28 +34,41 @@
     }
 
     &bar {
-        background-color:var(--color-main-dark);
+        background-color:var(--color-neutral-dark);
         color: var(--color-white);
         line-height: var(--header-height);
         font-family: var(--font-sans);
 
         h1 {
+            padding-left:1em;
+            padding-right:1em;
             font-size: 1.1em;
             line-height:inherit;
             font-family:inherit;
             margin:0;
         }
 
+        .container,
+        nav>ul {
+            display:flex;
+            list-style-type:none;
+            margin:0;
+            padding:0;
+        }
+        nav:last-child {
+            padding-right:0.5em;
+        }
+
         a {
-            padding-top:0;
-            padding-bottom:0;
-            border-top-width:0;
-            border-bottom-width:0;
+            display:block;
+            padding:0 0.5em;
+            border-width:0;
             color:inherit;
 
             &:hover {
-                background-color:var(--color-neutral-light);
+                background-color:var(--color-neutral-lighter);
                 color:var(--color-neutral-dark);
+                text-decoration:none;
             }
         }
     }
@@ -93,7 +107,7 @@
         a,span {
             border-radius:1em;
             margin:0 0.2em;
-            padding:0.5em 1em;
+            padding:0 1em;
         }
     }
 
@@ -136,7 +150,7 @@
             color:var(--color-main-medium);
             position: relative;
             border-width:0 !important;
-            padding:0.5em 1em;
+            padding:0 1em;
             transition: all 0.3s;
 
             &::after {
@@ -304,7 +318,8 @@
 }
 
 
-.nav-menu-activator+label {
+.nav-menu-checkbox,
+.nav-menu-activator {
     display:none;
 }
 
@@ -319,14 +334,13 @@
         }
     }
     .nav-menu-activator {
-        &+label {
-            display:block;
-            padding: 0 0 0 1rem;
-            font-size:1.5em;
-        }
-        &:checked~.nav ul {
-            display:block;
-            padding-bottom:1em;
-        }
+        display:block;
+        padding: 0 0 0 1rem;
+        font-size:1.5em;
+    }
+
+    .nav-menu-checkbox:checked~.navbar nav>ul {
+        display:block;
+        padding-bottom:0.5em;
     }
 }

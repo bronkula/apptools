@@ -1,4 +1,5 @@
-:root { --rgb-white: 255,255,255; --rgb-black: 0,0,0; --color-white: rgb(var(--rgb-white)); --color-black: rgb(var(--rgb-black)); --rgb-main-light: 224, 230, 245; --rgb-main-medium: 47, 104, 230; --rgb-main-dark: 0, 39, 127; --color-main-light: rgb(var(--rgb-main-light)); --color-main-medium: rgb(var(--rgb-main-medium)); --color-main-dark: rgb(var(--rgb-main-dark)); --rgb-neutral-lighter: 241, 241, 243; --rgb-neutral-light: 216, 216, 220; --rgb-neutral-medium: 138, 138, 146; --rgb-neutral-dark: 53, 53, 68; --color-neutral-lighter: rgb(var(--rgb-neutral-lighter)); --color-neutral-light: rgb(var(--rgb-neutral-light)); --color-neutral-medium: rgb(var(--rgb-neutral-medium)); --color-neutral-dark: rgb(var(--rgb-neutral-dark)); --rgb-commit-light: 219, 243, 208; --rgb-commit-medium: 120, 234, 64; --rgb-commit-dark: 54, 138, 14; --color-commit-light: rgb(var(--rgb-commit-light)); --color-commit-medium: rgb(var(--rgb-commit-medium)); --color-commit-dark: rgb(var(--rgb-commit-dark)); --rgb-cancel-light: 255, 227, 227; --rgb-cancel-medium: 241, 46, 68; --rgb-cancel-dark: 136, 0, 15; --color-cancel-light: rgb(var(--rgb-cancel-light)); --color-cancel-medium: rgb(var(--rgb-cancel-medium)); --color-cancel-dark: rgb(var(--rgb-cancel-dark)); --rgb-warning-light: 255, 249, 191; --rgb-warning-medium: 247, 227, 44; --rgb-warning-dark: 175, 150, 0; --color-warning-light: rgb(var(--rgb-warning-light)); --color-warning-medium: rgb(var(--rgb-warning-medium)); --color-warning-dark: rgb(var(--rgb-warning-dark)); --header-height: 3rem; --font-sans: 'Trebuchet MS', Tahoma, sans-serif; --font-serif: Georgia, 'Lucida Bright', serif; --font-monospace: Consolas, Monaco, monospace; --font-heading:var(--font-sans); --font-body:var(--font-sans); }
+@charset "UTF-8";
+:root { --rgb-white: 255,255,255; --rgb-black: 0,0,0; --color-white: rgb(var(--rgb-white)); --color-black: rgb(var(--rgb-black)); --rgb-main-light: 224, 230, 245; --rgb-main-medium: 47, 104, 230; --rgb-main-dark: 0, 39, 127; --color-main-light: rgb(var(--rgb-main-light)); --color-main-medium: rgb(var(--rgb-main-medium)); --color-main-dark: rgb(var(--rgb-main-dark)); --rgb-neutral-lighter: 241, 241, 243; --rgb-neutral-light: 216, 216, 220; --rgb-neutral-medium: 138, 138, 146; --rgb-neutral-dark: 53, 53, 68; --color-neutral-lighter: rgb(var(--rgb-neutral-lighter)); --color-neutral-light: rgb(var(--rgb-neutral-light)); --color-neutral-medium: rgb(var(--rgb-neutral-medium)); --color-neutral-dark: rgb(var(--rgb-neutral-dark)); --rgb-commit-light: 219, 243, 208; --rgb-commit-medium: 120, 234, 64; --rgb-commit-dark: 54, 138, 14; --color-commit-light: rgb(var(--rgb-commit-light)); --color-commit-medium: rgb(var(--rgb-commit-medium)); --color-commit-dark: rgb(var(--rgb-commit-dark)); --rgb-cancel-light: 255, 227, 227; --rgb-cancel-medium: 241, 46, 68; --rgb-cancel-dark: 136, 0, 15; --color-cancel-light: rgb(var(--rgb-cancel-light)); --color-cancel-medium: rgb(var(--rgb-cancel-medium)); --color-cancel-dark: rgb(var(--rgb-cancel-dark)); --rgb-warning-light: 255, 249, 191; --rgb-warning-medium: 247, 227, 44; --rgb-warning-dark: 175, 150, 0; --color-warning-light: rgb(var(--rgb-warning-light)); --color-warning-medium: rgb(var(--rgb-warning-medium)); --color-warning-dark: rgb(var(--rgb-warning-dark)); --header-height: 3rem; --button-height: 2em; --border-width:2px; --radius:0.2rem; --font-sans: 'Trebuchet MS', Tahoma, sans-serif; --font-serif: Georgia, 'Lucida Bright', serif; --font-monospace: Consolas, Monaco, monospace; --font-cursive: InBubbleLight, cursive; --font-heading:var(--font-sans); --font-body:var(--font-sans); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -117,10 +118,12 @@ code[data-title='css'] { background-color: #efe; }
 
 .tree-file { color: #9798c3; list-style-type: none; border-inline-start: 2px solid #ddf; padding-inline-start: 0.3em; }
 
-.chromeless, .form-input, .form-blank, .hotdog > input { border-width: 0; border-radius: 0; font: inherit; color: inherit; line-height: inherit; background-color: transparent; outline: 0; width: 100%; padding: 0; margin: 0; display: inline-block; }
+.chromeless, .form-input, .form-blank, .solid-input, .hotdog > input { border-width: 0; border-radius: 0; font: inherit; color: inherit; line-height: inherit; background-color: transparent; outline: 0; width: 100%; padding: 0; margin: 0; display: inline-block; }
 
 /* Buttons */
-.btn, .form-button { display: inline-block; position: relative; padding: 0.25em 1em; border-radius: 0.2rem; color: inherit; background-color: transparent; font: inherit; border: solid transparent 0.1rem; cursor: pointer; line-height: inherit; text-align: center; outline: 0; }
+.btn, .form-button { display: inline-block; position: relative; padding: 0 1em; border-radius: var(--radius); color: inherit; background-color: transparent; font: inherit; border-width: 0; cursor: pointer; text-align: center; outline: 0; /* do a buttons */ /* Button */ /* Button */ /* Button */ /* Button */ /* Button */ }
+
+.btn-size, .btn, .form-button, .form-input, .form-select > select, .solid-input, .hotdog, .hotdog > input, .nav a, .nav-mobile a, .nav span, .nav-mobile span { line-height: var(--button-height); height: var(--button-height); }
 
 .btn:hover, .form-button:hover { text-decoration: none; outline: 0; }
 
@@ -128,75 +131,107 @@ code[data-title='css'] { background-color: #efe; }
 
 .btn.solid, .form-button { color: var(--color-neutral-dark); background-color: var(--color-neutral-light); }
 
-.btn.solid.main, .main.form-button { background-color: var(--color-main-light); }
+.btn.main.solid, .main.form-button { background-color: var(--color-main-light); }
 
-.btn.solid.neutral, .form-button { background-color: var(--color-neutral-light); }
+.btn.main.solid:active, .main.form-button:active { background-color: var(--color-main-medium); }
 
-.btn.solid.commit, .commit.form-button { background-color: var(--color-commit-light); }
+.btn.neutral.solid, .form-button { background-color: var(--color-neutral-light); }
 
-.btn.solid.cancel, .cancel.form-button { background-color: var(--color-cancel-light); }
+.btn.neutral.solid:active, .form-button:active { background-color: var(--color-neutral-medium); }
 
-.btn.solid.warning, .warning.form-button { background-color: var(--color-warning-light); }
+.btn.commit.solid, .commit.form-button { background-color: var(--color-commit-light); }
 
-.btn.solid.main.light, .main.light.form-button { background-color: var(--color-main-light); }
+.btn.commit.solid:active, .commit.form-button:active { background-color: var(--color-commit-medium); }
 
-.btn.solid.neutral.light, .light.form-button { background-color: var(--color-neutral-light); }
+.btn.cancel.solid, .cancel.form-button { background-color: var(--color-cancel-light); }
 
-.btn.solid.commit.light, .commit.light.form-button { background-color: var(--color-commit-light); }
+.btn.cancel.solid:active, .cancel.form-button:active { background-color: var(--color-cancel-medium); }
 
-.btn.solid.cancel.light, .cancel.light.form-button { background-color: var(--color-cancel-light); }
+.btn.warning.solid, .warning.form-button { background-color: var(--color-warning-light); }
 
-.btn.solid.warning.light, .warning.light.form-button { background-color: var(--color-warning-light); }
+.btn.warning.solid:active, .warning.form-button:active { background-color: var(--color-warning-medium); }
 
-.btn.solid.main.medium, .main.medium.form-button { background-color: var(--color-main-medium); color: var(--color-white); }
+.btn.main.solid.light, .main.light.form-button { background-color: var(--color-main-light); }
 
-.btn.solid.neutral.medium, .medium.form-button { background-color: var(--color-neutral-medium); color: var(--color-white); }
+.btn.main.solid.light:active, .main.light.form-button:active { background-color: var(--color-main-medium); }
 
-.btn.solid.commit.medium, .commit.medium.form-button { background-color: var(--color-commit-medium); color: var(--color-white); }
+.btn.neutral.solid.light, .light.form-button { background-color: var(--color-neutral-light); }
 
-.btn.solid.cancel.medium, .cancel.medium.form-button { background-color: var(--color-cancel-medium); color: var(--color-white); }
+.btn.neutral.solid.light:active, .light.form-button:active { background-color: var(--color-neutral-medium); }
 
-.btn.solid.warning.medium, .warning.medium.form-button { background-color: var(--color-warning-medium); color: var(--color-white); }
+.btn.commit.solid.light, .commit.light.form-button { background-color: var(--color-commit-light); }
 
-.btn.solid.main.dark, .main.dark.form-button { background-color: var(--color-main-dark); color: var(--color-main-light); }
+.btn.commit.solid.light:active, .commit.light.form-button:active { background-color: var(--color-commit-medium); }
 
-.btn.solid.neutral.dark, .dark.form-button { background-color: var(--color-neutral-dark); color: var(--color-neutral-light); }
+.btn.cancel.solid.light, .cancel.light.form-button { background-color: var(--color-cancel-light); }
 
-.btn.solid.commit.dark, .commit.dark.form-button { background-color: var(--color-commit-dark); color: var(--color-commit-light); }
+.btn.cancel.solid.light:active, .cancel.light.form-button:active { background-color: var(--color-cancel-medium); }
 
-.btn.solid.cancel.dark, .cancel.dark.form-button { background-color: var(--color-cancel-dark); color: var(--color-cancel-light); }
+.btn.warning.solid.light, .warning.light.form-button { background-color: var(--color-warning-light); }
 
-.btn.solid.warning.dark, .warning.dark.form-button { background-color: var(--color-warning-dark); color: var(--color-warning-light); }
+.btn.warning.solid.light:active, .warning.light.form-button:active { background-color: var(--color-warning-medium); }
 
-.btn.lined.main, .lined.main.form-button { border-color: var(--color-main-medium); }
+.btn.main.solid.medium, .main.medium.form-button { background-color: var(--color-main-medium); color: var(--color-main-light); }
 
-.btn.lined.neutral, .lined.neutral.form-button { border-color: var(--color-neutral-medium); }
+.btn.main.solid.medium:active, .main.medium.form-button:active { background-color: var(--color-main-light); color: var(--color-main-dark); }
 
-.btn.lined.commit, .lined.commit.form-button { border-color: var(--color-commit-dark); }
+.btn.neutral.solid.medium, .medium.form-button { background-color: var(--color-neutral-medium); color: var(--color-neutral-light); }
 
-.btn.lined.cancel, .lined.cancel.form-button { border-color: var(--color-cancel-medium); }
+.btn.neutral.solid.medium:active, .medium.form-button:active { background-color: var(--color-neutral-light); color: var(--color-neutral-dark); }
 
-.btn.lined.warning, .lined.warning.form-button { border-color: var(--color-warning-dark); }
+.btn.commit.solid.medium, .commit.medium.form-button { background-color: var(--color-commit-medium); }
 
-.btn.main:active, .main.form-button:active { border-color: var(--color-main-dark); }
+.btn.commit.solid.medium:active, .commit.medium.form-button:active { background-color: var(--color-commit-light); }
 
-.btn.neutral:active, .neutral.form-button:active { border-color: var(--color-neutral-dark); }
+.btn.cancel.solid.medium, .cancel.medium.form-button { background-color: var(--color-cancel-medium); color: var(--color-cancel-light); }
 
-.btn.commit:active, .commit.form-button:active { border-color: var(--color-commit-dark); }
+.btn.cancel.solid.medium:active, .cancel.medium.form-button:active { background-color: var(--color-cancel-light); color: var(--color-cancel-dark); }
 
-.btn.cancel:active, .cancel.form-button:active { border-color: var(--color-cancel-dark); }
+.btn.warning.solid.medium, .warning.medium.form-button { background-color: var(--color-warning-medium); }
 
-.btn.warning:active, .warning.form-button:active { border-color: var(--color-warning-dark); }
+.btn.warning.solid.medium:active, .warning.medium.form-button:active { background-color: var(--color-warning-light); }
 
-.btn.text.main, .text.main.form-button, .btn.lined.main, .lined.main.form-button { color: var(--color-main-medium); }
+.btn.main.solid.dark, .main.dark.form-button { background-color: var(--color-main-dark); color: var(--color-white); }
 
-.btn.text.neutral, .text.neutral.form-button, .btn.lined.neutral, .lined.neutral.form-button { color: var(--color-neutral-medium); }
+.btn.main.solid.dark:active, .main.dark.form-button:active { background-color: var(--color-main-medium); color: var(--color-black); }
 
-.btn.text.commit, .text.commit.form-button, .btn.lined.commit, .lined.commit.form-button { color: var(--color-commit-dark); }
+.btn.neutral.solid.dark, .dark.form-button { background-color: var(--color-neutral-dark); color: var(--color-white); }
 
-.btn.text.cancel, .text.cancel.form-button, .btn.lined.cancel, .lined.cancel.form-button { color: var(--color-cancel-medium); }
+.btn.neutral.solid.dark:active, .dark.form-button:active { background-color: var(--color-neutral-medium); color: var(--color-black); }
 
-.btn.text.warning, .text.warning.form-button, .btn.lined.warning, .lined.warning.form-button { color: var(--color-warning-dark); }
+.btn.commit.solid.dark, .commit.dark.form-button { background-color: var(--color-commit-dark); color: var(--color-white); }
+
+.btn.commit.solid.dark:active, .commit.dark.form-button:active { background-color: var(--color-commit-medium); color: var(--color-black); }
+
+.btn.cancel.solid.dark, .cancel.dark.form-button { background-color: var(--color-cancel-dark); color: var(--color-white); }
+
+.btn.cancel.solid.dark:active, .cancel.dark.form-button:active { background-color: var(--color-cancel-medium); color: var(--color-black); }
+
+.btn.warning.solid.dark, .warning.dark.form-button { background-color: var(--color-warning-dark); color: var(--color-white); }
+
+.btn.warning.solid.dark:active, .warning.dark.form-button:active { background-color: var(--color-warning-medium); color: var(--color-black); }
+
+.btn.main.lined, .main.lined.form-button { color: var(--color-main-dark); border: var(--border-width) solid var(--color-main-medium); }
+
+.btn.main.lined:active, .main.lined.form-button:active { color: var(--color-main-dark); border: var(--border-width) solid var(--color-main-dark); }
+
+.btn.neutral.lined, .neutral.lined.form-button { color: var(--color-neutral-dark); border: var(--border-width) solid var(--color-neutral-medium); }
+
+.btn.neutral.lined:active, .neutral.lined.form-button:active { color: var(--color-neutral-dark); border: var(--border-width) solid var(--color-neutral-dark); }
+
+.btn.commit.lined, .commit.lined.form-button { color: var(--color-commit-dark); border: var(--border-width) solid var(--color-commit-medium); }
+
+.btn.commit.lined:active, .commit.lined.form-button:active { color: var(--color-commit-dark); border: var(--border-width) solid var(--color-commit-dark); }
+
+.btn.cancel.lined, .cancel.lined.form-button { color: var(--color-cancel-dark); border: var(--border-width) solid var(--color-cancel-medium); }
+
+.btn.cancel.lined:active, .cancel.lined.form-button:active { color: var(--color-cancel-dark); border: var(--border-width) solid var(--color-cancel-dark); }
+
+.btn.warning.lined, .warning.lined.form-button { color: var(--color-warning-dark); border: var(--border-width) solid var(--color-warning-medium); }
+
+.btn.warning.lined:active, .warning.lined.form-button:active { color: var(--color-warning-dark); border: var(--border-width) solid var(--color-warning-dark); }
+
+.btn.lined, .lined.form-button { line-height: calc(var(--button-height) - (var(--border-width) * 2)); }
 
 .btn.full, .form-button { width: 100%; }
 
@@ -210,11 +245,17 @@ code[data-title='css'] { background-color: #efe; }
 
 .form-control { margin-top: 1em; margin-bottom: 1em; }
 
-.form-input { padding: 0 1em; line-height: 2em; border-bottom: 1px solid var(--color-neutral-medium); }
+.form-input { padding: 0 1em; border-bottom: 1px solid var(--color-neutral-medium); }
 
 .form-label { margin: 0 1em; font-size: 0.7em; color: var(--color-neutral-medium); }
 
 .form-button:active { background-color: var(--color-main-light); }
+
+.form-select > select { padding: 0 1.5em 0 1em; background-color: var(--color-neutral-light); border-width: 0; border-radius: var(--radius); cursor: pointer; -webkit-appearance: none; display: inline-block; width: 100%; font: inherit; outline: 0; }
+
+.form-select { position: relative; }
+
+.form-select::after { position: absolute; content: '▼'; font-family: Arial,sans-serif; font-size: 0.6em; top: 50%; transform: translateY(-50%); right: 0.4rem; pointer-events: none; color: var(--color-neutral-medium); }
 
 .form-group { display: flex; }
 
@@ -224,11 +265,21 @@ code[data-title='css'] { background-color: #efe; }
 
 .form-group > :first-child { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 
-.hotdog { width: 100%; padding: 0 1em; border-radius: 2em; background-color: var(--color-neutral-light); color: var(--color-black); line-height: 2; height: 2em; border-width: 0; font: inherit; display: inline-flex; outline: 0; }
+.solid-input { padding: 0 1em; background-color: var(--color-neutral-lighter); border-radius: var(--radius); }
+
+.toggle { --line-width:2px; }
+
+.toggle label { display: inline-block; width: 2em; height: 1em; background-color: var(--color-neutral-light); border: var(--line-width) solid var(--color-neutral-medium); border-radius: 1em; position: relative; font-size: 1.3em; overflow: hidden; box-sizing: content-box; }
+
+.toggle label::after { content: ''; position: absolute; width: 1em; height: 1em; display: inline-block; border-radius: 1em; background-color: var(--color-white); transition: all 0.3s; box-shadow: 0 0 6px rgba(0, 0, 0, 0.6); }
+
+.toggle input:checked + label::after { transform: translateX(1em); }
+
+.toggle.square label, .toggle.square label::after { border-radius: var(--line-width); }
+
+.hotdog { width: 100%; padding: 0 1em; border-radius: 2em; background-color: var(--color-neutral-light); color: var(--color-black); border-width: 0; font: inherit; display: inline-flex; outline: 0; }
 
 .navbar .hotdog { background-color: var(--color-main-light); color: var(--color-main-dark); }
-
-.hotdog > input { line-height: 2; }
 
 .nav-overlay .hotdog { background-color: white; box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2); width: initial; height: var(--header-height); }
 
@@ -334,19 +385,23 @@ a .icon { pointer-events: none; }
 /* NAVS */
 .nav, .nav-mobile { --border-size:2px; }
 
-.nav a, .nav-mobile a, .nav span, .nav-mobile span { display: block; padding: 0.5em 1em; font-family: var(--font-sans); }
+.nav a, .nav-mobile a, .nav span, .nav-mobile span { display: block; padding: 0 1em; font-family: var(--font-sans); }
 
 .nav a:hover, .nav-mobile a:hover, .nav span:hover, .nav-mobile span:hover { text-decoration: none; background-color: var(--color-main-light); }
 
 .nav .active > a, .nav-mobile .active > a, .nav .active > span, .nav-mobile .active > span { background-color: var(--color-main-medium); color: var(--color-white); }
 
-.navbar { background-color: var(--color-main-dark); color: var(--color-white); line-height: var(--header-height); font-family: var(--font-sans); }
+.navbar { background-color: var(--color-neutral-dark); color: var(--color-white); line-height: var(--header-height); font-family: var(--font-sans); }
 
-.navbar h1 { font-size: 1.1em; line-height: inherit; font-family: inherit; margin: 0; }
+.navbar h1 { padding-left: 1em; padding-right: 1em; font-size: 1.1em; line-height: inherit; font-family: inherit; margin: 0; }
 
-.navbar a { padding-top: 0; padding-bottom: 0; border-top-width: 0; border-bottom-width: 0; color: inherit; }
+.navbar .container, .navbar nav > ul { display: flex; list-style-type: none; margin: 0; padding: 0; }
 
-.navbar a:hover { background-color: var(--color-neutral-light); color: var(--color-neutral-dark); }
+.navbar nav:last-child { padding-right: 0.5em; }
+
+.navbar a { display: block; padding: 0 0.5em; border-width: 0; color: inherit; }
+
+.navbar a:hover { background-color: var(--color-neutral-lighter); color: var(--color-neutral-dark); text-decoration: none; }
 
 .nav.default, .default.nav-mobile { --border-size:0.1em; }
 
@@ -360,7 +415,7 @@ a .icon { pointer-events: none; }
 
 .nav.stretch li, .nav.material li, .material.nav-mobile li, .stretch.nav-mobile li { flex: 1 1 auto; text-align: center; }
 
-.nav.pills a, .pills.nav-mobile a, .nav.pills span, .pills.nav-mobile span { border-radius: 1em; margin: 0 0.2em; padding: 0.5em 1em; }
+.nav.pills a, .pills.nav-mobile a, .nav.pills span, .pills.nav-mobile span { border-radius: 1em; margin: 0 0.2em; padding: 0 1em; }
 
 .nav.tabs, .tabs.nav-mobile { --border-color:rgb(var(--rgb-main-light)); }
 
@@ -376,7 +431,7 @@ a .icon { pointer-events: none; }
 
 .nav.material ul, .material.nav-mobile ul { border-bottom: var(--border-size) solid var(--color-main-light); align-items: flex-end; }
 
-.nav.material a, .material.nav-mobile a { color: var(--color-main-medium); position: relative; border-width: 0 !important; padding: 0.5em 1em; transition: all 0.3s; }
+.nav.material a, .material.nav-mobile a { color: var(--color-main-medium); position: relative; border-width: 0 !important; padding: 0 1em; transition: all 0.3s; }
 
 .nav.material a::after, .material.nav-mobile a::after { position: absolute; content: ''; bottom: calc(var(--border-size) * -1); left: 0; width: 100%; height: 0; background-color: var(--color-main-medium); transition: height 0.3s; }
 
@@ -428,9 +483,9 @@ a .icon { pointer-events: none; }
 
 .nav-overlay-grow li.active a { transform: scale(1.4, 1.4); }
 
-.nav-menu-activator + label { display: none; }
+.nav-menu-checkbox, .nav-menu-activator { display: none; }
 
 @media (max-width: 600px) { .responsive .nav, .responsive .nav-mobile { width: 100%; line-height: calc(var(--header-height) * 0.66); }
   .responsive ul { display: none; }
-  .nav-menu-activator + label { display: block; padding: 0 0 0 1rem; font-size: 1.5em; }
-  .nav-menu-activator:checked ~ .nav ul, .nav-menu-activator:checked ~ .nav-mobile ul { display: block; padding-bottom: 1em; } }
+  .nav-menu-activator { display: block; padding: 0 0 0 1rem; font-size: 1.5em; }
+  .nav-menu-checkbox:checked ~ .navbar nav > ul { display: block; padding-bottom: 0.5em; } }
