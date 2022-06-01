@@ -4,8 +4,9 @@ if(!q) throw "qjs not imported yet";
 
 q.catchJson = async d => {
    let r = await d.text();
-   return q.isJson(r) ? Promise.resolve(JSON.parse(r)) :
-      Promise.reject({error:r}); }
+   return q.isJson(r) ?
+      Promise.resolve(JSON.parse(r)) :
+      Promise.reject({error:'JSON Malformed',data:r}); }
 
 
 q.promiseList = (t) => (l,f=d=>d) => 
