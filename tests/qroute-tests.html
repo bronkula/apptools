@@ -41,12 +41,12 @@
     window.addEventListener("DOMContentLoaded",()=>{
         document.querySelectorAll("a.basic").forEach((el)=>{
             el.addEventListener("click",(e)=>{
-                setTimeout(testroutes,10)
+                testroutes();
             })
         })
         document.querySelectorAll("a.specific").forEach((el)=>{
             el.addEventListener("click",(e)=>{
-                setTimeout(testspecificroutes,10)
+                testspecificroutes();
             })
         })
     })
@@ -54,9 +54,9 @@
     <h1>qRoute Tests</h1>
     <h2>Hash Path Tests</h2>
     <ul>
-        <li><a class="basic" href="#">Empty</a></li>
+        <li><a class="basic" href="#">No Navigate</a></li>
+        <li><a class="basic" href="#test4">#test4 (default)</a></li>
         <li><a class="basic" href="#test">#test</a></li>
-        <li><a class="basic" href="#test4">#test4 (fail)</a></li>
         <li><a class="basic" href="#test/add">#test/add</a></li>
         <li><a class="basic" href="#test/add/1">#test/add/1</a></li>
         <li><a class="basic" href="#test/1/add">#test/1/add</a></li>
@@ -66,7 +66,7 @@
     </ul>
     <h2>Sub Path Basis Tests</h2>
     <ul>
-        <li><a class="specific" href="#test">#test (fail)</a></li>
+        <li><a class="specific" href="#path">#path (default)</a></li>
         <li><a class="specific" href="#path/subpath">#path/subpath</a></li>
         <li><a class="specific" href="#path/subpath/13">#path/subpath/13</a></li>
     </ul>
