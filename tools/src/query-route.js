@@ -3,6 +3,10 @@
 
 const stateObj = {};
 
+const checkNextRoute = (checkroute,hashroute) => {
+
+}
+
 const route = {
     navigate : (str,updateUrl=true) => {
         if(str=="back") {
@@ -22,13 +26,13 @@ const route = {
         let v = {};
         for(let i in h) {
             if(h[i]==r[i]) continue;
-            else if(r[i].substr(0,1)==":") v[r[i].substr(1)] = h[i];
+            else if(r[i].slice(0,1)==":") v[r[i].slice(1)] = h[i];
             else if(h[i]!=r[i]) return false;
         }
         return v;
     },
     make: (routes,page=()=>{},basis) => {
-        let hashroute = (basis?basis:w.location.hash.substr(1));
+        let hashroute = (basis?basis:w.location.hash.slice(1));
         let hashsplit = hashroute.split("/");
         let v={};
         for(let [checkroute,fn] of Object.entries(routes)) {
@@ -50,7 +54,7 @@ const setActive = (state,update) => {
 
     if(state==null) {
         state = {
-            title:w.location.hash.substr(1),
+            title:w.location.hash.slice(1),
             url:w.location.href
         };
     }
@@ -75,7 +79,7 @@ if(w.q) {
     q(()=>{
         q(document).delegate("click","a[href^='#']",function(e){
             e.preventDefault();
-            let r = this.attributes.href.value.substr(1);
+            let r = this.attributes.href.value.slice(1);
             if(r!="") route.navigate(r);
         })
     });

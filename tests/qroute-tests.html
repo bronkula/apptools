@@ -30,23 +30,38 @@
             'test/:id':tell('test/:id'),
         },tell('no match'))()
     }
+    const testspecificroutes = () => {
+        q.route.make({
+            'test':tell('test'),
+            'subpath':tell('subpath'),
+            'subpath/:id':tell('subpath/:id'),
+        },tell('no match'),location.href.slice(6))()
+    }
     window.addEventListener("DOMContentLoaded",()=>{
-        document.querySelectorAll("a").forEach((el)=>{
+        document.querySelectorAll("a.basic").forEach((el)=>{
             el.addEventListener("click",()=>{
                 setTimeout(testroutes,10)
+            })
+        })
+        document.querySelectorAll("a.specific").forEach((el)=>{
+            el.addEventListener("click",()=>{
+                setTimeout(testspecificroutes,10)
             })
         })
     })
     </script>
     <ul>
-        <li><a href="#test">#test</a></li>
-        <li><a href="#test4">#test4</a></li>
-        <li><a href="#test/add">#test/add</a></li>
-        <li><a href="#test/add/1">#test/add/1</a></li>
-        <li><a href="#test/1/add">#test/1/add</a></li>
-        <li><a href="#test/1/edit">#test/1/edit</a></li>
-        <li><a href="#test/1">#test/1</a></li>
-        <li><a href="#test/brad/cynthia">#test/brad/cynthia</a></li>
+        <li><a class="basic" href="#test">#test</a></li>
+        <li><a class="basic" href="#test4">#test4 (fail)</a></li>
+        <li><a class="basic" href="#test/add">#test/add</a></li>
+        <li><a class="basic" href="#test/add/1">#test/add/1</a></li>
+        <li><a class="basic" href="#test/1/add">#test/1/add</a></li>
+        <li><a class="basic" href="#test/1/edit">#test/1/edit</a></li>
+        <li><a class="basic" href="#test/1">#test/1</a></li>
+        <li><a class="basic" href="#test/brad/cynthia">#test/brad/cynthia</a></li>
+        <li><a class="specific" href="#test">Specific #test (fail)</a></li>
+        <li><a class="specific" href="#path/subpath">Specific #path/subpath</a></li>
+        <li><a class="specific" href="#path/subpath/13">Specific #path/subpath/13</a></li>
     </ul>
     <div class="output"></div>
 </body>
