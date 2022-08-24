@@ -35,13 +35,15 @@ const route = {
         let hashroute = (basis?basis:w.location.hash.slice(1));
         let hashsplit = hashroute.split("/");
         let v={};
-        for(let [checkroute,fn] of Object.entries(routes)) {
-            v={};
-            if(checkroute==hashroute) { page = fn; break; }
-            let checksplit = checkroute.split("/");
-            if(checksplit[0]==hashsplit[0] && checksplit.length==hashsplit.length) {
-                v = route.matches(hashsplit,checksplit);
-                if(v!==false) { page = fn; break; }
+        if(hashroute != '') {
+            for(let [checkroute,fn] of Object.entries(routes)) {
+                v={};
+                if(checkroute==hashroute) { page = fn; break; }
+                let checksplit = checkroute.split("/");
+                if(checksplit[0]==hashsplit[0] && checksplit.length==hashsplit.length) {
+                    v = route.matches(hashsplit,checksplit);
+                    if(v!==false) { page = fn; break; }
+                }
             }
         }
         return (d)=>page(v,d);
