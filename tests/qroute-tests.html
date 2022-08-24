@@ -31,11 +31,13 @@
         },tell('no match'))()
     }
     const testspecificroutes = () => {
+        let basis = location.href.split('/').slice(1).join('/');
+        console.log(basis)
         q.route.make({
             'test':tell('test'),
             'subpath':tell('subpath'),
             'subpath/:id':tell('subpath/:id'),
-        },tell('no match'),location.href.slice(6))()
+        },tell('no match'),basis)()
     }
     window.addEventListener("DOMContentLoaded",()=>{
         document.querySelectorAll("a.basic").forEach((el)=>{
