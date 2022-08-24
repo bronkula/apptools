@@ -22,11 +22,12 @@
     const testroutes = () => {
         q.route.make({
             'test':tell('test'),
-            'test/add/:id':tell('add id'),
-            'test/:id/add':tell('id add'),
-            'test/:id/edit':tell('id edit'),
-            'test/add':tell('add'),
-            'test/:id':tell('id'),
+            'test/add/:id':tell('test/add/:id'),
+            'test/:id/add':tell('test/:id/add'),
+            'test/:id/edit':tell('test/:id/edit'),
+            'test/:id/:sub':tell('test/:id/:sub'),
+            'test/add':tell('test/add'),
+            'test/:id':tell('test/:id'),
         },tell('no match'))()
     }
     window.addEventListener("DOMContentLoaded",()=>{
@@ -38,13 +39,14 @@
     })
     </script>
     <ul>
-        <li><a href="#test">test</a></li>
-        <li><a href="#test4">test4</a></li>
-        <li><a href="#test/add">test add</a></li>
-        <li><a href="#test/add/1">test add 1</a></li>
-        <li><a href="#test/1/add">test 1 add</a></li>
-        <li><a href="#test/1/edit">test 1 edit</a></li>
-        <li><a href="#test/1">test 1</a></li>
+        <li><a href="#test">#test</a></li>
+        <li><a href="#test4">#test4</a></li>
+        <li><a href="#test/add">#test/add</a></li>
+        <li><a href="#test/add/1">#test/add/1</a></li>
+        <li><a href="#test/1/add">#test/1/add</a></li>
+        <li><a href="#test/1/edit">#test/1/edit</a></li>
+        <li><a href="#test/1">#test/1</a></li>
+        <li><a href="#test/brad/cynthia">#test/brad/cynthia</a></li>
     </ul>
     <div class="output"></div>
 </body>
