@@ -32,9 +32,8 @@
     }
     const testspecificroutes = () => {
         let basis = location.hash.split('/').slice(1).join('/');
-        console.log(basis)
+        console.log(basis, basis.length)
         q.route.make({
-            'test':tell('test'),
             'subpath':tell('subpath'),
             'subpath/:id':tell('subpath/:id'),
         },tell('no match'),basis)()
