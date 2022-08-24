@@ -41,19 +41,19 @@
     }
     window.addEventListener("DOMContentLoaded",()=>{
         document.querySelectorAll("a.basic").forEach((el)=>{
-            el.addEventListener("click",()=>{
+            el.addEventListener("click",(e)=>{
                 setTimeout(testroutes,10)
             })
         })
         document.querySelectorAll("a.specific").forEach((el)=>{
-            el.addEventListener("click",()=>{
+            el.addEventListener("click",(e)=>{
                 setTimeout(testspecificroutes,10)
             })
         })
     })
     </script>
     <ul>
-        <li><a class="basic" href="qroute-tests.html">Empty</a></li>
+        <li><a class="basic" href="#">Empty</a></li>
         <li><a class="basic" href="#test">#test</a></li>
         <li><a class="basic" href="#test4">#test4 (fail)</a></li>
         <li><a class="basic" href="#test/add">#test/add</a></li>
