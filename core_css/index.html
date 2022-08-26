@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Core CSS</title>
+
+   <link rel="stylesheet" href="dist/core.css">
+
+
+   <script>
+   const makeNav = (classes='') => {
+      const links = ['home','store','about','cart'];
+      let rand = Math.floor(Math.random()*links.length);
+      document.write(`
+      <div>
+      <nav class="${classes}">
+         <ul>
+            ${links.reduce((r,o,i)=>r+`<li ${i==rand?'class="active"':''}><a href="#">${o}</a></li>`,'')}
+         </ul>
+      </nav>
+      </div>
+      `)
+   }
+   const makeTable = (classes='') => {
+      const head = ['ID','Office','Name','Email','Phone'];
+      const body = [
+         ['522',"Hamilton Cline",'hcline@academyart.edu','555-2424'],
+         ['512',"Fred McHale",'fmchale@academyart.edu','555-2424'],
+         ['522',"Michael Catanzaro",'mcatanzaro@academyart.edu','555-2424'],
+         ['514',"Andrea Pimentel",'apimentel@academyart.edu','555-2424'],
+         ['516',"DC Scarpelli",'dscarpelli@academyart.edu','555-2424'],
+      ];
+
+      document.write(`
+      <table class="${classes}">
+         <thead><tr>${head.reduce((r,o)=>r+`<th>${o}</th>`,'')}</tr></thead>
+         <tbody>
+            ${body.reduce((r,o,i)=>r+
+               `<tr>${[i+1,...o].reduce((r,o)=>r+`<td>${o}</td>`,'')}</tr>`
+            ,'')}
+         </tbody>
+      </table>
+      `)
+   }
+
+   </script>
+</head>
+<body>
+
+   <header>
+      <div class="container">
+         <h1>Core CSS</h1>
+      </div>
+   </header>
+
+   <div class="container" id="toc">
+      <nav class="toc card soft">
+         <h2>Table of Contents</h2>
+         <ul>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#navs">Navs</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+         </ul>
+      </nav>
+   </div>
+   
+   <div class="container" id="colors">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Colors</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Neutral Colors</h3>
+            <div style="padding:1em;background-color:var(--color-neutral-lighter)">--rgb-neutral-lighter: 241, 241, 243;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-light)">--rgb-neutral-light: 216, 216, 220;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-medium); color:var(--color-white)">--rgb-neutral-medium: 138, 138, 146;</div>
+            <div style="padding:1em;background-color:var(--color-neutral-dark); color:var(--color-white)">--rgb-neutral-dark: 53, 53, 68;</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Main Colors</h3>
+            <div style="padding:1em;background-color:var(--color-main-light)">--rgb-main-light: 224, 230, 245;</div>
+            <div style="padding:1em;background-color:var(--color-main-medium); color:var(--color-white)">--rgb-main-medium: 47, 104, 230;</div>
+            <div style="padding:1em;background-color:var(--color-main-dark); color:var(--color-white)">--rgb-main-dark: 0, 39, 127;</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Commit Colors</h3>
+            <div style="padding:1em;background-color:var(--color-commit-light)">--rgb-commit-light: 219, 243, 208;</div>
+            <div style="padding:1em;background-color:var(--color-commit-medium);">--rgb-commit-medium: 120, 234, 64;</div>
+            <div style="padding:1em;background-color:var(--color-commit-dark); color:var(--color-white)">--rgb-commit-dark: 54, 138, 14;</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Cancel Colors</h3>
+            <div style="padding:1em;background-color:var(--color-cancel-light)">--rgb-cancel-light: 255, 227, 227;</div>
+            <div style="padding:1em;background-color:var(--color-cancel-medium);">--rgb-cancel-medium: 241, 46, 68;</div>
+            <div style="padding:1em;background-color:var(--color-cancel-dark); color:var(--color-white)">--rgb-cancel-dark: 136, 0, 15;</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Warning Colors</h3>
+            <div style="padding:1em;background-color:var(--color-warning-light)">--rgb-warning-light: 255, 249, 191;</div>
+            <div style="padding:1em;background-color:var(--color-warning-medium);">--rgb-warning-medium: 247, 227, 44;</div>
+            <div style="padding:1em;background-color:var(--color-warning-dark); color:var(--color-white)">--rgb-warning-dark: 175, 150, 0;</div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   <div class="container" id="cards">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Cards</h2>
+         </div>
+
+         <div class="card-section">
+            <div class="card">
+               <h3>Basic Card</h3>
+            </div>
+            <div class="card light">
+               <h3>Light Card</h3>
+            </div>
+            <div class="card medium">
+               <h3>Medium Card</h3>
+            </div>
+            <div class="card dark">
+               <h3>Dark Card</h3>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <div class="card shadow">
+               <h3>Basic Shadow Card</h3>
+            </div>
+            <div class="card shadow light">
+               <h3>Light Shadow Card</h3>
+            </div>
+            <div class="card shadow medium">
+               <h3>Medium Shadow Card</h3>
+            </div>
+            <div class="card shadow dark">
+               <h3>Dark Shadow Card</h3>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <div class="card soft">
+               <h3>Basic Soft Card</h3>
+            </div>
+            <div class="card soft light">
+               <h3>Light Soft Card</h3>
+            </div>
+            <div class="card soft medium">
+               <h3>Medium Soft Card</h3>
+            </div>
+            <div class="card soft dark">
+               <h3>Dark Soft Card</h3>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <div class="card soft flat">
+               <div class="card-section">
+                  Flat Soft Card
+               </div>
+               <div class="card-section">
+                  Card Sections
+               </div>
+               <div class="card-section">
+                  Card Sections
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" id="navs">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Navs</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Default Nav</h3>
+            <script>makeNav('')</script>
+
+            <h3>Basic Nav</h3>
+            <script>makeNav('nav')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Flex Nav</h3>
+            <script>makeNav('nav flex')</script>
+
+            <h3>Inline Nav</h3>
+            <script>makeNav('nav inline')</script>
+
+            <h3>Stretch Nav</h3>
+            <script>makeNav('nav stretch')</script>
+
+            <h3>Pills Nav</h3>
+            <script>makeNav('nav pills')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Tabs Nav</h3>
+            <script>makeNav('nav tabs')</script>
+
+            <h3>Material Nav</h3>
+            <script>makeNav('nav material')</script>
+
+            <h3>Crumbs Nav</h3>
+            <script>makeNav('nav crumbs')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Table of Contents</h3>
+            <nav class="toc">
+               <ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+                  <ul>
+                     <li><a href="#">Title</a></li>
+                     <li><a href="#">Title</a></li>
+                     <ul>
+                        <li><a href="#">Title</a></li>
+                        <li><a href="#">Title</a></li>
+                     </ul>
+                     <li><a href="#">Title</a></li>
+                  </ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+               </ul>
+            </nav>
+
+            <h3>Glossary</h3>
+            <nav class="gloss">
+               <ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+                  <ul>
+                     <li><a href="#">Title</a></li>
+                     <li><a href="#">Title</a></li>
+                     <ul>
+                        <li><a href="#">Title</a></li>
+                        <li><a href="#">Title</a></li>
+                     </ul>
+                     <li><a href="#">Title</a></li>
+                  </ul>
+                  <li><a href="#">Title</a></li>
+                  <li><a href="#">Title</a></li>
+               </ul>
+            </nav>
+         </div>
+
+         <div class="card-section">
+            <h2>Navbar</h2>
+
+            <input type="checkbox" id="#nav-menu" class="nav-menu-checkbox">
+
+            <div class="navbar">
+               <div class="container">
+                  <div class="flex-none">
+                     <h1>Site Title</h1>
+                  </div>
+                  <div class="flex-stretch"></div>
+                  <nav class="flex-none">
+                     <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                     </ul>
+                  </nav>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" id="tables">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Tables</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Default Table</h3>
+            <script>makeTable('')</script>
+
+            <h3>Basic Table</h3>
+            <script>makeTable('table')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Striped Table</h3>
+            <script>makeTable('table striped')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Lined Horizontal Table</h3>
+            <script>makeTable('table lined horizontal')</script>
+
+            <h3>Lined Vertical Table</h3>
+            <script>makeTable('table lined vertical')</script>
+
+            <h3>Lined Outline Table</h3>
+            <script>makeTable('table lined outline')</script>
+
+            <h3>Lined All Table</h3>
+            <script>makeTable('table lined all')</script>
+         </div>
+
+         <div class="card-section">
+            <h3>Striped Outline Table</h3>
+            <script>makeTable('table lined outline striped')</script>
+
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" id="buttons">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Buttons</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Default Button</h3>
+            <div><button>Button</button></div>
+
+            <h3>Basic Button</h3>
+            <div><button class="btn">Button</button></div>
+         </div>
+
+         <div class="card-section">
+            <h3>Solid Buttons</h3>
+            <div>
+               <h4>Light</h4>
+               <button class="btn solid main">Main</button>
+               <button class="btn solid neutral">Neutral</button>
+               <button class="btn solid commit">Commit</button>
+               <button class="btn solid cancel">Cancel</button>
+               <button class="btn solid warning">Warning</button>
+            </div>
+            <div>
+               <h4>Medium</h4>
+               <button class="btn solid main medium">Main</button>
+               <button class="btn solid neutral medium">Neutral</button>
+               <button class="btn solid commit medium">Commit</button>
+               <button class="btn solid cancel medium">Cancel</button>
+               <button class="btn solid warning medium">Warning</button>
+            </div>
+            <div>
+               <h4>Dark</h4>
+               <button class="btn solid main dark">Main</button>
+               <button class="btn solid neutral dark">Neutral</button>
+               <button class="btn solid commit dark">Commit</button>
+               <button class="btn solid cancel dark">Cancel</button>
+               <button class="btn solid warning dark">Warning</button>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <h3>Lined Buttons</h3>
+            <div>
+               <button class="btn lined main">Main</button>
+               <button class="btn lined neutral">Neutral</button>
+               <button class="btn lined commit">Commit</button>
+               <button class="btn lined cancel">Cancel</button>
+               <button class="btn lined warning">Warning</button>
+            </div>
+
+            <h3>Text Buttons</h3>
+            <div>
+               <button class="btn text main">Main</button>
+               <button class="btn text neutral">Neutral</button>
+               <button class="btn text commit">Commit</button>
+               <button class="btn text cancel">Cancel</button>
+               <button class="btn text warning">Warning</button>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <h3>Full Buttons</h3>
+            <div>
+               <button class="btn solid neutral full">Button</button>
+               <button class="btn solid neutral full">Button</button>
+            </div>
+
+            <h3>Flush Buttons</h3>
+            <div>
+               <button class="btn solid neutral flush">Button</button>
+               <button class="btn solid neutral flush">Button</button>
+            </div>
+
+            <h3>Small Buttons</h3>
+            <div>
+               <button class="btn solid neutral small">Button</button>
+               <button class="btn solid neutral small">Button</button>
+            </div>
+
+            <h3>Large Buttons</h3>
+            <div>
+               <button class="btn solid neutral large">Button</button>
+               <button class="btn solid neutral large">Button</button>
+            </div>
+
+            <h3>Anchor Buttons</h3>
+            <div>
+               <a href="#" class="btn solid neutral">Button</a>
+               <a href="#" class="btn solid neutral">Button</a>
+            </div>
+
+            <h3>Input Buttons</h3>
+            <div>
+               <input type="button" class="btn solid neutral" value="Button">
+               <input type="button" class="btn solid neutral" value="Button">
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" id="forms">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Forms</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Basic Input</h3>
+            <div>
+               <input type="text" class="form-input" placeholder="Text Input">
+            </div>
+            <h3>Solid Input</h3>
+            <div>
+               <input type="text" class="solid-input" placeholder="Text Input">
+            </div>
+
+            <h3>Basic Button</h3>
+            <div>
+               <input type="submit" class="form-button">
+            </div>
+
+            <h3>Basic Control</h3>
+            <div class="form-control">
+               <label for="example-1" class="form-label">Label</label>
+               <input id="example-1" type="text" class="form-input" placeholder="Text Input">
+            </div>
+
+            <h3>Basic Login</h3>
+            <div class="form-control">
+               <label for="example-username" class="form-label">Username</label>
+               <input id="example-username" type="text" class="form-input" placeholder="Enter Username">
+            </div>
+            <div class="form-control">
+               <label for="example-password" class="form-label">Password</label>
+               <input id="example-password" type="password" class="form-input" placeholder="Enter Password">
+            </div>
+            <div class="form-control">
+               <input type="submit" class="form-button" placeholder="Enter Password">
+            </div>
+
+            <h3>Basic Group</h3>
+            <div class="form-control">
+               <div class="form-group">
+                  <input id="example-2" type="text" class="form-input" placeholder="Enter Username">
+                  <input id="example-3" type="password" class="form-input" placeholder="Enter Password">
+                  <input type="submit" value="Login" class="form-button">
+               </div>
+            </div>
+         </div>
+
+
+
+         <div class="card-section">
+            <h2>Hotdog</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Hotdog Input</h3>
+            <form>
+               <input class="hotdog" type="search" placeholder="search">
+            </form>
+
+            <h3>Hotdog Label</h3>
+            <form>
+               <label class="hotdog">
+                  <input type="search" placeholder="search">
+               </label>
+            </form>
+
+            <h3>Hotdog Bun</h3>
+            <form class="hotdog-bun">
+               <label class="hotdog">
+                  <input type="search" placeholder="search">
+               </label>
+            </form>
+         </div>
+
+
+
+         <div class="card-section">
+            <h2>Select</h2>
+         </div>
+
+         <div class="card-section">
+            <div class="form-select">
+               <select>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+               </select>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <div class="display-flex">
+               <div class="flex-stretch"></div>
+               <div class="flex-none">
+                  
+                  <div class="form-select">
+                     <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+         <div class="card-section">
+            <h2>Toggle</h2>
+         </div>
+
+         <div class="card-section">
+            <div class="toggle">
+               <input type="checkbox" id="toggle-example1" class="hidden">
+               <label for="toggle-example1"></label>
+            </div>
+            <div class="toggle" style="font-size:2em">
+               <input type="checkbox" id="toggle-example2" class="hidden">
+               <label for="toggle-example2"></label>
+            </div>
+         </div>
+         <div class="card-section">
+            <div class="toggle square">
+               <input type="checkbox" id="toggle-example3" class="hidden">
+               <label for="toggle-example3"></label>
+            </div>
+            <div class="toggle square" style="font-size:2em">
+               <input type="checkbox" id="toggle-example4" class="hidden">
+               <label for="toggle-example4"></label>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" id="documentation">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Documentation</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Well</h3>
+            <div class="well">Well</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Pattern</h3>
+            <div class="pattern">Pattern</div>
+
+            <h3>Pattern Well</h3>
+            <div class="pattern well">Pattern</div>
+
+            <h3>Pattern Well Gray</h3>
+            <div class="pattern well gray">Pattern</div>
+
+            <h3>Pattern Card Soft</h3>
+            <div class="pattern card soft">Pattern</div>
+         </div>
+
+         <div class="card-section">
+            <h3>Code</h3>
+            <div>
+               <code class="code">Code</code>
+            </div>
+
+            <h3>Code Block</h3>
+            <div>
+               <code class="code block">Code {
+      Such Code
+   }</code>
+            </div>
+
+            <h3>Code Inline</h3>
+            <div>
+               Inline <code class="code inline">Code</code> Bit
+            </div>
+
+            <h3>Code Output</h3>
+            <div>
+               <code class="code output">Code</code>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Layout Flex</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Flex Box System</h3>
+            <div class="display-flex">
+               <div class="flex-stretch"><div class="well">Stretch</div></div>
+               <div class="flex-stretch"><div class="well">Stretch</div></div>
+            </div>
+            <div class="display-flex">
+               <div class="flex-none"><div class="well">None</div></div>
+               <div class="flex-stretch"><div class="well">Stretch</div></div>
+               <div class="flex-none"><div class="well">None</div></div>
+            </div>
+            <div class="display-flex">
+               <div class="flex-none"><div class="well">None</div></div>
+               <div class="flex-stretch"><div class="well">Stretch</div></div>
+               <div class="flex-none"><div class="well">None</div></div>
+               <div class="flex-stretch"><div class="well">Stretch</div></div>
+               <div class="flex-none"><div class="well">None</div></div>
+            </div>
+            <div class="display-flex">
+               <div class="flex-stretch"></div>
+               <div class="flex-none"><div class="well">None</div></div>
+               <div class="flex-none"><div class="well">None</div></div>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <h2>Layout Grid</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Dozenal Grid System</h3>
+            <div class="grid">
+               <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+               <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-6"><div class="well">col-xs-6</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-5"><div class="well">col-xs-5</div></div>
+            </div>
+
+            <h3>Decimal Grid System</h3>
+            <div class="grid decimal">
+               <div class="col-xs-5"><div class="well">col-xs-5</div></div>
+               <div class="col-xs-5"><div class="well">col-xs-5</div></div>
+
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <h2>Offsets</h2>
+         </div>
+
+         <div class="card-section">
+            <p>Offset works by placing a column at a number of columns away from the start of the row, no matter how many other elements might also be in the row.</p>
+            <div class="grid">
+               <div class="col-xs-3"><div class="well">col-xs-3</div></div>
+               <div class="col-xs-4 offset-xs-8"><div class="well">col-xs-4 offset-xs-8</div></div>
+            </div>
+            <div class="grid">
+               <div class="col-xs-8 offset-xs-2"><div class="well">col-xs-8 offset-xs-2</div></div>
+            </div>
+            <div class="grid">
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-2"><div class="well">col-xs-2</div></div>
+               <div class="col-xs-6 offset-xs-6"><div class="well">col-xs-6 offset-xs-6</div></div>
+            </div>
+         </div>
+
+         <div class="card-section">
+            <h2>Gap</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Default Gap</h3>
+            <div class="grid gap">
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            </div>
+
+            <h3>Small Gap</h3>
+            <div class="grid gap gap-xs-s">
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            </div>
+            <h3>Medium Gap</h3>
+            <div class="grid gap gap-xs-m">
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            </div>
+            <h3>Large Gap</h3>
+            <div class="grid gap gap-xs-l">
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+               <div class="col-xs-4"><div class="well">col-xs-4</div></div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container">
+      <div class="card soft flat">
+         <div class="card-section">
+            <h2>Utilities</h2>
+         </div>
+
+         <div class="card-section">
+            <h3>Padding</h3>
+            <div>
+               <div class="well-light p-xs-tl">.p-xs-tl</div>
+               <div class="well-light p-xs-rl">.p-xs-rl</div>
+               <div class="well-light p-xs-bl">.p-xs-bl</div>
+               <div class="well-light p-xs-ll">.p-xs-ll</div>
+               <div class="well-light p-xs-hl">.p-xs-hl</div>
+               <div class="well-light p-xs-vl">.p-xs-vl</div>
+               <div class="well-light p-xs-l">.p-xs-l</div>
+            </div>
+            
+            <h3>Margin</h3>
+            <span class="well-light"><span class="well-light m-xs-tl">.m-xs-tl</span></span>
+            <span class="well-light"><span class="well-light m-xs-rl">.m-xs-rl</span></span>
+            <span class="well-light"><span class="well-light m-xs-bl">.m-xs-bl</span></span>
+            <span class="well-light"><span class="well-light m-xs-ll">.m-xs-ll</span></span>
+            <span class="well-light"><span class="well-light m-xs-hl">.m-xs-hl</span></span>
+            <span class="well-light"><span class="well-light m-xs-vl">.m-xs-vl</span></span>
+            <span class="well-light"><span class="well-light m-xs-l">.m-xs-l</span></span>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

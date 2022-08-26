@@ -1,0 +1,37 @@
+.table {
+	width:100%;
+	border-collapse:collapse;
+
+
+	th,
+	td {
+		text-align:left;
+		padding:0.5em;
+	}
+
+	&.striped tbody tr {
+		&:nth-child(odd) { background-color:rgba(var(--rgb-neutral-dark),0.075); }
+		&:hover { background-color:rgba(var(--rgb-neutral-dark),0.15); }
+	}
+
+	&.lined.all tbody tr,
+	&.lined.horizontal tbody tr {
+		border-top:1px solid rgba(var(--rgb-neutral-dark),0.3);
+	}
+
+	&.lined.all th:not(:first-child),
+	&.lined.all td:not(:first-child),
+	&.lined.vertical th:not(:first-child),
+	&.lined.vertical td:not(:first-child) {
+		border-left:1px solid rgba(var(--rgb-neutral-dark),0.3);
+	}
+
+	&.lined.all,
+	&.lined.outline {
+		border:1px solid rgba(var(--rgb-neutral-dark),0.3);
+	}
+}
+
+
+
+

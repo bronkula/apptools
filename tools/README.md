@@ -1,14 +1,162 @@
 # Helpers Documentation
+- [Distribution](#user-content-distribution)
+	- [Current Version](#user-content-current-version)
 - [App Tools](#user-content-app-tools)
 	- [Query.js](#user-content-queryjs)
 - [Draw Tools](#user-content-draw-tools)
-- [Distribution](#user-content-distribution)
 
 ---
+
+## Distribution
+
+### Current Version
+v0.3.4
+
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query-lite.min.js)**
+- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query-route.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/drawtools.min.js)**
 
 ## App Tools
 
 ### Query.js
+
+#### Q Core
+
+- q()
+
+- q.isElement
+- q.isHTML
+- q.isSVG
+- q.isString
+- q.isFunction
+- q.isQ
+- q.isArray
+- q.isFragment
+- q.isEntity
+- q.isJson
+
+- q.parse
+- q.asArray
+- q.makeFragment
+- q.make
+- q.htmlEncode
+
+- q.extend
+- q.hasExtension
+
+- q.sift
+- q.settle
+
+- q.debug
+
+#### Q Extensions
+
+- q().find
+- q().sift
+- q().pipe
+- q().is
+- q().not
+- q().toArray
+- q().toString
+- q().toText
+
+#### Array Extensions
+
+- q().forEach
+- q().map
+- q().flatMap
+- q().reduce
+- q().some
+- q().every
+- q().filter
+
+#### Traversal Extensions
+
+- q().find
+- q().next
+- q().prev
+- q().parent
+- q().closest
+- q().children
+- q().last
+- q().first
+- q().siblings
+
+#### Manipulation Core
+
+- q.clear
+- q.setCSS
+- q.setAttr
+- q.setVal
+- q.setHTML
+- q.setCache
+- q.setData
+- q.getData
+- q.toPropCase
+
+#### Manipulation Extensions
+
+- q().remove
+- q().clear, q().empty
+- q().append
+- q().appendTo
+- q().prepend
+- q().prependTo
+- q().before
+- q().after
+
+- q().addClass
+- q().removeClass
+- q().toggleClass
+- q().hasClass
+
+- q().addAttr
+- q().removeAttr
+- q().toggleAttr
+- q().hasAttr
+
+- q().css
+- q().attr
+- q().data
+- q().val
+- q().html
+
+
+#### Events Core
+
+- q.getPath
+- q.inPath
+- q.evPoints
+- q.getEXY
+- q.getEventXY
+
+
+#### Events Extensions
+
+- q().on
+- q().delegate
+
+
+#### Fetch Core
+
+- q.catchJson
+
+- q.promiseList
+- q.promiseEach
+
+- q.get
+- q.getAll
+- q.getList
+- q.getEach
+
+- q.post
+- q.postAll
+- q.postList
+- q.postEach
+
+
+### Details
 
 - **[query.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/query.min.js)**
 - **[apptools.min.js](https://github.com/bronkula/apptools/blob/master/tools/bin/apptools.min.js)**
@@ -134,9 +282,3 @@ templater(o=>`<div>${o.name}</div>`)(".output")(
 
 .output: "<div>George</div><div>Fred</div>"
 ```
-
-## Distribution
-
-- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query.min.js)**
-- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/query-lite.min.js)**
-- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/tools/dist/drawtools.min.js)**

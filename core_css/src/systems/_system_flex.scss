@@ -5,7 +5,7 @@
     &-off { display: initial; }
     &-wrap { flex-wrap: wrap; }
     &-nowrap { flex-wrap: nowrap; }
-    &-column { flex-direction: column; }
+    &-column,&-vertical { flex-direction: column; }
     &-row { flex-direction: row; }
     &-align-center { align-items: center; }
     &-align-start { align-items: flex-start; }

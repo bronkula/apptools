@@ -53,8 +53,12 @@ A number of items are output in this set that can be chosen depending on needs. 
 
 ## Core
 
-The core.css file combines the cosmetics and a layout system into one large file.
+The core.css file combines the cosmetics and a layout system into one larger file, but still relatively small file.
 
 ### Distributions
 
-- **[Core.css](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.1/core_css/dist/core.css)**
+- **[Core.css](https://cdn.jsdelivr.net/gh/bronkula/apptools@0.3.5/core_css/dist/core.css)**
+
+### Demo
+
+- **[Core_CSS Demo](https://bronkula.github.io/apptools/core_css/index.html)**

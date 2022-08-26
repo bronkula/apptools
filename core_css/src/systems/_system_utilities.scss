@@ -25,15 +25,15 @@
   }
 
   @each $i,$v in $alignment-horz {
-    .align#{$breakpoint}-#{$i} { text-align:$v; }
+    .align#{$breakpoint}-#{$v} { text-align:$v; }
   }
   @each $i,$v in $alignment-vert {
-    .align#{$breakpoint}-#{$i} { vertical-align:$v; }
+    .align#{$breakpoint}-#{$v} { vertical-align:$v; }
   }
   @each $i,$v in $display {
-    .display#{$breakpoint}-#{$i} { display:$v; }
+    .display#{$breakpoint}-#{$v} { display:$v; }
   }
   @each $i,$v in $positioning {
-    .position#{$breakpoint}-#{$i} { position:$v; }
+    .position#{$breakpoint}-#{$v} { position:$v; }
   }
 }

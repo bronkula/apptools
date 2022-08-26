@@ -2,15 +2,9 @@
 if(!q) throw "qjs not imported yet";
 
 
-
-/* Get array from Q */
-q.extend('toArray',function(){ return this.reduce((r,o)=>r.concat([o]),[]) });
-
-
-
 /* Traversal methods */
 q.extend('find',function(s){
-    return q(this.reduce((r,o)=>[...r,...q(s,o).toArray()],[])); });
+    return this.sift(o=>q(s,o)); });
 q.extend('next',function(){
     return this.sift(o=>o.nextElementSibling); });
 q.extend('prev',function(){

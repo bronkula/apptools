@@ -6,7 +6,7 @@
 
 .flex-nowrap { flex-wrap: nowrap; }
 
-.flex-column { flex-direction: column; }
+.flex-column, .flex-vertical { flex-direction: column; }
 
 .flex-row { flex-direction: row; }
 
@@ -50,7 +50,7 @@
   .flex-xs-off { display: initial; }
   .flex-xs-wrap { flex-wrap: wrap; }
   .flex-xs-nowrap { flex-wrap: nowrap; }
-  .flex-xs-column { flex-direction: column; }
+  .flex-xs-column, .flex-xs-vertical { flex-direction: column; }
   .flex-xs-row { flex-direction: row; }
   .flex-xs-align-center { align-items: center; }
   .flex-xs-align-start { align-items: flex-start; }
@@ -75,7 +75,7 @@
   .flex-sm-off { display: initial; }
   .flex-sm-wrap { flex-wrap: wrap; }
   .flex-sm-nowrap { flex-wrap: nowrap; }
-  .flex-sm-column { flex-direction: column; }
+  .flex-sm-column, .flex-sm-vertical { flex-direction: column; }
   .flex-sm-row { flex-direction: row; }
   .flex-sm-align-center { align-items: center; }
   .flex-sm-align-start { align-items: flex-start; }
@@ -100,7 +100,7 @@
   .flex-md-off { display: initial; }
   .flex-md-wrap { flex-wrap: wrap; }
   .flex-md-nowrap { flex-wrap: nowrap; }
-  .flex-md-column { flex-direction: column; }
+  .flex-md-column, .flex-md-vertical { flex-direction: column; }
   .flex-md-row { flex-direction: row; }
   .flex-md-align-center { align-items: center; }
   .flex-md-align-start { align-items: flex-start; }
@@ -125,7 +125,7 @@
   .flex-lg-off { display: initial; }
   .flex-lg-wrap { flex-wrap: wrap; }
   .flex-lg-nowrap { flex-wrap: nowrap; }
-  .flex-lg-column { flex-direction: column; }
+  .flex-lg-column, .flex-lg-vertical { flex-direction: column; }
   .flex-lg-row { flex-direction: row; }
   .flex-lg-align-center { align-items: center; }
   .flex-lg-align-start { align-items: flex-start; }
@@ -150,7 +150,7 @@
   .flex-xl-off { display: initial; }
   .flex-xl-wrap { flex-wrap: wrap; }
   .flex-xl-nowrap { flex-wrap: nowrap; }
-  .flex-xl-column { flex-direction: column; }
+  .flex-xl-column, .flex-xl-vertical { flex-direction: column; }
   .flex-xl-row { flex-direction: row; }
   .flex-xl-align-center { align-items: center; }
   .flex-xl-align-start { align-items: flex-start; }

@@ -1,9 +1,16 @@
 
 /* Pattern demo definitions */
 .well {
-    padding: 1em;
+    padding: 0.7em 1em;
     border: solid 2px var(--color-neutral-light);
     border-radius: 0.3em;
+    margin:1px;
+}
+.well-light {
+    display: inline-block;
+    border-width:0;
+    background-color: rgba(var(--rgb-neutral-dark),0.2);
+    border-radius:0.2em;
 }
 .pattern {
     max-width:500px;
@@ -12,26 +19,26 @@
     position: relative;
     z-index: 2;
 
-    &.gray,
-    &.grey {
-        background-color: var(--color-neutral-light);
-    }
-
     &.well {
-        box-shadow:1px 1px 5px rgba(0,0,0,0.2);
+        box-shadow:1px 1px 5px rgba(var(--rgb-neutral-medium),0.5);
         background-color: var(--color-white);
         border-width:0;
         &>:first-child { margin-top:0; }
         &>:last-child { margin-bottom:0; }
     }
 
+    &.gray,
+    &.grey {
+        background-color: var(--color-neutral-light);
+    }
+
     &.modalish {
         border-radius:0.2em;
-        box-shadow:1px 1px 5px rgba(0,0,0,0.4);
+        box-shadow:1px 1px 5px rgba(var(--rgb-neutral-medium),0.5);
         font-family:Verdana, sans-serif;
     }
     &.mobile {
-        box-shadow:1px 1px 5px rgba(0,0,0,0.4);
+        box-shadow:1px 1px 5px rgba(var(--rgb-neutral-medium),0.5);
         --screen-width:375px;
         max-width:var(--screen-width);
     }
@@ -57,6 +64,10 @@
 .gloss ul,
 .toc ul{
     list-style-type:none;
+    padding-left:0;
+}
+.gloss ul ul,
+.toc ul ul{
     padding-left:1em;
 }
 .gloss li,
@@ -91,10 +102,11 @@ ul .operator {
 
 /* Code Blocks */
 code {
-    padding: 1em;
-    background-color: #eee;
+    padding: 0.75em 1em;
+    background-color: var(--color-neutral-lighter);
     border-radius: 0.3em;
     tab-size: 3;
+    font-family:var(--font-monospace);
 
     &.output,
     &.block {
@@ -104,6 +116,7 @@ code {
         overflow: auto;
         position:relative;
         margin:1em 0;
+        font-size:0.9em;
         &::before {
             content: attr(data-title);
             position: absolute;
@@ -115,6 +128,7 @@ code {
     &.inline {
         display: inline;
         padding: 0.1em 0.5em;
+        vertical-align:baseline;
         font-size: inherit;
         white-space: nowrap;
     }
