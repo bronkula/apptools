@@ -27,6 +27,14 @@
     line-height:inherit;
     text-align:center;
     outline: 0;
+    vertical-align: baseline;
+
+    &:hover {
+        text-decoration:none;
+    }
+    &:active {
+        background-color:var(--color-neutral-medium);
+    }
 
 
     &.text {
@@ -112,7 +120,36 @@
     &-blank {
         @extend .chromeless;
     }
-    
+
+
+    &-select {
+        position: relative;
+        select {
+            display: inline-block;
+            border-width: 0;
+            background-color: var(--color-neutral-light);
+            padding: 0.5em 1em;
+            font: inherit;
+            color: inherit;
+            width: 100%;
+            -webkit-appearance: none;
+            outline:0;
+            transition: all 0.6s;
+            border-radius: 0.2em;
+        }
+        &::after {
+            position: absolute;
+            top: 50%;
+            right: 0.5rem;
+            transform: translateY(-50%);
+            color: var(--color-neutral-dark);
+            font-size: 1em;
+            content: '▾';
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
 
     &-group {
         display:flex;

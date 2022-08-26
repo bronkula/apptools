@@ -45,7 +45,7 @@ function print_p($v) {
 
 
 
-
+/*
 // Make a mysqli connection to database. Return connection object;
 function makeConn($host = "localhost", $user = "", $pass = "", $dbname = "") {
 	$c = new mysqli($host, $user, $pass, $dbname);
@@ -103,3 +103,38 @@ echo json_encode(
 	),
 	JSON_NUMERIC_CHECK
 );
+*/
+
+
+
+
+// https://stackoverflow.com/questions/54258642/how-to-access-the-current-index-in-array-reduce#answer-54259037
+function array_reduce_assoc(array $array, callable $callback, $initial=null) {
+    $carry = $initial;
+    foreach ( $array as $key => $value ) {
+        $carry = $callback($carry, $value, $key);
+    }
+    return $carry;
+}
+
+function makeColumn($o) { return "`$o`"; }
+function makeSets($r,$o,$i) { $r[] = "`$i`=$o"; return $r; }
+
+function makeInsertStatement($t,$a) {
+    $keys = array_map('makeColumn',array_keys($a));
+    $vals = array_values($a);
+
+    return "INSERT INTO `$t`
+    (".implode(",",$keys).")
+    VALUES
+    (".implode(",",$vals).")";
+}
+
+function makeUpdateStatement($t,$a,$c) {
+    $sets = array_reduce_assoc($a,'makeSets',[]);
+    $conditions = array_reduce_assoc($c,'makeSets',[]);
+
+    return "UPDATE `$t`
+    SET ".implode(" , ",$sets)."
+    WHERE ".implode(" AND ",$conditions);
+}

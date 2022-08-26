@@ -16,7 +16,7 @@
     a, span {
         display:block;
         padding: 0.2em 0.5em;
-        font-family:Verdana, sans-serif;
+        font-family:var(--font-sans);
 
         &:hover {
             text-decoration:none;

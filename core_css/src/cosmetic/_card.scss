@@ -8,12 +8,23 @@
     margin-top:1em;
     margin-bottom: 1em;
 
-    &-bright { @extend .card; background-color: var(--color-white); }
+    display:block;
 
-    &-dark { @extend .card; background-color: var(--color-neutral-dark); }
+    &.bright {
+        background-color: var(--color-white);
+        color:var(--color-black);
+    }
 
-    &-main { @extend .card; background-color: var(--color-main-medium); }
+    &.dark {
+        background-color: var(--color-neutral-dark);
+        color:var(--color-white);
+    }
 
+    &.main {
+        background-color: var(--color-main-medium);
+        color:var(--color-white);
+    }
+    
     &.shadow {
     	box-shadow: 0 2px 0 rgba(0,0,0,0.2);
     	&-large {
