@@ -1,24 +1,24 @@
+/*
+Create By Hamilton Cline (https://hdraws.com)
+*/
 
 export class Router {
     static #stored = {};
 
-    static init = () => {
-        window.document.addEventListener("click", function(e){
-            if(e?.composedPath().some(el => el.matches("a[href^='#']"))) {
-                e.preventDefault();
-                let route = this.attributes.href.value.slice(1);
-                if (route != "") Router.navigate(route);
-            }
+    init() {
+        window.addEventListener("DOMContentLoaded", () => {
+            window.document.addEventListener("click", function(e){
+                if(e?.composedPath().some(el => el.matches("a[href^='#']"))) {
+                    e.preventDefault();
+                    let route = this.attributes.href.value.slice(1);
+                    if (route != "") Router.navigate(route);
+                }
+            });
         });
-
-        window.addEventListener("load",() => {
-            setTimeout(() => window.addEventListener("popstate", ({state}) => this.setActive(state)), 0);
-        });
-        window.addEventListener("DOMContentLoaded", () => this.setActive(null));
     }
 
     static setActive = (state, update) => {
-        if(state==null) {
+        if(state === null) {
             state = {
                 title: window.location.hash.slice(1),
                 url: window.location.href,
@@ -54,9 +54,9 @@ export class Router {
         if(basis[0]!=tocheck[0]) return false;
         let props = {};
         for(let i in basis) {
-            if(basis[i]==tocheck[i]) continue;
-            else if(tocheck[i].slice(0,1)==":") props[tocheck[i].slice(1)] = basis[i];
-            else if(basis[i]!=tocheck[i]) return false;
+            if (basis[i] == tocheck[i]) continue;
+            else if (tocheck[i].slice(0,1) == ":") props[tocheck[i].slice(1)] = basis[i];
+            else if (basis[i] != tocheck[i]) return false;
         }
         return props;
     }
@@ -78,3 +78,8 @@ export class Router {
         return (d) => page(props, d);
     }
 }
+
+window.addEventListener("load",() => {
+    setTimeout(() => window.addEventListener("popstate", ({state}) => Router.setActive(state)), 0);
+});
+window.addEventListener("DOMContentLoaded", () => Router.setActive(null));
