@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MrJS Testing Suite</title>
+
+    <script src="../tools/dist/query.min.js"></script>
+
+<script type="module">
+const runTest = (str) => {
+    console.log(str)
+    import(str)
+        .then(module=>{
+            console.log(module)
+            try {
+                module.loadPageInto(q("body")[0]);
+            } catch(e) {
+                console.log("couldn't load into page",e)
+            }
+        })
+        .catch(error=>{
+            console.log("ERROR",error)
+        })
+}
+q(()=>{
+    q("#file-picker-form").on("submit",function(e){
+        e.preventDefault();
+        let file = q("#file-picker").val();
+        runTest(file)
+    })
+    q(".run-test").on("click",function(){
+        runTest(this.innerText)
+    })
+})
+</script>
+</head>
+<body>
+    <h1>MrJS Testing Suite</h1>
+    <ul>
+        <li>../tools/src/query-route.js</li>
+        <li><a href="#" class="run-test">../tools/src/router.test.js</a></li>
+    </ul>
+    <form id="file-picker-form">
+        <label for="file-picker">Test File</label>
+        <input type="search" id="file-picker">
+    </form>
+</body>
+</html>

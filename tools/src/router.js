@@ -61,7 +61,7 @@ export class Router {
         return props;
     }
     static make = (routes, page = ()=>{}, basis) => {
-        let hashroute = (basis ? basis : w.location.hash.slice(1));
+        let hashroute = (basis ? basis : window.location.hash.slice(1));
         let hashsplit = hashroute.split("/");
         let props = {};
         if(hashroute != '') {
