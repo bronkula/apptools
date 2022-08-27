@@ -8,43 +8,114 @@
 
     <script src="../tools/dist/query.min.js"></script>
 
+<style>
+* {
+    box-sizing:border-box;
+}
+.app {
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow: auto;
+}
+#file-picker-form {
+    display:flex;
+    gap:1em;
+}
+#file-typer {
+    flex: 1 1 auto;
+}
+.output {
+    width:100%;
+    flex:1 1 auto;
+    border:1px solid black;
+}
+pre {
+    margin: 0.2em 1em;
+}
+header {
+    padding:1em;
+}
+h1 {
+    margin: 0 0 1rem;
+    font-size:1.2em;
+}
+</style>
+
 <script type="module">
+const altlog = console.log;
+const prepArgs = (...args) => {
+    let output = '', found;
+    for (let i=0; i<args.length; i++) {
+        if (typeof args[i] != 'string') continue;
+        let found = /(.*)%c(.*)/.exec(args[i]);
+        if (found) {
+            let [,pre,post] = found;
+            i++;
+            output += `${pre}<span style="${args[i]}">${post}</span>`;
+        } else {
+            output += args[i];
+        }
+    }
+    return output;
+}
+console.log = (...args) => {
+    q(".app").html(`${q(".app").html()}<pre>${prepArgs(...args)}</pre>`)
+    altlog(...args)
+}
 const runTest = (str) => {
     console.log(str)
-    import(str)
-        .then(module=>{
-            console.log(module)
-            try {
-                module.loadPageInto(q("body")[0]);
-            } catch(e) {
-                console.log("couldn't load into page",e)
-            }
-        })
-        .catch(error=>{
-            console.log("ERROR",error)
-        })
+    q(".app").empty()
+
+    import(str);
+}
+const setTest = (str) => {
+    q(".output").attr({
+        src:`${location.href}?time=${Date.now()}#${str}`
+    });
 }
 q(()=>{
-    q("#file-picker-form").on("submit",function(e){
-        e.preventDefault();
-        let file = q("#file-picker").val();
-        runTest(file)
-    })
-    q(".run-test").on("click",function(){
-        runTest(this.innerText)
-    })
+    if(location.hash!='') {
+        // RUN SUITE
+        try {
+            runTest(location.hash.slice(1));
+        } catch(e) {
+            console.log(e)
+        }
+    } else {
+        // PRESENT TOOLS
+        q(".app").html(`<header>
+        <h1>MrJS Testing Suite</h1>
+        <form id="file-picker-form">
+            <input type="search" id="file-typer" placeholder="test file name">
+            <select id="file-chooser">
+                <option>Choose</option>
+                <option>../tools/src/router.test.js</option>
+            </select>
+        </form>
+        </header>
+        <iframe class="output"></iframe>
+        `)
+        q("#file-picker-form").on("submit",function(e){
+            e.preventDefault();
+            let file = q("#file-picker").val();
+            setTest(file)
+        })
+        q("#file-chooser").on("change",function(e){
+            e.preventDefault();
+            if(this.value!='Choose') {
+                setTest(this.value)
+            }
+        })
+    }
 })
 </script>
 </head>
 <body>
-    <h1>MrJS Testing Suite</h1>
-    <ul>
-        <li>../tools/src/query-route.js</li>
-        <li><a href="#" class="run-test">../tools/src/router.test.js</a></li>
-    </ul>
-    <form id="file-picker-form">
-        <label for="file-picker">Test File</label>
-        <input type="search" id="file-picker">
-    </form>
+    <div class="app"></div>
 </body>
 </html>

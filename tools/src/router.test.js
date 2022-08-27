@@ -22,7 +22,7 @@ describe('Route Init',()=>{
     });
 });
 
-describe('Make Base Routes',()=>{
+describe('Make Base Routes using location.hash',()=>{
     it("Don't match if route empty",()=>{
         location.hash = "";
         let route = Router.make(baseroutes,tell('default'))();
@@ -61,5 +61,23 @@ describe('Make Base Routes',()=>{
         expect(Object.keys(route.props).length).toBe(2);
         expect(route.props.id).toBe('gronkle');
         expect(route.props.sub).toBe('stein');
+    });
+});
+
+describe('Make Alternative Basis Routes',()=>{
+    it("Match subpath route",()=>{
+        location.hash = "";
+        let route = Router.make(subroutes,tell('default'),'subpath')();
+        
+        expect(route.str).toBe('subpath');
+        expect(Object.keys(route.props).length).toBe(0);
+    });
+    it("Match subpath/:id route",()=>{
+        location.hash = "";
+        let route = Router.make(subroutes,tell('default'),'subpath/juicy')();
+
+        expect(route.str).toBe('subpath/:id');
+        expect(Object.keys(route.props).length).toBe(1);
+        expect(route.props.id).toBe('juicy');
     });
 });

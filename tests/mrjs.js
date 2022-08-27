@@ -3,7 +3,7 @@
 let hued = (c) => (str) => ([str,`color:${c};`]);
 let greenText = hued('green');
 let redText = hued('red');
-let yellowText = hued('yellow');
+let orangeText = hued('orange');
 
 export class Matchers {
    constructor(actual) {
@@ -71,7 +71,7 @@ export const describe = (suiteName, fn) => {
 }
 
 export const it = (testName, fn) => {
-   console.log(...yellowText(`  test: %c${testName}`));
+   console.log(...orangeText(`  test: %c${testName}`));
    try {
       fn();
    } catch (err) {
