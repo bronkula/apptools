@@ -4,4 +4,4 @@
 - **[qRoute tests](https://bronkula.github.io/apptools/tests/qroute-tests.html)**
 
 
-- **[qRoute tests](https://bronkula.github.io/apptools/tests/suite.html)**
+- **[MrJS Suite](https://bronkula.github.io/apptools/tests/suite.html)**
