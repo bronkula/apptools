@@ -4,7 +4,7 @@
   "description": "Yup",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "systems": "node-sass --watch responsive_systems/scss -o responsive_systems/css --output-style compact",
     "sass:build": "node-sass core_css/src -o core_css/dist --output-style compact",
     "drawtoolsc": "terser tools/src/canvas.js tools/src/colors.js tools/src/events.js tools/src/maths.js -o tools/dist/drawtools.min.js -c --source-map \"url='../src/drawtools.min.js.map'\"",
@@ -28,5 +28,8 @@
     "concurrently": "^5.2.0",
     "node-sass": "^7.0.0",
     "terser": "^4.8.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.1"
   }
 }
