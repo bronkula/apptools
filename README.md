@@ -14,7 +14,7 @@ A toolset for app development
 ## Demo Pages
 - **[Index](https://bronkula.github.io/apptools/index.html)**
 
-Explore the tools with some basic links.
+Explore the tools with some basic links. Here are some basic links for you.
 
 
 ---
