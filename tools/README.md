@@ -10,21 +10,21 @@
 ## Distribution
 
 ### Current Version
-v0.3.4
+v0.3.51
 
-- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query.min.js)**
-- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query-lite.min.js)**
-- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/query-route.min.js)**
-- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.4/tools/dist/drawtools.min.js)**
+- **[query.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.51/tools/dist/query.min.js)**
+- **[query-lite.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.51/tools/dist/query-lite.min.js)**
+- **[query-route.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.51/tools/dist/query-route.min.js)**
+- **[drawtools.min.js](https://cdn.jsdelivr.net/gh/bronkula/apptools@v0.3.51/tools/dist/drawtools.min.js)**
 
 ## App Tools
 
 ### Query.js
 
 #### Q Core
-
+---
 - q()
-
+---
 - q.isElement
 - q.isHTML
 - q.isSVG
@@ -35,23 +35,21 @@ v0.3.4
 - q.isFragment
 - q.isEntity
 - q.isJson
-
+---
 - q.parse
 - q.asArray
 - q.makeFragment
 - q.make
 - q.htmlEncode
-
+---
 - q.extend
 - q.hasExtension
-
+---
 - q.sift
 - q.settle
-
+---
 - q.debug
-
 #### Q Extensions
-
 - q().find
 - q().sift
 - q().pipe
@@ -60,9 +58,7 @@ v0.3.4
 - q().toArray
 - q().toString
 - q().toText
-
 #### Array Extensions
-
 - q().forEach
 - q().map
 - q().flatMap
@@ -70,9 +66,7 @@ v0.3.4
 - q().some
 - q().every
 - q().filter
-
 #### Traversal Extensions
-
 - q().find
 - q().next
 - q().prev
@@ -82,9 +76,7 @@ v0.3.4
 - q().last
 - q().first
 - q().siblings
-
 #### Manipulation Core
-
 - q.clear
 - q.setCSS
 - q.setAttr
@@ -94,9 +86,7 @@ v0.3.4
 - q.setData
 - q.getData
 - q.toPropCase
-
 #### Manipulation Extensions
-
 - q().remove
 - q().clear, q().empty
 - q().append
@@ -105,51 +95,42 @@ v0.3.4
 - q().prependTo
 - q().before
 - q().after
-
+---
 - q().addClass
 - q().removeClass
 - q().toggleClass
 - q().hasClass
-
+---
 - q().addAttr
 - q().removeAttr
 - q().toggleAttr
 - q().hasAttr
-
+---
 - q().css
 - q().attr
 - q().data
 - q().val
 - q().html
-
-
 #### Events Core
-
 - q.getPath
 - q.inPath
 - q.evPoints
 - q.getEXY
 - q.getEventXY
-
-
 #### Events Extensions
-
 - q().on
 - q().delegate
-
-
 #### Fetch Core
-
 - q.catchJson
-
+---
 - q.promiseList
 - q.promiseEach
-
+---
 - q.get
 - q.getAll
 - q.getList
 - q.getEach
-
+---
 - q.post
 - q.postAll
 - q.postList
@@ -168,24 +149,35 @@ This set of tools is a small simplified alternative to some basic jQuery functio
 
 ---
 
+
+
 ### q
 
 #### Usage
 
-> *NodeList* **q**( *string* **Selector** )
-
-Return a DOM NodeList
+*NodeList* **q**( *string* **Selector** | *string* **Fragment** | *function* **Callback** )
 
 #### Parameters
 
-<dl>
+<dl style="margin-left:1em">
 	<dt>Selector</dt>
-	<dd>A selector of an element to place the output. It can optionally be a DOM object, or a NodeList.</dd>
+	<dd>A css style selector. It can optionally be a DOM object, or a NodeList.</dd>
+	<dt>Fragment</dt>
+	<dd>An HTML fragment.</dd>
+	<dt>Callback</dt>
+	<dd>A function.</dd>
 </dl>
 
 #### Return
 
-> *NodeList* 
+<dl style="margin-left:1em">
+	<dt>Selector</dt>
+	<dd>Q NodeList</dd>
+	<dt>Fragment</dt>
+	<dd>Q NodeList</dd>
+	<dt>Callback</dt>
+	<dd>Boolean</dd>
+</dl>
 
 #### Examples
 
@@ -193,6 +185,10 @@ Return a DOM NodeList
 let el1 = q(".container");
 let el2 = q("dl dt");
 let el3 = q(document.querySelector("#section1"));
+let el4 = q("<div>");
+q(()=>{
+	console.log("Loaded");
+});
 ```
 
 ---

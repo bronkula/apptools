@@ -47,18 +47,37 @@
         --shadow-opacity:0.25;
         background-color: var(--color-neutral-light);
         color:var(--color-neutral-dark);
+        &.main { background-color: var(--color-main-light); color:var(--color-main-dark); }
+        &.neutral { background-color: var(--color-neutral-light); color:var(--color-neutral-dark); }
+        &.commit { background-color: var(--color-commit-light); color:var(--color-commit-dark); }
+        &.cancel { background-color: var(--color-cancel-light); color:var(--color-cancel-dark); }
+        &.warning { background-color: var(--color-warning-light); color:var(--color-warning-dark); }
     }
 
     &.medium {
         --shadow-opacity:0.3;
         background-color: var(--color-neutral-medium);
         color:var(--color-white);
+        &.main { background-color: var(--color-main-medium); }
+        &.neutral { background-color: var(--color-neutral-medium); }
+        &.commit { background-color: var(--color-commit-medium); }
+        &.cancel { background-color: var(--color-cancel-medium); }
+        &.warning { background-color: var(--color-warning-medium); }
     }
 
     &.dark {
         --shadow-opacity:0.5;
         background-color: var(--color-neutral-dark);
         color:var(--color-neutral-light);
+        &.main { background-color: var(--color-main-dark); color:var(--color-main-light); }
+        &.neutral { background-color: var(--color-neutral-dark); color:var(--color-neutral-light); }
+        &.commit { background-color: var(--color-commit-dark); color:var(--color-commit-light); }
+        &.cancel { background-color: var(--color-cancel-dark); color:var(--color-cancel-light); }
+        &.warning { background-color: var(--color-warning-dark); color:var(--color-warning-light); }
+    }
+
+    &.main {
+        &.light { background-color: var(--color-main-light); }
     }
 
     &.soft {

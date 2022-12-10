@@ -1,5 +1,5 @@
 @charset "UTF-8";
-:root { --rgb-white: 255,255,255; --rgb-black: 0,0,0; --color-white: rgb(var(--rgb-white)); --color-black: rgb(var(--rgb-black)); --rgb-main-light: 224, 230, 245; --rgb-main-medium: 47, 104, 230; --rgb-main-dark: 0, 39, 127; --color-main-light: rgb(var(--rgb-main-light)); --color-main-medium: rgb(var(--rgb-main-medium)); --color-main-dark: rgb(var(--rgb-main-dark)); --rgb-neutral-lighter: 241, 241, 243; --rgb-neutral-light: 216, 216, 220; --rgb-neutral-medium: 138, 138, 146; --rgb-neutral-dark: 53, 53, 68; --color-neutral-lighter: rgb(var(--rgb-neutral-lighter)); --color-neutral-light: rgb(var(--rgb-neutral-light)); --color-neutral-medium: rgb(var(--rgb-neutral-medium)); --color-neutral-dark: rgb(var(--rgb-neutral-dark)); --rgb-commit-light: 219, 243, 208; --rgb-commit-medium: 120, 234, 64; --rgb-commit-dark: 54, 138, 14; --color-commit-light: rgb(var(--rgb-commit-light)); --color-commit-medium: rgb(var(--rgb-commit-medium)); --color-commit-dark: rgb(var(--rgb-commit-dark)); --rgb-cancel-light: 255, 227, 227; --rgb-cancel-medium: 241, 46, 68; --rgb-cancel-dark: 136, 0, 15; --color-cancel-light: rgb(var(--rgb-cancel-light)); --color-cancel-medium: rgb(var(--rgb-cancel-medium)); --color-cancel-dark: rgb(var(--rgb-cancel-dark)); --rgb-warning-light: 255, 249, 191; --rgb-warning-medium: 247, 227, 44; --rgb-warning-dark: 175, 150, 0; --color-warning-light: rgb(var(--rgb-warning-light)); --color-warning-medium: rgb(var(--rgb-warning-medium)); --color-warning-dark: rgb(var(--rgb-warning-dark)); --header-height: 3rem; --button-height: 2em; --border-width:2px; --radius:0.2rem; --font-sans: 'Trebuchet MS', Tahoma, sans-serif; --font-serif: Georgia, 'Lucida Bright', serif; --font-monospace: Consolas, Monaco, monospace; --font-cursive: InBubbleLight, cursive; --font-heading:var(--font-sans); --font-body:var(--font-sans); }
+:root { --rgb-white: 255,255,255; --rgb-black: 0,0,0; --color-white: rgb(var(--rgb-white)); --color-black: rgb(var(--rgb-black)); --rgb-main-light: 224, 230, 245; --rgb-main-medium: 47, 104, 230; --rgb-main-dark: 0, 39, 127; --color-main-light: rgb(var(--rgb-main-light)); --color-main-medium: rgb(var(--rgb-main-medium)); --color-main-dark: rgb(var(--rgb-main-dark)); --rgb-neutral-lighter: 241, 241, 243; --rgb-neutral-light: 216, 216, 220; --rgb-neutral-medium: 138, 138, 146; --rgb-neutral-dark: 53, 53, 68; --color-neutral-lighter: rgb(var(--rgb-neutral-lighter)); --color-neutral-light: rgb(var(--rgb-neutral-light)); --color-neutral-medium: rgb(var(--rgb-neutral-medium)); --color-neutral-dark: rgb(var(--rgb-neutral-dark)); --rgb-commit-light: 219, 243, 208; --rgb-commit-medium: 120, 234, 64; --rgb-commit-dark: 54, 138, 14; --color-commit-light: rgb(var(--rgb-commit-light)); --color-commit-medium: rgb(var(--rgb-commit-medium)); --color-commit-dark: rgb(var(--rgb-commit-dark)); --rgb-cancel-light: 255, 227, 227; --rgb-cancel-medium: 241, 46, 68; --rgb-cancel-dark: 136, 0, 15; --color-cancel-light: rgb(var(--rgb-cancel-light)); --color-cancel-medium: rgb(var(--rgb-cancel-medium)); --color-cancel-dark: rgb(var(--rgb-cancel-dark)); --rgb-warning-light: 255, 248, 179; --rgb-warning-medium: 247, 227, 44; --rgb-warning-dark: 126, 108, 0; --color-warning-light: rgb(var(--rgb-warning-light)); --color-warning-medium: rgb(var(--rgb-warning-medium)); --color-warning-dark: rgb(var(--rgb-warning-dark)); --header-height: 3rem; --button-height: 2em; --border-width:2px; --radius:0.2rem; --font-sans: 'Trebuchet MS', Tahoma, sans-serif; --font-serif: Georgia, 'Lucida Bright', serif; --font-monospace: Consolas, Monaco, monospace; --font-cursive: InBubbleLight, cursive; --font-heading:var(--font-sans); --font-body:var(--font-sans); }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -366,9 +366,41 @@ a .icon { pointer-events: none; }
 
 .card.light { --shadow-opacity:0.25; background-color: var(--color-neutral-light); color: var(--color-neutral-dark); }
 
+.card.light.main { background-color: var(--color-main-light); color: var(--color-main-dark); }
+
+.card.light.neutral { background-color: var(--color-neutral-light); color: var(--color-neutral-dark); }
+
+.card.light.commit { background-color: var(--color-commit-light); color: var(--color-commit-dark); }
+
+.card.light.cancel { background-color: var(--color-cancel-light); color: var(--color-cancel-dark); }
+
+.card.light.warning { background-color: var(--color-warning-light); color: var(--color-warning-dark); }
+
 .card.medium { --shadow-opacity:0.3; background-color: var(--color-neutral-medium); color: var(--color-white); }
 
+.card.medium.main { background-color: var(--color-main-medium); }
+
+.card.medium.neutral { background-color: var(--color-neutral-medium); }
+
+.card.medium.commit { background-color: var(--color-commit-medium); }
+
+.card.medium.cancel { background-color: var(--color-cancel-medium); }
+
+.card.medium.warning { background-color: var(--color-warning-medium); }
+
 .card.dark { --shadow-opacity:0.5; background-color: var(--color-neutral-dark); color: var(--color-neutral-light); }
+
+.card.dark.main { background-color: var(--color-main-dark); color: var(--color-main-light); }
+
+.card.dark.neutral { background-color: var(--color-neutral-dark); color: var(--color-neutral-light); }
+
+.card.dark.commit { background-color: var(--color-commit-dark); color: var(--color-commit-light); }
+
+.card.dark.cancel { background-color: var(--color-cancel-dark); color: var(--color-cancel-light); }
+
+.card.dark.warning { background-color: var(--color-warning-dark); color: var(--color-warning-light); }
+
+.card.main.light { background-color: var(--color-main-light); }
 
 .card.soft { border-radius: 0.3rem; }
 

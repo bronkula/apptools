@@ -44,9 +44,9 @@
    --color-cancel-medium: rgb(var(--rgb-cancel-medium));
    --color-cancel-dark: rgb(var(--rgb-cancel-dark));
 
-   --rgb-warning-light: 255, 249, 191;
+   --rgb-warning-light: 255, 248, 179;
    --rgb-warning-medium: 247, 227, 44;
-   --rgb-warning-dark: 175, 150, 0;
+   --rgb-warning-dark: 126, 108, 0;
 
    --color-warning-light: rgb(var(--rgb-warning-light));
    --color-warning-medium: rgb(var(--rgb-warning-medium));
@@ -70,3 +70,16 @@
    --font-heading:var(--font-sans);
    --font-body:var(--font-sans);
 }
+
+$color-codes: (
+   main:1,
+   neutral:1,
+   commit:1,
+   cancel:1,
+   warning:1,
+);
+$mod-codes: (
+   light:1,
+   medium:1,
+   dark:1,
+);
